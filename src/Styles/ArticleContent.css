@@ -8,24 +8,3 @@
 .article-container .banniere {
   width: 100%;
 }
-
-.paragraphe-container {
-  display: flex;
-  flex-direction: column;
-  text-align: left;
-  margin-top: 30px;
-}
-
-.paragraphe-container:nth-child(odd) img {
-  width: 150px;
-  float: left;
-  padding-right: 15px;
-  padding-bottom: 10px;
-}
-
-.paragraphe-container:nth-child(even) img  {
-  width: 150px;
-  float: right;
-  padding-left: 15px;
-  padding-bottom: 10px;
-}
