@@ -96,6 +96,11 @@
     border-top: 2px solid white;
     border-right: 2px solid white;
     transform: rotate(135deg);
+    transition: all 0.2s ease-in-out;
+}
+.navigation-sidebar-container .navigation-element-container.with-submenu.opened p::after {
+    transform: rotate(-45deg);
+    top:5px;
 }
 .navigation-sidebar-container .navigation-element-container.submenu.hidden {
     display: none;    

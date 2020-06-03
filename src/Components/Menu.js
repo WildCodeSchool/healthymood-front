@@ -93,9 +93,11 @@ function Menu () {
   }
   function openSubmenu () {
     const subMenu = document.getElementsByClassName('submenu');
+    const subMenuOpener = document.querySelector('.with-submenu');
     for (let i = 0; i < subMenu.length; i++) {
       subMenu[i].classList.toggle('hidden');
     }
+    subMenuOpener.classList.toggle('opened');
   }
 
   return (
