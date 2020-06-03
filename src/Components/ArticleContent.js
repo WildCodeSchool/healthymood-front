@@ -1,5 +1,8 @@
 import React from 'react';
 import '../Styles/ArticleContent.css';
+import authorImage from '../Images/author.png';
+import categoryImage from '../Images/category.png';
+import publishedImage from '../Images/published.png';
 
 const article = {
   id: 1,
@@ -8,8 +11,8 @@ const article = {
   image: require('../Images/photoArticle1.jpg'),
   author_name: 'HealthyMood',
   article_category_id: 'Blog',
-  created_at: 'mai 2020',
-  updated_at: '',
+  created_at: 'Mai 2020',
+  updated_at: 'Juin 2020',
   slug: '/les-fruits-legumes-de-saison-que-manger-en-ete/',
   content : `<h3>Les anti-oxydants</h3>
   <p><img class="size-medium wp-image-3533 alignright" src="https://www.healthymood.fr/wp-content/uploads/Fraises-avec-groseilles-200x300.jpg" alt="" width="200" height="300" srcset="https://www.healthymood.fr/wp-content/uploads/Fraises-avec-groseilles-200x300.jpg 200w, https://www.healthymood.fr/wp-content/uploads/Fraises-avec-groseilles.jpg 667w" sizes="(max-width: 200px) 100vw, 200px" /></p>
@@ -60,9 +63,18 @@ function ArticleContent() {
     <div className='article-container'>
       <h1>{article.title}</h1>
       <img className='banniere' src={article.image} alt={article.title} />
-      <p>{article.article_category_id}</p>
-      <p>{article.author_name}</p>
-      {article.updated_at !== '' ?<p>{article.updated_at}</p> : <p>{article.created_at}</p> }
+      <div className='article-details'>
+        <div className='author-container'>
+          <span className='picto-container' style={{ backgroundImage: `url(${authorImage})` }} /><p>{article.author_name}</p>
+        </div>
+        <div className='category-container'>
+          <span className='picto-container' style={{ backgroundImage: `url(${categoryImage})` }} /><p>{article.article_category_id}</p>
+        </div>
+        <div className='published-container'>
+          <span className='picto-container' style={{ backgroundImage: `url(${publishedImage})` }} />{article.updated_at !== '' ?<p>{article.updated_at}</p> : <p>{article.created_at}</p>}
+        </div>
+      </div>
+
       <div dangerouslySetInnerHTML={createArticle()}/>
     </div>
     

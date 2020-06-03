@@ -8,3 +8,26 @@
 .article-container .banniere {
   width: 100%;
 }
+
+.article-container .article-details {
+  display: flex;
+  flex-direction: row;
+}
+
+.article-container .article-details p {
+  margin-right: 25px;
+}
+
+.article-details .picto-container {
+  background-position:center;
+  background-size:cover;
+  width:15px;
+  height:15px;
+  margin-right:5px;
+  display:inline-block;
+  margin-top:18px;
+}
+
+.author-container, .category-container, .published-container {
+  display: flex;
+}
