@@ -8,7 +8,7 @@ const article = {
   image: require('../Images/photoArticle1.jpg'),
   author_name: 'HealthyMood',
   article_category_id: 'Blog',
-  created_at: '',
+  created_at: 'mai 2020',
   updated_at: '',
   slug: '/les-fruits-legumes-de-saison-que-manger-en-ete/',
   content : `<h3>Les anti-oxydants</h3>
@@ -60,6 +60,9 @@ function ArticleContent() {
     <div className='article-container'>
       <h1>{article.title}</h1>
       <img className='banniere' src={article.image} alt={article.title} />
+      <p>{article.article_category_id}</p>
+      <p>{article.author_name}</p>
+      {article.updated_at !== '' ?<p>{article.updated_at}</p> : <p>{article.created_at}</p> }
       <div dangerouslySetInnerHTML={createArticle()}/>
     </div>
     
