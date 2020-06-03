@@ -76,62 +76,62 @@ const navigationElements = [
         withSubmenu: false
     }
 
-]
+];
 
-class Menu extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            burgerOpened: false,
-        }
-    }
-
-    openMenu = () => {
+function Menu() {
+    function openMenu() {
         const navigationMenu = document.querySelector('#navigation-sidebar');
-        const burgerMenu = document.querySelector('#burger-menu')
+        const burgerMenu = document.querySelector('#burger-menu');
+        const subMenu = document.getElementsByClassName('submenu');
+        const overlay = document.querySelector('.overlay');
+        overlay.classList.toggle('hidden');
         navigationMenu.classList.toggle('opened');
         burgerMenu.classList.toggle('opened');
+        for (let i = 0; i < subMenu.length; i++) {
+            subMenu[i].classList.add('hidden');
+        }
     }
-    openSubmenu = () => {
+    function openSubmenu() {
         const subMenu = document.getElementsByClassName('submenu');
         for (let i = 0; i < subMenu.length; i++) {
             subMenu[i].classList.toggle('hidden');
         }
     }
 
-    render() {
-        return (
-            <>
-                <div className='burger-menu-container' onClick={this.openMenu}>
-                    <div id='burger-menu' className='burger-menu'>
-                        <span className='burger-menu-line-one' />
-                        <span className='burger-menu-line-two' />
-                        <span className='burger-menu-line-three' />
-                    </div>
-                </div >
+    return (
+        <>
+            <div className='burger-menu-container' onClick={openMenu}>
+                <div id='burger-menu' className='burger-menu'>
+                    <span className='burger-menu-line-one' />
+                    <span className='burger-menu-line-two' />
+                    <span className='burger-menu-line-three' />
+                </div>
+            </div>
 
-                <div id='navigation-sidebar' className='navigation-sidebar-container' >
-                    {
-                        navigationElements.map(element => {
-                            return (
-                                <NavLink key={element.text} exact to={element.link}>
-                                    <div className={element.submenu
+            <div className='overlay hidden' onClick={openMenu} />
+
+            <div id='navigation-sidebar' className='navigation-sidebar-container'>
+                {
+                    navigationElements.map(element => {
+                        return (
+                            <NavLink key={element.text} exact to={element.link}>
+                                <div
+                                    className={element.submenu
                                         ? 'navigation-element-container submenu hidden'
                                         : element.withSubmenu
                                             ? 'navigation-element-container primary-menu with-submenu'
                                             : 'navigation-element-container primary-menu'}
-                                        onClick={element.withSubmenu && this.openSubmenu}
-                                    >
-                                        <p>{element.text}</p>
-                                    </div>
-                                </NavLink>
-                            )
-                        })
-                    }
-                </div>
-            </>
-        )
-    }
+                                    onClick={element.withSubmenu ? openSubmenu : undefined}
+                                >
+                                    <p>{element.text}</p>
+                                </div>
+                            </NavLink>
+                        );
+                    })
+                }
+            </div>
+        </>
+    );
 }
 
 export default Menu;

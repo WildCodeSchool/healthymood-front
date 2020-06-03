@@ -7,12 +7,11 @@ import {
 } from 'react-router-dom';
 import Menu from './Components/Menu';
 
-function App() {
+function App () {
   return (
     <>
       <Router>
-        <div className="App">
-
+        <div className='App'>
 
           <Switch>
             <Menu />
@@ -22,11 +21,10 @@ function App() {
             <Route exact path='/' /* component={...} */ />
             <Route exact path='/' /* component={...} */ />
           </Switch>
-        </div >
+        </div>
       </Router>
     </>
   );
 }
-
 
 export default App;
