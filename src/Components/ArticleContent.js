@@ -62,18 +62,21 @@ function ArticleContent() {
   return (
     <div className='article-container'>
       <h1>{article.title}</h1>
-      <img className='banniere' src={article.image} alt={article.title} />
-      <div className='article-details'>
-        <div className='author-container'>
-          <span className='picto-container' style={{ backgroundImage: `url(${authorImage})` }} /><p>{article.author_name}</p>
-        </div>
-        <div className='category-container'>
-          <span className='picto-container' style={{ backgroundImage: `url(${categoryImage})` }} /><p>{article.article_category_id}</p>
-        </div>
-        <div className='published-container'>
-          <span className='picto-container' style={{ backgroundImage: `url(${publishedImage})` }} />{article.updated_at !== '' ?<p>{article.updated_at}</p> : <p>{article.created_at}</p>}
+      <div className='article-presentation'>
+        <img className='banniere' src={article.image} alt={article.title} />
+        <div className='article-details'>
+          <div className='author-container'>
+            <span className='picto-container' style={{ backgroundImage: `url(${authorImage})` }} /><p>{article.author_name}</p>
+          </div>
+          <div className='category-container'>
+            <span className='picto-container' style={{ backgroundImage: `url(${categoryImage})` }} /><p>{article.article_category_id}</p>
+          </div>
+          <div className='published-container'>
+            <span className='picto-container' style={{ backgroundImage: `url(${publishedImage})` }} />{article.updated_at !== '' ?<p>{article.updated_at}</p> : <p>{article.created_at}</p>}
+          </div>
         </div>
       </div>
+      <p className='introduction-text'>{article.meta_description}</p>
 
       <div dangerouslySetInnerHTML={createArticle()}/>
     </div>

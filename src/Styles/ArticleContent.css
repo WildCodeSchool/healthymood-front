@@ -5,8 +5,10 @@
   background-color: white;
 }
 
-.article-container .banniere {
+.article-container .banniere, .article-presentation{
   width: 100%;
+  max-width: 600px;
+  margin: 0 auto;
 }
 
 .article-container .article-details {
@@ -30,4 +32,8 @@
 
 .author-container, .category-container, .published-container {
   display: flex;
+}
+
+.article-container .introduction-text {
+  text-align: left;
 }
