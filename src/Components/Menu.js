@@ -78,8 +78,8 @@ const navigationElements = [
 
 ];
 
-function Menu() {
-  function openMenu() {
+function Menu () {
+  function openMenu () {
     const navigationMenu = document.querySelector('#navigation-sidebar');
     const burgerMenu = document.querySelector('#burger-menu');
     const subMenu = document.getElementsByClassName('submenu');
@@ -91,7 +91,7 @@ function Menu() {
       subMenu[i].classList.add('hidden');
     }
   }
-  function openSubmenu() {
+  function openSubmenu () {
     const subMenu = document.getElementsByClassName('submenu');
     for (let i = 0; i < subMenu.length; i++) {
       subMenu[i].classList.toggle('hidden');
