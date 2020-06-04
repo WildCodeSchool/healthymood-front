@@ -8,8 +8,11 @@
 .carousel-title h3 {
   font-family:var(--primaryFont);
   font-size: 40px;  
-  margin-bottom: 40px;
+  margin-bottom: 20px;
   text-shadow: 0 0 3px black;
+}
+.carousel-title p{
+  margin-bottom: 20px;
 }
 .carousel-content{
   position: absolute;
@@ -32,9 +35,12 @@
   border:1px solid transparent;
   transition: all 0.2s ease-in-out;
 }
+.carousel-button:focus {
+  outline: none; 
+}
 .carousel-button:hover {
   background-color:white;
-  color:var(--accentColor);
+  color:var(--accentColor);  
 }
 .carousel-caption {
   position: absolute;
@@ -59,6 +65,9 @@
     background-size: cover;
   }
   .carousel-content {
-    width:100%;
+    width:80%;
   }
+  .carousel-title h3 {
+    font-size: 20px;      
+  }  
 }
