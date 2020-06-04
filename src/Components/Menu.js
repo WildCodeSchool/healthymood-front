@@ -23,8 +23,6 @@ const navigationElements = [
     withSubmenu: false,
     icon: homeIcon,
     slug: 'accueil',
-    needLogIn: false,
-    needLogOut: false,
   },
   {
     text: 'Rechercher',
@@ -33,8 +31,6 @@ const navigationElements = [
     withSubmenu: false,
     icon: searchIcon,
     slug: 'rechercher',
-    needLogIn: false,
-    needLogOut: false,
   },
   {
     text: 'Les recettes',
@@ -43,8 +39,6 @@ const navigationElements = [
     withSubmenu: false,
     icon: recipesIcon,
     slug: 'recettes',
-    needLogIn: false,
-    needLogOut: false,
   },
   {
     text: 'Les classiques',
@@ -53,8 +47,6 @@ const navigationElements = [
     withSubmenu: false,
     icon: classicsIcon,
     slug: 'classiques',
-    needLogIn: false,
-    needLogOut: false,
   },
   {
     text: 'Conseils & astuces',
@@ -63,8 +55,6 @@ const navigationElements = [
     withSubmenu: false,
     icon: tipsIcon,
     slug: 'conseils-astuces',
-    needLogIn: false,
-    needLogOut: false,
   },
   {
     text: 'Dictionnaire',
@@ -73,8 +63,6 @@ const navigationElements = [
     withSubmenu: false,
     icon: dictionaryIcon,
     slug: 'dictionnaire',
-    needLogIn: false,
-    needLogOut: false,
   },
   {
     text: 'Ebook',
@@ -83,8 +71,6 @@ const navigationElements = [
     withSubmenu: false,
     icon: ebookIcon,
     slug: 'ebook',
-    needLogIn: false,
-    needLogOut: false,
   },
   {
     text: 'Envoyer ma recette',
@@ -93,11 +79,9 @@ const navigationElements = [
     withSubmenu: false,
     icon: sendRecipeIcon,
     slug: 'envoyer-recette',
-    needLogIn: false,
-    needLogOut: false,
   },
   {
-    text: 'Mon Compte',
+    text: 'Mon compte',
     link: '#',
     submenu: false,
     withSubmenu: true,
@@ -153,7 +137,7 @@ class Menu extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      is_connected: false,
+      is_connected: true,
     }
   }
 
@@ -193,8 +177,25 @@ class Menu extends React.Component {
         <div className='overlay hidden' onClick={this.openMenu} />
 
         <div id='navigation-sidebar' className='navigation-sidebar-container'>
-          {
-            navigationElements.map(element => {
+          {this.state.is_connected ?
+            navigationElements.filter(element => element.needLogIn || element.needLogIn === undefined).map(element => {
+              return (
+                <NavLink key={element.text} exact to={element.link}>
+                  <div
+                    className={element.submenu
+                      ? 'navigation-element-container submenu hidden'
+                      : element.withSubmenu
+                        ? 'navigation-element-container primary-menu with-submenu'
+                        : 'navigation-element-container primary-menu'}
+                    onClick={element.withSubmenu ? this.openSubmenu : undefined}
+                  >
+                    <span className={`navigation-icon ${element.slug}`} style={{ backgroundImage: `url(${element.icon})` }} /><p>{element.text}</p>
+                  </div>
+                </NavLink>
+              );
+            })
+            :
+            navigationElements.filter(element => element.needLogOut || element.needLogOut === undefined).map(element => {
               return (
                 <NavLink key={element.text} exact to={element.link}>
                   <div
