@@ -1,14 +1,14 @@
 import React from 'react';
-import Footer from '../Components/Footer';
+import Article from './Article';
 
 class Home extends React.Component {
-    render() {
-        return (
-            <div className='home'>
-                <Footer />
-            </div>
-        )
-    }
+  render() {
+    return (
+      <div className='home'>
+        <Article />
+      </div>
+    )
+  }
 }
 
 export default Home;
