@@ -1,0 +1,23 @@
+.footer-container {
+    position:absolute;
+    bottom:0;
+    width:100%;
+    height:10vh;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    background-color:white;
+}
+.footer-container .footer-element {
+    width:25px;
+    height:25px;
+    border:1px solid #828282;
+    margin:0 10px 0 10px;
+    background-position:center;
+    background-size:60%;
+    background-repeat:no-repeat;
+    transition:all 0.2s ease-in-out;
+}
+.footer-container .footer-element:hover {
+    background-color:#efefef;
+}
