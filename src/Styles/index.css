@@ -11,3 +11,17 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+.carousel-title h1, h2, h3, h4 {
+  font-family:var(--primaryFont);
+  font-size: 30px;
+}
+
+
+
+.carousel-button {
+  border-radius: 15px;
+  border: none;
+  background-color: rgba(150, 245, 7, 0.781);
+  width: 200px;
+  font-size: 1.1em;
+}
