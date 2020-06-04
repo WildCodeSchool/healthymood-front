@@ -1,10 +1,18 @@
+header{
+    width: 100%;
+}
+
+header img{
+    width: 100%;
+    height: auto;
+}
+
 .header-container{
     width: 100%;
     height: 15%;
     margin: 0 auto;
     border-top: 1px solid#dcdcdc;
     border-bottom: 1px solid #dcdcdc;
-    margin-top: 5%;
 }
 
 .header-container img{
@@ -16,8 +24,13 @@
 }
 
 @media screen and (min-width: 770px) {
+    header img{
+        width: 770px;
+        margin: 0 auto;
+    }
     .header-container{ 
         width: 770px;
         height: auto;
+        margin: 0 auto;
     }
 }
