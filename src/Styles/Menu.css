@@ -1,0 +1,143 @@
+.burger-menu-container {
+    width:50px;
+    height:50px;
+    z-index:99999999;
+    position:absolute;
+}
+.burger-menu-container .burger-menu {
+    width:100%;
+    height:100%;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    z-index:99999;
+    cursor:pointer;
+    margin-left:10px;
+}
+.burger-menu-container .burger-menu span {
+    width:80%;
+    height:2px;
+    background-color:#008d36;
+    display:block;
+    margin:4px 0;
+    border-radius:10px;
+    border:1px solid #008d36;
+    transition:all 0.2s ease-in-out;
+}
+.burger-menu-container .burger-menu.opened span {
+    transition:all 0.2s ease-in-out;
+    display:none;
+}
+/*.burger-menu-container .burger-menu.opened span:nth-child(1) {
+    width:80%;
+    height:2px;
+    background-color:white;
+    display:block;
+    margin:4px 0;
+    border-radius:10px;
+    border:1px solid white;
+    transform:rotate(45deg);
+}
+.burger-menu-container .burger-menu.opened span:nth-child(2) {
+    display:none;
+}
+.burger-menu-container .burger-menu.opened span:nth-child(3) {
+    width:80%;
+    height:2px;
+    background-color:white;
+    display:block;
+    margin:4px 0;
+    border-radius:10px;
+    border:1px solid white;
+    transform:rotate(-45deg);
+    margin-top:-8px;
+}*/
+.navigation-sidebar-container {
+    width:50%;
+    background-color:#008d36;
+    position:absolute;
+    top:0;
+    box-shadow:0 0 3px black;
+    z-index:99;
+    transition: all 0.2s ease-in-out;
+    transform:translateX(calc(-100% - 5px));
+    height:100vh;
+    max-width:250px;
+    /*background-image: linear-gradient(190deg, rgba(0, 0, 0, 0.2) 0%, rgba(258, 258, 258, 0.1) 90%);*/
+}
+.navigation-sidebar-container.opened {
+    transform:translateX(0%);
+}
+.navigation-sidebar-container .navigation-element-container {
+    min-height:45px;
+    display:flex;
+    align-items:center;
+    transition: all 0.2s ease-in-out;
+    font-size:12px;
+    padding-left: 15px;
+}
+.navigation-sidebar-container .navigation-element-container:hover {
+    background-color:#01a23f;
+}
+.navigation-sidebar-container a {
+    text-decoration:none;
+    color:white;
+    font-family:helvetica;
+}
+.navigation-element-container.primary-menu.with-submenu {
+    position:relative;
+    z-index: 999999;
+}
+.navigation-sidebar-container .navigation-element-container.with-submenu p {
+    position:relative;
+}
+.navigation-sidebar-container .navigation-element-container.with-submenu p::after {
+    position:absolute;
+    content:'';
+    right:-20px;
+    width:7px;
+    height:7px;
+    border-top: 2px solid white;
+    border-right: 2px solid white;
+    transform: rotate(135deg);
+    transition: all 0.2s ease-in-out;
+}
+.navigation-sidebar-container .navigation-element-container.with-submenu.opened p::after {
+    transform: rotate(-45deg);
+    top:5px;
+}
+.navigation-sidebar-container .navigation-element-container.submenu.hidden {
+    margin-top:-45px;   
+    opacity:0;
+}
+.navigation-element-container.submenu {
+    margin-top:0px;
+    opacity:1;
+}
+.navigation-sidebar-container a:nth-last-child(1) .navigation-element-container {
+    position:absolute;
+    bottom:0;
+    width: calc(100% - 15px);
+}
+.overlay {
+    position:absolute;
+    top:0;
+    left:0;
+    height:100vh;
+    width:100vw;
+    background-color:rgba(0, 0, 0, 0.1);
+}
+.overlay.hidden {
+    display:none;
+}
+#navigation-sidebar .navigation-element-container span.navigation-icon {
+  display:block;
+  width:15px;
+  height:15px;
+  margin-right:10px;
+  background-size:cover;
+  background-position:center;
+  background-repeat:no-repeat;
+  opacity:0.6;
+}

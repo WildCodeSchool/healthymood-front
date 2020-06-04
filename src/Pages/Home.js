@@ -8,8 +8,7 @@ class Home extends React.Component {
         return (
             <div className='home'>
                 <Recipe />
-                <Article />
-                <Footer />
+                <Article />                
             </div>
         )
     }
