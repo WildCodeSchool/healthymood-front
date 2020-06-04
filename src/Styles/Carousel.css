@@ -35,7 +35,6 @@
 .carousel-button:hover {
   background-color:white;
   color:var(--accentColor);
-
 }
 .carousel-caption {
   position: absolute;
@@ -46,7 +45,10 @@
   z-index: 10;
   padding-top: 0;
   padding-bottom: 0;
-
+}
+.carousel-caption p {
+  text-shadow:0 0 3px black;
+  font-size:15px;
 }
 
 @media only screen and (max-width: 767px) {
