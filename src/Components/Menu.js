@@ -7,6 +7,7 @@ import dictionaryIcon from '../Images/dictionary.png';
 import ebookIcon from '../Images/ebook.png';
 import homeIcon from '../Images/home.png';
 import logoutIcon from '../Images/logout.png';
+import logInIcon from '../Images/login.png';
 import recipesIcon from '../Images/recipes.png';
 import searchIcon from '../Images/search.png';
 import sendRecipeIcon from '../Images/send-recipe.png';
@@ -21,7 +22,9 @@ const navigationElements = [
     submenu: false,
     withSubmenu: false,
     icon: homeIcon,
-    slug: 'accueil'
+    slug: 'accueil',
+    needLogIn: false,
+    needLogOut: false,
   },
   {
     text: 'Rechercher',
@@ -29,7 +32,9 @@ const navigationElements = [
     submenu: false,
     withSubmenu: false,
     icon: searchIcon,
-    slug: 'rechercher'
+    slug: 'rechercher',
+    needLogIn: false,
+    needLogOut: false,
   },
   {
     text: 'Les recettes',
@@ -37,7 +42,9 @@ const navigationElements = [
     submenu: false,
     withSubmenu: false,
     icon: recipesIcon,
-    slug: 'recettes'
+    slug: 'recettes',
+    needLogIn: false,
+    needLogOut: false,
   },
   {
     text: 'Les classiques',
@@ -45,7 +52,9 @@ const navigationElements = [
     submenu: false,
     withSubmenu: false,
     icon: classicsIcon,
-    slug: 'classiques'
+    slug: 'classiques',
+    needLogIn: false,
+    needLogOut: false,
   },
   {
     text: 'Conseils & astuces',
@@ -53,7 +62,9 @@ const navigationElements = [
     submenu: false,
     withSubmenu: false,
     icon: tipsIcon,
-    slug: 'conseils-astuces'
+    slug: 'conseils-astuces',
+    needLogIn: false,
+    needLogOut: false,
   },
   {
     text: 'Dictionnaire',
@@ -61,7 +72,9 @@ const navigationElements = [
     submenu: false,
     withSubmenu: false,
     icon: dictionaryIcon,
-    slug: 'dictionnaire'
+    slug: 'dictionnaire',
+    needLogIn: false,
+    needLogOut: false,
   },
   {
     text: 'Ebook',
@@ -69,7 +82,9 @@ const navigationElements = [
     submenu: false,
     withSubmenu: false,
     icon: ebookIcon,
-    slug: 'ebook'
+    slug: 'ebook',
+    needLogIn: false,
+    needLogOut: false,
   },
   {
     text: 'Envoyer ma recette',
@@ -77,7 +92,9 @@ const navigationElements = [
     submenu: false,
     withSubmenu: false,
     icon: sendRecipeIcon,
-    slug: 'envoyer-recette'
+    slug: 'envoyer-recette',
+    needLogIn: false,
+    needLogOut: false,
   },
   {
     text: 'Mon Compte',
@@ -85,7 +102,9 @@ const navigationElements = [
     submenu: false,
     withSubmenu: true,
     icon: accountIcon,
-    slug: 'compte'
+    slug: 'compte',
+    needLogIn: true,
+    needLogOut: false,
   },
   {
     text: 'Mes favoris',
@@ -93,7 +112,9 @@ const navigationElements = [
     submenu: true,
     withSubmenu: false,
     icon: favoritesIcon,
-    slug: 'favoris'
+    slug: 'favoris',
+    needLogIn: true,
+    needLogOut: false,
   },
   {
     text: 'Ma liste de courses',
@@ -101,7 +122,9 @@ const navigationElements = [
     submenu: true,
     withSubmenu: false,
     icon: listIcon,
-    slug: 'liste-courses'
+    slug: 'liste-courses',
+    needLogIn: true,
+    needLogOut: false,
   },
   {
     text: 'Déconnexion',
@@ -109,7 +132,19 @@ const navigationElements = [
     submenu: false,
     withSubmenu: false,
     icon: logoutIcon,
-    slug: 'deconnexion'
+    slug: 'deconnexion',
+    needLogIn: true,
+    needLogOut: false,
+  },
+  {
+    text: 'Connexion',
+    link: '/connexion',
+    submenu: false,
+    withSubmenu: false,
+    icon: logInIcon,
+    slug: 'connexion',
+    needLogIn: false,
+    needLogOut: true,
   }
 
 ];
@@ -121,7 +156,7 @@ class Menu extends React.Component {
       is_connected: false,
     }
   }
-  
+
   openMenu() {
     const navigationMenu = document.querySelector('#navigation-sidebar');
     const burgerMenu = document.querySelector('#burger-menu');
@@ -134,7 +169,7 @@ class Menu extends React.Component {
       subMenu[i].classList.add('hidden');
     }
   }
-  
+
   openSubmenu() {
     const subMenu = document.getElementsByClassName('submenu');
     const subMenuOpener = document.querySelector('.with-submenu');
@@ -154,9 +189,9 @@ class Menu extends React.Component {
             <span className='burger-menu-line-three' />
           </div>
         </div>
-  
+
         <div className='overlay hidden' onClick={this.openMenu} />
-  
+
         <div id='navigation-sidebar' className='navigation-sidebar-container'>
           {
             navigationElements.map(element => {
