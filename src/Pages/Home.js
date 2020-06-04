@@ -1,12 +1,14 @@
 import React from 'react';
-import Article from './Article';
+import ControlledCarousel from '../Components/Carousel';
 
 class Home extends React.Component {
-    render() {
-        return (
-            <div className='home' />
-        )
-    }
+  render () {
+    return (
+      <div className='home'>
+        <ControlledCarousel />
+      </div>
+    );
+  }
 }
 
 export default Home;
