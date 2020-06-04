@@ -92,7 +92,7 @@ function Recette() {
                     <span className='picto-container' style={{ backgroundImage: `url(${categoryImage})` }} /><p>{recipesInfo.recipe.category}</p>
                 </div>
             </header>
-            <p>{recipesInfo.recipe.intro}</p>
+            <p className='recipe-intro'>{recipesInfo.recipe.intro}</p>
             <div className='recipe-info'>
                 <div className='picto-info-container'>
                     <span className='picto-container' style={{ backgroundImage: `url(${mealTypeImage})` }} /><p>{recipesInfo.recipe.meal_type}</p>
@@ -108,7 +108,7 @@ function Recette() {
                 </div>
             </div>
             <div className='instructions-container'>
-                <h2>Ingrédients</h2>
+                <h2 className='ingrédients'>Ingrédients</h2>
                 <ul>
                     {recipesInfo.recipe.ingredients.map(ingredient => {
                         return (
