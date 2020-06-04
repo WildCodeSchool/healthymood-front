@@ -118,13 +118,13 @@ function Recette() {
                 </ul>
 
                 <h2>Instructions</h2>
-                <ul>
+                <ol>
                     {recipesInfo.recipe.instructions.map(instruction => {
                         return (
                             <li key={instruction}><p>{instruction}</p></li>
                         )
                     })}
-                </ul>
+                </ol>
             </div>
         </div>
     )
