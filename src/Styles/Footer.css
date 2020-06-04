@@ -6,6 +6,7 @@
     display:flex;
     align-items:center;
     justify-content:center;
+    background-color:white;
 }
 .footer-container .footer-element {
     width:25px;
