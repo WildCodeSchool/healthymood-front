@@ -1,0 +1,12 @@
+import React from 'react';
+import Footer from '../Components/Footer';
+
+class Home extends React.Component {
+    render() {
+        return (
+            <div className='home' />
+        )
+    }
+}
+
+export default Home;
