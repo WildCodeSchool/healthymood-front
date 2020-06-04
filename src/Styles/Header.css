@@ -1,0 +1,23 @@
+.header-container{
+    width: 100%;
+    height: 15%;
+    margin: 0 auto;
+    border-top: 1px solid#dcdcdc;
+    border-bottom: 1px solid #dcdcdc;
+    margin-top: 5%;
+}
+
+.header-container img{
+   width: 50%;
+   height: auto;
+   margin: 0 auto;
+   margin-top: 2%;
+   margin-bottom: 2%;
+}
+
+@media screen and (min-width: 770px) {
+    .header-container{ 
+        width: 770px;
+        height: auto;
+    }
+}
