@@ -75,7 +75,7 @@
     align-items:center;
     transition: all 0.2s ease-in-out;
     font-size:12px;
-    padding-left: 10px;
+    padding-left: 15px;
 }
 .navigation-sidebar-container .navigation-element-container:hover {
     background-color:#01a23f;
@@ -118,7 +118,7 @@
 .navigation-sidebar-container a:nth-last-child(1) .navigation-element-container {
     position:absolute;
     bottom:0;
-    width: calc(100% - 10px);
+    width: calc(100% - 15px);
 }
 .overlay {
     position:absolute;
