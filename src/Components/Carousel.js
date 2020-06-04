@@ -1,22 +1,16 @@
 import React, { useState, render } from 'react';
 import Carousel from 'react-bootstrap/Carousel';
 
-class ControlledCarousel extends React.Component {
-  // const [index, setIndex] = useState(0);
-  constructor(props) {
-    super(props);
-    this.state = {
-      index: 0,
-    };
-  }
+function ControlledCarousel() {
+  const [index, setIndex] = useState(0);
 
-   handleSelect = (selectedIndex, e) => {
-    this.setState({index: selectedIndex})
+  const handleSelect = (selectedIndex, e) => {
+    setIndex(selectedIndex);
   };
-render () {
+
   return (
     
-    <Carousel activeIndex={this.state.index} onSelect={this.handleSelect}>
+    <Carousel activeIndex={index} onSelect={handleSelect}>
       <Carousel.Item>
         <img
           className="d-block w-100"
@@ -31,7 +25,7 @@ render () {
       <Carousel.Item>
         <img
           className="d-block w-100"
-          src="https://www.healthymood.fr/wp-content/uploads/legumes-ete-2.jpg"
+          src="https://www.healthymood.fr/wp-content/uploads/smoothies-healthy-comfort-food.jpg"
           alt="Second slide"
         />
 
@@ -43,7 +37,7 @@ render () {
       <Carousel.Item>
         <img
           className="d-block w-100"
-          src="https://www.healthymood.fr/wp-content/uploads/legumes-ete-2.jpg"
+          src="https://www.healthymood.fr/wp-content/uploads/nom7-2.jpg"
           alt="Third slide"
         />
 
@@ -57,8 +51,6 @@ render () {
     </Carousel>
 
   );
-}}
-
-
-
+}
+/* render(<ControlledCarousel />); */
 export default ControlledCarousel;
