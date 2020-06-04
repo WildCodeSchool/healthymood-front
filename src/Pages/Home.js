@@ -1,5 +1,5 @@
 import React from 'react';
-import Footer from '../Components/Footer';
+import Article from './Article';
 
 class Home extends React.Component {
     render() {
