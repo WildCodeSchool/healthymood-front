@@ -114,8 +114,15 @@ const navigationElements = [
 
 ];
 
-function Menu() {
-  function openMenu() {
+class Menu extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      is_connected: false,
+    }
+  }
+  
+  openMenu() {
     const navigationMenu = document.querySelector('#navigation-sidebar');
     const burgerMenu = document.querySelector('#burger-menu');
     const subMenu = document.getElementsByClassName('submenu');
@@ -127,7 +134,8 @@ function Menu() {
       subMenu[i].classList.add('hidden');
     }
   }
-  function openSubmenu() {
+  
+  openSubmenu() {
     const subMenu = document.getElementsByClassName('submenu');
     const subMenuOpener = document.querySelector('.with-submenu');
     for (let i = 0; i < subMenu.length; i++) {
@@ -136,40 +144,42 @@ function Menu() {
     subMenuOpener.classList.toggle('opened');
   }
 
-  return (
-    <>
-      <div className='burger-menu-container' onClick={openMenu}>
-        <div id='burger-menu' className='burger-menu'>
-          <span className='burger-menu-line-one' />
-          <span className='burger-menu-line-two' />
-          <span className='burger-menu-line-three' />
+  render() {
+    return (
+      <>
+        <div className='burger-menu-container' onClick={this.openMenu}>
+          <div id='burger-menu' className='burger-menu'>
+            <span className='burger-menu-line-one' />
+            <span className='burger-menu-line-two' />
+            <span className='burger-menu-line-three' />
+          </div>
         </div>
-      </div>
-
-      <div className='overlay hidden' onClick={openMenu} />
-
-      <div id='navigation-sidebar' className='navigation-sidebar-container'>
-        {
-          navigationElements.map(element => {
-            return (
-              <NavLink key={element.text} exact to={element.link}>
-                <div
-                  className={element.submenu
-                    ? 'navigation-element-container submenu hidden'
-                    : element.withSubmenu
-                      ? 'navigation-element-container primary-menu with-submenu'
-                      : 'navigation-element-container primary-menu'}
-                  onClick={element.withSubmenu ? openSubmenu : undefined}
-                >
-                  <span className={`navigation-icon ${element.slug}`} style={{ backgroundImage: `url(${element.icon})` }} /><p>{element.text}</p>
-                </div>
-              </NavLink>
-            );
-          })
-        }
-      </div>
-    </>
-  );
+  
+        <div className='overlay hidden' onClick={this.openMenu} />
+  
+        <div id='navigation-sidebar' className='navigation-sidebar-container'>
+          {
+            navigationElements.map(element => {
+              return (
+                <NavLink key={element.text} exact to={element.link}>
+                  <div
+                    className={element.submenu
+                      ? 'navigation-element-container submenu hidden'
+                      : element.withSubmenu
+                        ? 'navigation-element-container primary-menu with-submenu'
+                        : 'navigation-element-container primary-menu'}
+                    onClick={element.withSubmenu ? this.openSubmenu : undefined}
+                  >
+                    <span className={`navigation-icon ${element.slug}`} style={{ backgroundImage: `url(${element.icon})` }} /><p>{element.text}</p>
+                  </div>
+                </NavLink>
+              );
+            })
+          }
+        </div>
+      </>
+    );
+  }
 }
 
 export default Menu;
