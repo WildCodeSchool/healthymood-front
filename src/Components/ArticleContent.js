@@ -5,16 +5,16 @@ import categoryImage from '../Images/category.png';
 import publishedImage from '../Images/published.png';
 import article1 from '../article1.json';
 
-function createArticle() {
-  return {__html: article1.content};
+function createArticle () {
+  return { __html: article1.content };
 }
 
-function ArticleContent() {
+function ArticleContent () {
   const imageSrc = require(`../Images/${article1.image}`);
   return (
     <div className='article-container'>
       <div className='article-presentation'>
-        <div className='banniere' style={{backgroundImage:`url(${imageSrc})`}} />
+        <div className='banniere' style={{ backgroundImage: `url(${imageSrc})` }} />
         <div className='article-details'>
           <div className='author-container'>
             <span className='picto-container' style={{ backgroundImage: `url(${authorImage})` }} /><p>{article1.author_name}</p>
@@ -23,15 +23,16 @@ function ArticleContent() {
             <span className='picto-container' style={{ backgroundImage: `url(${categoryImage})` }} /><p>{article1.article_category_id}</p>
           </div>
           <div className='published-container'>
-            <span className='picto-container' style={{ backgroundImage: `url(${publishedImage})` }} />{article1.updated_at !== '' ?<p>{article1.updated_at}</p> : <p>{article1.created_at}</p>}
+            <span className='picto-container' style={{ backgroundImage: `url(${publishedImage})` }} />{article1.updated_at !== '' ? <p>{article1.updated_at}</p> : <p>{article1.created_at}</p>}
           </div>
         </div>
       </div>
       <p className='introduction-text'>{article1.meta_description}</p>
 
-      <div dangerouslySetInnerHTML={createArticle()} className="article-content"/>
+      <div dangerouslySetInnerHTML={createArticle()} className='article-content' />
     </div>
-    
-  )}
+
+  );
+}
 
 export default ArticleContent;

@@ -9,7 +9,7 @@ import Menu from './Components/Menu';
 import Home from './Pages/Home';
 import Footer from './Components/Footer';
 
-function App() {
+function App () {
   return (
     <>
       <Router>
