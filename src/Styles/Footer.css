@@ -7,6 +7,7 @@
     align-items:center;
     justify-content:center;
     background-color:white;
+    z-index: 999999;
 }
 .footer-container .footer-element {
     width:25px;
