@@ -85,9 +85,17 @@
     color:white;
     font-family:helvetica;
 }
+.navigation-sidebar-container a:hover {
+  text-decoration:none;
+  color:white;
+  font-family:helvetica;
+}
 .navigation-element-container.primary-menu.with-submenu {
     position:relative;
     z-index: 999999;
+}
+.navigation-sidebar-container a:focus {
+  outline: none;
 }
 .navigation-sidebar-container .navigation-element-container.with-submenu p {
     position:relative;
