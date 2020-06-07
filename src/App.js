@@ -8,6 +8,8 @@ import {
 import Menu from './Components/Menu';
 import Home from './Pages/Home';
 import Footer from './Components/Footer';
+import Recipe from './Pages/Recipe';
+import Article from './Pages/Article';
 
 function App () {
   return (
@@ -18,8 +20,8 @@ function App () {
           <Menu />
           <Switch>
             <Route exact path='/' component={Home} />
-            <Route exact path='/' /* component={...} */ />
-            <Route exact path='/' /* component={...} */ />
+            <Route exact path='/recettes' component={Recipe} />
+            <Route exact path='/conseils-astuces' component={Article} />
             <Route exact path='/' /* component={...} */ />
             <Route exact path='/' /* component={...} */ />
           </Switch>
