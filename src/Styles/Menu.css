@@ -1,7 +1,7 @@
 .burger-menu-container {
     width:50px;
     height:50px;
-    z-index:99999999;
+    z-index:99;
     position:absolute;
 }
 .burger-menu-container .burger-menu {
@@ -18,12 +18,12 @@
 .burger-menu-container .burger-menu span {
     width:80%;
     height:2px;
-    background-color:#008d36;
+    background-color:#ffffff;
     display:block;
     margin:4px 0;
-    border-radius:10px;
-    border:1px solid #008d36;
+    border:2px solid #ffffff;
     transition:all 0.2s ease-in-out;
+    box-shadow:0 0 2px black;
 }
 .burger-menu-container .burger-menu.opened span {
     transition:all 0.2s ease-in-out;
@@ -56,10 +56,10 @@
 .navigation-sidebar-container {
     width:50%;
     background-color:#008d36;
-    position:absolute;
+    position:fixed;
     top:0;
     box-shadow:0 0 3px black;
-    z-index:99;
+    z-index:9999999;
     transition: all 0.2s ease-in-out;
     transform:translateX(calc(-100% - 5px));
     height:100vh;
@@ -77,6 +77,9 @@
     font-size:12px;
     padding-left: 15px;
 }
+.navigation-sidebar-container .navigation-element-container p {
+    margin-bottom:0px;
+}
 .navigation-sidebar-container .navigation-element-container:hover {
     background-color:#01a23f;
 }
@@ -85,9 +88,17 @@
     color:white;
     font-family:helvetica;
 }
+.navigation-sidebar-container a:hover {
+  text-decoration:none;
+  color:white;
+  font-family:helvetica;
+}
 .navigation-element-container.primary-menu.with-submenu {
     position:relative;
     z-index: 999999;
+}
+.navigation-sidebar-container a:focus {
+  outline: none;
 }
 .navigation-sidebar-container .navigation-element-container.with-submenu p {
     position:relative;
@@ -102,10 +113,11 @@
     border-right: 2px solid white;
     transform: rotate(135deg);
     transition: all 0.2s ease-in-out;
+    top:5px;
 }
 .navigation-sidebar-container .navigation-element-container.with-submenu.opened p::after {
     transform: rotate(-45deg);
-    top:5px;
+    top:8px;
 }
 .navigation-sidebar-container .navigation-element-container.submenu.hidden {
     margin-top:-45px;   
@@ -118,15 +130,16 @@
 .navigation-sidebar-container a:nth-last-child(1) .navigation-element-container {
     position:absolute;
     bottom:0;
-    width: calc(100% - 15px);
+    width:100%;
 }
 .overlay {
     position:absolute;
     top:0;
     left:0;
-    height:100vh;
-    width:100vw;
+    height:100%;
+    width:100%;
     background-color:rgba(0, 0, 0, 0.1);
+    z-index: 9999999;
 }
 .overlay.hidden {
     display:none;
