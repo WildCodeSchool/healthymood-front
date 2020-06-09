@@ -8,14 +8,17 @@ class Recherche extends React.Component {
       currentSearch: ''
     };
     this.handleChange = this.handleChange.bind(this);
+    this.handleAddfilter = this.handleAddfilter.bind(this);
   }
 
   handleChange (event) {
     this.setState({ currentSearch: event.target.value });
   }
 
-  handleClick = () => {
-
+  handleAddfilter () {
+    const currentFilter = this.state.filter;
+    const newFilter = currentFilter.concat(this.state.currentSearch);
+    this.setState({ filter: newFilter });
   }
 
   render () {
@@ -30,7 +33,7 @@ class Recherche extends React.Component {
           onChange={this.handleChange}
         />
         <button
-          onClick={this.handleClick}
+          onClick={this.handleAddfilter}
         >Rechercher
         </button>
       </div>
