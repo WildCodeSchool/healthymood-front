@@ -1,0 +1,15 @@
+.small-recipe-container {
+  text-align:left;
+}
+
+.small-recipe-container .small-reciper-banner-image {
+  width:100%;
+  height:80px;
+  background-position:center;
+  background-size:cover;
+  background-repeat:no-repeat;
+}
+
+.small-recipe-title {
+  font-size: small;
+}
