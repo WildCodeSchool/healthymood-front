@@ -1,6 +1,6 @@
 import React from 'react';
 import '../Styles/Search.css';
-import Loupe from '../Images/search--v1.png';
+import Loupe from '../Images/glass.png';
 import Cancel from '../Images/cross.png';
 class Search extends React.Component {
   constructor (props) {
@@ -34,7 +34,7 @@ class Search extends React.Component {
       <div className='recherche-container'>
         <div className='Loupe'>
           <h5>Recherche aléatoire</h5>
-          <div className='filter-list'>{this.state.filter.map(e => <p key={e} onClick={() => this.handleDelete(e)}>{e}<img src={Cancel} alt='cancel'/></p>)}</div>
+          <div className='filter-list'>{this.state.filter.map(e => <p key={e} onClick={() => this.handleDelete(e)}>{e}<img src={Cancel} alt='cancel' /></p>)}</div>
           <div className='my-search'>
             <label className='label'><p>J'ai envie de:</p></label>
             <input

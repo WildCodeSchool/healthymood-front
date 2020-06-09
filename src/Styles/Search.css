@@ -28,7 +28,8 @@
 }
 
 .Loupe img {
-    height: 25px;
+    height: 20px;
+    margin-left: 10px;
     margin-right: 10px;
 }
 
@@ -38,7 +39,8 @@
     padding-right: 10px;
     background-color: #f18c06;   
     border-radius: 15px;
-    color: #000000;
+    color: #FFF;
+    font-weight: 700;
     outline-style:none; 
     float: right; 
     margin-right: 35px;   
