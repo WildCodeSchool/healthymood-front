@@ -19,6 +19,7 @@
     flex-wrap: wrap;
     margin-left: 10px;
     margin-right: 10px;
+    cursor:pointer;        
 }
 
 .Loupe img {
@@ -34,6 +35,7 @@
     color: #000000;
     outline-style:none;
 }
+
 .Loupe h5{
     margin: 0 auto;
     padding-bottom: 25px;
