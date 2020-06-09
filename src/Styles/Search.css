@@ -12,6 +12,11 @@
     height: 30px;
 }
 
+.Loupe .filter-list img{
+    margin-left: 3px;
+    height: 10px;
+}
+
 .filter-list{
     display: flex;
     flex-direction: row;
@@ -27,13 +32,17 @@
     margin-right: 10px;
 }
 
-.Loupe button{
+
+.Loupe button{    
     padding: 5px;
     padding-right: 10px;
     background-color: #f18c06;   
     border-radius: 15px;
     color: #000000;
-    outline-style:none;
+    outline-style:none; 
+    float: right; 
+    margin-right: 35px;   
+    border: 0;  
 }
 
 .Loupe h5{
