@@ -7,9 +7,6 @@ class RecipesPage extends React.Component {
     return (
       <div className='recipes-page-container'>
         <SmallRecipe />
-        <SmallRecipe />
-        <SmallRecipe />
-        <SmallRecipe />
       </div>
 
     );
