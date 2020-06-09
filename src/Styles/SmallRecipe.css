@@ -1,5 +1,11 @@
 .small-recipe-container {
-  text-align:left;
+  background-color: rgba(236, 231, 231, 0.808);
+  padding: 10px;
+}
+
+.small-recipe-container:hover {
+  transform: scale(1.02);
+  cursor: pointer;
 }
 
 .small-recipe-container .small-reciper-banner-image {
@@ -12,4 +18,12 @@
 
 .small-recipe-title {
   font-size: small;
+  text-align:left;
+  margin-top: 6px;
+}
+
+.small-recipe-favorite-icon {
+  display: inline-block;
+  width: 100%;
+  text-align: right;
 }

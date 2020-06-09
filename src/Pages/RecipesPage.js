@@ -12,7 +12,7 @@ class RecipesPage extends React.Component {
         <SmallRecipe />
       </div>
 
-    )
+    );
   }
 }
 
