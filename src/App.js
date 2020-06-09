@@ -17,7 +17,6 @@ function App () {
     <>
       <Router>
         <div className='App'>
-
           <Menu />
           <Switch>
             <Route exact path='/' component={Home} />
