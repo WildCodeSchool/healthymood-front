@@ -5,7 +5,7 @@ import {
   Switch,
   Route
 } from 'react-router-dom';
-import Menu from './Components/Menu';
+import Header from './Components/Header';
 import Home from './Pages/Home';
 import Footer from './Components/Footer';
 import RecipesPage from './Pages/RecipesPage';
@@ -17,8 +17,7 @@ function App () {
     <>
       <Router>
         <div className='App'>
-
-          <Menu />
+          <Header />
           <Switch>
             <Route exact path='/' component={Home} />
             <Route exact path='/recettes' component={RecipesPage} />
