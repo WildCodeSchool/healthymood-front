@@ -27,6 +27,10 @@
     cursor:pointer;        
 }
 
+.label p{
+  width: 100% ;
+}
+
 .Loupe img {
     height: 20px;
     margin-left: 10px;
@@ -34,25 +38,33 @@
 }
 
 .Loupe{
-    max-width: 770px;
+    width: 100%;
     margin: 0 auto;
 }
 
 .search-field{
-    width:50%;
+    width:100%;
+    max-width: 770px;
     margin: 0 auto;
     display: flex;
     flex-direction: column;
 }
 
+.search-block{
+    display: flex;
+    flex-direction: column;
+    width:100%;
+    max-width: 770px;
+    margin: 0 auto;
+}
+
 .Loupe button{    
     padding: 5px;
-    padding-right: 15px;
     background-color: #f18c06;   
     border-radius: 15px;
     color: #FFF;
     font-weight: 700;
-    width: 50%;
+    width: 200px;
     outline-style:none;    
     border: 0;
     align-self: flex-end;
@@ -87,4 +99,10 @@
       top: -7px;
 }
 
-
+.filter-name {
+    background-color: rgba(206, 200, 200, 0.863);
+    border: 1px solid transparent;
+    border-radius: 5px;
+    margin: 3px 6px 8px 3px;
+    padding: 0 0 3px 5px;
+}

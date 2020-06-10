@@ -9,24 +9,35 @@ class Search extends React.Component {
       filter: [],
       currentSearch: ''
     };
-    this.handleChange = this.handleChange.bind(this);
-    this.handleAddfilter = this.handleAddfilter.bind(this);
-    this.handleDelete = this.handleDelete.bind(this);
   }
 
-  handleChange (event) {
+  handleChange = (event) => {
     this.setState({ currentSearch: event.target.value });
   }
 
-  handleAddfilter () {
+  handleAddfilter = () => {    
     const currentFilter = this.state.filter;
     const newFilter = currentFilter.concat(this.state.currentSearch);
-    this.setState({ filter: newFilter, currentSearch: '' });
+    if (this.state.currentSearch){
+      this.setState({ filter: newFilter, currentSearch: '' });
+    }
   }
 
-  handleDelete (str) {
+  handleDelete = (str) => {
     const newFilter = this.state.filter.filter((e) => str !== e);
     this.setState({ filter: newFilter });
+  }
+  
+  handleKeyDown = (event) => {// permet d'effectuer la recherche avec entrée
+    if (event.key === 'Enter' && event.target.value) {
+      event.preventDefault();
+      const currentSearch = event.target.value;
+  
+      this.setState({ currentSearch: currentSearch });
+      this.handleAddfilter(currentSearch);
+      event.target.blur();
+
+    }
   }
 
   render () {
@@ -34,10 +45,13 @@ class Search extends React.Component {
       <div className='recherche-container'>
         <div className='Loupe'>
           <h5>Recherche aléatoire</h5>
-          <div className='filter-list'>{this.state.filter.map(e => <p key={e} onClick={() => this.handleDelete(e)}>{e}<img src={Cancel} alt='cancel' /></p>)}</div>
           <div className='search-field'>
-            <div className='my-search'>
-              <label className='label'><p>J'ai envie de:</p></label>
+          <div className='filter-list'>{this.state.filter.map(e => <p key={e} onClick={() => this.handleDelete(e)} className='filter-name'>{e}<img src={Cancel} alt='cancel' /></p>)}</div>
+            <div className='search-block'>
+            <form className='my-search'>
+            <label className='label'>
+                <p>J'ai envie de:</p>
+              </label>
               <input
                 id='search'
                 name='search'
@@ -45,13 +59,15 @@ class Search extends React.Component {
                 placeholder='Rechercher'
                 value={this.state.currentSearch}
                 onChange={this.handleChange}
+                onKeyDown={this.handleKeyDown}
               />
-            </div>
-            <button
-              onClick={this.handleAddfilter}
-            >
+              <button
+                onClick={this.handleAddfilter}
+              >
               <img src={Loupe} alt='search' />Rechercher
-            </button>
+              </button>
+            </form>
+            </div>
           </div>
         </div>
       </div>
