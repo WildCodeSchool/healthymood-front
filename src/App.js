@@ -5,25 +5,27 @@ import {
   Switch,
   Route
 } from 'react-router-dom';
-import Menu from './Components/Menu';
+import Header from './Components/Header';
 import Home from './Pages/Home';
 import Footer from './Components/Footer';
-import Recipe from './Pages/Recipe';
+import RecipesPage from './Pages/RecipesPage';
 import Article from './Pages/Article';
 import Search from './Components/Search';
+import Recipe from './Components/Recipe';
 
 function App () {
   return (
     <>
       <Router>
         <div className='App'>
-          <Menu />
+          <Header />
           <Switch>
             <Route exact path='/' component={Home} />
-            <Route exact path='/recettes' component={Recipe} />
+            <Route exact path='/recettes' component={RecipesPage} />
             <Route exact path='/conseils-astuces' component={Article} />
             <Route exact path='/rechercher' component={Search} />
             <Route exact path='/' /* component={...} */ />
+            <Route path='/recettes/:slug' component={Recipe} />
           </Switch>
           <Footer />
         </div>

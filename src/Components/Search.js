@@ -48,7 +48,7 @@ class Search extends React.Component {
             <div className='search-block'>
               <div className='my-search'>
                 <label className='label'>
-                  <p>J'ai envie de:</p>
+                  <p>J'ai envie de : </p>
                 </label>
                 <input
                   id='search'
