@@ -35,22 +35,24 @@ class Search extends React.Component {
         <div className='Loupe'>
           <h5>Recherche aléatoire</h5>
           <div className='filter-list'>{this.state.filter.map(e => <p key={e} onClick={() => this.handleDelete(e)}>{e}<img src={Cancel} alt='cancel' /></p>)}</div>
-          <div className='my-search'>
-            <label className='label'><p>J'ai envie de:</p></label>
-            <input
-              id='search'
-              name='search'
-              type='text'
-              placeholder='Rechercher'
-              value={this.state.currentSearch}
-              onChange={this.handleChange}
-            />
+          <div className='search-field'>
+            <div className='my-search'>
+              <label className='label'><p>J'ai envie de:</p></label>
+              <input
+                id='search'
+                name='search'
+                type='text'
+                placeholder='Rechercher'
+                value={this.state.currentSearch}
+                onChange={this.handleChange}
+              />
+            </div>
+            <button
+              onClick={this.handleAddfilter}
+            >
+              <img src={Loupe} alt='search' />Rechercher
+            </button>
           </div>
-          <button
-            onClick={this.handleAddfilter}
-          >
-            <img src={Loupe} alt='search' />Rechercher
-          </button>
         </div>
       </div>
     );

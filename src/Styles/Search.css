@@ -33,18 +33,30 @@
     margin-right: 10px;
 }
 
+.Loupe{
+    max-width: 770px;
+    margin: 0 auto;
+}
+
+.search-field{
+    width:50%;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+}
 
 .Loupe button{    
     padding: 5px;
-    padding-right: 10px;
+    padding-right: 15px;
     background-color: #f18c06;   
     border-radius: 15px;
     color: #FFF;
     font-weight: 700;
-    outline-style:none; 
-    float: right; 
-    margin-right: 35px;   
-    border: 0;  
+    width: 50%;
+    outline-style:none;    
+    border: 0;
+    align-self: flex-end;
+    margin-right: 10%; 
 }
 
 .Loupe h5{
