@@ -1,15 +1,19 @@
+/*vue portable */
+
 .recherche-container{
     padding-top: 100px;
 }
 
 .my-search{
-    display: flex;
+    display: flex; 
     flex-direction: row;
     justify-content: center;
 }
 
 .my-search input{
     height: 30px;
+    width: 250px;
+    margin-top: 5px;
 }
 
 .Loupe .filter-list img{
@@ -28,7 +32,7 @@
 }
 
 .label p{
-  width: 100% ;
+  margin-top: 7px;
 }
 
 .Loupe img {
@@ -58,7 +62,7 @@
     margin: 0 auto;
 }
 
-.Loupe button{    
+.Loupe button{   
     padding: 5px;
     background-color: #f18c06;   
     border-radius: 15px;
@@ -67,8 +71,8 @@
     width: 200px;
     outline-style:none;    
     border: 0;
-    align-self: flex-end;
-    margin-right: 10%; 
+    margin: 0 auto;
+    translate: 70px ;
 }
 
 .Loupe h5{
@@ -104,5 +108,5 @@
     border: 1px solid transparent;
     border-radius: 5px;
     margin: 3px 6px 8px 3px;
-    padding: 0 0 3px 5px;
+    padding: 0 0 3px 9px;
 }

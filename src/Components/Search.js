@@ -15,7 +15,7 @@ class Search extends React.Component {
     this.setState({ currentSearch: event.target.value });
   }
 
-  handleAddfilter = () => {    
+  handleAddfilter = (event) => {
     const currentFilter = this.state.filter;
     const newFilter = currentFilter.concat(this.state.currentSearch);
     if (this.state.currentSearch){
@@ -28,15 +28,14 @@ class Search extends React.Component {
     this.setState({ filter: newFilter });
   }
   
-  handleKeyDown = (event) => {// permet d'effectuer la recherche avec entrée
+  handleKeyDown = (event) => {// permet d'effectuer la recherche avec entrée    
     if (event.key === 'Enter' && event.target.value) {
       event.preventDefault();
       const currentSearch = event.target.value;
-  
-      this.setState({ currentSearch: currentSearch });
+      this.setState({ currentSearch });
       this.handleAddfilter(currentSearch);
       event.target.blur();
-
+      
     }
   }
 
@@ -48,7 +47,7 @@ class Search extends React.Component {
           <div className='search-field'>
           <div className='filter-list'>{this.state.filter.map(e => <p key={e} onClick={() => this.handleDelete(e)} className='filter-name'>{e}<img src={Cancel} alt='cancel' /></p>)}</div>
             <div className='search-block'>
-            <form className='my-search'>
+            <div className='my-search'>
             <label className='label'>
                 <p>J'ai envie de:</p>
               </label>
@@ -61,12 +60,12 @@ class Search extends React.Component {
                 onChange={this.handleChange}
                 onKeyDown={this.handleKeyDown}
               />
-              <button
+            </div>
+            <button
                 onClick={this.handleAddfilter}
               >
               <img src={Loupe} alt='search' />Rechercher
               </button>
-            </form>
             </div>
           </div>
         </div>
