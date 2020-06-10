@@ -4,14 +4,14 @@ import Footer from '../Components/Footer';
 import ControlledCarousel from '../Components/Carousel';
 
 class Home extends React.Component {
-  render() {
+  render () {
     return (
       <div className='home'>
         <Header />
         <ControlledCarousel />
         <Footer />
       </div>
-    )
+    );
   }
 }
 
