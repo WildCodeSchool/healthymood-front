@@ -108,7 +108,7 @@ function Recette () {
         </div>
       </div>
       <div className='instructions-container'>
-        <h2 className='ingrédients'>Ingrédients</h2>
+        <h2>Ingrédients</h2>
         <ul>
           {recipesInfo.recipe.ingredients.map(ingredient => {
             return (
