@@ -9,6 +9,7 @@
     text-align:center;
     position:relative;
     display:block;
+    padding: 25px 0;
 }
 .recipe-container .reciper-banner-image {
     width:100%;
@@ -68,6 +69,12 @@
   margin:20px 0;
 }
 
+.print-recipe-container {
+  text-align: left;
+  max-width: 900px;
+  margin: auto;
+}
+
 .print-button {
   height: 32px;
   width: 32px;
@@ -76,6 +83,24 @@
   background-repeat: no-repeat;
   background-color: var(--accentColor);
   background-position: center;
+  transition: all 0.3s ease-in-out;
+}
+
+.print-button:hover {
+  cursor: pointer;
+  box-shadow:0 0 5px rgba(0, 0, 0, 0.3);
+  transform: scale(1.13);
+}
+
+.social-print-container {
+max-width: 900px;
+margin: auto;
+display: flex;
+padding-left:20px;
+}
+
+.social-title {
+  padding-left:20px;
 }
 
 @media only screen and (max-width: 767px) {

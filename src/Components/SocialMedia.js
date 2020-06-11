@@ -18,7 +18,6 @@ const SocialMedia = (props) => {
   const title = `${props.slug}`;
   return (
     <div className='social-media-container'>
-      <h5>Merci de partager : </h5>
       <div className='button-container'>
         <div className='sharebutton-icon'>
           <FacebookShareButton url={shareUrl}>

@@ -14,8 +14,7 @@ import ReactToPrint from 'react-to-print';
 import PrintImage from '../Images/print.png';
 
 class RecipeToPrint extends React.Component {
-  render() {
-    const params = this.props.params;
+  render () {
     const recipeInfo = this.props.recipeInfo;
     return (
       <div className='recipe-container'>
@@ -62,7 +61,6 @@ class RecipeToPrint extends React.Component {
               );
             })}
           </ol>
-          <SocialMedia slug={params.slug} />
         </div>
       </div>
     );
@@ -70,16 +68,20 @@ class RecipeToPrint extends React.Component {
 }
 
 class Recipe extends React.Component {
-  render() {
+  render () {
     const params = this.props.match.params;
     const recipeInfo = recipesInfo.recipe.filter((r) => r.slug === params.slug)[0];
     return (
       <div className='print-recipe-container'>
         <RecipeToPrint params={params} recipeInfo={recipeInfo} ref={el => (this.componentRef = el)} />
-        <ReactToPrint
-          trigger={() => <button className='print-button' style={{backgroundImage:`url(${PrintImage})`}}></button>}
+        <h5 className='social-title'>Merci de partager : </h5>
+        <div className='social-print-container'>
+          <SocialMedia slug={params.slug} />
+          <ReactToPrint
+          trigger={() => <button className='print-button' style={{ backgroundImage: `url(${PrintImage})` }} />}
           content={() => this.componentRef}
         />
+        </div>
       </div>
     );
   }

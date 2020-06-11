@@ -1,12 +1,10 @@
 .social-media-container .button-container {
   display: flex;
-  margin-top: 9px;
 }
 
 .sharebutton-icon {
   margin-right: 4px;
   transition: all 0.3s ease-in-out;
-  border: 1px solid transparent;
 }
 
 .sharebutton-icon:focus {
