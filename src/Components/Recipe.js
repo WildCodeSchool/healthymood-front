@@ -9,6 +9,7 @@ import priceImage from '../Images/price.png';
 import categoryImage from '../Images/category.png';
 import caloriesImage from '../Images/calories-2.png';
 import recipesInfo from '../recipesInfo.json';
+import SocialMedia from './SocialMedia';
 
 function Recette (props) {
   const params = props.match.params;
@@ -57,6 +58,7 @@ function Recette (props) {
             );
           })}
         </ol>
+        <SocialMedia slug={params.slug}/>
       </div>
     </div>
   );
