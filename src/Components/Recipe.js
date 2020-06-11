@@ -10,10 +10,13 @@ import categoryImage from '../Images/category.png';
 import caloriesImage from '../Images/calories-2.png';
 import recipesInfo from '../recipesInfo.json';
 import SocialMedia from './SocialMedia';
+import ReactToPrint from "react-to-print";
 
-function Recette (props) {
-  const params = props.match.params;
-  const recipeInfo = recipesInfo.recipe.filter((r) => r.slug === params.slug)[0];
+class RecipeToPrint extends React.Component {
+  render() {
+    const params = this.props.params;
+    const recipeInfo = this.props.recipeInfo;
+
   return (
     <div className='recipe-container'>
       <header>
@@ -24,6 +27,7 @@ function Recette (props) {
           <span className='picto-container' style={{ backgroundImage: `url(${publishedImage})` }} /><p>{recipeInfo.updated_at}</p>
           <span className='picto-container' style={{ backgroundImage: `url(${categoryImage})` }} /><p>{recipeInfo.category}</p>
         </div>
+
       </header>
       <p className='recipe-intro'>{recipeInfo.intro}</p>
       <div className='recipe-info'>
@@ -58,10 +62,27 @@ function Recette (props) {
             );
           })}
         </ol>
-        <SocialMedia slug={params.slug}/>
+        <SocialMedia slug={params.slug} />
       </div>
     </div>
   );
+  }
 }
 
-export default Recette;
+class Recipe extends React.Component {
+  render() {
+    const params = this.props.match.params;
+    const recipeInfo = recipesInfo.recipe.filter((r) => r.slug === params.slug)[0];
+    return (
+      <div>
+        <ReactToPrint
+          trigger={() => <a href="#">Print this out!</a>}
+          content={() => this.componentRef}
+        />
+        <RecipeToPrint params={params} recipeInfo={recipeInfo} ref={el => (this.componentRef = el)} />
+      </div>
+    );
+  }
+}
+
+export default Recipe;
