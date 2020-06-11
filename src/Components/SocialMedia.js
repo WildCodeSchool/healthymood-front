@@ -1,7 +1,7 @@
 import React from 'react';
 import {
   FacebookIcon,
-  FacebookShareButton, 
+  FacebookShareButton,
   LinkedinShareButton,
   LinkedinIcon,
   PinterestShareButton,
@@ -9,7 +9,7 @@ import {
   TwitterShareButton,
   TwitterIcon,
   EmailShareButton,
-  EmailIcon,
+  EmailIcon
 } from 'react-share';
 import '../Styles/SocialMedia.css';
 
@@ -21,38 +21,37 @@ const SocialMedia = (props) => {
       <h5>Merci de partager : </h5>
       <div className='button-container'>
         <div className='sharebutton-icon'>
-          <FacebookShareButton url={shareUrl} >
-            <FacebookIcon size={32}  />
+          <FacebookShareButton url={shareUrl}>
+            <FacebookIcon size={32} />
           </FacebookShareButton>
         </div>
         <div className='sharebutton-icon'>
           <PinterestShareButton url={shareUrl}>
-            <PinterestIcon size={32}  />
+            <PinterestIcon size={32} />
           </PinterestShareButton>
-        </div>      
+        </div>
         <div className='sharebutton-icon'>
           <LinkedinShareButton url={shareUrl}>
-            <LinkedinIcon size={32}  />
+            <LinkedinIcon size={32} />
           </LinkedinShareButton>
         </div>
         <div className='sharebutton-icon'>
           <TwitterShareButton url={shareUrl}>
-            <TwitterIcon size={32}  />
+            <TwitterIcon size={32} />
           </TwitterShareButton>
         </div>
-          <EmailShareButton
-            url={shareUrl}
-            subject={title}
-            body='body'
-            className='sharebutton-icon'
-          >
-            <EmailIcon size={32} />
-          </EmailShareButton>
-       
-      </div>      
-    </div>
-  )
-}
+        <EmailShareButton
+          url={shareUrl}
+          subject={title}
+          body='body'
+          className='sharebutton-icon'
+        >
+          <EmailIcon size={32} />
+        </EmailShareButton>
 
+      </div>
+    </div>
+  );
+};
 
 export default SocialMedia;

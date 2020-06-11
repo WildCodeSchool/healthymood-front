@@ -10,73 +10,73 @@ import categoryImage from '../Images/category.png';
 import caloriesImage from '../Images/calories-2.png';
 import recipesInfo from '../recipesInfo.json';
 import SocialMedia from './SocialMedia';
-import ReactToPrint from "react-to-print";
+import ReactToPrint from 'react-to-print';
 
 class RecipeToPrint extends React.Component {
-  render() {
+  render () {
     const params = this.props.params;
     const recipeInfo = this.props.recipeInfo;
 
-  return (
-    <div className='recipe-container'>
-      <header>
-        <h1 className='recipe-title'>{recipeInfo.title}</h1>
-        <div className='reciper-banner-image' style={{ backgroundImage: `url(${recetteImage})` }} />
-        <div className='publication-info'>
-          <span className='picto-container' style={{ backgroundImage: `url(${authorImage})` }} /><p>{recipeInfo.author}</p>
-          <span className='picto-container' style={{ backgroundImage: `url(${publishedImage})` }} /><p>{recipeInfo.updated_at}</p>
-          <span className='picto-container' style={{ backgroundImage: `url(${categoryImage})` }} /><p>{recipeInfo.category}</p>
-        </div>
+    return (
+      <div className='recipe-container'>
+        <header>
+          <h1 className='recipe-title'>{recipeInfo.title}</h1>
+          <div className='reciper-banner-image' style={{ backgroundImage: `url(${recetteImage})` }} />
+          <div className='publication-info'>
+            <span className='picto-container' style={{ backgroundImage: `url(${authorImage})` }} /><p>{recipeInfo.author}</p>
+            <span className='picto-container' style={{ backgroundImage: `url(${publishedImage})` }} /><p>{recipeInfo.updated_at}</p>
+            <span className='picto-container' style={{ backgroundImage: `url(${categoryImage})` }} /><p>{recipeInfo.category}</p>
+          </div>
 
-      </header>
-      <p className='recipe-intro'>{recipeInfo.intro}</p>
-      <div className='recipe-info'>
-        <div className='picto-info-container'>
-          <span className='picto-container' style={{ backgroundImage: `url(${mealTypeImage})` }} /><p>{recipeInfo.meal_type}</p>
+        </header>
+        <p className='recipe-intro'>{recipeInfo.intro}</p>
+        <div className='recipe-info'>
+          <div className='picto-info-container'>
+            <span className='picto-container' style={{ backgroundImage: `url(${mealTypeImage})` }} /><p>{recipeInfo.meal_type}</p>
+          </div>
+          <div className='picto-info-container'>
+            <span className='picto-container' style={{ backgroundImage: `url(${caloriesImage})` }} /><p>Environ {recipeInfo.calories_nb} calories</p>
+          </div>
+          <div className='picto-info-container'>
+            <span className='picto-container' style={{ backgroundImage: `url(${durationImage})` }} /><p>{recipeInfo.preparation_time}</p>
+          </div>
+          <div className='picto-info-container'>
+            <span className='picto-container' style={{ backgroundImage: `url(${priceImage})` }} /><p>{recipeInfo.price}</p>
+          </div>
         </div>
-        <div className='picto-info-container'>
-          <span className='picto-container' style={{ backgroundImage: `url(${caloriesImage})` }} /><p>Environ {recipeInfo.calories_nb} calories</p>
-        </div>
-        <div className='picto-info-container'>
-          <span className='picto-container' style={{ backgroundImage: `url(${durationImage})` }} /><p>{recipeInfo.preparation_time}</p>
-        </div>
-        <div className='picto-info-container'>
-          <span className='picto-container' style={{ backgroundImage: `url(${priceImage})` }} /><p>{recipeInfo.price}</p>
+        <div className='instructions-container'>
+          <h2>Ingrédients</h2>
+          <ul>
+            {recipeInfo.ingredients.map(ingredient => {
+              return (
+                <li key={ingredient.id}><span className={ingredient.is_allergen && 'is-allergen'}>{ingredient.name}</span></li>
+              );
+            })}
+          </ul>
+
+          <h2>Instructions</h2>
+          <ol>
+            {recipeInfo.instructions.map(instruction => {
+              return (
+                <li key={instruction}><p>{instruction}</p></li>
+              );
+            })}
+          </ol>
+          <SocialMedia slug={params.slug} />
         </div>
       </div>
-      <div className='instructions-container'>
-        <h2>Ingrédients</h2>
-        <ul>
-          {recipeInfo.ingredients.map(ingredient => {
-            return (
-              <li key={ingredient.id}><span className={ingredient.is_allergen && 'is-allergen'}>{ingredient.name}</span></li>
-            );
-          })}
-        </ul>
-
-        <h2>Instructions</h2>
-        <ol>
-          {recipeInfo.instructions.map(instruction => {
-            return (
-              <li key={instruction}><p>{instruction}</p></li>
-            );
-          })}
-        </ol>
-        <SocialMedia slug={params.slug} />
-      </div>
-    </div>
-  );
+    );
   }
 }
 
 class Recipe extends React.Component {
-  render() {
+  render () {
     const params = this.props.match.params;
     const recipeInfo = recipesInfo.recipe.filter((r) => r.slug === params.slug)[0];
     return (
       <div>
         <ReactToPrint
-          trigger={() => <a href="#">Print this out!</a>}
+          trigger={() => <button className = 'print-button' >Print this out!</button>}
           content={() => this.componentRef}
         />
         <RecipeToPrint params={params} recipeInfo={recipeInfo} ref={el => (this.componentRef = el)} />
