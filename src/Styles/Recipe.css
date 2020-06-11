@@ -2,8 +2,7 @@
     width:100%;
     max-width:900px;
     margin:0 auto;
-    text-align:left;
-    padding-bottom:15vh;
+    text-align:left;    
 }
 .recipe-container .recipe-title {
     color:var(--accentColor);
@@ -70,7 +69,13 @@
 }
 
 .print-button {
-  border-radius: 5px;
+  height: 32px;
+  width: 32px;
+  background-size: 50%;
+  border: none;
+  background-repeat: no-repeat;
+  background-color: var(--accentColor);
+  background-position: center;
 }
 
 @media only screen and (max-width: 767px) {

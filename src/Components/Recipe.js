@@ -11,12 +11,12 @@ import caloriesImage from '../Images/calories-2.png';
 import recipesInfo from '../recipesInfo.json';
 import SocialMedia from './SocialMedia';
 import ReactToPrint from 'react-to-print';
+import PrintImage from '../Images/print.png';
 
 class RecipeToPrint extends React.Component {
-  render () {
+  render() {
     const params = this.props.params;
     const recipeInfo = this.props.recipeInfo;
-
     return (
       <div className='recipe-container'>
         <header>
@@ -70,16 +70,16 @@ class RecipeToPrint extends React.Component {
 }
 
 class Recipe extends React.Component {
-  render () {
+  render() {
     const params = this.props.match.params;
     const recipeInfo = recipesInfo.recipe.filter((r) => r.slug === params.slug)[0];
     return (
-      <div>
+      <div className='print-recipe-container'>
+        <RecipeToPrint params={params} recipeInfo={recipeInfo} ref={el => (this.componentRef = el)} />
         <ReactToPrint
-          trigger={() => <button className = 'print-button' >Print this out!</button>}
+          trigger={() => <button className='print-button' style={{backgroundImage:`url(${PrintImage})`}}></button>}
           content={() => this.componentRef}
         />
-        <RecipeToPrint params={params} recipeInfo={recipeInfo} ref={el => (this.componentRef = el)} />
       </div>
     );
   }
