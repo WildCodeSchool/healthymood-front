@@ -1,8 +1,8 @@
 import React from 'react';
-import '../Styles/Search.css';
 import Loupe from '../Images/glass.png';
 import Cancel from '../Images/cross.png';
-class Search extends React.Component {
+
+class SimpleSearch extends React.Component {
   constructor (props) {
     super(props);
     this.state = {
@@ -40,32 +40,35 @@ class Search extends React.Component {
 
   render () {
     return (
-      <div className='recherche-container'>
-        <div className='Loupe'>
-          <h5>Recherche aléatoire</h5>
-          <div className='search-field'>
-            <div className='filter-list'>{this.state.filter.map(e => <p key={e} onClick={() => this.handleDelete(e)} className='filter-name'>{e}<img src={Cancel} alt='cancel' /></p>)}</div>
-            <div className='search-block'>
-              <div className='my-search'>
-                <label className='label'>
-                  <p>J'ai envie de : </p>
-                </label>
-                <input
-                  id='search'
-                  name='search'
-                  type='text'
-                  placeholder='Rechercher'
-                  value={this.state.currentSearch}
-                  onChange={this.handleChange}
-                  onKeyDown={this.handleKeyDown}
-                />
-              </div>
-              <button
-                onClick={this.handleAddfilter}
-              >
-                <img src={Loupe} alt='search' />Rechercher
-              </button>
+      <div className='simple-search'>
+        <h5>Recherche aléatoire</h5>
+        <div className='search-field'>
+          <div className='filter-list'>
+            {this.state.filter.map(e =>
+              <p key={e} onClick={() => this.handleDelete(e)} className='filter-name'>
+                {e}<img src={Cancel} alt='cancel' />
+              </p>
+            )}
+          </div>
+          <div className='search-block'>
+            <div className='my-search'>
+              <label className='label' htmlFor='search'>
+                <p>J'ai envie de : </p>
+              </label>
+              <input
+                id='search'
+                name='search'
+                type='text'
+                value={this.state.currentSearch}
+                onChange={this.handleChange}
+                onKeyDown={this.handleKeyDown}
+              />
             </div>
+            <button
+              onClick={this.handleAddfilter}
+            >
+              <img src={Loupe} alt='search' />Rechercher
+            </button>
           </div>
         </div>
       </div>
@@ -73,4 +76,4 @@ class Search extends React.Component {
   }
 }
 
-export default Search;
+export default SimpleSearch;

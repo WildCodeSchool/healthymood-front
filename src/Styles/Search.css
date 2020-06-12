@@ -1,7 +1,9 @@
 /*vue portable */
 
-.recherche-container{
-    padding-top: 100px;
+.search-container{
+    padding: 100px 0;
+    margin:auto;
+    max-width:900px;
 }
 
 .my-search{
@@ -15,8 +17,7 @@
     width: 250px;
     margin-top: 5px;
 }
-
-.Loupe .filter-list img{
+.simple-search .filter-list img{
     margin-left: 3px;
     height: 10px;
 }
@@ -36,14 +37,15 @@
   margin-right: 5px;
 }
 
-.Loupe img {
+.simple-search img {
     height: 20px;
     margin-right: 10px;
 }
 
-.Loupe{
+.simple-search{
     width: 100%;
-    margin: 0 auto;
+    margin: auto;
+    margin-bottom:50px;
 }
 
 .search-field{
@@ -62,7 +64,7 @@
     margin: 0 auto;
 }
 
-.Loupe button{   
+.simple-search button{   
     padding: 5px;
     background-color: #f18c06;   
     border-radius: 15px;
@@ -75,13 +77,13 @@
     translate: 70px ;
 }
 
-.Loupe h5{
+.search-container h5{
     margin: 0 auto;
     padding-bottom: 25px;
     margin-right: 10px;
 }
 
-.Loupe h5::before{
+.search-container h5::before{
       position: relative;
       content: '';
       width: 50px;
@@ -92,7 +94,7 @@
       display: inline-block;
       top: -7px;
 }
-.Loupe h5::after{
+.search-container h5::after{
       position: relative;
       content: '';
       width: 50px;
@@ -110,12 +112,34 @@
     margin: 3px 6px 8px 3px;
     padding: 0 0 3px 9px;
 }
+.meal-type-container .left-column, .meal-type-container .right-column {
+    float:left;
+}
+.meal-type-container .left-column {
+    width:33%;
+}
+.meal-type-container .right-column {
+    width:66%;
+    display:flex;
+    justify-content:space-around;
+    align-items:flex-start;
+    flex-wrap:wrap;
+}
+.meal-type-container .right-column .ingredient-checkbox-container {
+    min-width:100px;
+
+}
+
+.ingredient-checkbox-container {
+    display: flex;
+    flex-direction: column;
+}
 
 @media screen and (max-width: 360px){
   .my-search input{
       width: 200px;
   }
-  .Loupe button{   
+  .simple-search button{   
       width: 160px;
       margin: 0 auto;
       translate: 70px ;

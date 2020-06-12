@@ -1,0 +1,37 @@
+{
+    "meal_types": [
+        {
+            "name": "Apéritif"
+        },
+        {
+            "name": "Entrée"
+        },
+        {
+            "name": "Plat"
+        },
+        {
+            "name": "Dessert"
+        },
+        {
+            "name": "Boisson"
+        },
+        {
+            "name": "Sucré"
+        },
+        {
+            "name": "Salé"
+        },
+        {
+            "name": "Petit-déjeuner"
+        },
+        {
+            "name": "Déjeuner"
+        },
+        {
+            "name": "Dîner"
+        },
+        {
+            "name": "Encas"
+        }
+    ]
+}

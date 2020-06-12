@@ -10,7 +10,7 @@ import Home from './Pages/Home';
 import Footer from './Components/Footer';
 import RecipesPage from './Pages/RecipesPage';
 import Article from './Pages/Article';
-import Search from './Components/Search';
+import Search from './Pages/Search';
 import Recipe from './Components/Recipe';
 
 function App () {
