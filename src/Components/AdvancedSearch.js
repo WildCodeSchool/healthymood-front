@@ -2,7 +2,7 @@ import React from 'react';
 import MealTypes from '../MealTypes.json';
 
 export default class AdvancedSearch extends React.Component {
-  constructor(props) {
+  constructor (props) {
     super(props);
     this.state = {
       currentSearchIngredient: '',
@@ -33,7 +33,7 @@ export default class AdvancedSearch extends React.Component {
     this.setState({ filter: newFilter });
   }
 
-  render() {
+  render () {
     // const { currentSearchIngredient, currentSearchMealName, mealType, diet } = this.state;
     return (
       <div className='advanced-search'>

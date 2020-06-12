@@ -14,7 +14,7 @@ export default class Search extends React.Component {
     diet: []
   };
 
-  render() {
+  render () {
     return (
       <div className='search-container'>
         <SimpleSearch />
