@@ -1,5 +1,7 @@
 @import 'https://fonts.googleapis.com/css2?family=Pacifico&display=swap';
 @import 'https://fonts.googleapis.com/css2?family=Barlow+Semi+Condensed:wght@500&display=swap';
+@import 'https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap';
+@import 'https://fonts.googleapis.com/css2?family=Lato&display=swap';
 
 :root {
     --accentColor:#008d36;
@@ -10,6 +12,8 @@
     sans-serif,'Pacifico', cursive,'Barlow Semi Condensed', sans-serif;
     --primaryFont: 'Pacifico', cursive;
     --secondaryFont:'Barlow Semi Condensed';
+    --thirdFont: 'Roboto', sans-serif;
+    --fourthFont : 'Lato', sans-serif;
 }
 
 
