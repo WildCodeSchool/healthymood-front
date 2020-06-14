@@ -13,6 +13,8 @@ ReactDOM.render(
   document.getElementById('root')
 );
 
+console.log('using API URL : ', process.env.REACT_APP_API_BASE_URL);
+
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.
 // Learn more about service workers: https://bit.ly/CRA-PWA
