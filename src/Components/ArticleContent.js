@@ -4,6 +4,7 @@ import authorImage from '../Images/author.png';
 import categoryImage from '../Images/category.png';
 import publishedImage from '../Images/published.png';
 import article1 from '../article1.json';
+import SocialMedia from './SocialMedia';
 
 function createArticle () {
   return { __html: article1.content };
@@ -24,12 +25,18 @@ function ArticleContent () {
           </div>
           <div className='published-container'>
             <span className='picto-container' style={{ backgroundImage: `url(${publishedImage})` }} />{article1.updated_at !== '' ? <p>{article1.updated_at}</p> : <p>{article1.created_at}</p>}
+            
           </div>
         </div>
       </div>
       <p className='introduction-text'>{article1.meta_description}</p>
+      
 
       <div dangerouslySetInnerHTML={createArticle()} className='article-content' />
+      <div className='social-media-container'>
+        <h5 className=''>Merci de partager : </h5>
+        <SocialMedia/>
+      </div>
     </div>
 
   );
