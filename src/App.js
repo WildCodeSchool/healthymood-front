@@ -13,7 +13,7 @@ import Article from './Pages/Article';
 import Search from './Components/Search';
 import Recipe from './Components/Recipe';
 
-function App () {
+function App() {
   return (
     <>
       <Router>
@@ -25,7 +25,8 @@ function App () {
             <Route exact path='/conseils-astuces' component={Article} />
             <Route exact path='/rechercher' component={Search} />
             <Route exact path='/' /* component={...} */ />
-            <Route path='/recettes/:slug' component={Recipe} />
+            <Route exact path='/recettes/:slug' component={Recipe} />
+            <Route exact path='/recettes/categorie/:id' component={RecipesPage} />
           </Switch>
           <Footer />
         </div>
