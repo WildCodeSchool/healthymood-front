@@ -3,7 +3,7 @@ import ControlledCarousel from '../Components/Carousel';
 import CategoriesList from '../Components/CategoriesList';
 
 class Home extends React.Component {
-  render() {
+  render () {
     return (
       <div className='home'>
         <ControlledCarousel />
