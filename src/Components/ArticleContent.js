@@ -4,7 +4,7 @@ import authorImage from '../Images/author.png';
 import categoryImage from '../Images/category.png';
 import publishedImage from '../Images/published.png';
 import article1 from '../article1.json';
-import SocialMedia from './SocialMedia';
+import SocialMedia from './SocialMediaArticle';
 
 function createArticle () {
   return { __html: article1.content };

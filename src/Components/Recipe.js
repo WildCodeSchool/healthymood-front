@@ -9,7 +9,7 @@ import priceImage from '../Images/price.png';
 import categoryImage from '../Images/category.png';
 import caloriesImage from '../Images/calories-2.png';
 import recipesInfo from '../recipesInfo.json';
-import SocialMedia from './SocialMedia';
+import SocialMedia from './SocialMediaRecipe';
 import ReactToPrint from 'react-to-print';
 import PrintImage from '../Images/print.png';
 
