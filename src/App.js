@@ -13,7 +13,7 @@ import Article from './Pages/Article';
 import Search from './Components/Search';
 import Recipe from './Components/Recipe';
 
-function App () {
+function App() {
   return (
     <>
       <Router>

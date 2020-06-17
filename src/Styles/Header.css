@@ -16,7 +16,7 @@ header img{
 }
 
 .header-container img{
-   width: 50%;
+   width: 25%;
    height: auto;
    margin: 0 auto;
    margin-top: 2%;
@@ -29,8 +29,31 @@ header img{
         margin: 0 auto;
     }
     .header-container{ 
-        width: 770px;
         height: auto;
         margin: 0 auto;
+    }
+}
+
+@media screen and (min-width: 900px){
+    .burger-menu-container{
+        display: none;
+    }
+    .menu-desktop-container{
+        display: block;
+    }
+    .mobile-banner {
+        display:none;
+    }
+}
+
+@media screen and (max-width: 900px){
+    .menu-desktop-container{
+        display: none;
+    }
+    .burger-menu-container{
+        display: block;
+    }
+    .desktop-banner {
+        display:none;
     }
 }

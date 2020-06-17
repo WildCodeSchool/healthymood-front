@@ -18,10 +18,10 @@
 .burger-menu-container .burger-menu span {
     width:80%;
     height:2px;
-    background-color:#ffffff;
+    background-color:var(--accentColor);
     display:block;
     margin:4px 0;
-    border:2px solid #ffffff;
+    border:2px solid var(--accentColor);
     transition:all 0.2s ease-in-out;
     box-shadow:0 0 2px black;
 }
