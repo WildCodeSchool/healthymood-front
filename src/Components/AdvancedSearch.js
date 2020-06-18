@@ -6,18 +6,18 @@ export default function AdvancedSearch (props) {
   const [currentSearchIngredient, setCurrentSearchIngredient] = useState('');
   const [currentSearchMealName, setCurrentSearchMealName] = useState('');
   const [currentSearchRecipeCategories, setCurrentSearchRecipeCategories] = useState([]);
- /*  const [diet, setDiet] = useState([]); */
+  /*  const [diet, setDiet] = useState([]); */
 
   useEffect(() => {
-    axios.get(`http://localhost:5000/recipe-categories`)
+    axios.get('http://localhost:5000/recipe-categories')
       .then(res => {
         const recipeCategories = res.data.data;
-        console.log(recipeCategories)
+        console.log(recipeCategories);
         setRecipeCategories(recipeCategories);
-    })
-  }, [])
+      });
+  }, []);
 
-  /*const handleChangeMealName = event => {
+  /* const handleChangeMealName = event => {
     setCurrentSearchMealName(event.target.value);
   }; */
 
@@ -33,8 +33,8 @@ export default function AdvancedSearch (props) {
   //   const newFilter = this.state.filter.filter((e) => str !== e);
   //   this.setState({ filter: newFilter });
   // };
-  
-    // const { currentSearchIngredient, currentSearchMealName, mealType, diet } = this.state;
+
+  // const { currentSearchIngredient, currentSearchMealName, mealType, diet } = this.state;
   return (
     <div className='advanced-search'>
       <h5>Recherche avancée</h5>
@@ -83,10 +83,11 @@ export default function AdvancedSearch (props) {
                       id={recipeCategory.name}
                       onClick={event => {
                         const currentIndex = currentSearchRecipeCategories.indexOf(recipeCategory.name);
-                        (currentIndex === -1) ?
-                        setCurrentSearchRecipeCategories([...currentSearchRecipeCategories, recipeCategory.name]) :
-                        setCurrentSearchRecipeCategories(currentSearchRecipeCategories.filter((_, i) => i !== currentIndex)
-                        )}}
+                        (currentIndex === -1)
+                          ? setCurrentSearchRecipeCategories([...currentSearchRecipeCategories, recipeCategory.name])
+                          : setCurrentSearchRecipeCategories(currentSearchRecipeCategories.filter((_, i) => i !== currentIndex)
+                          );
+                      }}
                     />
                     <label htmlFor={recipeCategory.name}>{recipeCategory.name}</label>
                   </div>
