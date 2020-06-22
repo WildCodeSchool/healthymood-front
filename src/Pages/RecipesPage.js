@@ -1,15 +1,15 @@
-import React from "react";
-import SmallRecipe from "../Components/SmallRecipe";
-import recipesInfo from "../recipesInfo.json";
-import "../Styles/RecipesPage.css";
+import React from 'react';
+import SmallRecipe from '../Components/SmallRecipe';
+import recipesInfo from '../recipesInfo.json';
+import '../Styles/RecipesPage.css';
 
 class RecipesPage extends React.Component {
-  render() {
+  render () {
     return (
       <>
         {recipesInfo.recipe.map((r) => {
           return (
-            <div key={r.name} className="recipes-page-container">
+            <div key={r.name} className='recipes-page-container'>
               <SmallRecipe r={r} />
             </div>
           );
