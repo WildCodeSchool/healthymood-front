@@ -25,17 +25,16 @@ function ArticleContent () {
           </div>
           <div className='published-container'>
             <span className='picto-container' style={{ backgroundImage: `url(${publishedImage})` }} />{article1.updated_at !== '' ? <p>{article1.updated_at}</p> : <p>{article1.created_at}</p>}
-            
+
           </div>
         </div>
       </div>
       <p className='introduction-text'>{article1.meta_description}</p>
-      
 
       <div dangerouslySetInnerHTML={createArticle()} className='article-content' />
       <div className='social-media-container'>
         <h5 className=''>Merci de partager : </h5>
-        <SocialMedia/>
+        <SocialMedia />
       </div>
     </div>
 

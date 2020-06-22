@@ -78,9 +78,9 @@ class Recipe extends React.Component {
         <div className='social-print-container'>
           <SocialMedia slug={params.slug} />
           <ReactToPrint
-          trigger={() => <button className='print-button' style={{ backgroundImage: `url(${PrintImage})` }} />}
-          content={() => this.componentRef}
-        />
+            trigger={() => <button className='print-button' style={{ backgroundImage: `url(${PrintImage})` }} />}
+            content={() => this.componentRef}
+          />
         </div>
       </div>
     );
