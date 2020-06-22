@@ -1,15 +1,16 @@
-import React from "react";
-import "../Styles/Search.css";
-import Loupe from "../Images/glass.png";
-import Cancel from "../Images/cross.png";
-import axios from "axios";
+import React from 'react';
+import '../Styles/Search.css';
+import Loupe from '../Images/glass.png';
+import Cancel from '../Images/cross.png';
+import axios from 'axios';
+import SmallRecipe from './SmallRecipe';
 class Search extends React.Component {
-  constructor(props) {
+  constructor (props) {
     super(props);
     this.state = {
       filter: [],
-      currentSearch: "",
-      recipes: [],
+      currentSearch: '',
+      recipes: []
     };
     this.handleGetRecipes = this.handleGetRecipes.bind(this);
   }
@@ -22,7 +23,7 @@ class Search extends React.Component {
       .then((res) => res.data)
       .then((data) => {
         this.setState({
-          recipes: [data],
+          recipes: [data]
         });
       });
   };
@@ -32,10 +33,10 @@ class Search extends React.Component {
   };
 
   handleAddfilter = async () => {
-    const currentFilter = this.state.filter;
+    const currentFilter = [];
     const newFilter = currentFilter.concat(this.state.currentSearch);
     if (this.state.currentSearch) {
-      this.setState({ filter: newFilter, currentSearch: "" });
+      this.setState({ filter: newFilter, currentSearch: '' });
     }
     this.handleGetRecipes(this.state.filter);
   };
@@ -47,7 +48,7 @@ class Search extends React.Component {
 
   handleKeyDown = (event) => {
     // permet d'effectuer la recherche avec entrée
-    if (event.key === "Enter" && event.target.value) {
+    if (event.key === 'Enter' && event.target.value) {
       event.preventDefault();
       const currentSearch = event.target.value;
       this.setState({ currentSearch });
@@ -56,47 +57,47 @@ class Search extends React.Component {
     }
   };
 
-  render() {
+  render () {
     const recipes = this.state.recipes;
     console.log(window.location);
     return (
-      <div className="recherche-container">
-        <div className="Loupe">
+      <div className='recherche-container'>
+        <div className='Loupe'>
           <h5>Recherche </h5>
-          <div className="search-field">
-            <div className="filter-list">
+          <div className='search-field'>
+            <div className='filter-list'>
               {this.state.filter.map((e) => (
                 <p
                   key={e}
                   onClick={() => this.handleDelete(e)}
-                  className="filter-name"
+                  className='filter-name'
                 >
                   {e}
-                  <img src={Cancel} alt="cancel" />
+                  <img src={Cancel} alt='cancel' />
                 </p>
               ))}
             </div>
-            <div className="search-block">
-              <div className="my-search">
-                <label className="label">
+            <div className='search-block'>
+              <div className='my-search'>
+                <label className='label'>
                   <p>J'ai envie de : </p>
                 </label>
                 <input
-                  id="search"
-                  name="search"
-                  type="text"
-                  placeholder="Rechercher"
+                  id='search'
+                  name='search'
+                  type='text'
+                  placeholder='Rechercher'
                   value={this.state.currentSearch}
                   onChange={this.handleChange}
                   onKeyDown={this.handleKeyDown}
                 />
               </div>
-              <button onClick={this.handleGetRecipes}>
-                <img src={Loupe} alt="search" />
+              <button className='btn-search' onClick={this.handleGetRecipes}>
+                <img src={Loupe} alt='search' />
                 Rechercher
               </button>
             </div>
-            <div className="result">
+            <div className='result'>
               <ul>
                 {recipes.length === 0 ? (
                   <p>Nothing</p>
@@ -104,7 +105,7 @@ class Search extends React.Component {
                   recipes[0].data.map((recipe) => {
                     return (
                       <li key={recipe.id}>
-                        <p>{recipe.name}</p>
+                        <SmallRecipe r={recipe} />
                       </li>
                     );
                   })
