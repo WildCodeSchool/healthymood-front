@@ -8,7 +8,7 @@ import MenuDesktop from './MenuDesktop';
 import TopNavBar from './TopNavBar';
 import '../Styles/MenuDesktop.css';
 
-function Header() {
+function Header () {
   return (
     <header>
       <img src={banner} alt='bannière mobile healthymood' className='mobile-banner' />

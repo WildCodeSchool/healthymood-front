@@ -22,7 +22,7 @@ const MenuDesktop = (props) => {
               <p>{e.text}</p>
             </div>
           </NavLink>
-        )
+        );
       })}
     </div>
   );
