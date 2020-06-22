@@ -3,3 +3,8 @@
     margin:auto;
     padding-top: 10vh;
 }
+@media screen and (max-width: 899px){
+    .home {
+        padding-top:0px;
+    }
+}

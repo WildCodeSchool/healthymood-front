@@ -70,6 +70,12 @@
     background-position: center;
     background-size: cover;
   }
+  .carousel-inner {
+    height:400px;
+  }
+  .carousel-inner .carousel-element {
+    height:400px;
+  }
   .carousel-content {
     width:80%;
   }

@@ -3,6 +3,7 @@
     height:50px;
     z-index:99;
     position:absolute;
+    margin-top:2%;
 }
 .burger-menu-container .burger-menu {
     width:100%;

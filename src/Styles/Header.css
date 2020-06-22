@@ -21,6 +21,7 @@ header img{
    margin: 0 auto;
    margin-top: 2%;
    margin-bottom: 2%;
+   min-width: 200px;
 }
 
 @media screen and (min-width: 770px) {
@@ -44,14 +45,20 @@ header img{
     .mobile-banner {
         display:none;
     }
+    .desktop-top-nav-bar {
+        display:block;
+    }
 }
 
-@media screen and (max-width: 900px){
+@media screen and (max-width: 899px){
     .menu-desktop-container{
-        display: none;
+        display: none!important;
     }
     .burger-menu-container{
         display: block;
+    }
+    .desktop-top-nav-bar {
+        display:none!important;
     }
     .desktop-banner {
         display:none;

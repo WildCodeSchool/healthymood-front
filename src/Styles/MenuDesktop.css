@@ -12,10 +12,6 @@
 .menu-desktop-container a:hover {
     color:var(--accentColor);
 }
-.menu-desktop-container a:nth-last-of-type(1) {
-    color:white;
-    text-decoration:none;
-}
 .menu-desktop-container .menu-desktop-element-container {
     display: inline-block;
     margin: 0 20px;
@@ -23,18 +19,4 @@
 .menu-desktop-container .menu-desktop-element-container p {
     margin-block-end: 0px;
     font-weight:500;
-}
-.menu-desktop-container .menu-desktop-element-container-envoyer-recette {
-    background-color:var(--accentColor);
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    padding: 5px 10px;
-    border:1px solid transparent;
-    transition: all 0.2s ease-in-out;
-}
-.menu-desktop-container .menu-desktop-element-container-envoyer-recette:hover {
-    background-color:transparent;
-    border:1px solid var(--accentColor);
-    color:var(--accentColor);
 }
