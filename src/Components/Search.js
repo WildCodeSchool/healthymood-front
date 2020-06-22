@@ -15,7 +15,7 @@ class Search extends React.Component {
   }
 
   handleGetRecipes = () => {
-    const url = `https://lyon-js-2003-pjt3-healthymood-api.jsrover.wilders.dev/recipes/?search=${this.state.currentSearch}`;
+    const url = `http://localhost:3000/recipes/?search=${this.state.currentSearch}`;
     console.log(this.state.currentSearch);
     axios
       .get(url)
@@ -91,16 +91,10 @@ class Search extends React.Component {
                   onKeyDown={this.handleKeyDown}
                 />
               </div>
-              <a
-                href={`/api/recipes/?search=${this.state.currentSearch}`}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <button onClick={this.handleGetRecipes}>
-                  <img src={Loupe} alt="search" />
-                  Rechercher
-                </button>
-              </a>
+              <button onClick={this.handleGetRecipes}>
+                <img src={Loupe} alt="search" />
+                Rechercher
+              </button>
             </div>
             <div className="result">
               <ul>
