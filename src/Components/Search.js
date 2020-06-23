@@ -20,7 +20,7 @@ class Search extends React.Component {
     axios
       .get(url)
       .then((res) => res.data)
-      .then((data) => {        
+      .then((data) => {
         this.setState({
           recipes: [data],
         });
@@ -38,6 +38,7 @@ class Search extends React.Component {
       this.setState({ filter: newFilter, currentSearch: "" });
     }
     this.handleGetRecipes();
+    this.props.history.push(`/rechercher/?search=${this.state.currentSearch}`);
   };
 
   handleDelete = (str) => {
