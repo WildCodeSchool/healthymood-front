@@ -1,4 +1,5 @@
 import React from 'react';
+import '../Styles/Home.css';
 import ControlledCarousel from '../Components/Carousel';
 import CategoriesList from '../Components/CategoriesList';
 
