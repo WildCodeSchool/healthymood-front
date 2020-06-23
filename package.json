@@ -50,6 +50,7 @@
   },
   "devDependencies": {
     "babel-eslint": "^10.1.0",
+    "dotenv-webpack": "^1.8.0",
     "husky": "^4.2.5"
   }
 }
