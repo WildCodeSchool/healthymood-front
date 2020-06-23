@@ -111,9 +111,13 @@
   padding: 0 0 3px 9px;
 }
 
-.result ul li {
-  list-style: none;
+.result .filter-recipes-container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
 }
+
 
 @media screen and (max-width: 360px) {
   .my-search input {

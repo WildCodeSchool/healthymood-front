@@ -44,7 +44,7 @@ class Search extends React.Component {
   handleDelete = (str) => {
     const newFilter = this.state.filter.filter((e) => str !== e);
     this.setState({ filter: newFilter, recipes: [] });
-    this.props.history.push(`/rechercher`);
+    this.props.history.push("/rechercher");
   };
 
   handleKeyDown = (event) => {
@@ -63,7 +63,7 @@ class Search extends React.Component {
     return (
       <div className="recherche-container">
         <div className="Loupe">
-          <h5>Recherche </h5>
+          <h5>Recherche simple</h5>
           <div className="search-field">
             <div className="filter-list">
               {this.state.filter.map((e) => (
@@ -98,19 +98,19 @@ class Search extends React.Component {
               </button>
             </div>
             <div className="result">
-              <ul>
+              <div className="filter-recipes-container">
                 {recipes.length === 0 ? (
-                  <p>Nothing</p>
+                  <p>Entrez votre recherche.</p>
                 ) : (
                   recipes[0].data.map((recipe) => {
                     return (
-                      <li key={recipe.id}>
+                      <div className='filtered-recipes' key={recipe.id}>
                         <SmallRecipe r={recipe} />
-                      </li>
+                      </div>
                     );
                   })
                 )}
-              </ul>
+              </div>
             </div>
           </div>
         </div>
