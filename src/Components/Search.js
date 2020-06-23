@@ -43,7 +43,8 @@ class Search extends React.Component {
 
   handleDelete = (str) => {
     const newFilter = this.state.filter.filter((e) => str !== e);
-    this.setState({ filter: newFilter });
+    this.setState({ filter: newFilter, recipes: [] });
+    this.props.history.push(`/rechercher`);
   };
 
   handleKeyDown = (event) => {
