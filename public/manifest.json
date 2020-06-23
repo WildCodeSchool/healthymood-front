@@ -3,7 +3,7 @@
   "short_name": "HM",
   "theme_color": "#2196f3",
   "background_color": "#288425",
-  "display": "browser",
+  "display": "Fullscreen",
   "Scope": "/",
   "start_url": "/",
   "icons": [
