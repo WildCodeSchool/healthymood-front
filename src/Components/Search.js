@@ -5,7 +5,6 @@ import Cancel from '../Images/cross.png';
 import SmallRecipe from './SmallRecipe';
 import API from '../Services/Api';
 
-
 class Search extends React.Component {
   constructor (props) {
     super(props);
@@ -23,11 +22,11 @@ class Search extends React.Component {
     API.get(url)
       .then((res) => res.data)
       .then((data) => {
-        console.log(data)
+        console.log(data);
         this.setState({
           recipes: [data][0].data
         });
-        console.log(this.state.recipes)
+        console.log(this.state.recipes);
       });
   };
 
@@ -47,7 +46,7 @@ class Search extends React.Component {
 
   handleDelete = (str) => {
     const newFilter = this.state.filter.filter((e) => str !== e);
-    this.setState({ filter: newFilter, recipes: [], searchInput:"" });
+    this.setState({ filter: newFilter, recipes: [], searchInput: '' });
     this.props.history.push('/rechercher');
   };
 
@@ -62,11 +61,11 @@ class Search extends React.Component {
     }
   };
 
-  componentDidMount() {
-    const searchInputQuery = this.props.location.search
+  componentDidMount () {
+    const searchInputQuery = this.props.location.search;
     if (searchInputQuery) {
-      const searchInput = searchInputQuery.split('=')[1]
-      this.setState({searchInput, filter: [searchInput]})
+      const searchInput = searchInputQuery.split('=')[1];
+      this.setState({ searchInput, filter: [searchInput] });
     }
   }
 
