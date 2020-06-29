@@ -49,17 +49,18 @@ function App () {
   let userNameFromToken = null;
   if (token) {
     console.log(token);
-    userNameFromToken = jwtDecode(token).name || null;
+    userNameFromToken = jwtDecode(token).email || null;
   }
 
   return (
     <>
       <AuthContext.Provider value={{ token, setToken: setTokenInLocalStorage }}>
-        {userNameFromToken &&
+        {userNameFromToken && (
           <div>
             <p>Welcome back {userNameFromToken} !</p>
             <button onClick={() => setTokenInLocalStorage('')}>Log out</button>
-          </div>}
+          </div>
+        )}
         <Router>
           <div className='App'>
             <Header />

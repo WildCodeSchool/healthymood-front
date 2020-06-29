@@ -1,30 +1,59 @@
 import React, { useState, useContext } from 'react';
 import API from '../Services/API';
 import AuthContext from '../Context/authContext';
+import '../Styles/Login.css';
+import { Link } from 'react-router-dom';
 
 export default function LoginPage (props) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [loading, setLoading] = useState(false);
   const { setToken } = useContext(AuthContext);
 
-  const handleSubmit = event => {
+  const handleSubmit = (event) => {
     event.preventDefault();
-    API.post('/auth/login', { email, password }).then(res => res.data).then((data) => {
-      setToken(data.token);
-    });
+    setLoading(true);
+    API.post('/auth/login', { email, password })
+      .then((res) => res.data)
+      .then((data) => {
+        setToken(data.token);
+        setLoading(false);
+      });
   };
   const { token } = useContext(AuthContext);
-  console.log(token); // bon@jour.com abcdef
+  console.log(token);
   return (
-    <div>
-      <h2>Login</h2>
-      <form onSubmit={handleSubmit}>
-        <label htmlFor='email' name='email'>Email : </label>
-        <input id='email' type='email' value={email} onChange={(e) => setEmail(e.target.value)} />
-        <label htmlFor='password' name='password'>Password : </label>
-        <input id='password' type='password' value={password} onChange={(e) => setPassword(e.target.value)} />
-        <input type='submit' value='Go' />
+    <div className='login-page'>
+      <h1>Login</h1>
+      <form className='form-login' onSubmit={handleSubmit}>
+        <div className='form-group'>
+        <label htmlFor='email' name='email'>
+          Email :{' '}
+        </label>
+        <input
+          id='email'
+          type='email'
+          value={email}
+          placeholder='exemple@gmail.com'
+          onChange={(e) => setEmail(e.target.value)}
+        />
+        </div>
+        <div className='form-group'>
+        <label htmlFor='password' name='password'>
+          Password :{' '}
+        </label>
+        <input
+          id='password'
+          type='password'
+          value={password}
+          placeholder='Votre mot de passe'
+          onChange={(e) => setPassword(e.target.value)}
+        />
+        </div>
+        <Link to='/register'>
+        <button className='btn' type='submit' disabled={!!loading}>Connexion</button>
+        </Link>
       </form>
     </div>
   );
-}
+};
