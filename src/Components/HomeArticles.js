@@ -19,7 +19,7 @@ export default function HomeArticles () {
     <div className='homepage-articles-container'>
       {lastArticles.map(article => {
         return (
-          <SmallArticle a={article} />
+          <SmallArticle key={article.slug} a={article} />
         );
       })}
     </div>
