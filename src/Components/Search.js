@@ -1,7 +1,6 @@
 import React from 'react';
 import '../Styles/Search.css';
 import Loupe from '../Images/glass.png';
-import Cancel from '../Images/cross.png';
 import SmallRecipe from './SmallRecipe';
 import API from '../Services/Api';
 
@@ -9,32 +8,46 @@ class Search extends React.Component {
   constructor (props) {
     super(props);
     this.state = {
-      filter: [],
       currentSearch: '',
-      recipes: [],
-      searchInput: ''
+      recipes: []
     };
     this.handleGetRecipes = this.handleGetRecipes.bind(this);
   }
 
   handleGetRecipes = () => {
-    const url = `/recipes/?search=${this.state.currentSearch}`;
-    API.get(url)
+    if (this.props.history.location.pathname === `/rechercher`) {
+      const url = `recipes/?search=${this.state.currentSearch}`;
+      API.get(url)
+        .then((res) => res.data)
+        .then((data) => {
+          console.log(data);
+          this.setState({
+            recipes: [data][0].data
+          });
+        });
+      this.props.history.push(`/rechercher/?search=${this.state.currentSearch}`);
+    } else {
+      const currentInput = this.props.history.location.search.split('=')[1]
+      const url = `recipes/?search=${currentInput}`;
+      API.get(url)
       .then((res) => res.data)
       .then((data) => {
         console.log(data);
         this.setState({
           recipes: [data][0].data
         });
-        console.log(this.state.recipes);
       });
+    }
+      
+        
+        
   };
 
   handleChange = (event) => {
     this.setState({ currentSearch: event.target.value });
   };
 
-  handleAddfilter = async () => {
+/*   handleAddfilter = async () => {
     const currentFilter = [];
     const newFilter = currentFilter.concat(this.state.currentSearch);
     if (this.state.currentSearch) {
@@ -42,13 +55,13 @@ class Search extends React.Component {
     }
     this.handleGetRecipes();
     this.props.history.push(`/rechercher/?search=${this.state.currentSearch}`);
-  };
+  }; */
 
-  handleDelete = (str) => {
+/*   handleDelete = (str) => {
     const newFilter = this.state.filter.filter((e) => str !== e);
     this.setState({ filter: newFilter, recipes: [], searchInput: '' });
     this.props.history.push('/rechercher');
-  };
+  }; */
 
   handleKeyDown = (event) => {
     // permet d'effectuer la recherche avec entrée
@@ -56,16 +69,18 @@ class Search extends React.Component {
       event.preventDefault();
       const currentSearch = event.target.value;
       this.setState({ currentSearch });
-      this.handleAddfilter(currentSearch);
+      this.handleGetRecipes()
+/*       this.handleAddfilter(currentSearch); */
       event.target.blur();
     }
   };
 
   componentDidMount () {
     const searchInputQuery = this.props.location.search;
-    if (searchInputQuery) {
+    if (searchInputQuery !== "") {
       const searchInput = searchInputQuery.split('=')[1];
-      this.setState({ searchInput, filter: [searchInput] });
+      this.setState({ currentSearch: searchInput });
+      this.handleGetRecipes();
     }
   }
 
@@ -76,7 +91,7 @@ class Search extends React.Component {
         <div className='Loupe'>
           <h5>Recherche simple</h5>
           <div className='search-field'>
-            <div className='filter-list'>
+{/*             <div className='filter-list'>
               {this.state.filter.map((e) => (
                 <p
                   key={e}
@@ -87,7 +102,7 @@ class Search extends React.Component {
                   <img src={Cancel} alt='cancel' />
                 </p>
               ))}
-            </div>
+            </div> */}
             <div className='search-block'>
               <div className='my-search'>
                 <label className='label'>
@@ -97,13 +112,13 @@ class Search extends React.Component {
                   id='search'
                   name='search'
                   type='text'
-                  placeholder={this.state.searchInput ? this.state.searchInput : 'Rechercher'}
+                  placeholder='Rechercher'
                   value={this.state.currentSearch}
                   onChange={this.handleChange}
                   onKeyDown={this.handleKeyDown}
                 />
               </div>
-              <button className='btn-search' onClick={this.handleAddfilter}>
+              <button className='btn-search' onClick={this.handleGetRecipes}>
                 <img src={Loupe} alt='search' />
                 Rechercher
               </button>
