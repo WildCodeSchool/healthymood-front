@@ -13,7 +13,7 @@ import RecipesPage from './Pages/RecipesPage';
 import Article from './Pages/Article';
 import Search from './Components/Search';
 import Recipe from './Components/Recipe';
-import AuthContext from './authContext';
+import AuthContext from './Context/authContext';
 import jwtDecode from 'jwt-decode';
 import LoginPage from './Pages/Login';
 import RegisterPage from './Pages/Register';

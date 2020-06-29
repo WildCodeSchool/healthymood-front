@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import API from '../Serveurs/API';
+import API from '../Services/API';
 
 export default function SecretPage (props) {
   const [secret, setSecret] = useState(null);
