@@ -3,15 +3,13 @@ import '../Styles/ArticleContent.css';
 import authorImage from '../Images/author.png';
 import categoryImage from '../Images/category.png';
 import publishedImage from '../Images/published.png';
-import allArticles from '../allArticles.json';
 import SocialMedia from './SocialMediaArticle';
-import SearchArticles from './SearchArticles';
 
-function createArticle() {
-  return { __html: article1.content };
+function createArticle (props) {
+  return { __html: props.a.content };
 }
 
-function ArticleContent(props) {
+function ArticleContent (props) {
   const imageSrc = require(`../Images/${props.a.image}`);
   return (
     <>

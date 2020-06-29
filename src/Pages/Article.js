@@ -3,7 +3,7 @@ import ArticleContent from '../Components/ArticleContent';
 import allArticles from '../allArticles.json';
 import '../Styles/Article.css';
 
-function Article(props) {
+function Article (props) {
   const params = props.match.params;
 
   return (
