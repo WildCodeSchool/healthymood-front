@@ -9,7 +9,7 @@ class RecipesPage extends React.Component {
       <>
         {recipesInfo.recipe.map((r) => {
           return (
-            <div key={r.name} className='recipes-page-container'>
+            <div key={r.id} className='recipes-page-container'>
               <SmallRecipe r={r} />
             </div>
           );

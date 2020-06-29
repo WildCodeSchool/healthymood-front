@@ -4,13 +4,16 @@ import Loupe from '../Images/glass.png';
 import Cancel from '../Images/cross.png';
 import SmallRecipe from './SmallRecipe';
 import API from '../Services/Api';
+
+
 class Search extends React.Component {
   constructor (props) {
     super(props);
     this.state = {
       filter: [],
       currentSearch: '',
-      recipes: []
+      recipes: [],
+      searchInput: ''
     };
     this.handleGetRecipes = this.handleGetRecipes.bind(this);
   }
@@ -20,9 +23,11 @@ class Search extends React.Component {
     API.get(url)
       .then((res) => res.data)
       .then((data) => {
+        console.log(data)
         this.setState({
-          recipes: [data]
+          recipes: [data][0].data
         });
+        console.log(this.state.recipes)
       });
   };
 
@@ -42,7 +47,7 @@ class Search extends React.Component {
 
   handleDelete = (str) => {
     const newFilter = this.state.filter.filter((e) => str !== e);
-    this.setState({ filter: newFilter, recipes: [] });
+    this.setState({ filter: newFilter, recipes: [], searchInput:"" });
     this.props.history.push('/rechercher');
   };
 
@@ -56,6 +61,14 @@ class Search extends React.Component {
       event.target.blur();
     }
   };
+
+  componentDidMount() {
+    const searchInputQuery = this.props.location.search
+    if (searchInputQuery) {
+      const searchInput = searchInputQuery.split('=')[1]
+      this.setState({searchInput, filter: [searchInput]})
+    }
+  }
 
   render () {
     const recipes = this.state.recipes;
@@ -85,7 +98,7 @@ class Search extends React.Component {
                   id='search'
                   name='search'
                   type='text'
-                  placeholder='Rechercher'
+                  placeholder={this.state.searchInput ? this.state.searchInput : 'Rechercher'}
                   value={this.state.currentSearch}
                   onChange={this.handleChange}
                   onKeyDown={this.handleKeyDown}
@@ -101,7 +114,7 @@ class Search extends React.Component {
                 {recipes.length === 0 ? (
                   <p>Entrez votre recherche.</p>
                 ) : (
-                  recipes[0].data.map((recipe) => {
+                  recipes.map((recipe) => {
                     return (
                       <div className='filtered-recipes' key={recipe.id}>
                         <SmallRecipe r={recipe} />
