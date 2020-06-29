@@ -13,8 +13,8 @@ export default function LoginPage (props) {
       setToken(data.token);
     });
   };
-  const {token} = useContext(AuthContext);
-  console.log(token) // bon@jour.com abcdef
+  const { token } = useContext(AuthContext);
+  console.log(token); // bon@jour.com abcdef
   return (
     <div>
       <h2>Login</h2>
