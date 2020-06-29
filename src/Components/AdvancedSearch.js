@@ -81,7 +81,7 @@ export default function AdvancedSearch (props) {
                       type='checkbox'
                       name={recipeCategory.name}
                       id={recipeCategory.name}
-                      onClick={event => {
+                      onClick={() => {
                         const currentIndex = currentSearchRecipeCategories.indexOf(recipeCategory.name);
                         (currentIndex === -1)
                           ? setCurrentSearchRecipeCategories([...currentSearchRecipeCategories, recipeCategory.name])
