@@ -1,15 +1,24 @@
 import React from 'react';
 import ArticleContent from '../Components/ArticleContent';
-import article1 from '../article1.json';
+import allArticles from '../allArticles.json';
 import '../Styles/Article.css';
 
-function Article () {
+function Article(props) {
+  const params = props.match.params;
+
   return (
     <div className='page-article'>
-      <h1>{article1.title}</h1>
-      <div className='article-content-container'>
-        <ArticleContent />
-      </div>
+      {allArticles.filter(article => article.slug === params).map(a => {
+        return (
+          <>
+            <h1>{a.title}</h1>
+            <div className='article-content-container'>
+              <ArticleContent history={props.history} currentArticle={a} />
+            </div>
+          </>
+        );
+      })}
+
     </div>
   );
 }

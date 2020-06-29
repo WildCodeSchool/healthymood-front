@@ -4,6 +4,7 @@ import Loupe from '../Images/glass.png';
 import Cancel from '../Images/cross.png';
 import SmallRecipe from './SmallRecipe';
 import API from '../Services/Api';
+
 class Search extends React.Component {
   constructor (props) {
     super(props);

@@ -1,0 +1,11 @@
+.articles-page-container {
+    display: flex;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    max-width:1020px;
+    margin: 0 auto;
+    padding: 80px 0;
+  }
+  
+  
+  
