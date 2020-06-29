@@ -4,6 +4,7 @@
   "theme_color": "#2196f3",
   "background_color": "#288425",
   "display": "Fullscreen",
+  "gcm_sender_id": "103953800507",
   "Scope": "/",
   "start_url": "/",
   "icons": [
