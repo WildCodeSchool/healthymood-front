@@ -15,7 +15,7 @@ class Search extends React.Component {
   }
 
   handleGetRecipes = () => {
-    if (this.props.history.location.pathname === `/rechercher`) {
+    if (this.props.history.location.pathname === '/rechercher') {
       const url = `recipes/?search=${this.state.currentSearch}`;
       API.get(url)
         .then((res) => res.data)
@@ -27,27 +27,24 @@ class Search extends React.Component {
         });
       this.props.history.push(`/rechercher/?search=${this.state.currentSearch}`);
     } else {
-      const currentInput = this.props.history.location.search.split('=')[1]
+      const currentInput = this.props.history.location.search.split('=')[1];
       const url = `recipes/?search=${currentInput}`;
       API.get(url)
-      .then((res) => res.data)
-      .then((data) => {
-        console.log(data);
-        this.setState({
-          recipes: [data][0].data
+        .then((res) => res.data)
+        .then((data) => {
+          console.log(data);
+          this.setState({
+            recipes: [data][0].data
+          });
         });
-      });
     }
-      
-        
-        
   };
 
   handleChange = (event) => {
     this.setState({ currentSearch: event.target.value });
   };
 
-/*   handleAddfilter = async () => {
+  /*   handleAddfilter = async () => {
     const currentFilter = [];
     const newFilter = currentFilter.concat(this.state.currentSearch);
     if (this.state.currentSearch) {
@@ -57,7 +54,7 @@ class Search extends React.Component {
     this.props.history.push(`/rechercher/?search=${this.state.currentSearch}`);
   }; */
 
-/*   handleDelete = (str) => {
+  /*   handleDelete = (str) => {
     const newFilter = this.state.filter.filter((e) => str !== e);
     this.setState({ filter: newFilter, recipes: [], searchInput: '' });
     this.props.history.push('/rechercher');
@@ -69,15 +66,15 @@ class Search extends React.Component {
       event.preventDefault();
       const currentSearch = event.target.value;
       this.setState({ currentSearch });
-      this.handleGetRecipes()
-/*       this.handleAddfilter(currentSearch); */
+      this.handleGetRecipes();
+      /*       this.handleAddfilter(currentSearch); */
       event.target.blur();
     }
   };
 
   componentDidMount () {
     const searchInputQuery = this.props.location.search;
-    if (searchInputQuery !== "") {
+    if (searchInputQuery !== '') {
       const searchInput = searchInputQuery.split('=')[1];
       this.setState({ currentSearch: searchInput });
       this.handleGetRecipes();
@@ -91,7 +88,7 @@ class Search extends React.Component {
         <div className='Loupe'>
           <h5>Recherche simple</h5>
           <div className='search-field'>
-{/*             <div className='filter-list'>
+            {/*             <div className='filter-list'>
               {this.state.filter.map((e) => (
                 <p
                   key={e}
