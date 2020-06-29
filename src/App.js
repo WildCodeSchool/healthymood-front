@@ -19,8 +19,6 @@ import LoginPage from './Pages/Login';
 import RegisterPage from './Pages/Register';
 import SecretPage from './Pages/Secret';
 
-// import SecretPage from './SecretPage'
-
 function PrivateRoute ({ children, ...rest }) {
   const { token } = useContext(AuthContext);
   return (
@@ -70,12 +68,13 @@ function App () {
               <Route exact path='/recettes' component={RecipesPage} />
               <Route exact path='/conseils-astuces' component={Article} />
               <Route exact path='/rechercher' component={Search} />
-              <Route exact path='/' /* component={...} */ />
               <Route exact path='/recettes/:slug' component={Recipe} />
               <Route exact path='/recettes/categorie/:id' component={RecipesPage} />
               <Route exact path='/login' component={LoginPage} />
               <Route exact path='/register' component={RegisterPage} />
-              <PrivateRoute exact path='/secret' component={SecretPage} />
+              <PrivateRoute exact path='/secret'>
+                <SecretPage />
+              </PrivateRoute>
             </Switch>
             <Footer />
           </div>
