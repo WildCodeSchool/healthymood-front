@@ -1,11 +1,12 @@
 .small-recipe-container {
-  background-color: rgba(236, 231, 231, 0.808);
-  width:300px;
+  width:280px;
   transition:all 0.2s ease-in-out;
   box-shadow:0 0 3px rgba(0, 0, 0, 0.3);
   position:relative;
   margin:20px;
-  border-radius: 5px;
+}
+.small-recipe-container button {
+  background-color:white;
 }
 .small-recipe-global-container {
   position:relative;
@@ -21,20 +22,21 @@
   background-position:center;
   background-size:cover;
   background-repeat:no-repeat;
-  border-radius: 5px 5px 0 0;
 }
 .small-recipe-content-container {
-  padding:20px;
+  padding:20px 0;
 }
 .small-recipe-title {
   font-size: 21px;
   text-align:center;
   margin-top: 6px;
+  padding:0 10px;
 
 }
 .small-recipe-intro {
   text-align:justify;
   margin-top:1rem;
+  padding:0 20px;
 }
 .small-recipe-favorite-icon {
   width: 25px;
