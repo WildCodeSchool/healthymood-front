@@ -19,7 +19,7 @@ export default function LoginPage (props) {
     <div>
       <h2>Login</h2>
       <form onSubmit={handleSubmit}>
-      <label htmlFor='username' required name='username'>Name : </label>
+        <label htmlFor='username' required name='username'>Name : </label>
         <input id='username' type='text' value={username} onChange={(e) => setName(e.target.value)} />
         <label htmlFor='email' name='email'>Email : </label>
         <input id='email' type='email' value={email} onChange={(e) => setEmail(e.target.value)} />
