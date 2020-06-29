@@ -27,33 +27,33 @@ export default function LoginPage (props) {
       <h1>Login</h1>
       <form className='form-login' onSubmit={handleSubmit}>
         <div className='form-group'>
-        <label htmlFor='email' name='email'>
+          <label htmlFor='email' name='email'>
           Email :{' '}
-        </label>
-        <input
-          id='email'
-          type='email'
-          value={email}
-          placeholder='exemple@gmail.com'
-          onChange={(e) => setEmail(e.target.value)}
-        />
+          </label>
+          <input
+            id='email'
+            type='email'
+            value={email}
+            placeholder='exemple@gmail.com'
+            onChange={(e) => setEmail(e.target.value)}
+          />
         </div>
         <div className='form-group'>
-        <label htmlFor='password' name='password'>
+          <label htmlFor='password' name='password'>
           Password :{' '}
-        </label>
-        <input
-          id='password'
-          type='password'
-          value={password}
-          placeholder='Votre mot de passe'
-          onChange={(e) => setPassword(e.target.value)}
-        />
+          </label>
+          <input
+            id='password'
+            type='password'
+            value={password}
+            placeholder='Votre mot de passe'
+            onChange={(e) => setPassword(e.target.value)}
+          />
         </div>
         <Link to='/register'>
-        <button className='btn' type='submit' disabled={!!loading}>Connexion</button>
+          <button className='btn' type='submit' disabled={!!loading}>Connexion</button>
         </Link>
       </form>
     </div>
   );
-};
+}
