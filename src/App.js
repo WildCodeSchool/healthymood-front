@@ -42,9 +42,9 @@ function PrivateRoute ({ children, ...rest }) {
 }
 
 function App () {
-  const [token, setToken] = useState(localStorage.getItem('authToken')); // eslint-disable-line
+  const [token, setToken] = useState(window.localStorage.getItem('authToken'));
   const setTokenInLocalStorage = (token) => {
-    localStorage.setItem('authToken', token); // eslint-disable-line
+    window.localStorage.setItem('authToken', token);
     setToken(token);
   };
 

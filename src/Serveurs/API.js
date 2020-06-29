@@ -5,7 +5,7 @@ const API = axios.create({
 });
 
 const placeTokenInRequestHeaders = req => {
-  const token = localStorage.getItem('authToken'); // eslint-disable-line
+  const token = window.localStorage.getItem('authToken');
   if (token) {
     req.headers.Authorization = `Bearer ${token}`;
   }
