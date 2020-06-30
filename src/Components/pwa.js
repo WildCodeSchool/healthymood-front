@@ -33,9 +33,9 @@ class Pwa extends React.Component {
   render () {
     return (
       <div>
-        <button className='add-install' onClick={this.handleOnInstallBtnClick}>
+        {/* <button className='add-install' onClick={this.handleOnInstallBtnClick}>
           install
-        </button>
+        </button> */}
       </div>
     );
   }
