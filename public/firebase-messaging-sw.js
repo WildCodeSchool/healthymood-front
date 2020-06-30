@@ -6,14 +6,14 @@ importScripts(
 );
 
 firebase.initializeApp({
-  apiKey: "AIzaSyANLln6PrWsj26sOjDOe7LuvmC0V7LgrVk",
-  authDomain: "healthymood-3096d.firebaseapp.com",
-  databaseURL: "https://healthymood-3096d.firebaseio.com",
-  projectId: "healthymood-3096d",
-  storageBucket: "healthymood-3096d.appspot.com",
-  messagingSenderId: "247023349688",
-  appId: "1:247023349688:web:c0c0b575f6334e8c58694d",
-  measurementId: "G-2HDMN6VXBQ",
+  apiKey: "AIzaSyDPqOYi9EdoSFMCmGhnUofJn-nSXV1VvOI",
+  authDomain: "healthymood-d762d.firebaseapp.com",
+  databaseURL: "https://healthymood-d762d.firebaseio.com",
+  projectId: "healthymood-d762d",
+  storageBucket: "healthymood-d762d.appspot.com",
+  messagingSenderId: "693232145307",
+  appId: "1:693232145307:web:53056fdcfa54a058bc873e",
+  measurementId: "G-L5K8DJWLF2",
 });
 
 const messaging = firebase.messaging();
