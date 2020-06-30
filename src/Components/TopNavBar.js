@@ -5,8 +5,8 @@ import '../Styles/TopNavBar.css';
 // import AuthContext from '../Context/authContext';
 
 const TopNavBar = (props) => {
-  const [isConnected, setIsConnected] = useState(true);
-  // const { setTokenInLocalStorage } = useContext(AuthContext);
+  const [isConnected, setIsConnected] = useState(false);
+  // const setTokenInLocalStorage = useContext(AuthContext).setToken;
 
   const connected = () => {
     setIsConnected(!isConnected);
@@ -58,6 +58,9 @@ const TopNavBar = (props) => {
               </NavLink>
             );
           })}
+          <NavLink>
+            <button></button>
+          </NavLink>
     </div>
   );
 };

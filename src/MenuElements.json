@@ -103,7 +103,7 @@
             "slug": "deconnexion",
             "needLogIn": true,
             "needLogOut": false
-        },
+        }, 
         {
             "text": "Connexion",
             "link": "/login",
