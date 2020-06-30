@@ -95,16 +95,6 @@
             "needLogOut": false
         },
         {
-            "text": "Déconnexion",
-            "link": "/",
-            "submenu": false,
-            "withSubmenu": false,
-            "icon": "logout.png",
-            "slug": "deconnexion",
-            "needLogIn": true,
-            "needLogOut": false
-        }, 
-        {
             "text": "Connexion",
             "link": "/login",
             "submenu": false,

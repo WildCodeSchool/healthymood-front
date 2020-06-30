@@ -1,11 +1,11 @@
 import React, { useContext } from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, Link } from 'react-router-dom';
 import MenuElements from '../MenuElements.json';
 import '../Styles/TopNavBar.css';
 import AuthContext from '../Context/authContext';
 
 const TopNavBar = (props) => {
-  const { connected } = useContext(AuthContext);
+  const { connected, setLogOut } = useContext(AuthContext);
 
   // const connected = () => {
   //   setIsConnected(!isConnected);
@@ -53,9 +53,10 @@ const TopNavBar = (props) => {
               </NavLink>
             );
           })}
-      {/* <NavLink>
-        <button />
-      </NavLink> */}
+
+      <Link to='/'>
+        <button className='topnav-bar-link-deconnexion' onClick={setLogOut}>Déconnexion</button>
+      </Link>
     </div>
   );
 };

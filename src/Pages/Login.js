@@ -10,7 +10,6 @@ export default function LoginPage (props) {
   const [loading, setLoading] = useState(false);
   const history = useHistory();
   const { setToken, setIsConnected } = useContext(AuthContext);
-  /* const connected = useContext(AuthContext).setIsConneted; */
 
   const handleSubmit = (event) => {
     event.preventDefault();

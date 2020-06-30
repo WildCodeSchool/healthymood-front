@@ -34,7 +34,7 @@ function PrivateRoute ({ children, ...rest }) {
               state: { from: location }
             }}
           />
-        )
+        ) // eslint-disable-line
       } // eslint-disable-line
     />
   );
@@ -74,7 +74,9 @@ function App () {
           token,
           setToken: setTokenInLocalStorage,
           setIsConnected: setIsConnectedInLocalStorage,
-          connected: isConnected
+          connected: isConnected,
+          setLogOut: handleLogOut
+
         }}
       >
         {userNameFromToken && (
