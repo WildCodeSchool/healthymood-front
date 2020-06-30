@@ -1,43 +1,41 @@
-import React from 'react';
-import '../Styles/Pwa.css';
+import React from "react";
+import "../Styles/Pwa.css";
+
+let deferredPrompt;
 
 class Pwa extends React.Component {
-  constructor () {
+  constructor() {
     super();
-    this.state = { deferredPrompt: null };
+    this.state = {};
     this.handleOnInstallBtnClick = this.handleOnInstallBtnClick.bind(this);
   }
 
-  componentDidMount () {
-    window.addEventListener('beforeinstallprompt', (e) => {
+  componentDidMount() {
+    window.addEventListener("beforeinstallprompt", (e) => {
       e.preventDefault();
-      this.setState({ deferredPrompt: e });
+      deferredPrompt = e;
     });
-
     /* window.alert(this.handleOnInstallBtnClick()); */
   }
 
-  handleOnInstallBtnClick () {
-    this.setState({
-      showButton: false
-    });
-    this.deferredPrompt.prompt();
-    this.deferredPrompt.userChoice.then((choiceResult) => {
-      if (choiceResult.outcome === 'accepted') {
-        console.log('User accepted the A2HS prompt');
+  handleOnInstallBtnClick() {
+    deferredPrompt.prompt();
+    deferredPrompt.userChoice.then((choiceResult) => {
+      if (choiceResult.outcome === "accepted") {
+        console.log("User accepted the A2HS prompt");
       } else {
-        console.log('User dismissed the A2HS prompt');
+        console.log("User dismissed the A2HS prompt");
       }
-      this.deferredPrompt = null;
+      deferredPrompt = null;
     });
   }
 
-  render () {
+  render() {
     return (
       <div>
-        {/* <button className="add-install" onClick={this.handleOnInstallBtnClick}>
+         <button className="add-install" onClick={this.handleOnInstallBtnClick}>
           install
-        </button> */}
+        </button> 
       </div>
     );
   }
