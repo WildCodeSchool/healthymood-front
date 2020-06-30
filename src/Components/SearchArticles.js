@@ -3,7 +3,7 @@ import Loupe from '../Images/glass.png';
 import Cancel from '../Images/cross.png';
 import API from '../Services/Api';
 
-export default function SearchArticles (props) {
+export default function SearchArticles(props) {
   const [filter, setFilter] = useState([]);
   const [currentSearch, setCurrentSearch] = useState('');
   const [articles, setArticles] = useState([]);
@@ -72,7 +72,7 @@ export default function SearchArticles (props) {
           <div className='search-block'>
             <div className='my-search'>
               <label className='label'>
-                <p>J'ai envie de : </p>
+                <p>Rechercher par mots-clés </p>
               </label>
               <input
                 id='search'
@@ -94,14 +94,14 @@ export default function SearchArticles (props) {
               {articles.length === 0 ? (
                 <p>Entrez votre recherche.</p>
               ) : (
-                articles[0].data.map((recipe) => {
-                  return (
-                    <div className='filtered-recipes' key={recipe.id}>
-                                                hello
-                    </div>
-                  );
-                })
-              )}
+                  articles[0].data.map((recipe) => {
+                    return (
+                      <div className='filtered-recipes' key={recipe.id}>
+                        hello
+                      </div>
+                    );
+                  })
+                )}
             </div>
           </div>
         </div>
