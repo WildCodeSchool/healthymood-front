@@ -3,97 +3,95 @@ import '../Styles/Search.css';
 import Loupe from '../Images/glass.png';
 import SmallRecipe from './SmallRecipe';
 import API from '../Services/Api';
-import { useHistory } from 'react-router-dom'
-
+import { useHistory } from 'react-router-dom';
 
 export default function Search (props) {
-
   const history = useHistory();
-/* 
+  /*
   const [validated, setValidated] = useState(false) */
-  const [recipes, setRecipes] = useState([])
-  const [currentSearch, setCurrentSearch] = useState('')
-  const [currentInput, setCurrentInput] = useState('')
+  const [recipes, setRecipes] = useState([]);
+  const [currentSearch, setCurrentSearch] = useState('');
+  const [currentInput, setCurrentInput] = useState('');
 
   const GetRecipes = async () => {
-    console.log(props.location)
-    setCurrentSearch(props.location.search.split('=')[1])
+    console.log(props.location);
+    setCurrentSearch(props.location.search.split('=')[1]);
     const url = `recipes/?search=${currentSearch}`;
     const recipes = await API.get(url)
-        .then((res) => res.data)
-        .then((data) => {
-          return data.data;
-        })
-        .then(data => data)
-      setRecipes(recipes)
-  }
+      .then((res) => res.data)
+      .then((data) => {
+        return data.data;
+      })
+      .then(data => data);
+    setRecipes(recipes);
+  };
 
-const handleValidate = async () => {
-  history.push({
-    pathname: `/rechercher/?search=${currentInput}`
-  })
-}
+  const handleValidate = async () => {
+    history.push({
+      pathname: `/rechercher/?search=${currentInput}`
+    });
+  };
 
-const handleChange = (event) => {
-  setCurrentInput(event.target.value)
-}
+  const handleChange = (event) => {
+    setCurrentInput(event.target.value);
+  };
 
-useEffect (() => {
-  GetRecipes()
-
-}, [])
+  useEffect(() => {
+    GetRecipes();
+  }, []);
 
   return (
     <div className='recherche-container'>
-        <div className='Loupe'>
-          <h5>Recherche simple</h5>
-          <div className='search-field'>
-            <div className='search-block'>
-              <div className='my-search'>
-                <label className='label'>
-                  <p>J'ai envie de : </p>
-                </label>
-                <input
-                  id='search'
-                  name='search'
-                  type='text'
-                  placeholder='Rechercher'
-                  value={currentInput}
-                  onChange={handleChange}
-/*                   onKeyDown={handleKeyDown} */
-                />
-              </div>
-              <button className='btn-search' onClick={() => {
+      <div className='Loupe'>
+        <h5>Recherche simple</h5>
+        <div className='search-field'>
+          <div className='search-block'>
+            <div className='my-search'>
+              <label className='label'>
+                <p>J'ai envie de : </p>
+              </label>
+              <input
+                id='search'
+                name='search'
+                type='text'
+                placeholder='Rechercher'
+                value={currentInput}
+                onChange={handleChange}
+                /*                   onKeyDown={handleKeyDown} */
+              />
+            </div>
+            <button
+              className='btn-search' onClick={() => {
                 handleValidate();
                 GetRecipes();
-                }}>
-                <img src={Loupe} alt='search' />
+              }}
+            >
+              <img src={Loupe} alt='search' />
                 Rechercher
-              </button>
-            </div>
-            <div className='result'>
-              <div className='filter-recipes-container'>
-                {recipes.length === 0 ? (
-                  <p>Entrez votre recherche.</p>
-                ) : (
-                  recipes.map((recipe) => {
-                    return (
-                      <div className='filtered-recipes' key={recipe.id}>
-                        <SmallRecipe r={recipe} />
-                      </div>
-                    );
-                  })
-                )}
-              </div>
+            </button>
+          </div>
+          <div className='result'>
+            <div className='filter-recipes-container'>
+              {recipes.length === 0 ? (
+                <p>Entrez votre recherche.</p>
+              ) : (
+                recipes.map((recipe) => {
+                  return (
+                    <div className='filtered-recipes' key={recipe.id}>
+                      <SmallRecipe r={recipe} />
+                    </div>
+                  );
+                })
+              )}
             </div>
           </div>
         </div>
       </div>
-  )
+    </div>
+  );
 }
 
-
-/* 
+/*
 class Search extends React.Component {
   constructor (props) {
     super(props);
@@ -128,7 +126,7 @@ class Search extends React.Component {
             recipes: [data][0].data
           });
         });
-        this.props.history.push(`/rechercher/?search=${this.state.currentSearch}`)  
+        this.props.history.push(`/rechercher/?search=${this.state.currentSearch}`)
     }
     this.setState({validate: false})
   };
@@ -162,7 +160,7 @@ class Search extends React.Component {
       this.handleAddfilter(currentSearch);
       event.target.blur();
     }
-  }; 
+  };
 
   componentDidMount () {
     const searchInputQuery = this.props.location.search;
