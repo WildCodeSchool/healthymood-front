@@ -96,7 +96,7 @@
         },
         {
             "text": "Déconnexion",
-            "link": "/register",
+            "link": "/",
             "submenu": false,
             "withSubmenu": false,
             "icon": "logout.png",

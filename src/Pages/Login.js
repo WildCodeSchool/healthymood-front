@@ -2,12 +2,13 @@ import React, { useState, useContext } from 'react';
 import API from '../Services/API';
 import AuthContext from '../Context/authContext';
 import '../Styles/Login.css';
-import { Link } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 
 export default function LoginPage (props) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [loading, setLoading] = useState(false);
+  const history = useHistory();
   const { setToken } = useContext(AuthContext);
 
   const handleSubmit = (event) => {
@@ -18,6 +19,7 @@ export default function LoginPage (props) {
       .then((data) => {
         setToken(data.token);
         setLoading(false);
+        history.push('/');
       });
   };
   const { token } = useContext(AuthContext);
@@ -50,10 +52,10 @@ export default function LoginPage (props) {
             onChange={(e) => setPassword(e.target.value)}
           />
         </div>
-        <Link to='/register'>
-          <button className='btn' type='submit' disabled={!!loading}>Connexion</button>
-        </Link>
+        <button className='btn' type='submit' disabled={!!loading}>Connexion</button>
       </form>
     </div>
   );
 }
+
+// bon@jour.com abcdef

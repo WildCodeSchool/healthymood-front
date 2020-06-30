@@ -1,13 +1,14 @@
 import React, { useState } from 'react';
 import API from '../Services/API';
 import '../Styles/Register.css';
-import { Link } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 
-export default function RegisterPage (props) {
+export default function RegisterPage () {
   const [email, setEmail] = useState('');
   const [username, setName] = useState('');
   const [loading, setLoading] = useState(false);
   const [password, setPassword] = useState('');
+  const history = useHistory();
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -16,6 +17,7 @@ export default function RegisterPage (props) {
     API.post('/users', payload).then((res) => {
       alert('registered !'); // eslint-disable-line
       setLoading(false);
+      history.push('/');
     });
   };
 
@@ -62,9 +64,7 @@ export default function RegisterPage (props) {
             onChange={(e) => setPassword(e.target.value)}
           />
         </div>
-        <Link to='/'>
-          <button className='btn' type='submit' disabled={!!loading}>Connexion</button>
-        </Link>
+        <button className='btn' type='submit' disabled={!!loading}>Connexion</button>
       </form>
     </div>
   );

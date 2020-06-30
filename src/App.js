@@ -73,7 +73,13 @@ function App () {
               <Route exact path='/recettes/categorie/:id' component={RecipesPage} />
               <Route exact path='/login' component={LoginPage} />
               <Route exact path='/register' component={RegisterPage} />
+              <PrivateRoute exact path='/liste-de-course'>
+                <SecretPage />
+              </PrivateRoute>
               <PrivateRoute exact path='/secret'>
+                <SecretPage />
+              </PrivateRoute>
+              <PrivateRoute exact path='/mon-compte'>
                 <SecretPage />
               </PrivateRoute>
             </Switch>

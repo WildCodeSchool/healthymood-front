@@ -1,12 +1,12 @@
-import React, { useState, useContext } from 'react';
+import React, { useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import MenuElements from '../MenuElements.json';
 import '../Styles/TopNavBar.css';
-import AuthContext from '../Context/authContext';
+// import AuthContext from '../Context/authContext';
 
 const TopNavBar = (props) => {
   const [isConnected, setIsConnected] = useState(true);
-  const { setTokenInLocalStorage } = useContext(AuthContext);
+  // const { setTokenInLocalStorage } = useContext(AuthContext);
 
   const connected = () => {
     setIsConnected(!isConnected);
@@ -31,10 +31,11 @@ const TopNavBar = (props) => {
                 <div
                   className='topnav-bar-element-container'
                   onClick={connected}
-                  handleClick={() => setTokenInLocalStorage('')}
+
                 >
                   <p>{e.text}</p>
                 </div>
+                {/* <button onClick={() => setTokenInLocalStorage('')}>log out</button> */}
               </NavLink>
             );
           })
