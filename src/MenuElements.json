@@ -96,17 +96,17 @@
         },
         {
             "text": "Déconnexion",
-            "link": "/deconnexion",
+            "link": "/",
             "submenu": false,
             "withSubmenu": false,
             "icon": "logout.png",
             "slug": "deconnexion",
             "needLogIn": true,
             "needLogOut": false
-        },
+        }, 
         {
             "text": "Connexion",
-            "link": "/connexion",
+            "link": "/login",
             "submenu": false,
             "withSubmenu": false,
             "icon": "login.png",
