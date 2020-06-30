@@ -1,4 +1,5 @@
 {
+  "prefer_related_applications": false,
   "name": "HealthyMood",
   "short_name": "HM",
   "theme_color": "#2196f3",

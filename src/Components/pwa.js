@@ -4,20 +4,17 @@ import '../Styles/Pwa.css';
 class Pwa extends React.Component {
   constructor () {
     super();
-    this.state = {
-      showButton: false
-    };
+    this.state = { deferredPrompt: null };
     this.handleOnInstallBtnClick = this.handleOnInstallBtnClick.bind(this);
   }
 
   componentDidMount () {
     window.addEventListener('beforeinstallprompt', (e) => {
       e.preventDefault();
-      this.deferredPrompt = e;
-      this.setState({
-        showButton: true
-      });
+      this.setState({ deferredPrompt: e });
     });
+
+    /* window.alert(this.handleOnInstallBtnClick()); */
   }
 
   handleOnInstallBtnClick () {
@@ -38,9 +35,9 @@ class Pwa extends React.Component {
   render () {
     return (
       <div>
-        <button className='add-install' onClick={this.handleOnInstallBtnClick}>
+        {/* <button className="add-install" onClick={this.handleOnInstallBtnClick}>
           install
-        </button>
+        </button> */}
       </div>
     );
   }
