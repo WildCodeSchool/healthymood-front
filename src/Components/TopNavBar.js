@@ -58,9 +58,9 @@ const TopNavBar = (props) => {
               </NavLink>
             );
           })}
-          <NavLink>
-            <button></button>
-          </NavLink>
+      <NavLink>
+        <button />
+      </NavLink>
     </div>
   );
 };
