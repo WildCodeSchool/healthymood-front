@@ -1,0 +1,17 @@
+.homepage-articles-container{
+    width: 100%;
+    max-width: 960px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    margin: 0 auto;
+    flex-wrap: wrap;
+    
+}
+
+button{
+    margin: 15px;
+    border: solid 1px ;
+    border-radius: 10px;
+    background-color: #fff;
+}
