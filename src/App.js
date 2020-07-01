@@ -9,6 +9,7 @@ import RecipesPage from './Pages/RecipesPage';
 import Article from './Pages/Article';
 import Search from './Components/Search';
 import Recipe from './Components/Recipe';
+import './Styles/Variables.css';
 
 messaging.onMessage((payload) => console.log('Message received. ', payload));
 
@@ -37,7 +38,7 @@ function App () {
             <Route exact path='/' component={Home} />
             <Route exact path='/recettes' component={RecipesPage} />
             <Route exact path='/conseils-astuces' component={Article} />
-            <Route exact path='/rechercher' component={Search} />
+            <Route path='/rechercher' component={Search} />
             <Route exact path='/' /* component={...} */ />
             <Route exact path='/recettes/:slug' component={Recipe} />
             <Route
