@@ -21,10 +21,11 @@ export default function Search (props) {
           return data.data;
         })
         .then((data) => setRecipes(data));
-    } else if (props.location.search && !currentInput) {
+    } else if (props.location.search && !currentInput) { // cas du rechargement de la page ou url rentrée direct
       console.log('adresse remplie');
-      console.log(props.location.search.split('=')[1]);
-      setCurrentInput(props.location.search.split('=')[1]);
+      console.log(props.location.search.split('=')[1].split('%20').join(' '));
+      const search = props.location.search.split('=')[1].split('%20').join(' ');
+      setCurrentInput(search);
       const url = `recipes/?search=${props.location.search.split('=')[1]}`;
       API.get(url)
         .then((res) => res.data)
