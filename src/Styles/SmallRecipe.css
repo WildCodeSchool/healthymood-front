@@ -1,72 +1,69 @@
 .small-recipe-container {
-  width:280px;
-  transition:all 0.2s ease-in-out;
-  box-shadow:0 0 3px rgba(0, 0, 0, 0.3);
-  position:relative;
-  margin:20px;
-}
-.small-recipe-container button {
-  background-color:white;
+  background-color: rgba(236, 231, 231, 0.808);
+  width: 300px;
+  transition: all 0.2s ease-in-out;
+  box-shadow: 0 0 3px rgba(0, 0, 0, 0.3);
+  position: relative;
+  margin: 20px;
+  border-radius: 5px;
 }
 .small-recipe-global-container {
-  position:relative;
+  position: relative;
 }
 .small-recipe-container:hover {
   cursor: pointer;
-  box-shadow:0 0 5px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
 }
 
 .small-recipe-container .small-reciper-banner-image {
-  width:100%;
-  height:110px;
-  background-position:center;
-  background-size:cover;
-  background-repeat:no-repeat;
+  width: 100%;
+  height: 110px;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  border-radius: 5px 5px 0 0;
 }
 .small-recipe-content-container {
-  padding:20px 0;
+  padding: 20px;
 }
 .small-recipe-title {
   font-size: 21px;
-  text-align:center;
+  text-align: center;
   margin-top: 6px;
-  padding:0 10px;
-
 }
 .small-recipe-intro {
-  text-align:justify;
-  margin-top:1rem;
-  padding:0 20px;
+  text-align: justify;
+  margin-top: 1rem;
 }
 .small-recipe-favorite-icon {
   width: 25px;
-  height:25px;
-  position:absolute;
-  right:30px;
-  top:30px;
-  background-position:center;
-  background-size:cover;
-  z-index:99999999;
-  cursor:pointer;
+  height: 25px;
+  position: absolute;
+  right: 30px;
+  top: 30px;
+  background-position: center;
+  background-size: cover;
+  z-index: 99999999;
+  cursor: pointer;
 }
 .link-recette {
-  color:black;
+  color: black;
 }
 .link-recette:hover {
   text-decoration: none;
-  color:black;
+  color: black;
 }
 .read-more {
-  color:var(--accentColor);
-  border:1px solid transparent;
+  color: var(--accentColor);
+  border: 1px solid transparent;
   border-radius: 3em;
   padding: 5px 20px;
   transition: all 0.2s ease-in-out;
   font-family: var(--fourthFont);
   border: 1px solid var(--accentColor);
   position: relative;
-  overflow:hidden;
-  z-index:99;
+  overflow: hidden;
+  z-index: 99;
 }
 .read-more:hover {
   color: white;
@@ -74,7 +71,7 @@
 }
 .read-more:after {
   position: absolute;
-  content: '';
+  content: "";
   top: 0;
   left: 0;
   width: 0%;
@@ -82,7 +79,7 @@
   border-radius: 3em;
   transition: all 0.3s ease-in-out;
   background-color: var(--accentColor);
-  z-index:-1;
+  z-index: -1;
 }
 .read-more:hover:after {
   width: 100%;

@@ -11,6 +11,7 @@ import Home from './Pages/Home';
 import Footer from './Components/Footer';
 import RecipesPage from './Pages/RecipesPage';
 import Article from './Pages/Article';
+import './Styles/Variables.css';
 import Search from './Components/Search';
 import Recipe from './Components/Recipe';
 import AuthContext from './Context/authContext';
