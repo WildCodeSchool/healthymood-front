@@ -4,10 +4,10 @@ import AllArticles from '../allArticles.json';
 import '../Styles/ConseilsAstuces.css';
 import SearchArticles from '../Components/SearchArticles';
 
-export default function ConseilsAstuces(props) {
+export default function ConseilsAstuces (props) {
   const [filter, setFilter] = useState(['']);
 
-  function getCurrentFilter() {
+  function getCurrentFilter () {
     setFilter(props.filter);
   }
 

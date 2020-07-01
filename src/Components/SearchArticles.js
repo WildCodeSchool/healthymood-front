@@ -6,7 +6,7 @@ import SmallArticle from './SmallArticle';
 import API from '../Services/Api';
 import { useHistory } from 'react-router-dom';
 
-export default function SearchArticles(props) {
+export default function SearchArticles (props) {
   const history = useHistory();
 
   const [articles, setArticles] = useState([]);
@@ -93,14 +93,14 @@ export default function SearchArticles(props) {
               {articles.length === 0 ? (
                 <p>Entrez votre recherche.</p>
               ) : (
-                  articles.map((recipe) => {
-                    return (
-                      <div className='filtered-recipes' key={recipe.id}>
-                        <SmallArticle r={recipe} />
-                      </div>
-                    );
-                  })
-                )}
+                articles.map((recipe) => {
+                  return (
+                    <div className='filtered-recipes' key={recipe.id}>
+                      <SmallArticle r={recipe} />
+                    </div>
+                  );
+                })
+              )}
             </div>
           </div>
         </div>
