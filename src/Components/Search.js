@@ -46,6 +46,13 @@ export default function Search (props) {
     setCurrentInput(event.target.value);
   };
 
+  const handleKeyDown = (event) => {
+    if (event.key === 'Enter' && event.target.value) {
+      event.preventDefault();
+      handleValidate();
+    }
+  };
+
   useEffect(() => {
     GetRecipes();
   }, []);
@@ -67,7 +74,7 @@ export default function Search (props) {
                 placeholder='Rechercher'
                 value={currentInput}
                 onChange={handleChange}
-                /*                onKeyDown={handleKeyDown} */
+                onKeyDown={handleKeyDown}
               />
             </div>
             <button
