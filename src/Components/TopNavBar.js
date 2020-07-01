@@ -1,62 +1,77 @@
-import React, { useContext } from 'react';
-import { NavLink, Link } from 'react-router-dom';
-import MenuElements from '../MenuElements.json';
-import '../Styles/TopNavBar.css';
-import AuthContext from '../Context/authContext';
+import React, { useContext } from "react";
+import { NavLink } from "react-router-dom";
+import "../Styles/TopNavBar.css";
+import AuthContext from "../Context/authContext";
 
-const TopNavBar = (props) => {
+const TopNavBar = () => {
   const { connected, setLogOut } = useContext(AuthContext);
-
-  // const connected = () => {
-  //   setIsConnected(!isConnected);
-  /*  }; */
+  console.log(connected);
 
   return (
-    <div className='desktop-top-nav-bar'>
-      {connected
-        ? MenuElements.navigationElements
-          .filter(
-            (element) =>
-              element.needLogIn || element.text === 'Envoyer ma recette'
-          )
-          .map((e) => {
-            return (
-              <NavLink
-                key={e.text}
-                exact
-                to={e.link}
-                className={`topnav-bar-link-${e.slug}`}
-              >
-                <div className='topnav-bar-element-container'>
-                  <p>{e.text}</p>
-                </div>
-                {/* <button onClick={() => setTokenInLocalStorage('')}>log out</button> */}
-              </NavLink>
-            );
-          })
-        : MenuElements.navigationElements
-          .filter(
-            (element) =>
-              element.needLogOut || element.text === 'Envoyer ma recette'
-          )
-          .map((e) => {
-            return (
-              <NavLink
-                key={e.text}
-                exact
-                to={e.link}
-                className={`topnav-bar-link-${e.slug}`}
-              >
-                <div>
-                  <p>{e.text}</p>
-                </div>
-              </NavLink>
-            );
-          })}
+    <div className="desktop-top-nav-bar">
+      {connected ? (
+        <>
+          <NavLink
+            exact
+            to="/envoyer-recette"
+            className="topnav-bar-link-envoyer-recette"
+          >
+            <div className="topnav-bar-element-container">
+              <p>Envoyer ma recette</p>
+            </div>
+          </NavLink>
 
-      <Link to='/'>
-        <button className='topnav-bar-link-deconnexion' onClick={setLogOut}>Déconnexion</button>
-      </Link>
+          <NavLink exact to="/compte" className="topnav-bar-link-compte">
+            <div className="topnav-bar-element-container">
+              <p>Mon compte</p>
+            </div>
+          </NavLink>
+
+          <NavLink
+            exact
+            to="/compte/favoris"
+            className="topnav-bar-link-favoris"
+          >
+            <div className="topnav-bar-element-container">
+              <p>Mes favoris</p>
+            </div>
+          </NavLink>
+
+          <NavLink
+            exact
+            to="/compte/liste-courses"
+            className="topnav-bar-link-liste-courses"
+          >
+            <div className="topnav-bar-element-container">
+              <p>Ma liste de courses</p>
+            </div>
+          </NavLink>
+
+          <NavLink exact to="/" className="topnav-bar-link-deconnexion">
+            <div className="topnav-bar-element-container" onClick={setLogOut}>
+              <p>Déconnexion</p>
+            </div>
+          </NavLink>
+        </>
+      ) : (
+        <>
+          <NavLink
+            exact
+            to="/envoyer-recette"
+            className="topnav-bar-link-envoyer-recette"
+          >
+            <div className="topnav-bar-element-container">
+              <p>Envoyer ma recette</p>
+            </div>
+          </NavLink>
+
+          <NavLink exact to="/login" className="topnav-bar-link-connexion">
+            <div className="topnav-bar-element-container">
+              <p>Connexion</p>
+            </div>
+          </NavLink>
+        </>
+      )}
     </div>
   );
 };
