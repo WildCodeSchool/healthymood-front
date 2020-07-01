@@ -91,7 +91,7 @@ export default function Search (props) {
           <div className='result'>
             <div className='filter-recipes-container'>
               {recipes.length === 0 ? (
-                <p>Entrez votre recherche.</p>
+                (!currentInput ? <p>Entrez votre recherche.</p> : <p>Aucun résultat</p>)
               ) : (
                 recipes.map((recipe) => {
                   return (
