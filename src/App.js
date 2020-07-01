@@ -1,24 +1,24 @@
-import React, { useContext, useState } from 'react';
-import './Styles/App.css';
+import React, { useContext, useState } from "react";
+import "./Styles/App.css";
 import {
   BrowserRouter as Router,
   Switch,
   Route,
-  Redirect
-} from 'react-router-dom';
-import Header from './Components/Header';
-import Home from './Pages/Home';
-import Footer from './Components/Footer';
-import RecipesPage from './Pages/RecipesPage';
-import Article from './Pages/Article';
-import Search from './Components/Search';
-import Recipe from './Components/Recipe';
-import AuthContext from './Context/authContext';
-import LoginPage from './Pages/Login';
-import RegisterPage from './Pages/Register';
-import SecretPage from './Pages/Secret';
+  Redirect,
+} from "react-router-dom";
+import Header from "./Components/Header";
+import Home from "./Pages/Home";
+import Footer from "./Components/Footer";
+import RecipesPage from "./Pages/RecipesPage";
+import Article from "./Pages/Article";
+import Search from "./Components/Search";
+import Recipe from "./Components/Recipe";
+import AuthContext from "./Context/authContext";
+import LoginPage from "./Pages/Login";
+import RegisterPage from "./Pages/Register";
+import SecretPage from "./Pages/Secret";
 
-function PrivateRoute ({ children, ...rest }) {
+function PrivateRoute({ children, ...rest }) {
   const { token } = useContext(AuthContext);
   return (
     <Route
@@ -30,8 +30,8 @@ function PrivateRoute ({ children, ...rest }) {
           ) : (
             <Redirect
               to={{
-                pathname: '/login',
-                state: { from: location }
+                pathname: "/login",
+                state: { from: location },
               }}
             />
           ) // eslint-disable-line
@@ -40,22 +40,23 @@ function PrivateRoute ({ children, ...rest }) {
   );
 }
 
-function App () {
+function App() {
   const [isConnected, setIsConnected] = useState(
-    JSON.parse(window.localStorage.getItem('isConnected'))
+    JSON.parse(window.localStorage.getItem("isConnected"))
   );
-  const [token, setToken] = useState(window.localStorage.getItem('authToken'));
+  const [token, setToken] = useState(window.localStorage.getItem("authToken"));
   const setTokenInLocalStorage = (token) => {
-    window.localStorage.setItem('authToken', token);
+    window.localStorage.setItem("authToken", token);
     setToken(token);
   };
 
   const setIsConnectedInLocalStorage = (connected) => {
+    window.localStorage.setItem("isConnected", connected);
     setIsConnected(connected);
   };
 
   const handleLogOut = () => {
-    setTokenInLocalStorage('');
+    setTokenInLocalStorage("");
     setIsConnectedInLocalStorage(false);
   };
 
@@ -67,32 +68,32 @@ function App () {
           setToken: setTokenInLocalStorage,
           setIsConnected: setIsConnectedInLocalStorage,
           connected: isConnected,
-          setLogOut: handleLogOut
+          setLogOut: handleLogOut,
         }}
       >
         <Router>
-          <div className='App'>
+          <div className="App">
             <Header />
             <Switch>
-              <Route exact path='/' component={Home} />
-              <Route exact path='/recettes' component={RecipesPage} />
-              <Route exact path='/conseils-astuces' component={Article} />
-              <Route exact path='/rechercher' component={Search} />
-              <Route exact path='/recettes/:slug' component={Recipe} />
+              <Route exact path="/" component={Home} />
+              <Route exact path="/recettes" component={RecipesPage} />
+              <Route exact path="/conseils-astuces" component={Article} />
+              <Route exact path="/rechercher" component={Search} />
+              <Route exact path="/recettes/:slug" component={Recipe} />
               <Route
                 exact
-                path='/recettes/categorie/:id'
+                path="/recettes/categorie/:id"
                 component={RecipesPage}
               />
-              <Route exact path='/login' component={LoginPage} />
-              <Route exact path='/register' component={RegisterPage} />
-              <PrivateRoute exact path='/liste-de-course'>
+              <Route exact path="/login" component={LoginPage} />
+              <Route exact path="/register" component={RegisterPage} />
+              <PrivateRoute exact path="/liste-de-course">
                 <SecretPage />
               </PrivateRoute>
-              <PrivateRoute exact path='/secret'>
+              <PrivateRoute exact path="/secret">
                 <SecretPage />
               </PrivateRoute>
-              <PrivateRoute exact path='/mon-compte'>
+              <PrivateRoute exact path="/mon-compte">
                 <SecretPage />
               </PrivateRoute>
             </Switch>

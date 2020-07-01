@@ -1,9 +1,15 @@
 .login-page {
+  font-family: var(--font-family);
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
   height: 100vh;
+}
+
+.title-login {
+  font-family: var(--primaryFont);
+  font-size: 30px;
 }
 
 .form-login {
@@ -14,7 +20,7 @@
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  box-shadow: 1px 0px 10px -3px rgba(0,0,0,0.50);
+  box-shadow: 1px 0px 10px -3px rgba(0, 0, 0, 0.5);
   border-radius: 6px;
   margin-top: 5vh;
   padding: 30px;
@@ -41,35 +47,30 @@
   border-radius: 5px;
 }
 
-.form-login .btn {
+.btn-connexion {
   width: 100%;
   margin-top: 10px;
-  background-color: grey;
+  margin-bottom: 10px;
+  background-color: #4caf50;
+  border-radius: 10px;
 }
 
-.remember-forget-container {
-  display: flex;
-  width: 100%;
-  align-items: center;
-  justify-content: flex-start;
-  
+.btn-connexion {
+  background-color: #44c767;
+  border-radius: 28px;
+  border: 1px solid #18ab29;
+  display: inline-block;
+  cursor: pointer;
+  color: #ffffff;
+  font-family: Arial;
+  font-size: 17px;
+  text-decoration: none;
+  text-shadow: 0px 1px 0px #2f6627;
 }
-
-.remember-label {
-  display: flex;
-  flex-direction: row;
-  min-width: 90%;
-  margin-left: 10px;
+.btn-connexion:hover {
+  background-color: #5cbf2a;
 }
-
-input[type='checkbox'].remember-checkbox {
-  width: 18px;
-}
-
-.forget {
-  margin-top: 45px;
-}
-
-.forget:hover {
-  color: #0d7ae0;
+.btn-connexion:active {
+  position: relative;
+  top: 1px;
 }

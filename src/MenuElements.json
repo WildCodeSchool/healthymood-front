@@ -1,108 +1,118 @@
 {
-    "navigationElements": [
-        {
-            "text": "Accueil",
-            "link": "/",
-            "submenu": false,
-            "withSubmenu": false,
-            "icon": "home.png",
-            "slug": "accueil"
-        },
-        {
-            "text": "Rechercher",
-            "link": "/rechercher",
-            "submenu": false,
-            "withSubmenu": false,
-            "icon": "search.png",
-            "slug": "rechercher"
-        },
-        {
-            "text": "Les recettes",
-            "link": "/recettes",
-            "submenu": false,
-            "withSubmenu": false,
-            "icon": "recipes.png",
-            "slug": "recettes"
-        },
-        {
-            "text": "Les classiques",
-            "link": "/classiques",
-            "submenu": false,
-            "withSubmenu": false,
-            "icon": "classics.png",
-            "slug": "classiques"
-        },
-        {
-            "text": "Conseils & astuces",
-            "link": "/conseils-astuces",
-            "submenu": false,
-            "withSubmenu": false,
-            "icon": "tips.png",
-            "slug": "conseils-astuces"
-        },
-        {
-            "text": "Dictionnaire",
-            "link": "/dictionnaire",
-            "submenu": false,
-            "withSubmenu": false,
-            "icon": "dictionary.png",
-            "slug": "dictionnaire"
-        },
-        {
-            "text": "Ebook",
-            "link": "/e-book",
-            "submenu": false,
-            "withSubmenu": false,
-            "icon": "ebook.png",
-            "slug": "ebook"
-        },
-        {
-            "text": "Envoyer ma recette",
-            "link": "envoyer-recette",
-            "submenu": false,
-            "withSubmenu": false,
-            "icon": "send-recipe.png",
-            "slug": "envoyer-recette"
-        },
-        {
-            "text": "Mon compte",
-            "link": "#",
-            "submenu": false,
-            "withSubmenu": true,
-            "icon": "account.png",
-            "slug": "compte",
-            "needLogIn": true,
-            "needLogOut": false
-        },
-        {
-            "text": "Mes favoris",
-            "link": "/compte/favoris",
-            "submenu": true,
-            "withSubmenu": false,
-            "icon": "favorites.png",
-            "slug": "favoris",
-            "needLogIn": true,
-            "needLogOut": false
-        },
-        {
-            "text": "Ma liste de courses",
-            "link": "/compte/liste-courses",
-            "submenu": true,
-            "withSubmenu": false,
-            "icon": "list.png",
-            "slug": "liste-courses",
-            "needLogIn": true,
-            "needLogOut": false
-        },
-        {
-            "text": "Connexion",
-            "link": "/login",
-            "submenu": false,
-            "withSubmenu": false,
-            "icon": "login.png",
-            "slug": "connexion",
-            "needLogIn": false,
-            "needLogOut": true
-        }
-    ]
+  "navigationElements": [
+    {
+      "text": "Accueil",
+      "link": "/",
+      "submenu": false,
+      "withSubmenu": false,
+      "icon": "home.png",
+      "slug": "accueil"
+    },
+    {
+      "text": "Rechercher",
+      "link": "/rechercher",
+      "submenu": false,
+      "withSubmenu": false,
+      "icon": "search.png",
+      "slug": "rechercher"
+    },
+    {
+      "text": "Les recettes",
+      "link": "/recettes",
+      "submenu": false,
+      "withSubmenu": false,
+      "icon": "recipes.png",
+      "slug": "recettes"
+    },
+    {
+      "text": "Les classiques",
+      "link": "/classiques",
+      "submenu": false,
+      "withSubmenu": false,
+      "icon": "classics.png",
+      "slug": "classiques"
+    },
+    {
+      "text": "Conseils & astuces",
+      "link": "/conseils-astuces",
+      "submenu": false,
+      "withSubmenu": false,
+      "icon": "tips.png",
+      "slug": "conseils-astuces"
+    },
+    {
+      "text": "Dictionnaire",
+      "link": "/dictionnaire",
+      "submenu": false,
+      "withSubmenu": false,
+      "icon": "dictionary.png",
+      "slug": "dictionnaire"
+    },
+    {
+      "text": "Ebook",
+      "link": "/e-book",
+      "submenu": false,
+      "withSubmenu": false,
+      "icon": "ebook.png",
+      "slug": "ebook"
+    },
+    {
+      "text": "Envoyer ma recette",
+      "link": "envoyer-recette",
+      "submenu": false,
+      "withSubmenu": false,
+      "icon": "send-recipe.png",
+      "slug": "envoyer-recette"
+    },
+    {
+      "text": "Mon compte",
+      "link": "#",
+      "submenu": false,
+      "withSubmenu": true,
+      "icon": "account.png",
+      "slug": "compte",
+      "needLogIn": true,
+      "needLogOut": false
+    },
+    {
+      "text": "Mes favoris",
+      "link": "/compte/favoris",
+      "submenu": true,
+      "withSubmenu": false,
+      "icon": "favorites.png",
+      "slug": "favoris",
+      "needLogIn": true,
+      "needLogOut": false
+    },
+    {
+      "text": "Ma liste de courses",
+      "link": "/compte/liste-courses",
+      "submenu": true,
+      "withSubmenu": false,
+      "icon": "list.png",
+      "slug": "liste-courses",
+      "needLogIn": true,
+      "needLogOut": false
+    },
+    {
+      "text": "Deconnexion",
+      "link": "/",
+      "submenu": false,
+      "withSubmenu": false,
+      "icon": "logout.png",
+      "slug": "deconnexion",
+      "needLogIn": true,
+      "needLogOut": false
+    },
+    {
+      "text": "Connexion",
+      "link": "/login",
+      "submenu": false,
+      "withSubmenu": false,
+      "icon": "login.png",
+      "slug": "connexion",
+      "needLogIn": false,
+      "needLogOut": true
+    }
+  ]
 }
