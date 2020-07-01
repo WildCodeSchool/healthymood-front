@@ -1,4 +1,7 @@
 /*vue portable */
+.hidden {
+  display:none;
+}
 
 .recherche-container {
   padding-top: 100px;

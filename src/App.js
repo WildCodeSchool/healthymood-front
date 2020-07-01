@@ -13,7 +13,7 @@ import ConseilsAstuces from './Pages/ConseilsAstuces';
 import Search from './Components/Search';
 import Recipe from './Components/Recipe';
 
-function App () {
+function App() {
   return (
     <>
       <Router>

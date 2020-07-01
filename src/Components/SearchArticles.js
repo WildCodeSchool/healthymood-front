@@ -1,92 +1,91 @@
-import React, { useState } from 'react';
+
+import React, { useState, useEffect } from 'react';
+import '../Styles/Search.css';
 import Loupe from '../Images/glass.png';
-import Cancel from '../Images/cross.png';
+import SmallArticle from './SmallArticle';
 import API from '../Services/Api';
+import { useHistory } from 'react-router-dom';
 
 export default function SearchArticles(props) {
-  const [filter, setFilter] = useState([]);
-  const [currentSearch, setCurrentSearch] = useState('');
-  const [articles, setArticles] = useState([]);
+  const history = useHistory();
 
-  const handleGetArticles = () => {
-    const url = `/articles/?search=${currentSearch}`;
-    API.get(url)
-      .then((res) => res.data)
-      .then((data) => {
-        setArticles({
-          articles: [data]
-        });
-      });
+  const [articles, setArticles] = useState([]);
+  const [currentInput, setCurrentInput] = useState('');
+
+  const GetArticles = () => {
+    console.log(props.history.location.search);
+    if ((!props.history.location.search && currentInput) || (props.history.location.search !== currentInput && currentInput)) {
+      const url = `articles/?search=${currentInput}`;
+      API.get(url)
+        .then((res) => res.data)
+        .then((data) => {
+          return data.data;
+        })
+        .then((data) => setArticles(data));
+    } else if (props.history.location.search && !currentInput) {
+      console.log('adresse remplie');
+      console.log(props.history.location.search.split('=')[1]);
+      setCurrentInput(props.history.location.search.split('=')[1]);
+      const url = `articles/?search=${props.history.location.search.split('=')[1]}`;
+      API.get(url)
+        .then((res) => res.data)
+        .then((data) => {
+          return data.data;
+        })
+        .then((data) => setArticles(data));
+    }
+  };
+
+  const handleValidate = () => {
+    history.push({
+      pathname: `/articles/?search=${currentInput}`
+    });
+    GetArticles();
   };
 
   const handleChange = (event) => {
-    setCurrentSearch(event.target.value);
-  };
-
-  const handleAddfilter = async () => {
-    const currentFilter = [];
-    const newFilter = currentFilter.concat(currentSearch);
-    if (currentSearch) {
-      setFilter(newFilter);
-      setCurrentSearch('');
-    }
-    handleGetArticles();
-    props.history.push(`/conseils-astuces/?search=${currentSearch}`);
-  };
-
-  const handleDelete = (str) => {
-    const newFilter = filter.filter((e) => str !== e);
-    setFilter(newFilter);
-    setArticles([]);
-    props.history.push('/conseils-astuces');
+    setCurrentInput(event.target.value);
   };
 
   const handleKeyDown = (event) => {
-    // permet d'effectuer la recherche avec entrée
     if (event.key === 'Enter' && event.target.value) {
       event.preventDefault();
-      const currentSearch = event.target.value;
-      setCurrentSearch(currentSearch);
-      handleAddfilter(currentSearch);
-      event.target.blur();
+      handleValidate();
     }
   };
+
+  useEffect(() => {
+    GetArticles();
+  }, []);
 
   return (
     <div className='recherche-container'>
       <div className='Loupe'>
-        <h5>Recherche simple</h5>
+        <h5>Rechercher un article</h5>
         <div className='search-field'>
-          <div className='filter-list'>
-            {filter.map((e) => (
-              <p
-                key={e}
-                onClick={() => handleDelete(e)}
-                className='filter-name'
-              >
-                {e}
-                <img src={Cancel} alt='cancel' />
-              </p>
-            ))}
-          </div>
           <div className='search-block'>
             <div className='my-search'>
-              <label className='label'>
-                <p>Rechercher par mots-clés </p>
+              <label className='label hidden'>
+                <p>Recherche article healthymood recettes saines</p>
               </label>
               <input
                 id='search'
                 name='search'
                 type='text'
                 placeholder='Rechercher'
-                value={currentSearch}
+                value={currentInput}
                 onChange={handleChange}
                 onKeyDown={handleKeyDown}
               />
             </div>
-            <button className='btn-search' onClick={handleAddfilter}>
+            <button
+              className='btn-search'
+              onClick={() => {
+                handleValidate();
+              }}
+            >
               <img src={Loupe} alt='search' />
-                    Rechercher
+              Rechercher
             </button>
           </div>
           <div className='result'>
@@ -94,10 +93,10 @@ export default function SearchArticles(props) {
               {articles.length === 0 ? (
                 <p>Entrez votre recherche.</p>
               ) : (
-                  articles[0].data.map((recipe) => {
+                  articles.map((recipe) => {
                     return (
                       <div className='filtered-recipes' key={recipe.id}>
-                        hello
+                        <SmallArticle r={recipe} />
                       </div>
                     );
                   })
