@@ -1,35 +1,48 @@
-import React, { useState, useEffect } from 'react';
-import '../Styles/Search.css';
-import Loupe from '../Images/glass.png';
-import SmallRecipe from './SmallRecipe';
-import API from '../Services/Api';
-import { useHistory } from 'react-router-dom';
+import React, { useState, useEffect } from "react";
+import "../Styles/Search.css";
+import Loupe from "../Images/glass.png";
+import SmallRecipe from "./SmallRecipe";
+import API from "../Services/Api";
+import { useHistory } from "react-router-dom";
 
-export default function Search (props) {
+export default function Search(props) {
   const history = useHistory();
-  /*
+  /* 
   const [validated, setValidated] = useState(false) */
   const [recipes, setRecipes] = useState([]);
-  const [currentSearch, setCurrentSearch] = useState('');
-  const [currentInput, setCurrentInput] = useState('');
+  const [currentSearch, setCurrentSearch] = useState("");
+  const [currentInput, setCurrentInput] = useState("");
 
-  const GetRecipes = async () => {
+  const GetRecipes = () => {
     console.log(props.location);
-    setCurrentSearch(props.location.search.split('=')[1]);
-    const url = `recipes/?search=${currentSearch}`;
-    const recipes = await API.get(url)
-      .then((res) => res.data)
-      .then((data) => {
-        return data.data;
-      })
-      .then(data => data);
-    setRecipes(recipes);
+    if ((!props.location.search && currentInput) || (props.location.search !== currentInput && currentInput) ) {
+      const url = `recipes/?search=${currentInput}`;
+      API.get(url)
+        .then((res) => res.data)
+        .then((data) => {
+          return data.data;
+        })
+        .then((data) => setRecipes(data));
+    } else if (props.location.search && !currentInput){
+      console.log("adresse remplie");
+      console.log(props.location.search.split('=')[1])
+      setCurrentInput(props.location.search.split('=')[1])
+      const url = `recipes/?search=${props.location.search.split('=')[1]}`;
+      API.get(url)
+        .then((res) => res.data)
+        .then((data) => {
+          return data.data;
+        })
+        .then((data) => setRecipes(data));
+    }
   };
+
 
   const handleValidate = async () => {
     history.push({
-      pathname: `/rechercher/?search=${currentInput}`
+      pathname: `/rechercher/?search=${currentInput}`,
     });
+    await GetRecipes();
   };
 
   const handleChange = (event) => {
@@ -41,43 +54,43 @@ export default function Search (props) {
   }, []);
 
   return (
-    <div className='recherche-container'>
-      <div className='Loupe'>
+    <div className="recherche-container">
+      <div className="Loupe">
         <h5>Recherche simple</h5>
-        <div className='search-field'>
-          <div className='search-block'>
-            <div className='my-search'>
-              <label className='label'>
+        <div className="search-field">
+          <div className="search-block">
+            <div className="my-search">
+              <label className="label">
                 <p>J'ai envie de : </p>
               </label>
               <input
-                id='search'
-                name='search'
-                type='text'
-                placeholder='Rechercher'
+                id="search"
+                name="search"
+                type="text"
+                placeholder="Rechercher"
                 value={currentInput}
                 onChange={handleChange}
                 /*                   onKeyDown={handleKeyDown} */
               />
             </div>
             <button
-              className='btn-search' onClick={() => {
+              className="btn-search"
+              onClick={() => {
                 handleValidate();
-                GetRecipes();
               }}
             >
-              <img src={Loupe} alt='search' />
-                Rechercher
+              <img src={Loupe} alt="search" />
+              Rechercher
             </button>
           </div>
-          <div className='result'>
-            <div className='filter-recipes-container'>
+          <div className="result">
+            <div className="filter-recipes-container">
               {recipes.length === 0 ? (
                 <p>Entrez votre recherche.</p>
               ) : (
                 recipes.map((recipe) => {
                   return (
-                    <div className='filtered-recipes' key={recipe.id}>
+                    <div className="filtered-recipes" key={recipe.id}>
                       <SmallRecipe r={recipe} />
                     </div>
                   );
@@ -91,7 +104,7 @@ export default function Search (props) {
   );
 }
 
-/*
+/* 
 class Search extends React.Component {
   constructor (props) {
     super(props);
@@ -126,7 +139,7 @@ class Search extends React.Component {
             recipes: [data][0].data
           });
         });
-        this.props.history.push(`/rechercher/?search=${this.state.currentSearch}`)
+        this.props.history.push(`/rechercher/?search=${this.state.currentSearch}`)  
     }
     this.setState({validate: false})
   };
@@ -160,7 +173,7 @@ class Search extends React.Component {
       this.handleAddfilter(currentSearch);
       event.target.blur();
     }
-  };
+  }; 
 
   componentDidMount () {
     const searchInputQuery = this.props.location.search;
