@@ -10,6 +10,7 @@ export default function Search (props) {
 
   const [recipes, setRecipes] = useState([]);
   const [currentInput, setCurrentInput] = useState('');
+  const [currentSearch, setCurrentSearch] = useState('');
 
   const GetRecipes = () => {
     if (
@@ -29,6 +30,7 @@ export default function Search (props) {
       // cas du rechargement de la page ou url rentrée direct
       const search = decodeURIComponent(props.location.search.split('=')[1]);
       setCurrentInput(search);
+      setCurrentSearch(search);
       const url = `recipes/?search=${props.location.search.split('=')[1]}`;
       API.get(url)
         .then((res) => res.data)
@@ -44,6 +46,7 @@ export default function Search (props) {
       history.push({
         pathname: `/rechercher/?search=${currentInput}`
       });
+      setCurrentSearch(currentInput);
       GetRecipes();
     } else {
       history.push({
@@ -71,7 +74,7 @@ export default function Search (props) {
   return (
     <div className='recherche-container'>
       <div className='Loupe'>
-        <h5>Rechercher une recette</h5>
+        <h2>Rechercher une recette</h2>
         <div className='search-field'>
           <div className='search-block'>
             <div className='my-search'>
@@ -101,15 +104,18 @@ export default function Search (props) {
           <div className='result'>
             <div className='filter-recipes-container'>
               {recipes.length === 0 ? (
-                currentInput && <p>Aucun résultat pour {currentInput}</p>
+                currentSearch && <h4 className='no-result'>Aucun résultat pour {currentSearch}</h4>
               ) : (
-                recipes.map((recipe) => {
-                  return (
-                    <div className='filtered-recipes' key={recipe.id}>
-                      <SmallRecipe r={recipe} />
-                    </div>
-                  );
-                })
+                <>
+                  <h4 className='results-title'>Résultats pour {currentSearch}</h4>
+                  {recipes.map((recipe) => {
+                    return (
+                      <div className='filtered-recipes' key={recipe.id}>
+                        <SmallRecipe r={recipe} />
+                      </div>
+                    );
+                  })}
+                </>
               )}
             </div>
           </div>

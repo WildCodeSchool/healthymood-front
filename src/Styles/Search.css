@@ -89,14 +89,17 @@
 .btn-search:hover {
   opacity:1;
 }
-
-.Loupe h5 {
+.no-result {
+  color:#424242;
+  margin-top:50px;
+}
+.Loupe h2 {
   margin: 0 auto;
   padding-bottom: 25px;
   margin-right: 10px;
 }
 
-.Loupe h5::before {
+.Loupe h2::before {
   position: relative;
   content: "";
   width: 50px;
@@ -107,7 +110,7 @@
   display: inline-block;
   top: -7px;
 }
-.Loupe h5::after {
+.Loupe h2::after {
   position: relative;
   content: "";
   width: 50px;
@@ -133,7 +136,10 @@
   justify-content: center;
 }
 
-
+.results-title {
+  width:100%;
+  margin-top:50px;
+}
 
 
 @media screen and (max-width: 360px) {
