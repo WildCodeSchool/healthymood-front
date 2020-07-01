@@ -6,14 +6,25 @@
 
 .my-search {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   justify-content: center;
+  align-items:center;
+}
+.my-search label {
+  margin-bottom:0px;
+}
+.my-search label p {
+  margin:0px;
 }
 
 .my-search input {
   height: 30px;
   width: 250px;
   margin-top: 5px;
+  margin-bottom:30px;
+  border-radius:30px;
+  border:1px solid #424242;
+  text-align:center;
 }
 
 .Loupe .filter-list img {
@@ -37,7 +48,7 @@
 }
 
 .Loupe img {
-  height: 20px;
+  height: 15px;
   margin-right: 10px;
 }
 
@@ -67,12 +78,16 @@
   background-color: #f18c06;
   border-radius: 15px;
   color: #fff;
-  font-weight: 700;
+  font-weight: 500;
   width: 200px;
   outline-style: none;
   border: 0;
   margin: 0 auto;
-  translate: 70px;
+  transition: all 0.2s ease-in-out;
+  opacity:0.8;
+}
+.btn-search:hover {
+  opacity:1;
 }
 
 .Loupe h5 {
@@ -117,6 +132,8 @@
   flex-wrap: wrap;
   justify-content: center;
 }
+
+
 
 
 @media screen and (max-width: 360px) {

@@ -12,10 +12,11 @@ export default function Search (props) {
   const [currentInput, setCurrentInput] = useState('');
 
   const GetRecipes = () => {
-    console.log(props.location);
     if (
       (!props.location.search && currentInput) ||
+      // cas où rien dans l'url mais mot dans l'input
       (props.location.search !== currentInput && currentInput)
+      // cas où recherche dans l'url mais mot différent dans l'input : relance la recherche avec l'input
     ) {
       const url = `recipes/?search=${currentInput}`;
       API.get(url)
@@ -26,8 +27,6 @@ export default function Search (props) {
         .then((data) => setRecipes(data));
     } else if (props.location.search && !currentInput) {
       // cas du rechargement de la page ou url rentrée direct
-      console.log('adresse remplie');
-      console.log(props.location.search.split('=')[1].split('%20').join(' '));
       const search = decodeURIComponent(props.location.search.split('=')[1]);
       setCurrentInput(search);
       const url = `recipes/?search=${props.location.search.split('=')[1]}`;
@@ -72,7 +71,7 @@ export default function Search (props) {
   return (
     <div className='recherche-container'>
       <div className='Loupe'>
-        <h5>Recherche simple</h5>
+        <h5>Rechercher une recette</h5>
         <div className='search-field'>
           <div className='search-block'>
             <div className='my-search'>
@@ -83,7 +82,7 @@ export default function Search (props) {
                 id='search'
                 name='search'
                 type='text'
-                placeholder='Rechercher'
+                placeholder='Salade de fruit...'
                 value={currentInput}
                 onChange={handleChange}
                 onKeyDown={handleKeyDown}
@@ -102,11 +101,7 @@ export default function Search (props) {
           <div className='result'>
             <div className='filter-recipes-container'>
               {recipes.length === 0 ? (
-                !currentInput ? (
-                  <p>Entrez votre recherche.</p>
-                ) : (
-                  <p>Aucun résultat pour {currentInput}</p>
-                )
+                currentInput && <p>Aucun résultat pour {currentInput}</p>
               ) : (
                 recipes.map((recipe) => {
                   return (

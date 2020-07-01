@@ -9,6 +9,7 @@ import RecipesPage from './Pages/RecipesPage';
 import Article from './Pages/Article';
 import Search from './Components/Search';
 import Recipe from './Components/Recipe';
+import './Styles/Variables.css';
 
 messaging.onMessage((payload) => console.log('Message received. ', payload));
 
