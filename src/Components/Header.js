@@ -7,12 +7,18 @@ import Menu from './Menu';
 import MenuDesktop from './MenuDesktop';
 import TopNavBar from './TopNavBar';
 import '../Styles/MenuDesktop.css';
+import Pwa from './pwa';
 
 function Header () {
   return (
     <header>
-      <img src={banner} alt='bannière mobile healthymood' className='mobile-banner' />
+      <img
+        src={banner}
+        alt='bannière mobile healthymood'
+        className='mobile-banner'
+      />
       <Menu />
+      <Pwa />
       <TopNavBar />
       <div className='header-container'>
         <Link to='/'>
@@ -20,7 +26,6 @@ function Header () {
         </Link>
       </div>
       <MenuDesktop />
-
     </header>
   );
 }
