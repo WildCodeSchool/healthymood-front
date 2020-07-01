@@ -101,6 +101,7 @@
       "withSubmenu": false,
       "icon": "logout.png",
       "slug": "deconnexion",
+      "logOut": true,
       "needLogIn": true,
       "needLogOut": false
     },
