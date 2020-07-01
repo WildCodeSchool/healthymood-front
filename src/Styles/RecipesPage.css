@@ -2,7 +2,9 @@
   display: flex;
   justify-content: space-around;
   flex-wrap: wrap;
-  max-width:900px;
+  max-width:960px;
   margin: 0 auto;
   padding: 80px 0;
 }
+
+

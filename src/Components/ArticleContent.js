@@ -3,6 +3,7 @@ import '../Styles/ArticleContent.css';
 import authorImage from '../Images/author.png';
 import categoryImage from '../Images/category.png';
 import publishedImage from '../Images/published.png';
+import SocialMedia from './SocialMediaArticle';
 
 function ArticleContent ({ a }) {
   return (
@@ -25,6 +26,7 @@ function ArticleContent ({ a }) {
       <p className='introduction-text'>{a.slug}</p>
       <div className='social-media-container'>
         <h5 className=''>Merci de partager : </h5>
+        <SocialMedia />
       </div>
     </div>
 
