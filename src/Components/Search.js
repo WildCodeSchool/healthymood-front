@@ -1,15 +1,15 @@
-import React, { useState, useEffect } from "react";
-import "../Styles/Search.css";
-import Loupe from "../Images/glass.png";
-import SmallRecipe from "./SmallRecipe";
-import API from "../Services/Api";
-import { useHistory } from "react-router-dom";
+import React, { useState, useEffect } from 'react';
+import '../Styles/Search.css';
+import Loupe from '../Images/glass.png';
+import SmallRecipe from './SmallRecipe';
+import API from '../Services/Api';
+import { useHistory } from 'react-router-dom';
 
-export default function Search(props) {
+export default function Search (props) {
   const history = useHistory();
 
   const [recipes, setRecipes] = useState([]);
-  const [currentInput, setCurrentInput] = useState("");
+  const [currentInput, setCurrentInput] = useState('');
 
   const GetRecipes = () => {
     console.log(props.location);
@@ -26,11 +26,11 @@ export default function Search(props) {
         .then((data) => setRecipes(data));
     } else if (props.location.search && !currentInput) {
       // cas du rechargement de la page ou url rentrée direct
-      console.log("adresse remplie");
-      console.log(props.location.search.split("=")[1].split("%20").join(" "));
-      const search = props.location.search.split("=")[1].split("%20").join(" ");
+      console.log('adresse remplie');
+      console.log(props.location.search.split('=')[1].split('%20').join(' '));
+      const search = decodeURIComponent(props.location.search.split('=')[1]);
       setCurrentInput(search);
-      const url = `recipes/?search=${props.location.search.split("=")[1]}`;
+      const url = `recipes/?search=${props.location.search.split('=')[1]}`;
       API.get(url)
         .then((res) => res.data)
         .then((data) => {
@@ -43,14 +43,14 @@ export default function Search(props) {
   const handleValidate = () => {
     if (currentInput) {
       history.push({
-        pathname: `/rechercher/?search=${currentInput}`,
+        pathname: `/rechercher/?search=${currentInput}`
       });
       GetRecipes();
     } else {
       history.push({
-        pathname: `/rechercher`
+        pathname: '/rechercher'
       });
-      setRecipes([])
+      setRecipes([]);
     }
   };
 
@@ -59,7 +59,7 @@ export default function Search(props) {
   };
 
   const handleKeyDown = (event) => {
-    if (event.key === "Enter") {
+    if (event.key === 'Enter') {
       event.preventDefault();
       handleValidate();
     }
@@ -70,47 +70,47 @@ export default function Search(props) {
   }, []);
 
   return (
-    <div className="recherche-container">
-      <div className="Loupe">
+    <div className='recherche-container'>
+      <div className='Loupe'>
         <h5>Recherche simple</h5>
-        <div className="search-field">
-          <div className="search-block">
-            <div className="my-search">
-              <label className="label">
+        <div className='search-field'>
+          <div className='search-block'>
+            <div className='my-search'>
+              <label className='label'>
                 <p>J'ai envie de : </p>
               </label>
               <input
-                id="search"
-                name="search"
-                type="text"
-                placeholder="Rechercher"
+                id='search'
+                name='search'
+                type='text'
+                placeholder='Rechercher'
                 value={currentInput}
                 onChange={handleChange}
                 onKeyDown={handleKeyDown}
               />
             </div>
             <button
-              className="btn-search"
+              className='btn-search'
               onClick={() => {
                 handleValidate();
               }}
             >
-              <img src={Loupe} alt="search" />
+              <img src={Loupe} alt='search' />
               Rechercher
             </button>
           </div>
-          <div className="result">
-            <div className="filter-recipes-container">
+          <div className='result'>
+            <div className='filter-recipes-container'>
               {recipes.length === 0 ? (
                 !currentInput ? (
                   <p>Entrez votre recherche.</p>
                 ) : (
-                <p>Aucun résultat pour {currentInput}</p>
+                  <p>Aucun résultat pour {currentInput}</p>
                 )
               ) : (
                 recipes.map((recipe) => {
                   return (
-                    <div className="filtered-recipes" key={recipe.id}>
+                    <div className='filtered-recipes' key={recipe.id}>
                       <SmallRecipe r={recipe} />
                     </div>
                   );
