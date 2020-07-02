@@ -6,18 +6,15 @@ import { useHistory, Link } from 'react-router-dom';
 export default function RegisterPage () {
   const [email, setEmail] = useState('');
   const [username, setName] = useState('');
-  const [loading, setLoading] = useState(false);
   const [password, setPassword] = useState('');
   const history = useHistory();
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    setLoading(true);
     const payload = { username, email, password };
     API.post('/users', payload)
       .then((res) => {
         alert("Vous êtes désormais inscrit."); // eslint-disable-line
-        setLoading(false);
         history.push('/');
       })
       .catch((err) => {
@@ -67,7 +64,7 @@ export default function RegisterPage () {
             onChange={(e) => setPassword(e.target.value)}
           />
         </div>
-        <button className='btn-connexion' type='submit' disabled={!!loading}>
+        <button className='btn-connexion' type='submit'>
           S'enregistrer
         </button>
         <h6>

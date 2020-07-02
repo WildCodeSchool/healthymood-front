@@ -7,18 +7,15 @@ import { useHistory, Link } from 'react-router-dom';
 export default function LoginPage (props) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [loading, setLoading] = useState(false);
   const history = useHistory();
   const { setToken, setIsConnected } = useContext(AuthContext);
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    setLoading(true);
     API.post('/auth/login', { email, password })
       .then((res) => res.data)
       .then((data) => {
         setToken(data.token);
-        setLoading(false);
         setIsConnected(true);
         history.push('/');
       })
