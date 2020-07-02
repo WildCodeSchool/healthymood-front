@@ -68,7 +68,7 @@ export default function SimpleSearch (props) {
   };
 
   useEffect(() => {
-    console.log(props)
+    console.log(props);
     GetRecipes();
   }, []);
 
@@ -120,7 +120,7 @@ export default function SimpleSearch (props) {
               )}
             </div>
             <button
-              onClick={() => {handleValidate();}}
+              onClick={() => { handleValidate(); }}
             >
               <img src={Loupe} alt='search' />Rechercher
             </button>
