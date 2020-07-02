@@ -17,7 +17,7 @@ import Recipe from './Components/Recipe';
 import AuthContext from './Context/authContext';
 import LoginPage from './Pages/Login';
 import RegisterPage from './Pages/Register';
-import SecretPage from './Pages/Secret';
+import MonCompte from './Pages/MonCompte';
 import { messaging } from './Services/firebase';
 
 function PrivateRoute ({ children, ...rest }) {
@@ -104,8 +104,8 @@ function App () {
               />
               <Route exact path='/login' component={LoginPage} />
               <Route exact path='/register' component={RegisterPage} />
-              <PrivateRoute exact path='/mon-compte'>
-                <SecretPage />
+              <PrivateRoute exact path='/compte'>
+                <MonCompte />
               </PrivateRoute>
             </Switch>
             <Footer />
