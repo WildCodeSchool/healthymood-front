@@ -35,16 +35,7 @@ const TopNavBar = () => {
               <p>Mes favoris</p>
             </div>
           </NavLink>
-
-          <NavLink
-            exact
-            to='/compte/liste-courses'
-            className='topnav-bar-link-liste-courses'
-          >
-            <div className='topnav-bar-element-container'>
-              <p>Ma liste de courses</p>
-            </div>
-          </NavLink>
+          
 
           <NavLink exact to='/' className='topnav-bar-link-deconnexion'>
             <div className='topnav-bar-element-container' onClick={setLogOut}>
