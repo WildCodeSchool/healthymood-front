@@ -1,4 +1,4 @@
-.login-page {
+.compte-page {
   font-family: var(--font-family);
   display: flex;
   justify-content: center;
@@ -7,12 +7,7 @@
   height: 100vh;
 }
 
-.title-login {
-  font-family: var(--primaryFont);
-  font-size: 30px;
-}
-
-.form-login {
+.form-compte {
   background-color: white;
   width: 400px;
   height: 500px;
@@ -26,7 +21,7 @@
   padding: 30px;
 }
 
-.form-login h1 {
+.form-compte h1 {
   justify-self: flex-start;
   margin-bottom: 50px;
 }
@@ -38,7 +33,7 @@
   align-items: flex-start;
 }
 
-.form-login input {
+.form-compte input {
   width: 100%;
   margin: 10px 0px;
   padding: 10px;
@@ -69,7 +64,7 @@
 }
 .btn-connexion:hover {
   background-color: white;
-  color: #eb2f06;
+  color: #eb2f06
 }
 .btn-connexion:active {
   position: relative;

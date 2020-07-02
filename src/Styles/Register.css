@@ -46,24 +46,25 @@
   width: 100%;
   margin-top: 10px;
   margin-bottom: 10px;
-  background-color: #4caf50;
+  background-color: #eb2f06;
   border-radius: 10px;
 }
 
 .btn-connexion {
-  background-color: #44c767;
+  background-color: #eb2f06;
   border-radius: 28px;
-  border: 1px solid #18ab29;
+  border: 1px solid #eb2f06;
   display: inline-block;
   cursor: pointer;
   color: #ffffff;
   font-family: Arial;
   font-size: 17px;
   text-decoration: none;
-  text-shadow: 0px 1px 0px #2f6627;
+  text-shadow: 0px 1px 0px black;
 }
 .btn-connexion:hover {
-  background-color: #5cbf2a;
+  background-color: white;
+  color: #eb2f06
 }
 .btn-connexion:active {
   position: relative;
