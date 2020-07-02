@@ -54,6 +54,7 @@
   height: auto;
 }
 
+
 @media only screen and (min-width: 992px) {
   .article-container .article-content img {
     width: auto;

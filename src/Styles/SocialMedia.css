@@ -1,0 +1,22 @@
+.social-media-container .button-container {
+  display: flex;
+}
+
+.social-media-container {
+  text-align: left;
+}
+
+.sharebutton-icon {
+  margin-right: 4px;
+  transition: all 0.3s ease-in-out;
+}
+
+.sharebutton-icon:focus {
+  outline: none;   
+}
+
+.sharebutton-icon:hover {
+  cursor: pointer;
+  box-shadow:0 0 5px rgba(0, 0, 0, 0.3);
+  transform: scale(1.13);
+}

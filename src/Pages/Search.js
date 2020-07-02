@@ -4,7 +4,9 @@ import AdvancedSearch from '../Components/AdvancedSearch';
 import '../Styles/Search.css';
 
 export default class Search extends React.Component {
-  state = {
+  constructor(props){
+    super(props);
+    this.state = {
     filter: [],
     currentSearchFilter: '',
 
@@ -13,12 +15,14 @@ export default class Search extends React.Component {
     mealType: [],
     diet: []
   };
+  } 
+
 
   render () {
     return (
       <div className='search-container'>
-        <SimpleSearch />
-        <AdvancedSearch />
+        <SimpleSearch {...this.props}/>
+        <AdvancedSearch {...this.props}/>
       </div>
     );
   }

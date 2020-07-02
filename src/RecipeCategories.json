@@ -1,0 +1,49 @@
+{
+  "category": [
+    {
+      "id": 1,
+      "name": "Les classiques",
+      "img": "classic.jpg"
+    },
+    {
+      "id": 2,
+      "name": "Vegetarien",
+      "img": "vegetarian.jpg"
+    },
+    {
+      "id": 3,
+      "name": "Sans gluten",
+      "img": "gluten-free.jpg"
+    },
+    {
+      "id": 4,
+      "name": "Vegan",
+      "img": "vegan.jpg"
+    },
+    {
+      "id": 5,
+      "name": "Petit-Déjeuner",
+      "img": "breakfast.jpg"
+    },
+    {
+      "id": 6,
+      "name": "Apéritif",
+      "img": "apetizer.jpg"
+    },
+    {
+      "id": 7,
+      "name": "Entrée",
+      "img": "entree.jpg"
+    },
+    {
+      "id": 8,
+      "name": "Plat",
+      "img": "lunch.jpg"
+    },
+    {
+      "id": 9,
+      "name": "Dessert",
+      "img": "dessert.jpg"
+    }
+  ]
+}
