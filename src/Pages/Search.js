@@ -3,26 +3,11 @@ import SimpleSearch from '../Components/SimpleSearch';
 import AdvancedSearch from '../Components/AdvancedSearch';
 import '../Styles/Search.css';
 
-export default class Search extends React.Component {
-  constructor (props) {
-    super(props);
-    this.state = {
-      filter: [],
-      currentSearchFilter: '',
-
-      currentSearchIngredient: '',
-      currentSearchMealName: '',
-      mealType: [],
-      diet: []
-    };
-  }
-
-  render () {
-    return (
-      <div className='search-container'>
-        <SimpleSearch {...this.props} />
-        <AdvancedSearch {...this.props} />
-      </div>
-    );
-  }
+export default function Search (props) {
+  return (
+    <div className='search-container'>
+      <SimpleSearch {...props} />
+      <AdvancedSearch {...props} />
+    </div>
+  );
 }

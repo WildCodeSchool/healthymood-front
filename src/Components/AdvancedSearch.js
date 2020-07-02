@@ -6,6 +6,13 @@ export default function AdvancedSearch (props) {
   const [currentSearchIngredient, setCurrentSearchIngredient] = useState('');
   const [currentSearchMealName, setCurrentSearchMealName] = useState('');
   const [currentSearchRecipeCategories, setCurrentSearchRecipeCategories] = useState([]);
+
+  // const [filter, setFilter] = useState([]);
+  // const [currentSearchFilter, setCurrentSearchFilter] = useState('');
+  // const [currentSearchIngredients, setCurrentSearchIngredients] = useState('');
+
+  // const [mealType, setMealType] = useState([]);
+  // const [diet, setDiet] = useState([]);
   /*  const [diet, setDiet] = useState([]); */
 
   useEffect(() => {
