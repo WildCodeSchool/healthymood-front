@@ -1,44 +1,60 @@
-import React from 'react';
 import '../Styles/Pwa.css';
+import React, { useEffect, useState } from 'react';
 
 let deferredPrompt;
 
-class Pwa extends React.Component {
-  constructor () {
-    super();
-    this.state = {};
-    this.handleOnInstallBtnClick = this.handleOnInstallBtnClick.bind(this);
-  }
+const Pwa = () => {
+  const [shouldShowInstallBanner, setShouldShowInstallBanner] = useState(false);
 
-  componentDidMount () {
-    window.addEventListener('beforeinstallprompt', (e) => {
+  useEffect(() => {
+    const listener = window.addEventListener('beforeinstallprompt', (e) => {
+      // Prevent the mini-infobar from appearing on mobile
       e.preventDefault();
+      // Stash the event so it can be triggered later.
       deferredPrompt = e;
+      // Update UI notify the user they can install the PWA
+      setShouldShowInstallBanner(true);
     });
-    /* window.alert(this.handleOnInstallBtnClick()); */
-  }
 
-  handleOnInstallBtnClick () {
-    deferredPrompt.prompt();
-    deferredPrompt.userChoice.then((choiceResult) => {
-      if (choiceResult.outcome === 'accepted') {
-        console.log('User accepted the A2HS prompt');
-      } else {
-        console.log('User dismissed the A2HS prompt');
-      }
-      deferredPrompt = null;
+    return () => {
+      window.removeEventListener('beforeinstallPrompt', listener);
+    };
+  }, []);
+
+  useEffect(() => {
+    const listener = window.addEventListener('appinstalled', () => {
+      // Hide the banner if the app has been installed
+      setShouldShowInstallBanner(false);
     });
-  }
 
-  render () {
-    return (
-      <div>
-        {/* <button className='add-install' onClick={this.handleOnInstallBtnClick}>
-          install
-        </button> */}
-      </div>
-    );
-  }
-}
+    return () => {
+      window.removeEventListener('appinstalled', listener);
+    };
+  }, []);
+
+  const showInstallPrompt = () => {
+    if (deferredPrompt) {
+      deferredPrompt.prompt();
+      // Wait for the user to respond to the prompt
+      deferredPrompt.userChoice.then((choiceResult) => {
+        if (choiceResult.outcome === 'accepted') {
+          console.log('User accepted the install prompt');
+        } else {
+          console.log('User dismissed the install prompt');
+        }
+      });
+    }
+  };
+
+  return (
+    <>
+      {shouldShowInstallBanner && (
+        <div className='install-banner' onClick={showInstallPrompt}>
+          + Installer
+        </div>
+      )}
+    </>
+  );
+};
 
 export default Pwa;
