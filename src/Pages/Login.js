@@ -30,7 +30,7 @@ export default function LoginPage (props) {
 
   return (
     <div className='login-page'>
-      <h1 className='title-login'>Login</h1>
+      <h1 className='title-login'>Se connecter</h1>
       <form className='form-login' onSubmit={handleSubmit}>
         <div className='form-group'>
           <label htmlFor='email' name='email'>
@@ -46,7 +46,7 @@ export default function LoginPage (props) {
         </div>
         <div className='form-group'>
           <label htmlFor='password' name='password'>
-            Password :
+            Mot de passe :
           </label>
           <input
             id='password'
@@ -56,7 +56,7 @@ export default function LoginPage (props) {
             onChange={(e) => setPassword(e.target.value)}
           />
         </div>
-        <button className='btn-connexion' type='submit' disabled={!!loading}>
+        <button className='btn-connexion' type='submit'>
           Connexion
         </button>
         <h6>

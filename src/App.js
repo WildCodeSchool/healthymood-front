@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 import './Styles/App.css';
 import {
   BrowserRouter as Router,
@@ -18,6 +18,7 @@ import AuthContext from './Context/authContext';
 import LoginPage from './Pages/Login';
 import RegisterPage from './Pages/Register';
 import SecretPage from './Pages/Secret';
+import { messaging } from './Services/firebase';
 
 function PrivateRoute ({ children, ...rest }) {
   const { token } = useContext(AuthContext);
@@ -42,6 +43,21 @@ function PrivateRoute ({ children, ...rest }) {
 }
 
 function App () {
+  useEffect(() => {
+    messaging
+      .requestPermission()
+      .then(async function () {
+        const token = await messaging.getToken();
+        console.log(token);
+      })
+      .catch(function (err) {
+        console.log('Unable to get permission to notify.', err);
+      });
+    navigator.serviceWorker.addEventListener('message', (message) =>
+      console.log(message)
+    );
+  }, []);
+
   const [isConnected, setIsConnected] = useState(
     JSON.parse(window.localStorage.getItem('isConnected'))
   );
@@ -88,12 +104,6 @@ function App () {
               />
               <Route exact path='/login' component={LoginPage} />
               <Route exact path='/register' component={RegisterPage} />
-              <PrivateRoute exact path='/liste-de-course'>
-                <SecretPage />
-              </PrivateRoute>
-              <PrivateRoute exact path='/secret'>
-                <SecretPage />
-              </PrivateRoute>
               <PrivateRoute exact path='/mon-compte'>
                 <SecretPage />
               </PrivateRoute>

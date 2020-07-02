@@ -16,7 +16,7 @@ export default function RegisterPage () {
     const payload = { username, email, password };
     API.post('/users', payload)
       .then((res) => {
-        alert("registered !"); // eslint-disable-line
+        alert("Vous êtes désormais inscrit."); // eslint-disable-line
         setLoading(false);
         history.push('/');
       })
@@ -30,11 +30,11 @@ export default function RegisterPage () {
 
   return (
     <div className='register-page'>
-      <h1>Register</h1>
+      <h1>Inscription</h1>
       <form className='form-login' onSubmit={handleSubmit}>
         <div className='form-group'>
           <label htmlFor='username' required name='username'>
-            Name :
+            Pseudo :
           </label>
           <input
             id='username'
@@ -57,7 +57,7 @@ export default function RegisterPage () {
         </div>
         <div className='form-group'>
           <label htmlFor='password' name='password'>
-            Password :
+            Mot de passe :
           </label>
           <input
             id='password'
