@@ -69,8 +69,7 @@ export default function Search (props) {
 
   useEffect(() => {
     GetRecipes();
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, []); // eslint-disable-line
 
   return (
     <div className='recherche-container'>

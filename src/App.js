@@ -95,7 +95,7 @@ function App () {
               <Route exact path='/' component={Home} />
               <Route exact path='/recettes' component={RecipesPage} />
               <Route exact path='/conseils-astuces' component={Article} />
-              <Route exact path='/rechercher' component={Search} />
+              <Route path='/rechercher' component={Search} />
               <Route exact path='/recettes/:slug' component={Recipe} />
               <Route
                 exact
