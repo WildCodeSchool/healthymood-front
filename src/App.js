@@ -1,17 +1,46 @@
+import React, { useContext, useState, useEffect } from 'react';
 import './Styles/App.css';
-import { messaging } from './Services/firebase';
-import React, { useEffect } from 'react';
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Redirect
+} from 'react-router-dom';
 import Header from './Components/Header';
 import Home from './Pages/Home';
 import Footer from './Components/Footer';
 import RecipesPage from './Pages/RecipesPage';
 import Article from './Pages/Article';
+import './Styles/Variables.css';
 import Search from './Components/Search';
 import Recipe from './Components/Recipe';
-import './Styles/Variables.css';
+import AuthContext from './Context/authContext';
+import LoginPage from './Pages/Login';
+import RegisterPage from './Pages/Register';
+import MonCompte from './Pages/MonCompte';
+import { messaging } from './Services/firebase';
 
-messaging.onMessage((payload) => console.log('Message received. ', payload));
+function PrivateRoute ({ children, ...rest }) {
+  const { token } = useContext(AuthContext);
+  return (
+    <Route
+      {...rest}
+      render={
+        ({ location }) =>
+          token ? (
+            children
+          ) : (
+            <Redirect
+              to={{
+                pathname: '/login',
+                state: { from: location }
+              }}
+            />
+          ) // eslint-disable-line
+      } // eslint-disable-line
+    />
+  );
+}
 
 function App () {
   useEffect(() => {
@@ -29,27 +58,60 @@ function App () {
     );
   }, []);
 
+  const [isConnected, setIsConnected] = useState(
+    JSON.parse(window.localStorage.getItem('isConnected'))
+  );
+  const [token, setToken] = useState(window.localStorage.getItem('authToken'));
+  const setTokenInLocalStorage = (token) => {
+    window.localStorage.setItem('authToken', token);
+    setToken(token);
+  };
+
+  const setIsConnectedInLocalStorage = (connected) => {
+    window.localStorage.setItem('isConnected', connected);
+    setIsConnected(connected);
+  };
+
+  const handleLogOut = () => {
+    setTokenInLocalStorage('');
+    setIsConnectedInLocalStorage(false);
+  };
+
   return (
     <>
-      <Router>
-        <div className='App'>
-          <Header />
-          <Switch>
-            <Route exact path='/' component={Home} />
-            <Route exact path='/recettes' component={RecipesPage} />
-            <Route exact path='/conseils-astuces' component={Article} />
-            <Route path='/rechercher' component={Search} />
-            <Route exact path='/' /* component={...} */ />
-            <Route exact path='/recettes/:slug' component={Recipe} />
-            <Route
-              exact
-              path='/recettes/categorie/:id'
-              component={RecipesPage}
-            />
-          </Switch>
-          <Footer />
-        </div>
-      </Router>
+      <AuthContext.Provider
+        value={{
+          token,
+          setToken: setTokenInLocalStorage,
+          setIsConnected: setIsConnectedInLocalStorage,
+          connected: isConnected,
+          setLogOut: handleLogOut
+        }}
+      >
+        <Router>
+          <div className='App'>
+            <Header />
+            <Switch>
+              <Route exact path='/' component={Home} />
+              <Route exact path='/recettes' component={RecipesPage} />
+              <Route exact path='/conseils-astuces' component={Article} />
+              <Route path='/rechercher' component={Search} />
+              <Route exact path='/recettes/:slug' component={Recipe} />
+              <Route
+                exact
+                path='/recettes/categorie/:id'
+                component={RecipesPage}
+              />
+              <Route exact path='/login' component={LoginPage} />
+              <Route exact path='/register' component={RegisterPage} />
+              <PrivateRoute exact path='/compte'>
+                <MonCompte />
+              </PrivateRoute>
+            </Switch>
+            <Footer />
+          </div>
+        </Router>
+      </AuthContext.Provider>
     </>
   );
 }
