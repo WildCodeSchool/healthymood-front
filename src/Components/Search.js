@@ -69,7 +69,7 @@ export default function Search (props) {
 
   useEffect(() => {
     GetRecipes();
-  }, []);
+  }, []); // eslint-disable-line
 
   return (
     <div className='recherche-container'>
