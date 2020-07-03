@@ -12,7 +12,7 @@ const MonCompte = () => {
     API.patch(`/users/${id}`, { email, password })
       .then((res) => res.data)
       .then((data) => {
-
+        console.log(data);
       })
       .catch((err) => {
         console.error(err);
