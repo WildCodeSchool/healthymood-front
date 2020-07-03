@@ -30,7 +30,7 @@ export default function LoginPage (props) {
       <h1 className='title-login'>Se connecter</h1>
       <form className='form-login' onSubmit={handleSubmit}>
         <div className='form-group'>
-          <label htmlFor='email' name='email'>
+          <label htmlFor='email' required name='email'>
             Email :
           </label>
           <input
@@ -39,10 +39,11 @@ export default function LoginPage (props) {
             value={email}
             placeholder='exemple@gmail.com'
             onChange={(e) => setEmail(e.target.value)}
+            required
           />
         </div>
         <div className='form-group'>
-          <label htmlFor='password' name='password'>
+          <label htmlFor='password' required name='password'>
             Mot de passe :
           </label>
           <input
@@ -51,6 +52,7 @@ export default function LoginPage (props) {
             value={password}
             placeholder='Votre mot de passe'
             onChange={(e) => setPassword(e.target.value)}
+            required
           />
         </div>
         <button className='btn-connexion' type='submit'>

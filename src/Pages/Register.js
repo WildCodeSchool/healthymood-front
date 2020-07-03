@@ -38,6 +38,7 @@ export default function RegisterPage () {
             type='text'
             value={username}
             onChange={(e) => setName(e.target.value)}
+            required
           />
         </div>
         <div className='form-group'>
@@ -50,10 +51,11 @@ export default function RegisterPage () {
             value={email}
             placeholder='exemple@gmail.com'
             onChange={(e) => setEmail(e.target.value)}
+            required
           />
         </div>
         <div className='form-group'>
-          <label htmlFor='password' name='password'>
+          <label htmlFor='password' required name='password'>
             Mot de passe :
           </label>
           <input
@@ -62,6 +64,7 @@ export default function RegisterPage () {
             value={password}
             placeholder='Votre mot de passe'
             onChange={(e) => setPassword(e.target.value)}
+            required
           />
         </div>
         <button className='btn-connexion' type='submit'>
