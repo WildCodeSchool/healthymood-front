@@ -49,10 +49,8 @@ const Pwa = () => {
   return (
     <>
       {shouldShowInstallBanner && (
-        <div>
-          <button className="install-banner" onClick={showInstallPrompt}>
-            Installer
-          </button>
+        <div className="install-banner" onClick={showInstallPrompt}>
+          Installer
         </div>
       )}
     </>
