@@ -19,8 +19,9 @@ import LoginPage from './Pages/Login';
 import RegisterPage from './Pages/Register';
 import MonCompte from './Pages/MonCompte';
 import { messaging } from './Services/firebase';
+import ScrollToTop from './Scripts/ScrollToTop';
 
-function PrivateRoute ({ children, ...rest }) {
+function PrivateRoute({ children, ...rest }) {
   const { token } = useContext(AuthContext);
   return (
     <Route
@@ -30,19 +31,19 @@ function PrivateRoute ({ children, ...rest }) {
           token ? (
             children
           ) : (
-            <Redirect
-              to={{
-                pathname: '/login',
-                state: { from: location }
-              }}
-            />
-          ) // eslint-disable-line
+              <Redirect
+                to={{
+                  pathname: '/login',
+                  state: { from: location }
+                }}
+              />
+            ) // eslint-disable-line
       } // eslint-disable-line
     />
   );
 }
 
-function App () {
+function App() {
   useEffect(() => {
     messaging
       .requestPermission()
@@ -89,6 +90,7 @@ function App () {
         }}
       >
         <Router>
+          <ScrollToTop />
           <div className='App'>
             <Header />
             <Switch>
