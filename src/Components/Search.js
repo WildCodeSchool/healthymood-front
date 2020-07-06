@@ -58,34 +58,29 @@ export default function Search (props) {
   };
 
   const handleValidate = () => {
-    /*    const pushValue = ''; */
+    let pushValue = '';
     if (currentInput) {
-      history.push({
-        pathname: `/rechercher/?search=${currentInput}`
-      });
+      pushValue += `/?search=${currentInput}`
       setCurrentSearch(currentInput);
       GetRecipes();
     } else {
-      history.push({
-        pathname: '/rechercher'
-      });
+      pushValue += ``
       setRecipes([]);
     }
     if (mealTypesFilters) {
-      let value = '';
+      pushValue += `/?meal_types=`
       if (mealTypesFilters.length === 1) {
-        value = mealTypesFilters[0].id;
+        pushValue = mealTypesFilters[0].id;
       } else {
         for (let i = 0; i < mealTypesFilters.length - 1; i++) {
-          value += mealTypesFilters[i].id + '&&';
+          pushValue += mealTypesFilters[i].id + '&&';
         }
-        value += mealTypesFilters[mealTypesFilters.length - 1].id;
+        pushValue += mealTypesFilters[mealTypesFilters.length - 1].id;
       }
-      history.push({
-        pathname: `/rechercher/?meal_types=${value}`
-      });
-      console.log(mealTypesFilters.map(mealtypefilter => mealtypefilter.id));
     }
+    history.push({
+      pathname: `/rechercher/${pushValue}`
+    });
   };
 
   const handleChange = (event) => {
