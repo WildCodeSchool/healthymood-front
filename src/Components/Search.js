@@ -104,10 +104,16 @@ export default function Search (props) {
           <div className='result'>
             <div className='filter-recipes-container'>
               {recipes.length === 0 ? (
-                currentSearch && <h4 className='no-result'>Aucun résultat pour {currentSearch}</h4>
+                currentSearch && (
+                  <h4 className='no-result'>
+                    Aucun résultat pour {currentSearch}
+                  </h4>
+                )
               ) : (
                 <>
-                  <h4 className='results-title'>Résultats pour {currentSearch}</h4>
+                  <h4 className='results-title'>
+                    Résultats pour {currentSearch}
+                  </h4>
                   {recipes.map((recipe) => {
                     return (
                       <div className='filtered-recipes' key={recipe.id}>
