@@ -11,6 +11,7 @@ export default function Search (props) {
   const [recipes, setRecipes] = useState([]);
   const [currentInput, setCurrentInput] = useState('');
   const [currentSearch, setCurrentSearch] = useState('');
+  const [advanced, setAdvanced] = useState(false);
 
   const GetRecipes = () => {
     if (
@@ -67,6 +68,14 @@ export default function Search (props) {
     }
   };
 
+  const handleAdvanced = (event) => {
+    if (!advanced) {
+      setAdvanced(true)
+    } else {
+    setAdvanced(false)
+  }
+}
+
   useEffect(() => {
     GetRecipes();
   }, []);
@@ -90,6 +99,14 @@ export default function Search (props) {
                 onChange={handleChange}
                 onKeyDown={handleKeyDown}
               />
+            </div>
+            <div className='advanced-search-container'>
+            <p onClick={handleAdvanced}>Recherche avancée.</p>
+              {advanced ? (
+                <p>Sélectionnez une catégorie de repas :</p>
+              ) : (
+                <p></p>
+              )}
             </div>
             <button
               className='btn-search'
