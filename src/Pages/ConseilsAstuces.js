@@ -5,7 +5,7 @@ import '../Styles/ConseilsAstuces.css';
 import API from '../Services/Api';
 import { useHistory } from 'react-router-dom';
 
-export default function SearchArticles(props) {
+export default function SearchArticles (props) {
   const history = useHistory();
 
   const [articles, setArticles] = useState([]);
@@ -103,17 +103,17 @@ export default function SearchArticles(props) {
               {articles.length === 0 ? (
                 currentSearch && <h4 className='no-result'>Aucun résultat pour {currentSearch}</h4>
               ) : (
-                  <>
-                    <h4 className='results-title'>Résultats pour {currentSearch}</h4>
-                    {articles.map((article) => {
-                      return (
-                        <div className='filtered-articles' key={article.id}>
-                          <SmallArticle a={article} />
-                        </div>
-                      );
-                    })}
-                  </>
-                )}
+                <>
+                  <h4 className='results-title'>Résultats pour {currentSearch}</h4>
+                  {articles.map((article) => {
+                    return (
+                      <div className='filtered-articles' key={article.id}>
+                        <SmallArticle a={article} />
+                      </div>
+                    );
+                  })}
+                </>
+              )}
             </div>
           </div>
         </div>
