@@ -13,7 +13,7 @@ import ConseilsAstuces from './Pages/ConseilsAstuces';
 import Search from './Components/Search';
 import Recipe from './Components/Recipe';
 
-function App () {
+function App() {
   return (
     <>
       <Router>
@@ -22,8 +22,8 @@ function App () {
           <Switch>
             <Route exact path='/' component={Home} />
             <Route exact path='/recettes' component={RecipesPage} />
-            <Route exact path='/conseils-astuces' component={ConseilsAstuces} />
-            <Route exact path='/rechercher' component={Search} />
+            <Route path='/conseils-astuces' component={ConseilsAstuces} />
+            <Route path='/rechercher' component={Search} />
             <Route exact path='/' /* component={...} */ />
             <Route exact path='/recettes/:slug' component={Recipe} />
             <Route exact path='/recettes/categorie/:id' component={RecipesPage} />
