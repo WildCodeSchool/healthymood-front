@@ -18,7 +18,6 @@ import AuthContext from './Context/authContext';
 import LoginPage from './Pages/Login';
 import RegisterPage from './Pages/Register';
 import MonCompte from './Pages/MonCompte';
-import { messaging } from './Services/firebase';
 
 function PrivateRoute ({ children, ...rest }) {
   const { token } = useContext(AuthContext);
@@ -44,6 +43,7 @@ function PrivateRoute ({ children, ...rest }) {
 
 function App () {
   useEffect(() => {
+    /*
     messaging
       .requestPermission()
       .then(async function () {
@@ -56,6 +56,7 @@ function App () {
     navigator.serviceWorker.addEventListener('message', (message) =>
       console.log(message)
     );
+    */
   }, []);
 
   const [isConnected, setIsConnected] = useState(
