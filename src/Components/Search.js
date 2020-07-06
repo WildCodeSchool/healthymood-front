@@ -58,6 +58,7 @@ export default function Search (props) {
   };
 
   const handleValidate = () => {
+    /*    const pushValue = ''; */
     if (currentInput) {
       history.push({
         pathname: `/rechercher/?search=${currentInput}`
@@ -69,6 +70,21 @@ export default function Search (props) {
         pathname: '/rechercher'
       });
       setRecipes([]);
+    }
+    if (mealTypesFilters) {
+      let value = '';
+      if (mealTypesFilters.length === 1) {
+        value = mealTypesFilters[0].id;
+      } else {
+        for (let i = 0; i < mealTypesFilters.length - 1; i++) {
+          value += mealTypesFilters[i].id + '&&';
+        }
+        value += mealTypesFilters[mealTypesFilters.length - 1].id;
+      }
+      history.push({
+        pathname: `/rechercher/?meal_types=${value}`
+      });
+      console.log(mealTypesFilters.map(mealtypefilter => mealtypefilter.id));
     }
   };
 
@@ -100,7 +116,6 @@ export default function Search (props) {
 
   const handleMealTypesFilters = (e) => {
     setMealTypesFilters(e);
-    console.log(mealTypesFilters);
   };
 
   useEffect(() => {
