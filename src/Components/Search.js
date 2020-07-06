@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import '../Styles/Search.css';
 import Loupe from '../Images/glass.png';
 import SmallRecipe from './SmallRecipe';
-import API from '../Services/Api';
+import API from '../Services/API';
 import { useHistory } from 'react-router-dom';
 
 export default function Search (props) {
@@ -90,7 +90,7 @@ export default function Search (props) {
 
   useEffect(() => {
     GetRecipes();
-  }, []);
+  }, []); // eslint-disable-line
 
   return (
     <div className='recherche-container'>
