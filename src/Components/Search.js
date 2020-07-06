@@ -71,7 +71,6 @@ export default function Search (props) {
     GetRecipes();
   }, []); // eslint-disable-line
 
-
   return (
     <div className='recherche-container'>
       <div className='Loupe'>

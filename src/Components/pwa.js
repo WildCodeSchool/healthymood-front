@@ -1,5 +1,5 @@
-import "../Styles/Pwa.css";
-import React, { useEffect, useState } from "react";
+import '../Styles/Pwa.css';
+import React, { useEffect, useState } from 'react';
 
 let deferredPrompt;
 
@@ -7,7 +7,7 @@ const Pwa = () => {
   const [shouldShowInstallBanner, setShouldShowInstallBanner] = useState(false);
 
   useEffect(() => {
-    const listener = window.addEventListener("beforeinstallprompt", (e) => {
+    const listener = window.addEventListener('beforeinstallprompt', (e) => {
       // Prevent the mini-infobar from appearing on mobile
       e.preventDefault();
       // Stash the event so it can be triggered later.
@@ -17,18 +17,18 @@ const Pwa = () => {
     });
 
     return () => {
-      window.removeEventListener("beforeinstallPrompt", listener);
+      window.removeEventListener('beforeinstallPrompt', listener);
     };
   }, []);
 
   useEffect(() => {
-    const listener = window.addEventListener("appinstalled", () => {
+    const listener = window.addEventListener('appinstalled', () => {
       // Hide the banner if the app has been installed
       setShouldShowInstallBanner(false);
     });
 
     return () => {
-      window.removeEventListener("appinstalled", listener);
+      window.removeEventListener('appinstalled', listener);
     };
   }, []);
 
@@ -37,10 +37,10 @@ const Pwa = () => {
       deferredPrompt.prompt();
       // Wait for the user to respond to the prompt
       deferredPrompt.userChoice.then((choiceResult) => {
-        if (choiceResult.outcome === "accepted") {
-          console.log("User accepted the install prompt");
+        if (choiceResult.outcome === 'accepted') {
+          console.log('User accepted the install prompt');
         } else {
-          console.log("User dismissed the install prompt");
+          console.log('User dismissed the install prompt');
         }
       });
     }
@@ -49,7 +49,7 @@ const Pwa = () => {
   return (
     <>
       {shouldShowInstallBanner && (
-        <div className="install-banner" onClick={showInstallPrompt}>
+        <div className='install-banner' onClick={showInstallPrompt}>
           Installer
         </div>
       )}
