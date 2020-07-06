@@ -10,6 +10,7 @@ ReactDOM.render(
   document.getElementById('root')
 );
 
+/*
 if ('serviceWorker' in navigator) {
   navigator.serviceWorker
     .register('./firebase-messaging-sw.js')
@@ -20,6 +21,7 @@ if ('serviceWorker' in navigator) {
       console.log('Service worker registration failed, error:', err);
     });
 }
+*/
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.
