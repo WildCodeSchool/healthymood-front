@@ -4,6 +4,9 @@ import Loupe from '../Images/glass.png';
 import SmallRecipe from './SmallRecipe';
 import API from '../Services/API';
 import { useHistory } from 'react-router-dom';
+import MealTypesSelect from './MealTypesSelect';
+
+export const optionsMealTypes = [];
 
 export default function Search (props) {
   const history = useHistory();
@@ -13,6 +16,7 @@ export default function Search (props) {
   const [currentSearch, setCurrentSearch] = useState('');
   const [advanced, setAdvanced] = useState(false);
   const [mealTypes, setMealTypes] = useState([]);
+  const [mealTypesFilters, setMealTypesFilters] = useState([]);
 
   const GetRecipes = () => {
     if (
@@ -43,9 +47,9 @@ export default function Search (props) {
     }
   };
 
-  const getMealTypes = () => {
+  const getMealTypes = async () => {
     const url = 'meal_types';
-    API.get(url)
+    await API.get(url)
       .then((res) => res.data)
       .then((data) => {
         return data.data;
@@ -81,15 +85,27 @@ export default function Search (props) {
 
   const handleAdvanced = (event) => {
     if (!advanced) {
-      getMealTypes();
       setAdvanced(true);
+      console.log(mealTypes);
+      mealTypes.map(mealType => {
+        return (
+          optionsMealTypes.push({ value: `${mealType.name}`, label: `${mealType.name}`, id: mealType.id })
+        );
+      });
+      console.log(optionsMealTypes);
     } else {
       setAdvanced(false);
     }
   };
 
+  const handleMealTypesFilters = (e) => {
+    setMealTypesFilters(e);
+    console.log(mealTypesFilters);
+  };
+
   useEffect(() => {
     GetRecipes();
+    getMealTypes();
   }, []); // eslint-disable-line
 
   return (
@@ -116,24 +132,8 @@ export default function Search (props) {
               <p onClick={handleAdvanced}>Voir la recherche avancée</p>
               {advanced &&
                 <>
-                  <p>Sélectionnez une catégorie de repas :</p>
-                  {mealTypes.length === 0 ? <p>Chargement des types de plat</p> : (
-                    <form action=''>
-                      {mealTypes.map(mealType => {
-                        return (
-                          <>
-                            <input
-                              type='checkbox'
-                              id={mealType.id}
-                              name={mealType.name}
-                              value={mealType.name}
-                            />
-                            <label for={mealType.name}>{mealType.name}</label>
-                          </>
-                        );
-                      })}
-                    </form>
-                  )}
+                  <p>Sélectionnez des catégories de repas :</p>
+                  <MealTypesSelect handleMealTypesFilters={handleMealTypesFilters} />
                 </>}
             </div>
           </div>
