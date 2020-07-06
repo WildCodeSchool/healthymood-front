@@ -18,6 +18,7 @@ import AuthContext from './Context/authContext';
 import LoginPage from './Pages/Login';
 import RegisterPage from './Pages/Register';
 import MonCompte from './Pages/MonCompte';
+import ScrollToTop from './Scripts/ScrollToTop';
 
 function PrivateRoute ({ children, ...rest }) {
   const { token } = useContext(AuthContext);
@@ -35,7 +36,7 @@ function PrivateRoute ({ children, ...rest }) {
                 state: { from: location }
               }}
             />
-          ) // eslint-disable-line
+            ) // eslint-disable-line
       } // eslint-disable-line
     />
   );
@@ -90,6 +91,7 @@ function App () {
         }}
       >
         <Router>
+          <ScrollToTop />
           <div className='App'>
             <Header />
             <Switch>
