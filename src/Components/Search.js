@@ -12,6 +12,7 @@ export default function Search (props) {
   const [currentInput, setCurrentInput] = useState('');
   const [currentSearch, setCurrentSearch] = useState('');
   const [advanced, setAdvanced] = useState(false);
+  const [mealTypes, setMealTypes] = useState([])
 
   const GetRecipes = () => {
     if (
@@ -42,6 +43,16 @@ export default function Search (props) {
     }
   };
 
+  const getMealTypes = () => {
+    const url='meal_types';
+    API.get(url)
+    .then((res) => res.data)
+    .then((data) => {
+      return data.data;
+    })
+    .then((data) => setMealTypes(data))
+  }
+
   const handleValidate = () => {
     if (currentInput) {
       history.push({
@@ -70,6 +81,7 @@ export default function Search (props) {
 
   const handleAdvanced = (event) => {
     if (!advanced) {
+      getMealTypes();
       setAdvanced(true);
     } else {
       setAdvanced(false);
@@ -101,14 +113,32 @@ export default function Search (props) {
               />
             </div>
             <div className='advanced-search-container'>
-              <p onClick={handleAdvanced}>Recherche avancée.</p>
-              {advanced ? (
+              <p onClick={handleAdvanced}>Voir la recherche avancée</p>
+              {advanced &&
+                <>
                 <p>Sélectionnez une catégorie de repas :</p>
-              ) : (
-                <p />
-              )}
+                {mealTypes.length === 0 ? <p>Chargement des types de plat</p> : (
+                  <form action=''>
+                    {mealTypes.map(mealType => {
+                    return (
+                      <>
+                      <input 
+                        type="checkbox"
+                        id={mealType.id}
+                        name={mealType.name}
+                        value={mealType.name} />
+                      <label for={mealType.name}>{mealType.name}</label>
+                      </>
+                    )
+                  
+                })}
+                </form>
+                )}
+                </>
+              }
             </div>
-            <button
+          </div>
+          <button
               className='btn-search'
               onClick={() => {
                 handleValidate();
@@ -117,7 +147,6 @@ export default function Search (props) {
               <img src={Loupe} alt='search' />
               Rechercher
             </button>
-          </div>
           <div className='result'>
             <div className='filter-recipes-container'>
               {recipes.length === 0 ? (
