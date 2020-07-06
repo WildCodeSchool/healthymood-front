@@ -70,11 +70,11 @@ export default function Search (props) {
 
   const handleAdvanced = (event) => {
     if (!advanced) {
-      setAdvanced(true)
+      setAdvanced(true);
     } else {
-    setAdvanced(false)
-  }
-}
+      setAdvanced(false);
+    }
+  };
 
   useEffect(() => {
     GetRecipes();
@@ -101,11 +101,11 @@ export default function Search (props) {
               />
             </div>
             <div className='advanced-search-container'>
-            <p onClick={handleAdvanced}>Recherche avancée.</p>
+              <p onClick={handleAdvanced}>Recherche avancée.</p>
               {advanced ? (
                 <p>Sélectionnez une catégorie de repas :</p>
               ) : (
-                <p></p>
+                <p />
               )}
             </div>
             <button
