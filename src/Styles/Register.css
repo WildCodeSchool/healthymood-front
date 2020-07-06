@@ -1,0 +1,71 @@
+.register-page {
+  font-family: var(--font-family);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  height: 100vh;
+}
+
+.form-login {
+  background-color: white;
+  width: 400px;
+  height: 500px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  box-shadow: 1px 0px 10px -3px rgba(0, 0, 0, 0.5);
+  border-radius: 6px;
+  margin-top: 5vh;
+  padding: 30px;
+}
+
+.form-login h1 {
+  justify-self: flex-start;
+  margin-bottom: 50px;
+}
+
+.form-group {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.form-login input {
+  width: 100%;
+  margin: 10px 0px;
+  padding: 10px;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+
+.btn-connexion {
+  width: 100%;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  background-color: #4caf50;
+  border-radius: 10px;
+}
+
+.btn-connexion {
+  background-color: #44c767;
+  border-radius: 28px;
+  border: 1px solid #18ab29;
+  display: inline-block;
+  cursor: pointer;
+  color: #ffffff;
+  font-family: Arial;
+  font-size: 17px;
+  text-decoration: none;
+  text-shadow: 0px 1px 0px #2f6627;
+}
+.btn-connexion:hover {
+  background-color: #5cbf2a;
+}
+.btn-connexion:active {
+  position: relative;
+  top: 1px;
+}
