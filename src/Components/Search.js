@@ -12,7 +12,7 @@ export default function Search (props) {
   const [currentInput, setCurrentInput] = useState('');
   const [currentSearch, setCurrentSearch] = useState('');
   const [advanced, setAdvanced] = useState(false);
-  const [mealTypes, setMealTypes] = useState([])
+  const [mealTypes, setMealTypes] = useState([]);
 
   const GetRecipes = () => {
     if (
@@ -44,14 +44,14 @@ export default function Search (props) {
   };
 
   const getMealTypes = () => {
-    const url='meal_types';
+    const url = 'meal_types';
     API.get(url)
-    .then((res) => res.data)
-    .then((data) => {
-      return data.data;
-    })
-    .then((data) => setMealTypes(data))
-  }
+      .then((res) => res.data)
+      .then((data) => {
+        return data.data;
+      })
+      .then((data) => setMealTypes(data));
+  };
 
   const handleValidate = () => {
     if (currentInput) {
@@ -116,37 +116,36 @@ export default function Search (props) {
               <p onClick={handleAdvanced}>Voir la recherche avancée</p>
               {advanced &&
                 <>
-                <p>Sélectionnez une catégorie de repas :</p>
-                {mealTypes.length === 0 ? <p>Chargement des types de plat</p> : (
-                  <form action=''>
-                    {mealTypes.map(mealType => {
-                    return (
-                      <>
-                      <input 
-                        type="checkbox"
-                        id={mealType.id}
-                        name={mealType.name}
-                        value={mealType.name} />
-                      <label for={mealType.name}>{mealType.name}</label>
-                      </>
-                    )
-                  
-                })}
-                </form>
-                )}
-                </>
-              }
+                  <p>Sélectionnez une catégorie de repas :</p>
+                  {mealTypes.length === 0 ? <p>Chargement des types de plat</p> : (
+                    <form action=''>
+                      {mealTypes.map(mealType => {
+                        return (
+                          <>
+                            <input
+                              type='checkbox'
+                              id={mealType.id}
+                              name={mealType.name}
+                              value={mealType.name}
+                            />
+                            <label for={mealType.name}>{mealType.name}</label>
+                          </>
+                        );
+                      })}
+                    </form>
+                  )}
+                </>}
             </div>
           </div>
           <button
-              className='btn-search'
-              onClick={() => {
-                handleValidate();
-              }}
-            >
-              <img src={Loupe} alt='search' />
+            className='btn-search'
+            onClick={() => {
+              handleValidate();
+            }}
+          >
+            <img src={Loupe} alt='search' />
               Rechercher
-            </button>
+          </button>
           <div className='result'>
             <div className='filter-recipes-container'>
               {recipes.length === 0 ? (
