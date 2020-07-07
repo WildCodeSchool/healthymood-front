@@ -11,13 +11,14 @@ const Rating = (props) => {
 
   useEffect(() => {
     API.get(`/ratings/${props.recipeInfo.id}`)
-      .then((res) => {
-        console.log(res);
-        setRating(...res.data.data, res.data.data.score);
+      .then((res) => res.data)
+      .then((data) => {
+        const scoring = data.data.score;
+        setRating(scoring);
       })
       .catch((err) => {
         console.error(err);
-        window.alert('Erreur lors de la notation0');
+        window.alert("Erreur lors de l'affichage de la notation");
       });
     // eslint-disable-next-line
   }, []);
@@ -36,7 +37,7 @@ const Rating = (props) => {
         })
         .catch((err) => {
           console.error(err);
-          window.alert('Erreur lors de la notation1');
+          window.alert('Erreur lors de la notation');
         });
     } else {
       API.patch(`/ratings/${props.recipeInfo.id}`, {
@@ -49,7 +50,7 @@ const Rating = (props) => {
         })
         .catch((err) => {
           console.error(err);
-          window.alert('Erreur lors de la notationE');
+          window.alert('Erreur lors de la notation');
         });
     }
   };
