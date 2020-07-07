@@ -65,7 +65,7 @@ export default function Search (props) {
       console.log(toPush);
     } else {
       for (let i = 0; i < array.length - 1; i++) {
-        toPush += array[i].id + '+';
+        toPush += array[i].id + ',';
       }
       toPush += array[array.length - 1].id;
       console.log(toPush);
@@ -86,10 +86,10 @@ export default function Search (props) {
     if (mealTypesFilters) {
       if (mealTypesFilters.length !== 0 && currentInput) {
         pushValue += '&meal_types=';
-        pushUrl(mealTypesFilters, pushValue);
+        pushValue = pushUrl(mealTypesFilters, pushValue);
       } else if (mealTypesFilters.length !== 0 && !currentInput) {
         pushValue += '?meal_types=';
-        pushUrl(mealTypesFilters, pushValue);
+        pushValue = pushUrl(mealTypesFilters, pushValue);
       }
     }
     history.push({
