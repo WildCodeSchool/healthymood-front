@@ -5,6 +5,7 @@ import SmallRecipe from './SmallRecipe';
 import API from '../Services/API';
 import { useHistory } from 'react-router-dom';
 import MealTypesSelect from './MealTypesSelect';
+import queryString from 'query-string';
 
 export const optionsMealTypes = [];
 
@@ -13,38 +14,20 @@ export default function Search (props) {
 
   const [recipes, setRecipes] = useState([]);
   const [currentInput, setCurrentInput] = useState('');
-  const [currentSearch, setCurrentSearch] = useState('');
+  const [currentSearch] = useState('');
   const [advanced, setAdvanced] = useState(false);
   const [mealTypes, setMealTypes] = useState([]);
   const [mealTypesFilters, setMealTypesFilters] = useState([]);
 
   const GetRecipes = () => {
-    if (
-      (!props.location.search && currentInput) ||
-      // cas où rien dans l'url mais mot dans l'input
-      (props.location.search !== currentInput && currentInput)
-      // cas où recherche dans l'url mais mot différent dans l'input : relance la recherche avec l'input
-    ) {
-      const url = `recipes/?search=${currentInput}`;
-      API.get(url)
-        .then((res) => res.data)
-        .then((data) => {
-          return data.data;
-        })
-        .then((data) => setRecipes(data));
-    } else if (props.location.search && !currentInput && props.location.search.includes('search')) {
-      // cas du rechargement de la page ou url rentrée direct mais que la recherche ne contient pas de mot clé
-      const search = decodeURIComponent(props.location.search.split('=')[1].split('&')[0]);
-      setCurrentInput(search);
-      setCurrentSearch(search);
-      const url = `recipes/?search=${props.location.search.split('=')[1]}`;
-      API.get(url)
-        .then((res) => res.data)
-        .then((data) => {
-          return data.data;
-        })
-        .then((data) => setRecipes(data));
-    }
+    const url = `recipes/?search=${currentInput}`;
+    API.get(url)
+      .then((res) => res.data)
+      .then((data) => {
+        return data.data;
+      })
+      .then((data) => setRecipes(data));
+    console.log(props.location);
   };
 
   const getMealTypes = async () => {
@@ -57,44 +40,31 @@ export default function Search (props) {
       .then((data) => setMealTypes(data));
   };
 
-  const pushUrl = (array, toPush) => {
-    console.log('rentre dans pushURL');
-    console.log(array);
-    if (array.length === 1) {
-      toPush += array[0].id;
-      console.log(toPush);
-    } else {
-      for (let i = 0; i < array.length - 1; i++) {
-        toPush += array[i].id + ',';
+  const pushUrl = () => {
+    const toPush = [];
+    const searchToPush = queryString.stringify(
+      { search: currentInput },
+      { skipEmptyString: true }
+    );
+    searchToPush && toPush.push(searchToPush);
+    const mealTypesToPush = queryString.stringify(
+      { meal_types: mealTypesFilters },
+      { arrayFormat: 'comma' },
+      { skipNull: true }
+    );
+    mealTypesToPush && toPush.push(mealTypesToPush);
+    if (toPush.length === 0) { history.push('/rechercher/'); } else if (toPush.length === 1) { history.push(`/rechercher/?${toPush[0]}`); } else {
+      let toPushMiddle = '';
+      for (let i = 1; i < toPush.length - 1; i++) {
+        toPushMiddle += `${toPush[i]}&`;
       }
-      toPush += array[array.length - 1].id;
-      console.log(toPush);
+      history.push(`/rechercher/?${toPush[0]}&${toPushMiddle}${toPush[toPush.length - 1]}`);
     }
-    return toPush;
   };
 
   const handleValidate = () => {
-    let pushValue = '';
-    if (currentInput) {
-      pushValue += `?search=${currentInput}`;
-      setCurrentSearch(currentInput);
-      GetRecipes();
-    } else {
-      pushValue += '';
-      setRecipes([]);
-    }
-    if (mealTypesFilters) {
-      if (mealTypesFilters.length !== 0 && currentInput) {
-        pushValue += '&meal_types=';
-        pushValue = pushUrl(mealTypesFilters, pushValue);
-      } else if (mealTypesFilters.length !== 0 && !currentInput) {
-        pushValue += '?meal_types=';
-        pushValue = pushUrl(mealTypesFilters, pushValue);
-      }
-    }
-    history.push({
-      pathname: `/rechercher/${pushValue}`
-    });
+    pushUrl();
+    GetRecipes();
   };
 
   const handleChange = (event) => {
@@ -111,7 +81,6 @@ export default function Search (props) {
   const handleAdvanced = (event) => {
     if (!advanced) {
       setAdvanced(true);
-      console.log(mealTypes);
       mealTypes.map(mealType => {
         return (
           optionsMealTypes.push({ value: `${mealType.name}`, label: `${mealType.name}`, id: mealType.id })
@@ -124,7 +93,8 @@ export default function Search (props) {
   };
 
   const handleMealTypesFilters = (e) => {
-    setMealTypesFilters(e);
+    const mealTypesFilters = e.map(mealtype => mealtype.id);
+    setMealTypesFilters(mealTypesFilters);
   };
 
   useEffect(() => {
