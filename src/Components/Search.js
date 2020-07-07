@@ -20,6 +20,16 @@ export default function Search (props) {
   const [mealTypesFilters, setMealTypesFilters] = useState([]);
 
   const GetRecipes = () => {
+    const queries = [];
+    const query = queryString.parse(props.location.search);
+    const search = { search: query.search };
+    const meal_types = { meal_types: query.meal_types }; // eslint-disable-line
+    const ingredients = { ingredients: query.ingredients };
+    queries.push(search, meal_types, ingredients);
+    console.log(queries);
+    const filteredQueries = queries.filter((query) => query.key !== undefined);
+    console.log(filteredQueries);
+
     const url = `recipes/?search=${currentInput}`;
     API.get(url)
       .then((res) => res.data)
@@ -27,7 +37,6 @@ export default function Search (props) {
         return data.data;
       })
       .then((data) => setRecipes(data));
-    console.log(props.location);
   };
 
   const getMealTypes = async () => {
