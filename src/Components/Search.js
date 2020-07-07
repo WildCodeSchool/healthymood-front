@@ -58,20 +58,20 @@ export default function Search (props) {
   };
 
   const pushUrl = (array, toPush) => {
-    console.log('rentre dans pushURL')
-    console.log(array)
+    console.log('rentre dans pushURL');
+    console.log(array);
     if (array.length === 1) {
       toPush += array[0].id;
-      console.log(toPush)
+      console.log(toPush);
     } else {
       for (let i = 0; i < array.length - 1; i++) {
         toPush += array[i].id + '+';
       }
       toPush += array[array.length - 1].id;
-      console.log(toPush)
+      console.log(toPush);
     }
     return toPush;
-  }
+  };
 
   const handleValidate = () => {
     let pushValue = '';
@@ -86,10 +86,10 @@ export default function Search (props) {
     if (mealTypesFilters) {
       if (mealTypesFilters.length !== 0 && currentInput) {
         pushValue += '&meal_types=';
-        pushUrl(mealTypesFilters, pushValue)
+        pushUrl(mealTypesFilters, pushValue);
       } else if (mealTypesFilters.length !== 0 && !currentInput) {
         pushValue += '?meal_types=';
-        pushUrl(mealTypesFilters, pushValue)
+        pushUrl(mealTypesFilters, pushValue);
       }
     }
     history.push({
