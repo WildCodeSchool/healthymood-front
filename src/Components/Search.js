@@ -32,9 +32,9 @@ export default function Search (props) {
           return data.data;
         })
         .then((data) => setRecipes(data));
-    } else if (props.location.search && !currentInput) {
-      // cas du rechargement de la page ou url rentrée direct
-      const search = decodeURIComponent(props.location.search.split('=')[1]);
+    } else if (props.location.search && !currentInput && props.location.search.includes('search')) {
+      // cas du rechargement de la page ou url rentrée direct mais que la recherche ne contient pas de mot clé
+      const search = decodeURIComponent(props.location.search.split('=')[1].split('&')[0]);
       setCurrentInput(search);
       setCurrentSearch(search);
       const url = `recipes/?search=${props.location.search.split('=')[1]}`;
@@ -44,7 +44,7 @@ export default function Search (props) {
           return data.data;
         })
         .then((data) => setRecipes(data));
-    }
+    } 
   };
 
   const getMealTypes = async () => {
