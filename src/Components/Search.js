@@ -60,20 +60,30 @@ export default function Search (props) {
   const handleValidate = () => {
     let pushValue = '';
     if (currentInput) {
-      pushValue += `/?search=${currentInput}`
+      pushValue += `?search=${currentInput}`;
       setCurrentSearch(currentInput);
       GetRecipes();
     } else {
-      pushValue += ``
+      pushValue += '';
       setRecipes([]);
     }
-    if (mealTypesFilters) {
-      pushValue += `/?meal_types=`
+    if (mealTypesFilters.length !== 0 && currentInput) {
+      pushValue += '&meal_types=';
       if (mealTypesFilters.length === 1) {
-        pushValue = mealTypesFilters[0].id;
+        pushValue += mealTypesFilters[0].id;
       } else {
         for (let i = 0; i < mealTypesFilters.length - 1; i++) {
-          pushValue += mealTypesFilters[i].id + '&&';
+          pushValue += mealTypesFilters[i].id + '+';
+        }
+        pushValue += mealTypesFilters[mealTypesFilters.length - 1].id;
+      }
+    } else if (mealTypesFilters.length !== 0 && !currentInput) {
+      pushValue += '?meal_types=';
+      if (mealTypesFilters.length === 1) {
+        pushValue += mealTypesFilters[0].id;
+      } else {
+        for (let i = 0; i < mealTypesFilters.length - 1; i++) {
+          pushValue += mealTypesFilters[i].id + '+';
         }
         pushValue += mealTypesFilters[mealTypesFilters.length - 1].id;
       }
