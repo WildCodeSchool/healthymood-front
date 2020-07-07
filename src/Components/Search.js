@@ -44,7 +44,7 @@ export default function Search (props) {
           return data.data;
         })
         .then((data) => setRecipes(data));
-    } 
+    }
   };
 
   const getMealTypes = async () => {
@@ -57,6 +57,22 @@ export default function Search (props) {
       .then((data) => setMealTypes(data));
   };
 
+  const pushUrl = (array, toPush) => {
+    console.log('rentre dans pushURL')
+    console.log(array)
+    if (array.length === 1) {
+      toPush += array[0].id;
+      console.log(toPush)
+    } else {
+      for (let i = 0; i < array.length - 1; i++) {
+        toPush += array[i].id + '+';
+      }
+      toPush += array[array.length - 1].id;
+      console.log(toPush)
+    }
+    return toPush;
+  }
+
   const handleValidate = () => {
     let pushValue = '';
     if (currentInput) {
@@ -67,25 +83,13 @@ export default function Search (props) {
       pushValue += '';
       setRecipes([]);
     }
-    if (mealTypesFilters.length !== 0 && currentInput) {
-      pushValue += '&meal_types=';
-      if (mealTypesFilters.length === 1) {
-        pushValue += mealTypesFilters[0].id;
-      } else {
-        for (let i = 0; i < mealTypesFilters.length - 1; i++) {
-          pushValue += mealTypesFilters[i].id + '+';
-        }
-        pushValue += mealTypesFilters[mealTypesFilters.length - 1].id;
-      }
-    } else if (mealTypesFilters.length !== 0 && !currentInput) {
-      pushValue += '?meal_types=';
-      if (mealTypesFilters.length === 1) {
-        pushValue += mealTypesFilters[0].id;
-      } else {
-        for (let i = 0; i < mealTypesFilters.length - 1; i++) {
-          pushValue += mealTypesFilters[i].id + '+';
-        }
-        pushValue += mealTypesFilters[mealTypesFilters.length - 1].id;
+    if (mealTypesFilters) {
+      if (mealTypesFilters.length !== 0 && currentInput) {
+        pushValue += '&meal_types=';
+        pushUrl(mealTypesFilters, pushValue)
+      } else if (mealTypesFilters.length !== 0 && !currentInput) {
+        pushValue += '?meal_types=';
+        pushUrl(mealTypesFilters, pushValue)
       }
     }
     history.push({
