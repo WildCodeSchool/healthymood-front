@@ -20,15 +20,29 @@ export default function Search (props) {
   const [advanced, setAdvanced] = useState(false);
   const [mealTypes, setMealTypes] = useState([]);
   const [mealTypesFilters, setMealTypesFilters] = useState([]);
+  // const [currentMealTypesFilters, setCurrentMealTypesFilters] = useState([])
   const [ingredients, setIngredients] = useState([]);
   const [ingredientsFilters, setIngredientsFilters] = useState([]);
 
   const getRecipes = () => {
-    const query = queryString.parse(props.location.search);
-    const { search } = query;
+    const query = queryString.parse(props.location.search, { arrayFormat: 'bracket' });
+    const { search, meal_types } = query; // eslint-disable-line
     console.log(query);
     console.log(props.location.search);
-    console.log(search);
+    console.log(ingredients);
+    console.log(mealTypes);
+    if (search) {
+      setCurrentInput(search);
+    }
+    if (meal_types) { // eslint-disable-line
+      setAdvanced(true);
+      console.log(meal_types);
+      const meal_types_int = meal_types.map(mealtype => parseInt(mealtype)); // eslint-disable-line
+      console.log(meal_types_int.indexOf(1));
+      const currentMealTypesFilters = mealTypes.filter(mealType => meal_types_int.indexOf(mealType.id) !== -1);
+      console.log(mealTypes);
+      console.log(currentMealTypesFilters);
+    }
 
     const url = `recipes/${props.location.search}`;
     API.get(url)
@@ -69,14 +83,14 @@ export default function Search (props) {
 
     const mealTypesToPush = queryString.stringify(
       { meal_types: mealTypesFilters },
-      { arrayFormat: 'comma' },
+      { arrayFormat: 'bracket' },
       { skipNull: true }
     );
     mealTypesToPush && toPush.push(mealTypesToPush);
 
     const ingredientsToPush = queryString.stringify(
       { ingredients: ingredientsFilters },
-      { arrayFormat: 'comma' },
+      { arrayFormat: 'bracket' },
       { skipNull: true }
     );
     ingredientsToPush && toPush.push(ingredientsToPush);
@@ -106,7 +120,7 @@ export default function Search (props) {
     }
   };
 
-  const handleAdvanced = (event) => {
+  const handleAdvanced = () => {
     if (!advanced) {
       setAdvanced(true);
       mealTypes.map(mealType => {
@@ -136,10 +150,10 @@ export default function Search (props) {
   };
 
   useEffect(() => {
-    getRecipes();
     getMealTypes();
     getIngredients();
-  }, []); // eslint-disable-line
+    getRecipes();
+  }, [g]); // eslint-disable-line
 
   return (
     <div className='recherche-container'>
