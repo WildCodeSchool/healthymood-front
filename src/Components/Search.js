@@ -21,7 +21,7 @@ export default function Search (props) {
   const [mealTypes, setMealTypes] = useState([]);
   const [mealTypesFilters, setMealTypesFilters] = useState([]);
   // const [currentMealTypesFilters, setCurrentMealTypesFilters] = useState([])
-  const [ingredients, setIngredients] = useState([]);
+  const [allIngredients, setAllIngredients] = useState([]);
   const [ingredientsFilters, setIngredientsFilters] = useState([]);
 
   const getRecipes = () => {
@@ -55,7 +55,7 @@ export default function Search (props) {
         return data.data;
       })
       .then((data) => {
-        setIngredients(data);
+        setAllIngredients(data);
         return data;
       });
   };
@@ -115,7 +115,7 @@ export default function Search (props) {
           optionsMealTypes.push({ value: `${mealType.name}`, label: `${mealType.name}`, id: mealType.id })
         );
       });
-      ingredients.map(ingredient => {
+      allIngredients.map(ingredient => {
         return (
           optionsIngredients.push({ value: `${ingredient.name}`, label: `${ingredient.name}`, id: ingredient.id })
         );
@@ -136,19 +136,19 @@ export default function Search (props) {
     setIngredientsFilters(ingredientsFilters);
   };
 
-  const populateForm = (mealTypes, ingredients) => {
+  const populateForm = (mealTypes, allIngredients) => {
     mealTypes.map(mealType => {
       return (
         optionsMealTypes.push({ value: `${mealType.name}`, label: `${mealType.name}`, id: mealType.id })
       );
     });
-    ingredients.map(ingredient => {
+    allIngredients.map(ingredient => {
       return (
         optionsIngredients.push({ value: `${ingredient.name}`, label: `${ingredient.name}`, id: ingredient.id })
       );
     });
     const query = queryString.parse(props.location.search, { arrayFormat: 'bracket' });
-    const { search, meal_types } = query; // eslint-disable-line
+    const { search, meal_types, ingredients } = query; // eslint-disable-line
     console.log(query);
     console.log(props.location.search);
     console.log(ingredients);
@@ -165,13 +165,20 @@ export default function Search (props) {
       console.log(mealTypes);
       console.log(currentMealTypesFilters);
     }
+    if (ingredients) {
+      setAdvanced(true);
+      console.log(ingredients);
+      const ingredients_int = ingredients.map(ingredient => parseInt(ingredient)); // eslint-disable-line
+      const currentIngredientsFilters = allIngredients.filter(ingredient => ingredients_int.indexOf(ingredient.id) !== -1);
+      console.log(currentIngredientsFilters);
+    }
   };
 
   useEffect(() => {
     Promise.all([getMealTypes(), getIngredients()])
-      .then(([mealTypes, ingredients]) => {
+      .then(([mealTypes, allIngredients]) => {
         console.log(mealTypes);
-        populateForm(mealTypes, ingredients);
+        populateForm(mealTypes, allIngredients);
       });
 
 }, []) // eslint-disable-line
