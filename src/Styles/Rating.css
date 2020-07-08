@@ -1,6 +1,6 @@
 .star {
   cursor: pointer;
-  transition: color 200ms;
+  transition: color 300ms;
 }
 
 input[type="radio"] {
