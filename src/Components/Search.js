@@ -79,7 +79,7 @@ export default function Search (props) {
       { arrayFormat: 'comma' },
       { skipNull: true }
     );
-    ingredientsToPush && toPush.push(ingredientsToPush)
+    ingredientsToPush && toPush.push(ingredientsToPush);
 
     if (toPush.length === 0) { history.push('/rechercher/'); } else if (toPush.length === 1) { history.push(`/rechercher/?${toPush[0]}`); } else {
       let toPushMiddle = '';
@@ -116,8 +116,8 @@ export default function Search (props) {
       });
       ingredients.map(ingredient => {
         return (
-          optionsIngredients.push({ value: `${ingredient.name}`, label: `${ingredient.name}`, id: ingredient.id})
-        )
+          optionsIngredients.push({ value: `${ingredient.name}`, label: `${ingredient.name}`, id: ingredient.id })
+        );
       });
       console.log(optionsMealTypes);
     } else {
@@ -132,8 +132,8 @@ export default function Search (props) {
 
   const handleIngredientsFilters = (e) => {
     const ingredientsFilters = e.map(ingredient => ingredient.id);
-    setIngredientsFilters(ingredientsFilters)
-  }
+    setIngredientsFilters(ingredientsFilters);
+  };
 
   useEffect(() => {
     getRecipes();
