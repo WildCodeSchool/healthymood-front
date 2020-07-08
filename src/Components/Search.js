@@ -42,8 +42,8 @@ export default function Search (props) {
         return data.data;
       })
       .then((data) => {
-        setMealTypes(data)
-        return data
+        setMealTypes(data);
+        return data;
       });
   };
 
@@ -54,9 +54,9 @@ export default function Search (props) {
       .then((data) => {
         return data.data;
       })
-      .then((data) => { 
-        setIngredients(data)
-        return data
+      .then((data) => {
+        setIngredients(data);
+        return data;
       });
   };
 
@@ -165,15 +165,15 @@ export default function Search (props) {
       console.log(mealTypes);
       console.log(currentMealTypesFilters);
     }
-  }
+  };
 
-useEffect(() => {
-  Promise.all([getMealTypes(), getIngredients()])
-  .then(([mealTypes, ingredients]) => {
-    console.log(mealTypes)
-    populateForm(mealTypes, ingredients)
-  });
-  ;
+  useEffect(() => {
+    Promise.all([getMealTypes(), getIngredients()])
+      .then(([mealTypes, ingredients]) => {
+        console.log(mealTypes);
+        populateForm(mealTypes, ingredients);
+      });
+
 }, []) // eslint-disable-line
 
   useEffect(() => {
