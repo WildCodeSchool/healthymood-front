@@ -18,11 +18,12 @@ export default function Search (props) {
   const [currentInput, setCurrentInput] = useState('');
   const [currentSearch] = useState('');
   const [advanced, setAdvanced] = useState(false);
-  const [mealTypes, setMealTypes] = useState([]);
+  const [allMealTypes, setAllMealTypes] = useState([]);
   const [mealTypesFilters, setMealTypesFilters] = useState([]);
-  // const [currentMealTypesFilters, setCurrentMealTypesFilters] = useState([])
+  const [currentMealTypesFilters, setCurrentMealTypesFilters] = useState([]);
   const [allIngredients, setAllIngredients] = useState([]);
   const [ingredientsFilters, setIngredientsFilters] = useState([]);
+  const [currentIngredientsFilters, setCurrentIngredientsFilters] = useState([]);
 
   const getRecipes = () => {
     const url = `recipes/${props.location.search}`;
@@ -34,7 +35,7 @@ export default function Search (props) {
       .then((data) => setRecipes(data));
   };
 
-  const getMealTypes = async () => {
+  const getAllMealTypes = async () => {
     const url = 'meal_types';
     return API.get(url)
       .then((res) => res.data)
@@ -42,12 +43,12 @@ export default function Search (props) {
         return data.data;
       })
       .then((data) => {
-        setMealTypes(data);
+        setAllMealTypes(data);
         return data;
       });
   };
 
-  const getIngredients = async () => {
+  const getAllIngredients = async () => {
     const url = 'ingredients';
     return API.get(url)
       .then((res) => res.data)
@@ -110,7 +111,7 @@ export default function Search (props) {
   const handleAdvanced = () => {
     if (!advanced) {
       setAdvanced(true);
-      mealTypes.map(mealType => {
+      allMealTypes.map(mealType => {
         return (
           optionsMealTypes.push({ value: `${mealType.name}`, label: `${mealType.name}`, id: mealType.id })
         );
@@ -136,8 +137,8 @@ export default function Search (props) {
     setIngredientsFilters(ingredientsFilters);
   };
 
-  const populateForm = (mealTypes, allIngredients) => {
-    mealTypes.map(mealType => {
+  const populateForm = (allMealTypes, allIngredients) => {
+    allMealTypes.map(mealType => {
       return (
         optionsMealTypes.push({ value: `${mealType.name}`, label: `${mealType.name}`, id: mealType.id })
       );
@@ -152,7 +153,7 @@ export default function Search (props) {
     console.log(query);
     console.log(props.location.search);
     console.log(ingredients);
-    console.log(mealTypes);
+    console.log(meal_types);
     if (search) {
       setCurrentInput(search);
     }
@@ -160,25 +161,25 @@ export default function Search (props) {
       setAdvanced(true);
       console.log(meal_types);
       const meal_types_int = meal_types.map(mealtype => parseInt(mealtype)); // eslint-disable-line
-      console.log(meal_types_int.indexOf(1));
-      const currentMealTypesFilters = mealTypes.filter(mealType => meal_types_int.indexOf(mealType.id) !== -1);
-      console.log(mealTypes);
-      console.log(currentMealTypesFilters);
+      const currentMealTypesFilters = allMealTypes.filter(mealType => meal_types_int.indexOf(mealType.id) !== -1);
+      setCurrentMealTypesFilters(currentMealTypesFilters);
     }
     if (ingredients) {
       setAdvanced(true);
       console.log(ingredients);
       const ingredients_int = ingredients.map(ingredient => parseInt(ingredient)); // eslint-disable-line
       const currentIngredientsFilters = allIngredients.filter(ingredient => ingredients_int.indexOf(ingredient.id) !== -1);
-      console.log(currentIngredientsFilters);
+      setCurrentIngredientsFilters(currentIngredientsFilters);
     }
+    console.log(currentIngredientsFilters);
+    console.log(currentMealTypesFilters);
   };
 
   useEffect(() => {
-    Promise.all([getMealTypes(), getIngredients()])
-      .then(([mealTypes, allIngredients]) => {
-        console.log(mealTypes);
-        populateForm(mealTypes, allIngredients);
+    Promise.all([getAllMealTypes(), getAllIngredients()])
+      .then(([allMealTypes, allIngredients]) => {
+        console.log(allMealTypes);
+        populateForm(allMealTypes, allIngredients);
       });
 
 }, []) // eslint-disable-line
