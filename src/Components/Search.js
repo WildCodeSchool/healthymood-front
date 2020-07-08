@@ -25,25 +25,6 @@ export default function Search (props) {
   const [ingredientsFilters, setIngredientsFilters] = useState([]);
 
   const getRecipes = () => {
-    const query = queryString.parse(props.location.search, { arrayFormat: 'bracket' });
-    const { search, meal_types } = query; // eslint-disable-line
-    console.log(query);
-    console.log(props.location.search);
-    console.log(ingredients);
-    console.log(mealTypes);
-    if (search) {
-      setCurrentInput(search);
-    }
-    if (meal_types) { // eslint-disable-line
-      setAdvanced(true);
-      console.log(meal_types);
-      const meal_types_int = meal_types.map(mealtype => parseInt(mealtype)); // eslint-disable-line
-      console.log(meal_types_int.indexOf(1));
-      const currentMealTypesFilters = mealTypes.filter(mealType => meal_types_int.indexOf(mealType.id) !== -1);
-      console.log(mealTypes);
-      console.log(currentMealTypesFilters);
-    }
-
     const url = `recipes/${props.location.search}`;
     API.get(url)
       .then((res) => res.data)
@@ -53,24 +34,30 @@ export default function Search (props) {
       .then((data) => setRecipes(data));
   };
 
-  const getMealTypes = () => {
+  const getMealTypes = async () => {
     const url = 'meal_types';
-    API.get(url)
+    return API.get(url)
       .then((res) => res.data)
       .then((data) => {
         return data.data;
       })
-      .then((data) => setMealTypes(data));
+      .then((data) => {
+        setMealTypes(data)
+        return data
+      });
   };
 
-  const getIngredients = () => {
+  const getIngredients = async () => {
     const url = 'ingredients';
-    API.get(url)
+    return API.get(url)
       .then((res) => res.data)
       .then((data) => {
         return data.data;
       })
-      .then((data) => setIngredients(data));
+      .then((data) => { 
+        setIngredients(data)
+        return data
+      });
   };
 
   const pushUrl = () => {
@@ -149,11 +136,49 @@ export default function Search (props) {
     setIngredientsFilters(ingredientsFilters);
   };
 
+  const populateForm = (mealTypes, ingredients) => {
+    mealTypes.map(mealType => {
+      return (
+        optionsMealTypes.push({ value: `${mealType.name}`, label: `${mealType.name}`, id: mealType.id })
+      );
+    });
+    ingredients.map(ingredient => {
+      return (
+        optionsIngredients.push({ value: `${ingredient.name}`, label: `${ingredient.name}`, id: ingredient.id })
+      );
+    });
+    const query = queryString.parse(props.location.search, { arrayFormat: 'bracket' });
+    const { search, meal_types } = query; // eslint-disable-line
+    console.log(query);
+    console.log(props.location.search);
+    console.log(ingredients);
+    console.log(mealTypes);
+    if (search) {
+      setCurrentInput(search);
+    }
+    if (meal_types) { // eslint-disable-line
+      setAdvanced(true);
+      console.log(meal_types);
+      const meal_types_int = meal_types.map(mealtype => parseInt(mealtype)); // eslint-disable-line
+      console.log(meal_types_int.indexOf(1));
+      const currentMealTypesFilters = mealTypes.filter(mealType => meal_types_int.indexOf(mealType.id) !== -1);
+      console.log(mealTypes);
+      console.log(currentMealTypesFilters);
+    }
+  }
+
+useEffect(() => {
+  Promise.all([getMealTypes(), getIngredients()])
+  .then(([mealTypes, ingredients]) => {
+    console.log(mealTypes)
+    populateForm(mealTypes, ingredients)
+  });
+  ;
+}, []) // eslint-disable-line
+
   useEffect(() => {
-    getMealTypes();
-    getIngredients();
     getRecipes();
-  }, [g]); // eslint-disable-line
+  }, []); // eslint-disable-line
 
   return (
     <div className='recherche-container'>
