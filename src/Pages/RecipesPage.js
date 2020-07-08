@@ -1,22 +1,28 @@
-import React from 'react';
-import SmallRecipe from '../Components/SmallRecipe';
-import recipesInfo from '../recipesInfo.json';
-import '../Styles/RecipesPage.css';
+import React, { useEffect, useState } from "react";
+import SmallRecipe from "../Components/SmallRecipe";
+import "../Styles/RecipesPage.css";
+import API from "../Services/API";
+const RecipesPage = () => {
+  const [recipe, setRecipe] = useState([]);
 
-class RecipesPage extends React.Component {
-  render () {
-    return (
-      <>
-        {recipesInfo.recipe.map((r) => {
-          return (
-            <div key={r.id} className='recipes-page-container'>
-              <SmallRecipe r={r} />
-            </div>
-          );
-        })}
-      </>
-    );
-  }
-}
+  useEffect(() => {
+    API.get("/recipes")
+      .then((res) => res.data)
+      .then((data) => {
+        setRecipe(data.data);
+      });
+  }, []);
+  return (
+    <>
+      {recipe.map((r) => {
+        return (
+          <div key={r.id} className="recipes-page-container">
+            <SmallRecipe r={r} />
+          </div>
+        );
+      })}
+    </>
+  );
+};
 
 export default RecipesPage;
