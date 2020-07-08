@@ -17,6 +17,7 @@ export default function LoginPage (props) {
       .then((data) => {
         setToken(data.token);
         setIsConnected(true);
+
         history.push('/');
       })
       .catch((err) => {
