@@ -111,16 +111,20 @@ export default function Search (props) {
   const handleAdvanced = () => {
     if (!advanced) {
       setAdvanced(true);
-      allMealTypes.map(mealType => {
-        return (
-          optionsMealTypes.push({ value: `${mealType.name}`, label: `${mealType.name}`, id: mealType.id })
-        );
-      });
-      allIngredients.map(ingredient => {
-        return (
-          optionsIngredients.push({ value: `${ingredient.name}`, label: `${ingredient.name}`, id: ingredient.id })
-        );
-      });
+      if (optionsMealTypes.length === 0) {
+        allMealTypes.map(mealType => {
+          return (
+            optionsMealTypes.push({ value: `${mealType.name}`, label: `${mealType.name}`, id: mealType.id })
+          );
+        });
+      }
+      if (optionsIngredients.length === 0) {
+        allIngredients.map(ingredient => {
+          return (
+            optionsIngredients.push({ value: `${ingredient.name}`, label: `${ingredient.name}`, id: ingredient.id })
+          );
+        });
+      }
       console.log(optionsMealTypes);
     } else {
       setAdvanced(false);
@@ -138,16 +142,22 @@ export default function Search (props) {
   };
 
   const populateForm = (allMealTypes, allIngredients) => {
-    allMealTypes.map(mealType => {
-      return (
-        optionsMealTypes.push({ value: `${mealType.name}`, label: `${mealType.name}`, id: mealType.id })
-      );
-    });
-    allIngredients.map(ingredient => {
-      return (
-        optionsIngredients.push({ value: `${ingredient.name}`, label: `${ingredient.name}`, id: ingredient.id })
-      );
-    });
+    if (optionsMealTypes.length === 0) {
+      allMealTypes.map(mealType => {
+        return (
+          optionsMealTypes.push({ value: `${mealType.name}`, label: `${mealType.name}`, id: mealType.id })
+        );
+      });
+    }
+
+    if (optionsIngredients.length === 0) {
+      allIngredients.map(ingredient => {
+        return (
+          optionsIngredients.push({ value: `${ingredient.name}`, label: `${ingredient.name}`, id: ingredient.id })
+        );
+      });
+    }
+
     const query = queryString.parse(props.location.search, { arrayFormat: 'bracket' });
     const { search, meal_types, ingredients } = query; // eslint-disable-line
     console.log(query);
@@ -158,19 +168,30 @@ export default function Search (props) {
       setCurrentInput(search);
     }
     if (meal_types) { // eslint-disable-line
+      const currentMealTypesFilters = [];
       setAdvanced(true);
       console.log(meal_types);
       const meal_types_int = meal_types.map(mealtype => parseInt(mealtype)); // eslint-disable-line
-      const currentMealTypesFilters = allMealTypes.filter(mealType => meal_types_int.indexOf(mealType.id) !== -1);
+      allMealTypes.filter(mealType => meal_types_int.indexOf(mealType.id) !== -1).map(mealType => {
+        return (
+          currentMealTypesFilters.push({ value: `${mealType.name}`, label: `${mealType.name}`, id: mealType.id })
+        );
+      });
       setCurrentMealTypesFilters(currentMealTypesFilters);
     }
     if (ingredients) {
+      const currentIngredientsFilters = [];
       setAdvanced(true);
       console.log(ingredients);
       const ingredients_int = ingredients.map(ingredient => parseInt(ingredient)); // eslint-disable-line
-      const currentIngredientsFilters = allIngredients.filter(ingredient => ingredients_int.indexOf(ingredient.id) !== -1);
+      allIngredients.filter(ingredient => ingredients_int.indexOf(ingredient.id) !== -1).map(ingredient => {
+        return (
+          currentIngredientsFilters.push({ value: `${ingredient.name}`, label: `${ingredient.name}`, id: ingredient.id })
+        );
+      });
       setCurrentIngredientsFilters(currentIngredientsFilters);
     }
+    console.log(currentInput);
     console.log(currentIngredientsFilters);
     console.log(currentMealTypesFilters);
   };
@@ -213,9 +234,9 @@ export default function Search (props) {
               {advanced &&
                 <>
                   <p>Sélectionnez des catégories de repas :</p>
-                  <MealTypesSelect handleMealTypesFilters={handleMealTypesFilters} />
+                  <MealTypesSelect handleMealTypesFilters={handleMealTypesFilters} value={currentMealTypesFilters} />
                   <p>Sélectionnez des ingrédients :</p>
-                  <IngredientsSelect handleIngredientsFilters={handleIngredientsFilters} />
+                  <IngredientsSelect handleIngredientsFilters={handleIngredientsFilters} value={currentIngredientsFilters} />
                 </>}
             </div>
           </div>
