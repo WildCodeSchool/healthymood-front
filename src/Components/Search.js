@@ -35,7 +35,7 @@ export default function Search (props) {
       .then((data) => setRecipes(data));
   };
 
-  const getAllMealTypes = async () => {
+  /*   const getAllMealTypes =  () => {
     const url = 'meal_types';
     return API.get(url)
       .then((res) => res.data)
@@ -47,8 +47,16 @@ export default function Search (props) {
         return data;
       });
   };
+ */
+  const getAllMealTypes = async () => {
+    const url = 'meal_types';
+    const result = await API.get(url);
+    const data = await result.data.data;
+    setAllMealTypes(data);
+    return data;
+  };
 
-  const getAllIngredients = async () => {
+  const getAllIngredients = () => {
     const url = 'ingredients';
     return API.get(url)
       .then((res) => res.data)
