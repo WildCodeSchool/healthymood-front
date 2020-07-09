@@ -23,14 +23,46 @@ export default class MealTypesSelect extends Component {
     return inputValue;
   };
 
+  handleInputChange = (inputValue, { action }) => {
+    console.log(inputValue, action);
+    let menuIsOpen;
+    switch (action) {
+      case 'input-change':
+        this.setState({ inputValue });
+        break;
+      case 'menu-close':
+        console.log(this.state.inputValue);
+        if (this.state.inputValue) {
+          menuIsOpen = true;
+        }
+        this.setState({
+          menuIsOpen
+        });
+        break;
+
+      default:
+    }
+  }
+
   render () {
+    const { inputValue, menuIsOpen } = this.state;
+    const defaultValue = this.props.value;
+    console.log(defaultValue);
+    console.log(optionsMealTypes);
     return (
       <AsyncSelect
         isMulti
+        defaultValue={optionsMealTypes.filter(option => defaultValue.map(value => value.id).includes(option.id))}
+        isClearable
+        isSearchable
         cacheOptions
         defaultOptions
+        inputValue={inputValue}
+        onInputChange={this.handleInputChange}
+        name='color'
         loadOptions={promiseOptions}
         onChange={(e) => { this.props.handleMealTypesFilters(e); }}
+        menuIsOpen={menuIsOpen}
       />
     );
   }

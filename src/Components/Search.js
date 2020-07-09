@@ -140,8 +140,12 @@ export default function Search (props) {
   };
 
   const handleMealTypesFilters = (e) => {
-    const mealTypesFilters = e.map(mealtype => mealtype.id);
-    setMealTypesFilters(mealTypesFilters);
+    if (e) {
+      const mealTypesFilters = e.map(mealtype => mealtype.id);
+      setMealTypesFilters(mealTypesFilters);
+    } else {
+      setMealTypesFilters([]);
+    }
   };
 
   const handleIngredientsFilters = (e) => {
