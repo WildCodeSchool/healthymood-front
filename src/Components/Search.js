@@ -4,225 +4,107 @@ import Loupe from '../Images/glass.png';
 import SmallRecipe from './SmallRecipe';
 import API from '../Services/API';
 import { useHistory } from 'react-router-dom';
-import MealTypesSelect from './MealTypesSelect';
-import IngredientsSelect from './IngredientsSelect';
 import queryString from 'query-string';
-
-export const optionsMealTypes = [];
-export const optionsIngredients = [];
+import { TagSelect } from './TagSelect';
 
 export default function Search (props) {
   const history = useHistory();
 
   const [recipes, setRecipes] = useState([]);
-  const [currentInput, setCurrentInput] = useState('');
-  const [currentSearch] = useState('');
-  const [advanced, setAdvanced] = useState(false);
+  const [searchInputText, setSearchInputText] = useState('');
+  const [showAdvancedSearch, setshowAdvancedSearch] = useState(true);
   const [allMealTypes, setAllMealTypes] = useState([]);
-  const [mealTypesFilters, setMealTypesFilters] = useState([]);
-  const [currentMealTypesFilters, setCurrentMealTypesFilters] = useState([]);
   const [allIngredients, setAllIngredients] = useState([]);
-  const [ingredientsFilters, setIngredientsFilters] = useState([]);
-  const [currentIngredientsFilters, setCurrentIngredientsFilters] = useState([]);
+  const [chosenIngredients, setChosenIngredients] = useState([]);
+  const [chosenMealTypes, setChosenMealTypes] = useState([]);
 
-  const getRecipes = () => {
-    const url = `recipes/${props.location.search}`;
-    API.get(url)
-      .then((res) => res.data)
-      .then((data) => {
-        return data.data;
-      })
-      .then((data) => setRecipes(data));
-  };
-
-  /*   const getAllMealTypes =  () => {
-    const url = 'meal_types';
-    return API.get(url)
-      .then((res) => res.data)
-      .then((data) => {
-        return data.data;
-      })
-      .then((data) => {
-        setAllMealTypes(data);
-        return data;
-      });
-  };
- */
-  const getAllMealTypes = async () => {
-    const url = 'meal_types';
-    const result = await API.get(url);
-    const data = await result.data.data;
-    setAllMealTypes(data);
+  const getResourceCollection = async (url) => {
+    let data = [];
+    try {
+      const result = await API.get(url);
+      data = await result.data.data;
+    } catch (err) {
+      console.error(err);
+    }
     return data;
   };
 
+  const getRecipes = async () => {
+    getResourceCollection(`recipes/${props.location.search}`).then(recipes => setRecipes(recipes));
+  };
+
+  const tagToOption = tag => ({ value: tag.id, label: tag.name });
+
+  const getAllMealTypes = () => {
+    return getResourceCollection('meal_types').then(tags => {
+      const options = tags.map(tagToOption);
+      setAllMealTypes(options);
+      return options;
+    });
+  };
+
   const getAllIngredients = () => {
-    const url = 'ingredients';
-    return API.get(url)
-      .then((res) => res.data)
-      .then((data) => {
-        return data.data;
-      })
-      .then((data) => {
-        setAllIngredients(data);
-        return data;
-      });
+    return getResourceCollection('ingredients').then(tags => {
+      const options = tags.map(tagToOption);
+      setAllIngredients(options);
+      return options;
+    });
   };
 
-  const pushUrl = () => {
-    const toPush = [];
-    const searchToPush = queryString.stringify(
-      { search: currentInput },
-      { skipEmptyString: true }
+  const syncInputValuesWithUrl = () => {
+    const query = queryString.stringify(
+      {
+        search: searchInputText === '' ? undefined : searchInputText, // for some unknown reason, skipEmptyString option does not work
+        ingredients: chosenIngredients.map(i => i.value),
+        meal_types: chosenMealTypes.map(i => i.value)
+      },
+      { arrayFormat: 'bracket' }
     );
-    searchToPush && toPush.push(searchToPush);
-
-    const mealTypesToPush = queryString.stringify(
-      { meal_types: mealTypesFilters },
-      { arrayFormat: 'bracket' },
-      { skipNull: true }
-    );
-    mealTypesToPush && toPush.push(mealTypesToPush);
-
-    const ingredientsToPush = queryString.stringify(
-      { ingredients: ingredientsFilters },
-      { arrayFormat: 'bracket' },
-      { skipNull: true }
-    );
-    ingredientsToPush && toPush.push(ingredientsToPush);
-
-    if (toPush.length === 0) { history.push('/rechercher/'); } else if (toPush.length === 1) { history.push(`/rechercher/?${toPush[0]}`); } else {
-      let toPushMiddle = '';
-      for (let i = 1; i < toPush.length - 1; i++) {
-        toPushMiddle += `${toPush[i]}&`;
-      }
-      history.push(`/rechercher/?${toPush[0]}&${toPushMiddle}${toPush[toPush.length - 1]}`);
-    }
+    history.push(`/rechercher/?${query}`);
   };
 
-  const handleValidate = () => {
-    pushUrl();
-    getRecipes();
+  const handelSearchInputTextChanged = (event) => {
+    setSearchInputText(event.target.value);
   };
 
-  const handleChange = (event) => {
-    setCurrentInput(event.target.value);
-  };
-
-  const handleKeyDown = (event) => {
+  const handelSearchInputKeyDown = (event) => {
     if (event.key === 'Enter') {
       event.preventDefault();
-      handleValidate();
+      syncInputValuesWithUrl();
     }
   };
 
-  const handleAdvanced = () => {
-    if (!advanced) {
-      setAdvanced(true);
-      if (optionsMealTypes.length === 0) {
-        allMealTypes.map(mealType => {
-          return (
-            optionsMealTypes.push({ value: `${mealType.name}`, label: `${mealType.name}`, id: mealType.id })
-          );
-        });
-      }
-      if (optionsIngredients.length === 0) {
-        allIngredients.map(ingredient => {
-          return (
-            optionsIngredients.push({ value: `${ingredient.name}`, label: `${ingredient.name}`, id: ingredient.id })
-          );
-        });
-      }
-      console.log(optionsMealTypes);
-    } else {
-      setAdvanced(false);
-    }
+  const handleshowAdvancedSearchSearchClick = () => {
+    setshowAdvancedSearch(!showAdvancedSearch);
   };
 
-  const handleMealTypesFilters = (e) => {
-    if (e) {
-      const mealTypesFilters = e.map(mealtype => mealtype.id);
-      setMealTypesFilters(mealTypesFilters);
-    } else {
-      setMealTypesFilters([]);
-    }
-  };
-
-  const handleIngredientsFilters = (e) => {
-    const ingredientsFilters = e.map(ingredient => ingredient.id);
-    setIngredientsFilters(ingredientsFilters);
-  };
-
-  const populateForm = (allMealTypes, allIngredients) => {
-    if (optionsMealTypes.length === 0) {
-      allMealTypes.map(mealType => {
-        return (
-          optionsMealTypes.push({ value: `${mealType.name}`, label: `${mealType.name}`, id: mealType.id })
-        );
-      });
-    }
-
-    if (optionsIngredients.length === 0) {
-      allIngredients.map(ingredient => {
-        return (
-          optionsIngredients.push({ value: `${ingredient.name}`, label: `${ingredient.name}`, id: ingredient.id })
-        );
-      });
-    }
-
+  const populateInputs = (allMealTypes, allIngredients) => {
     const query = queryString.parse(props.location.search, { arrayFormat: 'bracket' });
     const { search, meal_types, ingredients } = query; // eslint-disable-line
-    console.log(query);
-    console.log(props.location.search);
-    console.log(ingredients);
-    console.log(meal_types);
     if (search) {
-      setCurrentInput(search);
+      setSearchInputText(search);
     }
     if (meal_types) { // eslint-disable-line
-      const currentMealTypesFilters = [];
-      setAdvanced(true);
-      console.log(meal_types);
-      const meal_types_int = meal_types.map(mealtype => parseInt(mealtype)); // eslint-disable-line
-      allMealTypes.filter(mealType => meal_types_int.indexOf(mealType.id) !== -1).map(mealType => {
-        return (
-          currentMealTypesFilters.push({ value: `${mealType.name}`, label: `${mealType.name}`, id: mealType.id })
-        );
-      });
-      setCurrentMealTypesFilters(currentMealTypesFilters);
+      setChosenMealTypes(allMealTypes.filter(mealType => meal_types.includes(mealType.value.toString())));
     }
     if (ingredients) {
-      const currentIngredientsFilters = [];
-      setAdvanced(true);
-      console.log(ingredients);
-      const ingredients_int = ingredients.map(ingredient => parseInt(ingredient)); // eslint-disable-line
-      allIngredients.filter(ingredient => ingredients_int.indexOf(ingredient.id) !== -1).map(ingredient => {
-        return (
-          currentIngredientsFilters.push({ value: `${ingredient.name}`, label: `${ingredient.name}`, id: ingredient.id })
-        );
-      });
-      setCurrentIngredientsFilters(currentIngredientsFilters);
+      setChosenIngredients(allIngredients.filter(ingredient => ingredients.includes(ingredient.value.toString())));
     }
-    console.log(currentInput);
-    console.log(currentIngredientsFilters);
-    console.log(currentMealTypesFilters);
   };
 
   useEffect(() => {
     Promise.all([getAllMealTypes(), getAllIngredients()])
       .then(([allMealTypes, allIngredients]) => {
-        console.log(allMealTypes);
-        populateForm(allMealTypes, allIngredients);
+        populateInputs(allMealTypes, allIngredients);
       });
-
-}, []) // eslint-disable-line
+  }, []) // eslint-disable-line
 
   useEffect(() => {
     getRecipes();
-  }, []); // eslint-disable-line
+  }, [props.location.search]) // eslint-disable-line
 
   return (
-    <div className='recherche-container'>
+    <div className='recherche-container' style={{ marginBottom: 200 }}>
       <div className='Loupe'>
         <h2>Rechercher une recette</h2>
         <div className='search-field'>
@@ -236,38 +118,51 @@ export default function Search (props) {
                 name='search'
                 type='text'
                 placeholder='Salade de fruit...'
-                value={currentInput}
-                onChange={handleChange}
-                onKeyDown={handleKeyDown}
+                value={searchInputText}
+                onChange={handelSearchInputTextChanged}
+                onKeyDown={handelSearchInputKeyDown}
               />
             </div>
-            <div className='advanced-search-container'>
-              <p onClick={handleAdvanced}>Voir la recherche avancée</p>
-              {advanced &&
+            <div className='showAdvancedSearch-search-container'>
+              <p onClick={handleshowAdvancedSearchSearchClick}>Voir la recherche avancée</p>
+              {showAdvancedSearch &&
                 <>
-                  <p>Sélectionnez des catégories de repas :</p>
-                  <MealTypesSelect handleMealTypesFilters={handleMealTypesFilters} value={currentMealTypesFilters} />
-                  <p>Sélectionnez des ingrédients :</p>
-                  <IngredientsSelect handleIngredientsFilters={handleIngredientsFilters} value={currentIngredientsFilters} />
+                  {allMealTypes.length !== 0 && 
+                    <TagSelect
+                      className='tag-select'
+                      options={allMealTypes}
+                      value={chosenMealTypes}
+                      onChange={(newValues) => {
+                        setChosenMealTypes(newValues);
+                      }}
+                      placeholder='Types de repas'
+                    />
+                  }
+                  {allIngredients.length !== 0 &&
+                    <TagSelect
+                      options={allIngredients}
+                      value={chosenIngredients}
+                      onChange={(newValues) => {
+                        setChosenIngredients(newValues);
+                      }}
+                      placeholder='Ingrédients'
+                      className='tag-select'
+                    />
+                  }
                 </>}
             </div>
           </div>
-          <button
-            className='btn-search'
-            onClick={() => {
-              handleValidate();
-            }}
-          >
+          <button className='btn-search' onClick={syncInputValuesWithUrl} style={{ marginTop: 50 }}>
             <img src={Loupe} alt='search' />
-              Rechercher
+            Rechercher
           </button>
           <div className='result'>
             <div className='filter-recipes-container'>
               {recipes.length === 0 ? (
-                currentSearch && <h4 className='no-result'>Aucun résultat pour {currentSearch}</h4>
+                props.location.search && <h4 className='no-result'>Aucun résultat</h4>
               ) : (
                 <>
-                  <h4 className='results-title'>Résultats pour {currentSearch}</h4>
+                  <h4 className='results-title'>Résultats : </h4>
                   {recipes.map((recipe) => {
                     return (
                       <div className='filtered-recipes' key={recipe.id}>

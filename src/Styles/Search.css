@@ -152,3 +152,7 @@
     translate: 70px;
   }
 }
+
+.tag-select {
+  margin-bottom: 15px;
+}
