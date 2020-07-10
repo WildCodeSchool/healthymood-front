@@ -63,11 +63,11 @@ export default function Search (props) {
     history.push(`/rechercher/?${query}`);
   };
 
-  const handelSearchInputTextChanged = (event) => {
+  const handleSearchInputTextChanged = (event) => {
     setSearchInputText(event.target.value);
   };
 
-  const handelSearchInputKeyDown = (event) => {
+  const handleSearchInputKeyDown = (event) => {
     if (event.key === 'Enter') {
       event.preventDefault();
       syncInputValuesWithUrl();
@@ -119,15 +119,15 @@ export default function Search (props) {
                 type='text'
                 placeholder='Salade de fruit...'
                 value={searchInputText}
-                onChange={handelSearchInputTextChanged}
-                onKeyDown={handelSearchInputKeyDown}
+                onChange={handleSearchInputTextChanged}
+                onKeyDown={handleSearchInputKeyDown}
               />
             </div>
             <div className='showAdvancedSearch-search-container'>
               <p onClick={handleshowAdvancedSearchSearchClick}>Voir la recherche avancée</p>
               {showAdvancedSearch &&
                 <>
-                  {allMealTypes.length !== 0 && 
+                  {allMealTypes.length !== 0 &&
                     <TagSelect
                       className='tag-select'
                       options={allMealTypes}
@@ -136,8 +136,7 @@ export default function Search (props) {
                         setChosenMealTypes(newValues);
                       }}
                       placeholder='Types de repas'
-                    />
-                  }
+                    />}
                   {allIngredients.length !== 0 &&
                     <TagSelect
                       options={allIngredients}
@@ -147,8 +146,7 @@ export default function Search (props) {
                       }}
                       placeholder='Ingrédients'
                       className='tag-select'
-                    />
-                  }
+                    />}
                 </>}
             </div>
           </div>
