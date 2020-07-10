@@ -16,6 +16,18 @@ import Rating from './Rating';
 import API from '../Services/API';
 
 class RecipeToPrint extends React.Component {
+  capitalizeFirstLetter = (string) => {
+    return string.charAt(0).toUpperCase() + string.slice(1);
+  }
+
+  countTotalCalories = (ingredientCalorie) => {
+    let totalCalories = 0;
+    for (let i = 0; i < ingredientCalorie.length; i++) {
+      totalCalories = totalCalories + ingredientCalorie[i].calories;
+    }
+    return totalCalories;
+  }
+
   render () {
     const recipeInfo = this.props.recipeInfo;
 
@@ -23,7 +35,7 @@ class RecipeToPrint extends React.Component {
     return (
       <div className='recipe-container'>
         <header>
-          <h1 className='recipe-title'>{recipeInfo.name}</h1>
+          <h1 className='recipe-title'>{this.capitalizeFirstLetter(recipeInfo.name)}</h1>
           <div
             className='reciper-banner-image'
             style={{ backgroundImage: `url(${recetteImage})` }}
@@ -33,7 +45,7 @@ class RecipeToPrint extends React.Component {
               className='picto-container'
               style={{ backgroundImage: `url(${authorImage})` }}
             />
-            <p> {recipeInfo.author.username} </p>
+            <p> {this.capitalizeFirstLetter(recipeInfo.author.username)} </p>
             <span
               className='picto-container'
               style={{ backgroundImage: `url(${publishedImage})` }}
@@ -43,7 +55,7 @@ class RecipeToPrint extends React.Component {
               className='picto-container'
               style={{ backgroundImage: `url(${categoryImage})` }}
             />
-            <p>{recipeInfo.category.name}</p>
+            <p>{this.capitalizeFirstLetter(recipeInfo.category.name)}</p>
           </div>
           <Rating recipeInfo={recipeInfo} />
         </header>
@@ -54,14 +66,14 @@ class RecipeToPrint extends React.Component {
               className='picto-container'
               style={{ backgroundImage: `url(${mealTypeImage})` }}
             />
-            <p>{recipeInfo.mealType.name}</p>
+            <p>{this.capitalizeFirstLetter(recipeInfo.mealType.name)}</p>
           </div>
           <div className='picto-info-container'>
             <span
               className='picto-container'
               style={{ backgroundImage: `url(${caloriesImage})` }}
             />
-            <p>Environ {recipeInfo.calories} calories</p>
+            <p>Environ {this.countTotalCalories(recipeInfo.ingredients)} calories</p>
           </div>
           <div className='picto-info-container'>
             <span
@@ -85,7 +97,7 @@ class RecipeToPrint extends React.Component {
               return (
                 <li key={ingredient.id}>
                   <span className={ingredient.is_allergen && 'is-allergen'}>
-                    {ingredient.name}
+                    {ingredient.name} ({ingredient.calories} Kcal)
                   </span>
                 </li>
               );
@@ -109,7 +121,7 @@ function Recipe () {
       setRecipe(res.data.data);
       console.log(res.data.data);
     });
-  }, []);
+  }, []); //eslint-disable-line 
 
   if (!recipe) {
     return <p>chargement ....</p>;
