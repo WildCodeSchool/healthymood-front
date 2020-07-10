@@ -10,7 +10,7 @@ export default class AdvicesAndTricks extends Component {
     this.state = {
       offset: 0,
       data: [],
-      perPage: 2,
+      perPage: 4,
       currentPage: 0
     };
     this.handlePageClick = this

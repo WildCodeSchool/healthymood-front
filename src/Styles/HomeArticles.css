@@ -9,9 +9,24 @@
     
 }
 
-button{
-    margin: 15px;
-    border: solid 1px ;
-    border-radius: 10px;
+.more{
+    margin: 10px;
+    border: solid 1px #008d36;
+    border-radius: 15px;
+    background-color: #008d36;
+    margin-bottom: 50px;
+}
+
+.more p{
+    color: #fff;
+    margin: 5px;
+}
+
+.more:hover{
     background-color: #fff;
+    color: #008d36;
+}
+
+.more p:hover{
+    color: #008d36;
 }

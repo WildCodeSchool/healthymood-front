@@ -10,6 +10,7 @@ import AdvicesAndTricks from './Pages/AdvicesAndTricks';
 import Search from './Components/Search';
 import Recipe from './Components/Recipe';
 import Article from './Pages/Article';
+import SendRecipe from './Pages/SendRecipe';
 import './Styles/Variables.css';
 
 messaging.onMessage((payload) => console.log('Message received. ', payload));
@@ -39,10 +40,11 @@ function App () {
             <Route exact path='/' component={Home} />
             <Route exact path='/recettes' component={RecipesPage} />
             <Route exact path='/conseils-astuces' component={AdvicesAndTricks} />
-            <Route exact path='/rechercher' component={Search} />
+            <Route path='/rechercher' component={Search} />
             <Route exact path='/articles/:id' component={Article} />
             <Route exact path='/' /* component={...} */ />
             <Route exact path='/recettes/:slug' component={Recipe} />
+            <Route exact path='/envoyer-recette' component={SendRecipe} />
             <Route
               exact
               path='/recettes/categorie/:id'
