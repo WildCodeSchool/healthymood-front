@@ -55,8 +55,8 @@ export default function Search (props) {
     const query = queryString.stringify(
       {
         search: searchInputText === '' ? undefined : searchInputText, // for some unknown reason, skipEmptyString option does not work
-        ingredients: chosenIngredients.map(i => i.value),
-        meal_types: chosenMealTypes.map(i => i.value)
+        ingredients: chosenIngredients && chosenIngredients.map(i => i.value),
+        meal_types: chosenMealTypes && chosenMealTypes.map(i => i.value)
       },
       { arrayFormat: 'bracket' }
     );

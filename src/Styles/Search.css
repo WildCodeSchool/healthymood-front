@@ -156,3 +156,8 @@
 .tag-select {
   margin-bottom: 15px;
 }
+@media all and (max-width:900px) {
+  .Loupe h2::after, .Loupe h2::before {
+    display:none;
+  }
+}
