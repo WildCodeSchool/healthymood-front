@@ -12,7 +12,7 @@ export default function Search (props) {
 
   const [recipes, setRecipes] = useState([]);
   const [searchInputText, setSearchInputText] = useState('');
-  const [showAdvancedSearch, setshowAdvancedSearch] = useState(false);
+  const [showAdvancedSearch, setshowAdvancedSearch] = useState(true);
   const [allMealTypes, setAllMealTypes] = useState([]);
   const [allIngredients, setAllIngredients] = useState([]);
   const [chosenIngredients, setChosenIngredients] = useState([]);
