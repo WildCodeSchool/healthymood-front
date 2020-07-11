@@ -33,7 +33,6 @@ export default class AdvicesAndTricks extends Component {
           pageCount: Math.ceil(data.length / this.state.perPage),
           postData
         });
-        
       });
   }
 

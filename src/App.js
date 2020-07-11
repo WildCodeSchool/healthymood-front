@@ -13,7 +13,6 @@ import './Styles/Variables.css';
 import Article from './Pages/Article';
 messaging.onMessage((payload) => console.log('Message received. ', payload));
 
-
 function App () {
   useEffect(() => {
     messaging
