@@ -6,12 +6,13 @@ import Header from './Components/Header';
 import Home from './Pages/Home';
 import Footer from './Components/Footer';
 import RecipesPage from './Pages/RecipesPage';
-import Article from './Pages/Article';
+import AdvicesAndTricks from './Pages/AdvicesAndTricks';
 import Search from './Components/Search';
 import Recipe from './Components/Recipe';
 import './Styles/Variables.css';
-
+import Article from './Pages/Article';
 messaging.onMessage((payload) => console.log('Message received. ', payload));
+
 
 function App () {
   useEffect(() => {
@@ -37,8 +38,9 @@ function App () {
           <Switch>
             <Route exact path='/' component={Home} />
             <Route exact path='/recettes' component={RecipesPage} />
-            <Route exact path='/conseils-astuces' component={Article} />
-            <Route path='/rechercher' component={Search} />
+            <Route exact path='/conseils-astuces' component={AdvicesAndTricks} />
+            <Route exact path='/rechercher' component={Search} />
+            <Route exact path='/articles/:id' component={Article} />
             <Route exact path='/' /* component={...} */ />
             <Route exact path='/recettes/:slug' component={Recipe} />
             <Route
