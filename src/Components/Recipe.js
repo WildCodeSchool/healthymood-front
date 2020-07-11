@@ -16,6 +16,7 @@ import PrintImage from '../Images/print.png';
 class RecipeToPrint extends React.Component {
   render () {
     const recipeInfo = this.props.recipeInfo;
+    console.log(recipeInfo);
     return (
       <div className='recipe-container'>
         <header>

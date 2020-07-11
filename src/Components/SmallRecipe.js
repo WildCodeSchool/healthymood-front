@@ -5,6 +5,7 @@ import emptyFav from '../Images/fav.png';
 import fullFav from '../Images/fav-full.png';
 
 const SmallRecipe = ({ r }) => {
+  console.log(r);
   const [addFavorite, setAddFavorite] = useState(false);
   return (
     <>

@@ -135,7 +135,7 @@ export default function Search (props) {
               />
             </div>
             <div className='showAdvancedSearch-search-container'>
-              <p onClick={handleShowAdvancedSearchSearchClick}>Voir la recherche avancée</p>
+              <p onClick={handleShowAdvancedSearchSearchClick}>Recherche avancée</p>
               {showAdvancedSearch &&
                 <>
                   {allMealTypes.length !== 0 &&
@@ -173,6 +173,7 @@ export default function Search (props) {
                 <>
                   <h4 className='results-title'>Résultats : </h4>
                   {recipes.map((recipe) => {
+                    console.log(recipes);
                     return (
                       <div className='filtered-recipes' key={recipe.id}>
                         <SmallRecipe r={recipe} />
