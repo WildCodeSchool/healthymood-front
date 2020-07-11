@@ -12,7 +12,7 @@ export default function Search (props) {
 
   const [recipes, setRecipes] = useState([]);
   const [searchInputText, setSearchInputText] = useState('');
-  const [showAdvancedSearch, setshowAdvancedSearch] = useState(true);
+  const [showAdvancedSearch, setShowAdvancedSearch] = useState(true);
   const [allMealTypes, setAllMealTypes] = useState([]);
   const [allIngredients, setAllIngredients] = useState([]);
   const [chosenIngredients, setChosenIngredients] = useState([]);
@@ -74,8 +74,8 @@ export default function Search (props) {
     }
   };
 
-  const handleshowAdvancedSearchSearchClick = () => {
-    setshowAdvancedSearch(!showAdvancedSearch);
+  const handleShowAdvancedSearchSearchClick = () => {
+    setShowAdvancedSearch(!showAdvancedSearch);
   };
 
   const populateInputs = (allMealTypes, allIngredients) => {
@@ -105,7 +105,7 @@ export default function Search (props) {
       getRecipes();
     } else {
       setSearchInputText('');
-      setshowAdvancedSearch(false);
+      setShowAdvancedSearch(false);
       setAllMealTypes([]);
       setAllIngredients([]);
       setChosenIngredients([]);
@@ -135,7 +135,7 @@ export default function Search (props) {
               />
             </div>
             <div className='showAdvancedSearch-search-container'>
-              <p onClick={handleshowAdvancedSearchSearchClick}>Voir la recherche avancée</p>
+              <p onClick={handleShowAdvancedSearchSearchClick}>Voir la recherche avancée</p>
               {showAdvancedSearch &&
                 <>
                   {allMealTypes.length !== 0 &&
