@@ -12,7 +12,7 @@ export default function Search (props) {
 
   const [recipes, setRecipes] = useState([]);
   const [searchInputText, setSearchInputText] = useState('');
-  const [showAdvancedSearch, setshowAdvancedSearch] = useState(true);
+  const [showAdvancedSearch, setshowAdvancedSearch] = useState(false);
   const [allMealTypes, setAllMealTypes] = useState([]);
   const [allIngredients, setAllIngredients] = useState([]);
   const [chosenIngredients, setChosenIngredients] = useState([]);
@@ -100,7 +100,18 @@ export default function Search (props) {
   }, []) // eslint-disable-line
 
   useEffect(() => {
-    getRecipes();
+    console.log(props.location);
+    if (props.location.search) {
+      getRecipes();
+    } else {
+      setSearchInputText('');
+      setshowAdvancedSearch(false);
+      setAllMealTypes([]);
+      setAllIngredients([]);
+      setChosenIngredients([]);
+      setChosenMealTypes([]);
+      setRecipes([]);
+    }
   }, [props.location.search]) // eslint-disable-line
 
   return (
