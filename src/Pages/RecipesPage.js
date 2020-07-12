@@ -4,24 +4,24 @@ import '../Styles/RecipesPage.css';
 import API from '../Services/API';
 
 function RecipesPage () {
-  const [allRecipes, setAllRecipes] = useState([])
+  const [allRecipes, setAllRecipes] = useState([]);
 
   useEffect(() => {
-      API.get('/recipes')
+    API.get('/recipes')
       .then(data => data.data)
       .then(results => {
         setAllRecipes(results.data);
       })
-      .catch (err => {
+      .catch(err => {
         console.log(err);
-      })
+      });
   }, []);
 
   return (
     <div className='recipes-page-container'>
       {allRecipes.length > 0 && allRecipes.map((r) => {
         return (
-            <SmallRecipe key={r.id} r={r} />
+          <SmallRecipe key={r.id} r={r} />
         );
       })}
     </div>

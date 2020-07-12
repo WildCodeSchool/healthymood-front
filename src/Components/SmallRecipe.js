@@ -6,7 +6,7 @@ import fullFav from '../Images/fav-full.png';
 
 const SmallRecipe = ({ r }) => {
   const [addFavorite, setAddFavorite] = useState(false);
-  console.log(r)
+  console.log(r);
   return (
     <>
       <div key={r.slug} className='small-recipe-global-container'>

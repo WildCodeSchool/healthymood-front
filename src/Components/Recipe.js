@@ -46,7 +46,7 @@ class RecipeToPrint extends React.Component {
         <div className='instructions-container'>
           <h2>Ingrédients</h2>
           <ul>
-{/*             {recipeInfo.ingredients.map(ingredient => {
+            {/*             {recipeInfo.ingredients.map(ingredient => {
               return (
                 <li key={ingredient.id}><span className={ingredient.is_allergen && 'is-allergen'}>{ingredient.name}</span></li>
               );
@@ -55,7 +55,7 @@ class RecipeToPrint extends React.Component {
 
           <h2>Instructions</h2>
           <ol>
-{/*             {recipeInfo.instructions.map(instruction => {
+            {/*             {recipeInfo.instructions.map(instruction => {
               return (
                 <li key={instruction}><p>{instruction}</p></li>
               );
@@ -68,49 +68,50 @@ class RecipeToPrint extends React.Component {
 }
 
 class Recipe extends React.Component {
-  constructor(props) {
+  constructor (props) {
     super(props);
     this.state = {
       currentRecipe: [],
       recipeIsLoading: true
-    }
+    };
   }
 
-  componentDidMount() {
+  componentDidMount () {
     API.get(`/recipes/${this.props.match.params.slug}`)
-    .then(data => data.data)
-    .then(results => {
-      this.setState({ currentRecipe: results.data });
-    })
-    .catch (err => {
-      console.log(err);
-    })
-    console.log(this.props.match.params.slug)
+      .then(data => data.data)
+      .then(results => {
+        this.setState({ currentRecipe: results.data });
+      })
+      .catch(err => {
+        console.log(err);
+      });
+    console.log(this.props.match.params.slug);
   }
 
-  componentDidUpdate(prevProps) {
+  componentDidUpdate (prevProps) {
     if (this.props.currentRecipe !== prevProps.currentRecipe) {
-      this.setState({ recipeIsLoading: false }) ;
+      this.setState({ recipeIsLoading: false });
     }
   }
 
   render () {
     const params = this.props.match.params;
-    console.log(this.state.currentRecipe)
+    console.log(this.state.currentRecipe);
     return (
       !this.recipeIsLoading ? (
-      <div className='print-recipe-container'>
-        <RecipeToPrint params={params} recipeInfo={this.state.currentRecipe} ref={el => (this.componentRef = el)} />
-        <h5 className='social-title'>Merci de partager : </h5>
-        <div className='social-print-container'>
-          <SocialMedia slug={params.slug} />
-          <ReactToPrint
-            trigger={() => <button className='print-button' style={{ backgroundImage: `url(${PrintImage})` }} />}
-            content={() => this.componentRef}
-          />
+        <div className='print-recipe-container'>
+          <RecipeToPrint params={params} recipeInfo={this.state.currentRecipe} ref={el => (this.componentRef = el)} />
+          <h5 className='social-title'>Merci de partager : </h5>
+          <div className='social-print-container'>
+            <SocialMedia slug={params.slug} />
+            <ReactToPrint
+              trigger={() => <button className='print-button' style={{ backgroundImage: `url(${PrintImage})` }} />}
+              content={() => this.componentRef}
+            />
+          </div>
         </div>
-      </div>
-    ) : <p>Rien à afficher</p>)
-}}
+      ) : <p>Rien à afficher</p>);
+  }
+}
 
 export default Recipe;
