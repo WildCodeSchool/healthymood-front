@@ -34,7 +34,7 @@ class RecipeToPrint extends React.Component {
             <span className='picto-container' style={{ backgroundImage: `url(${mealTypeImage})` }} /><p>{recipeInfo.meal_type}</p>
           </div>
           <div className='picto-info-container'>
-            <span className='picto-container' style={{ backgroundImage: `url(${caloriesImage})` }} /><p>Environ {recipeInfo.calories_nb} calories</p>
+            <span className='picto-container' style={{ backgroundImage: `url(${caloriesImage})` }} /><p>Environ {recipeInfo.calories} calories</p>
           </div>
           <div className='picto-info-container'>
             <span className='picto-container' style={{ backgroundImage: `url(${durationImage})` }} /><p>{recipeInfo.preparation_time}</p>
@@ -55,11 +55,7 @@ class RecipeToPrint extends React.Component {
 
           <h2>Instructions</h2>
           <ol>
-            {/*             {recipeInfo.instructions.map(instruction => {
-              return (
-                <li key={instruction}><p>{instruction}</p></li>
-              );
-            })} */}
+            {recipeInfo.content}
           </ol>
         </div>
       </div>
