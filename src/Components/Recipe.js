@@ -1,5 +1,4 @@
 import React from 'react';
-import recetteImage from '../Images/sauce-tartare-healthy.jpg';
 import '../Styles/Recipe.css';
 import publishedImage from '../Images/published.png';
 import authorImage from '../Images/author.png';
@@ -8,10 +7,10 @@ import durationImage from '../Images/duration.png';
 import priceImage from '../Images/price.png';
 import categoryImage from '../Images/category.png';
 import caloriesImage from '../Images/calories-2.png';
-import recipesInfo from '../recipesInfo.json';
 import SocialMedia from './SocialMediaRecipe';
 import ReactToPrint from 'react-to-print';
 import PrintImage from '../Images/print.png';
+import API from '../Services/API';
 
 class RecipeToPrint extends React.Component {
   render () {
@@ -21,7 +20,7 @@ class RecipeToPrint extends React.Component {
       <div className='recipe-container'>
         <header>
           <h1 className='recipe-title'>{recipeInfo.title}</h1>
-          <div className='reciper-banner-image' style={{ backgroundImage: `url(${recetteImage})` }} />
+          <div className='reciper-banner-image' style={{ backgroundImage: `url(${recipeInfo.image})` }} />
           <div className='publication-info'>
             <span className='picto-container' style={{ backgroundImage: `url(${authorImage})` }} /><p>{recipeInfo.author}</p>
             <span className='picto-container' style={{ backgroundImage: `url(${publishedImage})` }} /><p>{recipeInfo.updated_at}</p>
@@ -47,20 +46,20 @@ class RecipeToPrint extends React.Component {
         <div className='instructions-container'>
           <h2>Ingrédients</h2>
           <ul>
-            {recipeInfo.ingredients.map(ingredient => {
+{/*             {recipeInfo.ingredients.map(ingredient => {
               return (
                 <li key={ingredient.id}><span className={ingredient.is_allergen && 'is-allergen'}>{ingredient.name}</span></li>
               );
-            })}
+            })} */}
           </ul>
 
           <h2>Instructions</h2>
           <ol>
-            {recipeInfo.instructions.map(instruction => {
+{/*             {recipeInfo.instructions.map(instruction => {
               return (
                 <li key={instruction}><p>{instruction}</p></li>
               );
-            })}
+            })} */}
           </ol>
         </div>
       </div>
@@ -69,12 +68,39 @@ class RecipeToPrint extends React.Component {
 }
 
 class Recipe extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      currentRecipe: [],
+      recipeIsLoading: true
+    }
+  }
+
+  componentDidMount() {
+    API.get(`/recipes/${this.props.match.params.slug}`)
+    .then(data => data.data)
+    .then(results => {
+      this.setState({ currentRecipe: results.data });
+    })
+    .catch (err => {
+      console.log(err);
+    })
+    console.log(this.props.match.params.slug)
+  }
+
+  componentDidUpdate(prevProps) {
+    if (this.props.currentRecipe !== prevProps.currentRecipe) {
+      this.setState({ recipeIsLoading: false }) ;
+    }
+  }
+
   render () {
     const params = this.props.match.params;
-    const recipeInfo = recipesInfo.recipe.filter((r) => r.slug === params.slug)[0];
+    console.log(this.state.currentRecipe)
     return (
+      !this.recipeIsLoading ? (
       <div className='print-recipe-container'>
-        <RecipeToPrint params={params} recipeInfo={recipeInfo} ref={el => (this.componentRef = el)} />
+        <RecipeToPrint params={params} recipeInfo={this.state.currentRecipe} ref={el => (this.componentRef = el)} />
         <h5 className='social-title'>Merci de partager : </h5>
         <div className='social-print-container'>
           <SocialMedia slug={params.slug} />
@@ -84,8 +110,7 @@ class Recipe extends React.Component {
           />
         </div>
       </div>
-    );
-  }
-}
+    ) : <p>Rien à afficher</p>)
+}}
 
 export default Recipe;

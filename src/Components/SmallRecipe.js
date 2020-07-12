@@ -5,8 +5,8 @@ import emptyFav from '../Images/fav.png';
 import fullFav from '../Images/fav-full.png';
 
 const SmallRecipe = ({ r }) => {
-  console.log(r);
   const [addFavorite, setAddFavorite] = useState(false);
+  console.log(r)
   return (
     <>
       <div key={r.slug} className='small-recipe-global-container'>
@@ -25,7 +25,7 @@ const SmallRecipe = ({ r }) => {
               <div
                 className='small-reciper-banner-image'
                 style={{
-                  backgroundImage: `linear-gradient(to bottom, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.1)), url(${r.image}`
+                  backgroundImage: `linear-gradient(to bottom, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.1)), url('${r.image}')`
                 }}
               />
               <div className='small-recipe-content-container'>
