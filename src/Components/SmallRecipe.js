@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { Link } from 'react-router-dom';
+import { useHistory, Link } from 'react-router-dom';
 import '../Styles/SmallRecipe.css';
 import emptyFav from '../Images/fav.png';
 import fullFav from '../Images/fav-full.png';
@@ -9,22 +9,19 @@ import FavoriteContext from '../Context/favoriteContext';
 const SmallRecipe = ({ r }) => {
   const { connected } = useContext(AuthContext);
   const { favorite, setFavorite } = useContext(FavoriteContext);
+  const history = useHistory();
   return (
     <>
       <div key={r.slug} className='small-recipe-global-container'>
-        {connected ? (
-          <span
-            className='small-recipe-favorite-icon'
-            onClick={() => setFavorite(!favorite)}
-            style={{
-              backgroundImage: favorite
-                ? `url(${fullFav})`
-                : `url(${emptyFav})`
-            }}
-          />
-        ) : (
-          ''
-        )}
+        <span
+          className='small-recipe-favorite-icon'
+          onClick={connected ? () => setFavorite(!favorite) : () => history.push('/login')}
+          style={{
+            backgroundImage: favorite
+              ? `url(${fullFav})`
+              : `url(${emptyFav})`
+          }}
+        />
         <Link to={`/recettes/${r.slug}`} key={r.slug} className='link-recette'>
           <div className='small-recipe-container'>
             <>

@@ -3,7 +3,7 @@ import API from '../Services/API';
 import '../Styles/Register.css';
 import { useHistory, Link } from 'react-router-dom';
 
-export default function RegisterPage () {
+export default function RegisterPage() {
   const [email, setEmail] = useState('');
   const [username, setName] = useState('');
   const [password, setPassword] = useState('');
