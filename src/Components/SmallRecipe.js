@@ -1,23 +1,44 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useContext } from 'react';
+import { useHistory, Link } from 'react-router-dom';
 import '../Styles/SmallRecipe.css';
 import emptyFav from '../Images/fav.png';
 import fullFav from '../Images/fav-full.png';
+import AuthContext from '../Context/authContext';
+import FavoriteContext from '../Context/favoriteContext';
 
 const SmallRecipe = ({ r }) => {
-  const [addFavorite, setAddFavorite] = useState(false);
+  const { connected } = useContext(AuthContext);
+  const { favorite, setFavorite } = useContext(FavoriteContext);
+  const history = useHistory();
+
+  const handleLogin = () => {
+    history.push('/');
+  };
+
   return (
     <>
       <div key={r.slug} className='small-recipe-global-container'>
-        <span
-          className='small-recipe-favorite-icon'
-          onClick={() => setAddFavorite(!addFavorite)}
-          style={{
-            backgroundImage: addFavorite
-              ? `url(${fullFav})`
-              : `url(${emptyFav})`
-          }}
-        />
+        {connected ? (
+          <span
+            className='small-recipe-favorite-icon'
+            onClick={() => setFavorite(!favorite)}
+            style={{
+              backgroundImage: favorite
+                ? `url(${fullFav})`
+                : `url(${emptyFav})`
+            }}
+          />
+        ) : (
+          <span
+            className='small-recipe-favorite-icon'
+            onClick={() => handleLogin}
+            style={{
+              backgroundImage: favorite
+                ? `url(${fullFav})`
+                : `url(${emptyFav})`
+            }}
+          />
+        )}
         <Link to={`/recettes/${r.slug}`} key={r.slug} className='link-recette'>
           <div className='small-recipe-container'>
             <>
