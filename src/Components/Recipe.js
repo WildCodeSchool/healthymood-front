@@ -38,7 +38,6 @@ class RecipeToPrint extends React.Component {
     const connected = this.props.connected;
     const favorite = this.props.favorite;
     const handleSubmit = this.props.handleSubmit;
-    /*  const isFavorite = favorite.map(fav => fav.recipe_id).filter(favId => favId === recipeInfo.id); */
 
     return (
 
@@ -148,8 +147,7 @@ function Recipe () {
       setRecipe(res.data.data);
       console.log(res.data.data);
     });
-  }, []); //eslint-disable-line 
-
+  }, []); //eslint-disable-line
   if (!recipe) {
     return <p>chargement ....</p>;
   }

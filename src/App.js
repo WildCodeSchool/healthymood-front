@@ -21,6 +21,7 @@ import RegisterPage from './Pages/Register';
 import MonCompte from './Pages/MonCompte';
 import ScrollToTop from './Scripts/ScrollToTop';
 import FavoriteContext from './Context/favoriteContext';
+import FavoriteUser from './Pages/FavoriteUser';
 import API from './Services/API';
 
 function PrivateRoute ({ children, ...rest }) {
@@ -52,7 +53,6 @@ function App () {
         ? API.get('/favorites')
           .then((res) => res.data)
           .then((data) => {
-            console.log(data);
             setFavorite(data.data);
           })
           .catch((err) => {
@@ -136,6 +136,9 @@ function App () {
                 <Route exact path='/register' component={RegisterPage} />
                 <PrivateRoute exact path='/compte'>
                   <MonCompte />
+                </PrivateRoute>
+                <PrivateRoute exact path='/compte/favoris'>
+                  <FavoriteUser />
                 </PrivateRoute>
               </Switch>
               <Footer />
