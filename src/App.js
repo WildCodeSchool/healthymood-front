@@ -23,7 +23,7 @@ import ScrollToTop from './Scripts/ScrollToTop';
 import FavoriteContext from './Context/favoriteContext';
 import API from './Services/API';
 
-function PrivateRoute({ children, ...rest }) {
+function PrivateRoute ({ children, ...rest }) {
   const { token } = useContext(AuthContext);
   return (
     <Route
@@ -33,19 +33,19 @@ function PrivateRoute({ children, ...rest }) {
           token ? (
             children
           ) : (
-              <Redirect
-                to={{
-                  pathname: '/login',
-                  state: { from: location }
-                }}
-              />
+            <Redirect
+              to={{
+                pathname: '/login',
+                state: { from: location }
+              }}
+            />
             ) // eslint-disable-line
       } // eslint-disable-line
     />
   );
 }
 
-function App() {
+function App () {
   useEffect(() => {
     {
       isConnected
