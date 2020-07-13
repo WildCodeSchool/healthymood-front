@@ -149,7 +149,7 @@ class Recipe extends React.Component {
           </div>
         </div>
       ) : <p>Rien à afficher</p>);
-}
+  }
 }
 
 export default Recipe;

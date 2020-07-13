@@ -7,7 +7,6 @@ import AuthContext from '../Context/authContext';
 import FavoriteContext from '../Context/favoriteContext';
 
 const SmallRecipe = ({ r }) => {
-
   const { connected } = useContext(AuthContext);
   const { favorite, setFavorite } = useContext(FavoriteContext);
   const history = useHistory();
