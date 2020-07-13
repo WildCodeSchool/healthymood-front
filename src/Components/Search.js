@@ -15,6 +15,8 @@ export default function Search (props) {
   const [showAdvancedSearch, setShowAdvancedSearch] = useState(true);
   const [allMealTypes, setAllMealTypes] = useState([]);
   const [allIngredients, setAllIngredients] = useState([]);
+  const [allDiets, setAllDiets] = useState([]);
+  const [chosenDiets, setChosenDiets] = useState([]);
   const [chosenIngredients, setChosenIngredients] = useState([]);
   const [chosenMealTypes, setChosenMealTypes] = useState([]);
 
@@ -51,12 +53,21 @@ export default function Search (props) {
     });
   };
 
+  const getAllDiets = () => {
+    return getResourceCollection('diet').then(tags => {
+      const options = tags.map(tagToOption);
+      setAllDiets(options);
+      return options;
+    });
+  };
+
   const syncInputValuesWithUrl = () => {
     const query = queryString.stringify(
       {
         search: searchInputText === '' ? undefined : searchInputText, // for some unknown reason, skipEmptyString option does not work
         ingredients: chosenIngredients && chosenIngredients.map(i => i.value),
-        meal_types: chosenMealTypes && chosenMealTypes.map(i => i.value)
+        meal_types: chosenMealTypes && chosenMealTypes.map(i => i.value),
+        diets: chosenDiets && chosenDiets.map(d => d.value)
       },
       { arrayFormat: 'bracket' }
     );
@@ -78,9 +89,9 @@ export default function Search (props) {
     setShowAdvancedSearch(!showAdvancedSearch);
   };
 
-  const populateInputs = (allMealTypes, allIngredients) => {
+  const populateInputs = (allMealTypes, allIngredients, allDiets) => {
     const query = queryString.parse(props.location.search, { arrayFormat: 'bracket' });
-    const { search, meal_types, ingredients } = query; // eslint-disable-line
+    const { search, meal_types, ingredients, diets } = query; // eslint-disable-line
     if (search) {
       setSearchInputText(search);
     }
@@ -90,12 +101,15 @@ export default function Search (props) {
     if (ingredients) {
       setChosenIngredients(allIngredients.filter(ingredient => ingredients.includes(ingredient.value.toString())));
     }
+    if (diets) {
+      setChosenDiets(allDiets.filter(diet => diets.includes(diet.value.toString())));
+    }
   };
 
   useEffect(() => {
-    Promise.all([getAllMealTypes(), getAllIngredients()])
-      .then(([allMealTypes, allIngredients]) => {
-        populateInputs(allMealTypes, allIngredients);
+    Promise.all([getAllMealTypes(), getAllIngredients(), getAllDiets()])
+      .then(([allMealTypes, allIngredients, allDiets]) => {
+        populateInputs(allMealTypes, allIngredients, allDiets);
       });
   }, []) // eslint-disable-line
 
@@ -108,8 +122,10 @@ export default function Search (props) {
       setShowAdvancedSearch(false);
       setAllMealTypes([]);
       setAllIngredients([]);
+      setAllDiets([]);
       setChosenIngredients([]);
       setChosenMealTypes([]);
+      setChosenDiets([]);
       setRecipes([]);
     }
   }, [props.location.search]) // eslint-disable-line
@@ -156,6 +172,16 @@ export default function Search (props) {
                         setChosenIngredients(newValues);
                       }}
                       placeholder='Ingrédients'
+                      className='tag-select'
+                    />}
+                  {allDiets.length !== 0 &&
+                    <TagSelect
+                      options={allDiets}
+                      value={chosenDiets}
+                      onChange={(newValues) => {
+                        setChosenDiets(newValues);
+                      }}
+                      placeholder='Régime spéciaux'
                       className='tag-select'
                     />}
                 </>}
