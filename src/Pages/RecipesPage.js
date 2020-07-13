@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import SmallRecipe from '../Components/SmallRecipe';
 import '../Styles/RecipesPage.css';
 import API from '../Services/API';
+
 const RecipesPage = () => {
   const [recipe, setRecipe] = useState([]);
 
@@ -12,6 +13,7 @@ const RecipesPage = () => {
         setRecipe(data.data);
       });
   }, []);
+
   return (
     <>
       {recipe.map((r) => {

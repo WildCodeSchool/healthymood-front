@@ -1,3 +1,4 @@
+/* eslint-disable no-lone-blocks */
 import React, { useContext, useState, useEffect } from 'react';
 import './Styles/App.css';
 import {
@@ -20,8 +21,9 @@ import RegisterPage from './Pages/Register';
 import MonCompte from './Pages/MonCompte';
 import ScrollToTop from './Scripts/ScrollToTop';
 import FavoriteContext from './Context/favoriteContext';
+import API from './Services/API';
 
-function PrivateRoute ({ children, ...rest }) {
+function PrivateRoute({ children, ...rest }) {
   const { token } = useContext(AuthContext);
   return (
     <Route
@@ -31,37 +33,37 @@ function PrivateRoute ({ children, ...rest }) {
           token ? (
             children
           ) : (
-            <Redirect
-              to={{
-                pathname: '/login',
-                state: { from: location }
-              }}
-            />
-          ) // eslint-disable-line
+              <Redirect
+                to={{
+                  pathname: '/login',
+                  state: { from: location }
+                }}
+              />
+            ) // eslint-disable-line
       } // eslint-disable-line
     />
   );
 }
 
-function App () {
+function App() {
   useEffect(() => {
-    /*
-    messaging
-      .requestPermission()
-      .then(async function () {
-        const token = await messaging.getToken();
-        console.log(token);
-      })
-      .catch(function (err) {
-        console.log('Unable to get permission to notify.', err);
-      });
-    navigator.serviceWorker.addEventListener('message', (message) =>
-      console.log(message)
-    );
-    */
+    {
+      isConnected
+        ? API.get('/favorites')
+          .then((res) => res.data)
+          .then((data) => {
+            console.log(data);
+            setFavorite(data.data);
+          })
+          .catch((err) => {
+            console.error(err);
+            window.alert('Erreur lors de la récupération des favoris');
+          })
+        : setFavorite(null);
+    }
   }, []);
 
-  const [favorite, setFavorite] = useState(false);
+  const [favorite, setFavorite] = useState([]);
 
   const [isConnected, setIsConnected] = useState(
     JSON.parse(window.localStorage.getItem('isConnected'))
@@ -84,6 +86,19 @@ function App () {
     setIsConnectedInLocalStorage(false);
   };
 
+  const handleSubmitFavorite = (recipe_id) => { // eslint-disable-line
+    API.post('/favorites', {
+      recipe_id
+    }).then((res) => res.data)
+      .then((data) => {
+        console.log(data);
+      })
+      .catch((err) => {
+        console.error(err);
+        window.alert('Erreur lors de l\'ajout d\'un favoris');
+      });
+  };
+
   return (
     <>
       <AuthContext.Provider
@@ -98,7 +113,8 @@ function App () {
         <FavoriteContext.Provider
           value={{
             favorite,
-            setFavorite
+            setFavorite,
+            handleSubmitFavorite
           }}
         >
           <Router>
