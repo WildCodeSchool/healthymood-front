@@ -19,6 +19,7 @@ export default function Search (props) {
   const [chosenDiets, setChosenDiets] = useState([]);
   const [chosenIngredients, setChosenIngredients] = useState([]);
   const [chosenMealTypes, setChosenMealTypes] = useState([]);
+  const [excludedIngredients, setExcludedIngredients] = useState([]);
 
   const getResourceCollection = async (url) => {
     let data = [];
@@ -67,7 +68,8 @@ export default function Search (props) {
         search: searchInputText === '' ? undefined : searchInputText, // for some unknown reason, skipEmptyString option does not work
         ingredients: chosenIngredients && chosenIngredients.map(i => i.value),
         meal_types: chosenMealTypes && chosenMealTypes.map(i => i.value),
-        diets: chosenDiets && chosenDiets.map(d => d.value)
+        diets: chosenDiets && chosenDiets.map(d => d.value),
+        excluded: excludedIngredients && excludedIngredients.map(ei => ei.value)
       },
       { arrayFormat: 'bracket' }
     );
@@ -91,7 +93,7 @@ export default function Search (props) {
 
   const populateInputs = (allMealTypes, allIngredients, allDiets) => {
     const query = queryString.parse(props.location.search, { arrayFormat: 'bracket' });
-    const { search, meal_types, ingredients, diets } = query; // eslint-disable-line
+    const { search, meal_types, ingredients, diets, excluded } = query; // eslint-disable-line
     if (search) {
       setSearchInputText(search);
     }
@@ -103,6 +105,9 @@ export default function Search (props) {
     }
     if (diets) {
       setChosenDiets(allDiets.filter(diet => diets.includes(diet.value.toString())));
+    }
+    if (excluded) {
+      setExcludedIngredients(allIngredients.filter(ingredient => excluded.includes(ingredient.toString())));
     }
   };
 
@@ -127,6 +132,7 @@ export default function Search (props) {
       setChosenMealTypes([]);
       setChosenDiets([]);
       setRecipes([]);
+      setExcludedIngredients([]);
     }
   }, [props.location.search]) // eslint-disable-line
 
@@ -182,6 +188,16 @@ export default function Search (props) {
                         setChosenDiets(newValues);
                       }}
                       placeholder='Régime spéciaux'
+                      className='tag-select'
+                    />}
+                  {allIngredients.length !== 0 &&
+                    <TagSelect
+                      options={allIngredients}
+                      value={excludedIngredients}
+                      onChange={(newValues) => {
+                        setExcludedIngredients(newValues);
+                      }}
+                      placeholder='Je ne veux pas'
                       className='tag-select'
                     />}
                 </>}
