@@ -20,7 +20,7 @@ export default function Search (props) {
   const [chosenDiets, setChosenDiets] = useState([]);
   const [chosenIngredients, setChosenIngredients] = useState([]);
   const [chosenMealTypes, setChosenMealTypes] = useState([]);
-  const [excludedIngredients, setExcludedIngredients] = useState([]);
+  /*   const [excludedIngredients, setExcludedIngredients] = useState([]); */
 
   const getResourceCollection = async (url) => {
     let data = [];
@@ -70,7 +70,7 @@ export default function Search (props) {
         ingredients: chosenIngredients && chosenIngredients.map(i => i.value),
         meal_types: chosenMealTypes && chosenMealTypes.map(i => i.value),
         diets: chosenDiets && chosenDiets.map(d => d.value),
-        excluded: excludedIngredients && excludedIngredients.map(ei => ei.value),
+        /*         excluded: excludedIngredients && excludedIngredients.map(ei => ei.value), */
         calories: chosenCalories === 0 ? undefined : chosenCalories
       },
       { arrayFormat: 'bracket' }
@@ -99,7 +99,7 @@ export default function Search (props) {
 
   const populateInputs = (allMealTypes, allIngredients, allDiets) => {
     const query = queryString.parse(props.location.search, { arrayFormat: 'bracket' });
-    const { search, meal_types, ingredients, diets, excluded, calories } = query; // eslint-disable-line
+    const { search, meal_types, ingredients, diets, calories } = query; // eslint-disable-line
     if (search) {
       setSearchInputText(search);
     }
@@ -115,9 +115,9 @@ export default function Search (props) {
     if (diets) {
       setChosenDiets(allDiets.filter(diet => diets.includes(diet.value.toString())));
     }
-    if (excluded) {
+    /*     if (excluded) {
       setExcludedIngredients(allIngredients.filter(ingredient => excluded.includes(ingredient.toString())));
-    }
+    } */
   };
 
   useEffect(() => {
@@ -141,7 +141,7 @@ export default function Search (props) {
       setChosenMealTypes([]);
       setChosenDiets([]);
       setRecipes([]);
-      setExcludedIngredients([]);
+      /*       setExcludedIngredients([]); */
       setChosenCalories(0);
     }
   }, [props.location.search]) // eslint-disable-line
@@ -207,7 +207,7 @@ export default function Search (props) {
                         className='tag-select'
                       />
                     </div>}
-                  {allIngredients.length !== 0 &&
+                  {/*                   {allIngredients.length !== 0 &&
                     <div className='input-label-container'>
                       <label className='advanced-search-label'>Quels ingrédients enlever ?</label>
                       <TagSelect
@@ -219,7 +219,7 @@ export default function Search (props) {
                         placeholder='Je ne veux pas'
                         className='tag-select'
                       />
-                    </div>}
+                    </div>} */}
                   <div className='input-label-container'>
                     <label className='advanced-search-label'>Combien de calories maximum ?</label>
                     <input
