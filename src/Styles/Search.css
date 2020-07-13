@@ -26,11 +26,15 @@
   border:0px;
   border-bottom:1px solid var(--inputColor);
   text-align:left;
+  background-color:transparent;
 }
 
 .Loupe .filter-list img {
   margin-left: 3px;
   height: 10px;
+}
+input {
+  background-color:transparent;
 }
 
 .filter-list {
@@ -158,6 +162,23 @@
   width:100%;
   margin-top:50px;
 }
+.input-label-container {
+  display:flex;
+  flex-direction:column;
+  flex-wrap:wrap;
+  justify-content:center;
+  align-items:flex-start;
+}
+input#calories {
+  width:100%;
+  border:0px;
+  border-bottom:1px solid var(--inputColor);
+  border-radius:0px;
+}
+.advanced-search-label {
+  margin-bottom:0px;
+  margin-top:20px;
+}
 
 
 @media screen and (max-width: 360px) {
@@ -170,6 +191,8 @@
 
 .tag-select {
   margin-bottom: 15px;
+  width:100%;
+  background-color:transparent;
 }
 .tag-select .css-yk16xz-control {
   border:0px;

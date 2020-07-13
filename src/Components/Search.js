@@ -12,6 +12,7 @@ export default function Search (props) {
 
   const [recipes, setRecipes] = useState([]);
   const [searchInputText, setSearchInputText] = useState('');
+  const [chosenCalories, setChosenCalories] = useState(0);
   const [showAdvancedSearch, setShowAdvancedSearch] = useState(true);
   const [allMealTypes, setAllMealTypes] = useState([]);
   const [allIngredients, setAllIngredients] = useState([]);
@@ -69,7 +70,8 @@ export default function Search (props) {
         ingredients: chosenIngredients && chosenIngredients.map(i => i.value),
         meal_types: chosenMealTypes && chosenMealTypes.map(i => i.value),
         diets: chosenDiets && chosenDiets.map(d => d.value),
-        excluded: excludedIngredients && excludedIngredients.map(ei => ei.value)
+        excluded: excludedIngredients && excludedIngredients.map(ei => ei.value),
+        calories: chosenCalories === 0 ? undefined : chosenCalories
       },
       { arrayFormat: 'bracket' }
     );
@@ -78,6 +80,10 @@ export default function Search (props) {
 
   const handleSearchInputTextChanged = (event) => {
     setSearchInputText(event.target.value);
+  };
+
+  const handleCaloriesInputNumberChanged = (event) => {
+    setChosenCalories(event.target.value);
   };
 
   const handleSearchInputKeyDown = (event) => {
@@ -93,9 +99,12 @@ export default function Search (props) {
 
   const populateInputs = (allMealTypes, allIngredients, allDiets) => {
     const query = queryString.parse(props.location.search, { arrayFormat: 'bracket' });
-    const { search, meal_types, ingredients, diets, excluded } = query; // eslint-disable-line
+    const { search, meal_types, ingredients, diets, excluded, calories } = query; // eslint-disable-line
     if (search) {
       setSearchInputText(search);
+    }
+    if (calories) {
+      setChosenCalories(calories);
     }
     if (meal_types) { // eslint-disable-line
       setChosenMealTypes(allMealTypes.filter(mealType => meal_types.includes(mealType.value.toString())));
@@ -133,6 +142,7 @@ export default function Search (props) {
       setChosenDiets([]);
       setRecipes([]);
       setExcludedIngredients([]);
+      setChosenCalories(0);
     }
   }, [props.location.search]) // eslint-disable-line
 
@@ -143,9 +153,7 @@ export default function Search (props) {
         <div className='search-field'>
           <div className='search-block'>
             <div className='my-search'>
-              <label className='label'>
-                <p>J'ai envie de : </p>
-              </label>
+              <label className='label'>J'ai envie de :</label>
               <input
                 id='search'
                 name='search'
@@ -161,45 +169,69 @@ export default function Search (props) {
               {showAdvancedSearch &&
                 <>
                   {allMealTypes.length !== 0 &&
-                    <TagSelect
-                      className='tag-select'
-                      options={allMealTypes}
-                      value={chosenMealTypes}
-                      onChange={(newValues) => {
-                        setChosenMealTypes(newValues);
-                      }}
-                      placeholder='Types de repas'
-                    />}
+                    <div className='input-label-container'>
+                      <label className='advanced-search-label'>Quel type de repas ?</label>
+                      <TagSelect
+                        className='tag-select'
+                        options={allMealTypes}
+                        value={chosenMealTypes}
+                        onChange={(newValues) => {
+                          setChosenMealTypes(newValues);
+                        }}
+                        placeholder='Types de repas'
+                      />
+                    </div>}
                   {allIngredients.length !== 0 &&
-                    <TagSelect
-                      options={allIngredients}
-                      value={chosenIngredients}
-                      onChange={(newValues) => {
-                        setChosenIngredients(newValues);
-                      }}
-                      placeholder='Ingrédients'
-                      className='tag-select'
-                    />}
+                    <div className='input-label-container'>
+                      <label className='advanced-search-label'>Quels ingrédients ?</label>
+                      <TagSelect
+                        options={allIngredients}
+                        value={chosenIngredients}
+                        onChange={(newValues) => {
+                          setChosenIngredients(newValues);
+                        }}
+                        placeholder='Ingrédients'
+                        className='tag-select'
+                      />
+                    </div>}
                   {allDiets.length !== 0 &&
-                    <TagSelect
-                      options={allDiets}
-                      value={chosenDiets}
-                      onChange={(newValues) => {
-                        setChosenDiets(newValues);
-                      }}
-                      placeholder='Régime spéciaux'
-                      className='tag-select'
-                    />}
+                    <div className='input-label-container'>
+                      <label className='advanced-search-label'>Quel régime spécial ?</label>
+                      <TagSelect
+                        options={allDiets}
+                        value={chosenDiets}
+                        onChange={(newValues) => {
+                          setChosenDiets(newValues);
+                        }}
+                        placeholder='Régime spéciaux'
+                        className='tag-select'
+                      />
+                    </div>}
                   {allIngredients.length !== 0 &&
-                    <TagSelect
-                      options={allIngredients}
-                      value={excludedIngredients}
-                      onChange={(newValues) => {
-                        setExcludedIngredients(newValues);
-                      }}
-                      placeholder='Je ne veux pas'
-                      className='tag-select'
-                    />}
+                    <div className='input-label-container'>
+                      <label className='advanced-search-label'>Quels ingrédients enlever ?</label>
+                      <TagSelect
+                        options={allIngredients}
+                        value={excludedIngredients}
+                        onChange={(newValues) => {
+                          setExcludedIngredients(newValues);
+                        }}
+                        placeholder='Je ne veux pas'
+                        className='tag-select'
+                      />
+                    </div>}
+                  <div className='input-label-container'>
+                    <label className='advanced-search-label'>Combien de calories maximum ?</label>
+                    <input
+                      type='number'
+                      name='calories'
+                      id='calories'
+                      placeholder='Calories maximum'
+                      value={chosenCalories}
+                      onChange={handleCaloriesInputNumberChanged}
+                      onKeyDown={handleSearchInputKeyDown}
+                    />
+                  </div>
                 </>}
             </div>
           </div>
