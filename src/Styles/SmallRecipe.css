@@ -4,6 +4,7 @@
   box-shadow: 0 0 3px rgba(0, 0, 0, 0.3);
   position: relative;
   margin: 20px;
+  min-height:380px; 
 }
 .small-recipe-global-container {
   position: relative;
@@ -22,6 +23,9 @@
 }
 .small-recipe-content-container {
   padding: 20px;
+  height:calc(100% - 90px);
+  top:110px;
+  position:absolute;
 }
 .small-recipe-title {
   font-size: 21px;
@@ -62,6 +66,10 @@
   overflow: hidden;
   z-index: 99;
   background-color:var(--accentColor);
+  position:absolute;
+  bottom:30px;
+  left:50%;
+  transform:translateX(-50%);
 }
 .read-more:hover {
   color: var(--accentColor);

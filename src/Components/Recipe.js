@@ -18,6 +18,10 @@ class RecipeToPrint extends React.Component {
     return string.charAt(0).toUpperCase() + string.slice(1);
   }
 
+  createRecipe () {
+    return { __html: this.props.recipeInfo.content };
+  }
+
   countTotalCalories = (ingredientCalorie) => {
     let totalCalories = 0;
     for (let i = 0; i < ingredientCalorie.length; i++) {
@@ -82,7 +86,7 @@ class RecipeToPrint extends React.Component {
           </div>
         </div>
         <div className='instructions-container'>
-          <h2>Ingrédients</h2>
+          <h2 className='recipe-ingredients-title'>Ingrédients</h2>
           <ul>
             {/*             {recipeInfo.ingredients.map(ingredient => {
 
@@ -96,8 +100,8 @@ class RecipeToPrint extends React.Component {
             })} */}
           </ul>
 
-          <h2>Instructions</h2>
-          <div>{recipeInfo.content}</div>
+          <h2 className='recipe-instructions-title'>Instructions</h2>
+          <div dangerouslySetInnerHTML={this.createRecipe()}></div>
         </div>
       </div>
     );

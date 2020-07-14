@@ -16,6 +16,14 @@ const SmallRecipe = ({ r }) => {
     history.push('/');
   };
 
+  const capitalizeFirstLetter = (string) => {
+    return string.charAt(0).toUpperCase() + string.slice(1);
+  }
+
+/*const createIntro = () => {
+  return { __html: r.content };
+}*/
+
   return (
     <>
       <div key={r.slug} className='small-recipe-global-container'>
@@ -46,12 +54,13 @@ const SmallRecipe = ({ r }) => {
               <div
                 className='small-reciper-banner-image'
                 style={{
-                  backgroundImage: `linear-gradient(to bottom, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.1)), url('${r.image}')`
+                  backgroundImage: `linear-gradient(to bottom, rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.1)), url('${r.image}')`
                 }}
               />
               <div className='small-recipe-content-container'>
-                <h1 className='small-recipe-title'>{r.name}</h1>
-                <p className='small-recipe-intro'>{r.content}</p>
+                <h1 className='small-recipe-title'>{capitalizeFirstLetter(r.name)}</h1>
+                {r.intro ? <p className='small-recipe-intro'>{r.intro}</p> :
+                <p className='small-recipe-intro'>{r.content.replace(/<\/?[^>]+(>|$)/g, "").replace('&#8217;', "'").slice(1, 157)}...</p>}
                 <button className='read-more'>
                   <p>Lire la suite</p>
                 </button>
