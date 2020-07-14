@@ -39,7 +39,7 @@ class RecipeToPrint extends React.Component {
               className='picto-container'
               style={{ backgroundImage: `url(${authorImage})` }}
             />
-            <p> {this.capitalizeFirstLetter(recipeInfo.author.username)} </p>
+            <p> {recipeInfo.author.username ? this.capitalizeFirstLetter(recipeInfo.author.username) : 'Non renseigné'} </p>
             <span
               className='picto-container'
               style={{ backgroundImage: `url(${publishedImage})` }}
@@ -49,7 +49,7 @@ class RecipeToPrint extends React.Component {
               className='picto-container'
               style={{ backgroundImage: `url(${categoryImage})` }}
             />
-            <p>{this.capitalizeFirstLetter(recipeInfo.category.name)}</p>
+            <p>{recipeInfo.category.name ? this.capitalizeFirstLetter(recipeInfo.category.name) : 'Catégorie non renseignée'}</p>
           </div>
           <Rating recipeInfo={recipeInfo} />
         </header>
@@ -60,25 +60,25 @@ class RecipeToPrint extends React.Component {
               className='picto-container'
               style={{ backgroundImage: `url(${mealTypeImage})` }}
             />
-            <p>{this.capitalizeFirstLetter(recipeInfo.mealType.name)}</p>
+            <p>{recipeInfo.mealType.name ? this.capitalizeFirstLetter(recipeInfo.mealType.name) : 'Type de plat non renseigné'}</p>
           </div>
           <div className='picto-info-container'>
             <span className='picto-container' style={{ backgroundImage: `url(${caloriesImage})` }} />
-            <p>Environ {recipeInfo.calories} calories</p>
+            <p>{recipeInfo.calories ? `Environ ${recipeInfo.calories} calories` : 'Calories non renseignées'}</p>
           </div>
           <div className='picto-info-container'>
             <span
               className='picto-container'
               style={{ backgroundImage: `url(${durationImage})` }}
             />
-            <p>{recipeInfo.preparation_duration_seconds} S</p>
+            {recipeInfo.preparation_duration_seconds ? <p>{(recipeInfo.preparation_duration_seconds) / 60} min</p> : <p>Durée non renseignée</p>}
           </div>
           <div className='picto-info-container'>
             <span
               className='picto-container'
               style={{ backgroundImage: `url(${priceImage})` }}
             />
-            <p>{recipeInfo.budget} €</p>
+            {recipeInfo.budget ? <p>{recipeInfo.budget} €</p> : <p>Non renseigné</p>}
           </div>
         </div>
         <div className='instructions-container'>
