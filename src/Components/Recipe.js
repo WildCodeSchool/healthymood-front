@@ -1,4 +1,3 @@
-
 import React from 'react';
 import '../Styles/Recipe.css';
 import publishedImage from '../Images/published.png';
