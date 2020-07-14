@@ -115,27 +115,20 @@ class Recipe extends React.Component {
 
   componentDidMount () {
     API.get(`/recipes/${this.props.match.params.slug}`)
-      .then(data => data.data)
       .then(results => {
-        this.setState({ currentRecipe: results.data });
+        console.log(results);
+        this.setState({ currentRecipe: results.data.data, recipeIsLoading: false });
       })
       .catch(err => {
         console.log(err);
       });
-    console.log(this.props.match.params.slug);
-  }
-
-  componentDidUpdate (prevProps) {
-    if (this.props.currentRecipe !== prevProps.currentRecipe) {
-      this.setState({ recipeIsLoading: false });
-    }
   }
 
   render () {
     const params = this.props.match.params;
     console.log(this.state.currentRecipe);
     return (
-      !this.recipeIsLoading ? (
+      !this.state.recipeIsLoading ? (
         <div className='print-recipe-container'>
           <RecipeToPrint params={params} recipeInfo={this.state.currentRecipe} ref={el => (this.componentRef = el)} />
           <h5 className='social-title'>Merci de partager : </h5>
