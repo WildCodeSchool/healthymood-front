@@ -101,7 +101,7 @@ class RecipeToPrint extends React.Component {
           </ul>
 
           <h2 className='recipe-instructions-title'>Instructions</h2>
-          <div dangerouslySetInnerHTML={this.createRecipe()}></div>
+          <div dangerouslySetInnerHTML={this.createRecipe()} />
         </div>
       </div>
     );

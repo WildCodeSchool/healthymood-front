@@ -18,11 +18,11 @@ const SmallRecipe = ({ r }) => {
 
   const capitalizeFirstLetter = (string) => {
     return string.charAt(0).toUpperCase() + string.slice(1);
-  }
+  };
 
-/*const createIntro = () => {
+  /* const createIntro = () => {
   return { __html: r.content };
-}*/
+} */
 
   return (
     <>
@@ -59,8 +59,8 @@ const SmallRecipe = ({ r }) => {
               />
               <div className='small-recipe-content-container'>
                 <h1 className='small-recipe-title'>{capitalizeFirstLetter(r.name)}</h1>
-                {r.intro ? <p className='small-recipe-intro'>{r.intro}</p> :
-                <p className='small-recipe-intro'>{r.content.replace(/<\/?[^>]+(>|$)/g, "").replace('&#8217;', "'").slice(1, 157)}...</p>}
+                {r.intro ? <p className='small-recipe-intro'>{r.intro}</p>
+                  : <p className='small-recipe-intro'>{r.content.replace(/<\/?[^>]+(>|$)/g, '').replace('&#8217;', "'").slice(1, 157)}...</p>}
                 <button className='read-more'>
                   <p>Lire la suite</p>
                 </button>
