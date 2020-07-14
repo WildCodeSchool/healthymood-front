@@ -1,11 +1,9 @@
 .small-recipe-container {
-  background-color: rgba(236, 231, 231, 0.808);
   width: 300px;
   transition: all 0.2s ease-in-out;
   box-shadow: 0 0 3px rgba(0, 0, 0, 0.3);
   position: relative;
   margin: 20px;
-  border-radius: 5px;
 }
 .small-recipe-global-container {
   position: relative;
@@ -21,7 +19,6 @@
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
-  border-radius: 5px 5px 0 0;
 }
 .small-recipe-content-container {
   padding: 20px;
@@ -30,6 +27,7 @@
   font-size: 21px;
   text-align: center;
   margin-top: 6px;
+  color:var(--accentColor);
 }
 .small-recipe-intro {
   text-align: justify;
@@ -54,20 +52,21 @@
   color: black;
 }
 .read-more {
-  color: var(--accentColor);
+  color: white;
   border: 1px solid transparent;
-  border-radius: 3em;
   padding: 5px 20px;
   transition: all 0.2s ease-in-out;
   font-family: var(--fourthFont);
-  border: 1px solid var(--accentColor);
+  border: 1px solid var(--transparent);
   position: relative;
   overflow: hidden;
   z-index: 99;
+  background-color:var(--accentColor);
 }
 .read-more:hover {
-  color: white;
-  border: 1px solid white;
+  color: var(--accentColor);
+  border: 1px solid var(--accentColor);
+  background-color:white;
 }
 .read-more:after {
   position: absolute;
@@ -76,7 +75,6 @@
   left: 0;
   width: 0%;
   height: 100%;
-  border-radius: 3em;
   transition: all 0.3s ease-in-out;
   background-color: var(--accentColor);
   z-index: -1;
