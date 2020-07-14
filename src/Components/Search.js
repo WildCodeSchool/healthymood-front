@@ -128,7 +128,6 @@ export default function Search (props) {
   }, []) // eslint-disable-line
 
   useEffect(() => {
-    console.log(props.location);
     if (props.location.search) {
       getRecipes();
     } else {
@@ -247,7 +246,6 @@ export default function Search (props) {
                 <>
                   <h4 className='results-title'>Résultats : </h4>
                   {recipes.map((recipe) => {
-                    console.log(recipes);
                     return (
                       <div className='filtered-recipes' key={recipe.id}>
                         <SmallRecipe r={recipe} />
