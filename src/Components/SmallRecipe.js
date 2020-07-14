@@ -16,6 +16,8 @@ const SmallRecipe = ({ r }) => {
     handleSubmitFavorite(recipe_id);
   };
 
+  const toto = favorite.map(fav => fav.recipe_id).filter(favId => favId === r.id);
+  console.log(toto);
   return (
     <>
       <div key={r.slug} className='small-recipe-global-container'>
@@ -24,9 +26,10 @@ const SmallRecipe = ({ r }) => {
           onClick={connected ? (event) => handleSubmit(event, r.id) : () => history.push('/login')}
           style={connected && favorite
 
-            ? favorite.map(fav => fav.recipe_id).filter(favId => favId === r.id)
+            ? toto
 
               ? {
+
                 backgroundImage: `url(${fullFav})`
               }
               : { backgroundImage: `url(${emptyFav})` }

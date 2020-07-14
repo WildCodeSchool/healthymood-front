@@ -113,6 +113,7 @@ class RecipeToPrint extends React.Component {
             />
           </div>
         </div>
+
         <div className='instructions-container'>
           <h2>Ingrédients</h2>
           <ul>

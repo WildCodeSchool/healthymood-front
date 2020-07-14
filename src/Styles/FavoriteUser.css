@@ -1,4 +1,4 @@
-.small-recipe-container {
+.small-recipe-container-user-page {
     background-color: rgba(236, 231, 231, 0.808);
     width: 300px;
     transition: all 0.2s ease-in-out;
@@ -7,15 +7,23 @@
     margin: 20px;
     border-radius: 5px;
   }
+  .small-recipe-user-page{
+    display: flex;
+    flex-direction: row;
+    width: 60%;
+    flex-wrap: wrap;
+    margin: auto;
+  }
   .small-recipe-global-container-user-page {
     position: relative;
+    margin: auto;
   }
-  .small-recipe-container:hover {
+  .small-recipe-container-user-page:hover {
     cursor: pointer;
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
   }
   
-  .small-recipe-container .small-reciper-banner-image {
+  .small-recipe-container-user-page .small-reciper-banner-image-user-page {
     width: 100%;
     height: 110px;
     background-position: center;
@@ -23,19 +31,19 @@
     background-repeat: no-repeat;
     border-radius: 5px 5px 0 0;
   }
-  .small-recipe-content-container {
+  .small-recipe-content-container-user-page {
     padding: 20px;
   }
-  .small-recipe-title {
+  .small-recipe-title-user-page {
     font-size: 21px;
     text-align: center;
     margin-top: 6px;
   }
-  .small-recipe-intro {
+  .small-recipe-intro-user-page {
     text-align: justify;
     margin-top: 1rem;
   }
-  .small-recipe-favorite-icon {
+  .small-recipe-favorite-icon-user-page {
     width: 25px;
     height: 25px;
     position: absolute;
@@ -46,14 +54,14 @@
     z-index: 99999999;
     cursor: pointer;
   }
-  .link-recette {
+  .link-recette-user-page {
     color: black;
   }
-  .link-recette:hover {
+  .link-recette-user-page:hover {
     text-decoration: none;
     color: black;
   }
-  .read-more {
+  .read-more-user-page {
     color: var(--accentColor);
     border: 1px solid transparent;
     border-radius: 3em;
@@ -65,11 +73,11 @@
     overflow: hidden;
     z-index: 99;
   }
-  .read-more:hover {
+  .read-more-user-page:hover {
     color: white;
     border: 1px solid white;
   }
-  .read-more:after {
+  .read-more-user-page:after {
     position: absolute;
     content: "";
     top: 0;
@@ -81,10 +89,21 @@
     background-color: var(--accentColor);
     z-index: -1;
   }
-  .read-more:hover:after {
+  .read-more-user-page:hover:after {
     width: 100%;
   }
-  .read-more p {
+  .read-more-user-page p {
     margin-bottom: 0px;
   }
   
+.small-recipe-title-user-page{
+  margin: auto;
+  margin-top: 20px;
+}
+
+  @media screen and (max-width: 1280px) {
+    .small-recipe-user-page{
+      display: flex;
+      flex-direction: column;
+    }
+  }
