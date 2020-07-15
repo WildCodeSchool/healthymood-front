@@ -54,7 +54,6 @@ input {
   text-decoration:underline;
   cursor:pointer;
   font-size:13px;
-  margin-bottom:50px;
 }
 .css-1rhbuit-multiValue {
   background-color:var(--accentColor)!important;
@@ -164,6 +163,9 @@ input {
 .results-title {
   width:100%;
   margin-top:50px;
+}
+.showAdvancedSearch-search-container .input-label-container:nth-last-child(1) {
+  margin-bottom:40px;
 }
 .input-label-container {
   display:flex;

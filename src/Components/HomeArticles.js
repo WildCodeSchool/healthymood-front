@@ -26,7 +26,7 @@ export default function HomeArticles () {
         })}
       </div>
       <Link to='/conseils-astuces' className='link-article'>
-        <button><p>Plus d'articles</p></button>
+        <button className='btn-search'>Plus d'articles</button>
       </Link>
     </>
   );

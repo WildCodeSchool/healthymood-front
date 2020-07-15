@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import Loupe from '../Images/glass.png';
 import SmallArticle from '../Components/SmallArticle';
-import '../Styles/ConseilsAstuces.css';
 import API from '../Services/API';
 import { useHistory } from 'react-router-dom';
+import '../Styles/SearchArticles.css';
 
 export default function SearchArticles (props) {
   const history = useHistory();
@@ -72,24 +72,23 @@ export default function SearchArticles (props) {
   }, []); // eslint-disable-line
 
   return (
-    <div className='recherche-container'>
+    <div className='recherche-article-container'>
       <div className='Loupe'>
-        <h2>Rechercher un article</h2>
         <div className='search-field'>
-          <div className='search-block'>
-            <div className='my-search'>
+          <div className='search-block-articles'>
+            <div className='my-search-articles'>
               <input
                 id='search'
                 name='search'
                 type='text'
-                placeholder='Salade de fruit...'
+                placeholder='Rechercher un article'
                 value={currentInput}
                 onChange={handleChange}
                 onKeyDown={handleKeyDown}
               />
             </div>
             <button
-              className='btn-search'
+              className='btn-search-article'
               onClick={() => {
                 handleValidate();
               }}

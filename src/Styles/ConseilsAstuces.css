@@ -33,7 +33,6 @@ input:focus, button:focus {
   width: 250px;
   margin-top: 5px;
   margin-bottom:30px;
-  border-radius:30px;
   border:1px solid #424242;
   text-align:center;
 }
