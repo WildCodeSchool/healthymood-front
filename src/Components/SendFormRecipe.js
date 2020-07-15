@@ -22,19 +22,19 @@ const SendFormRecipe = () => {
   console.log(mealTypes);
   console.log(regimeTypes);
 
-  const { register, handleSubmit } = useForm();
-  const onSubmit = data => {
+  const { register /*, handleSubmit*/ } = useForm();
+  /*const onSubmit = data => {
     console.log(JSON.stringify(data));
-  };
+  };*/
 
   return (
     <div className='form-recipe'>
       <h2>Proposer ma recette</h2>
-      <form id='post-recipe-form' onSubmit={handleSubmit(onSubmit)} action='/post_recipe' method='POST'>
+      <form id='post-recipe-form' action='http://localhost:4000/post_recipe' method='POST'>
         <div className='author-id'>
           <div className='author-username'>
             <label>Pseudo : </label>
-            <input type='text' name='Pseudo' ref={register} placeholder='Entrez votre pseudo' />
+            <input type='text' name='username' ref={register} placeholder='Entrez votre pseudo' />
           </div>
           <div className='author-mail'>
             <label>Email : </label>
@@ -43,7 +43,7 @@ const SendFormRecipe = () => {
         </div>
         <div className='form-title'>
           <label>Titre : </label>
-          <input type='text' name='titre' ref={register} placeholder='Entrez un Titre' />
+          <input type='text' name='title' ref={register} placeholder='Entrez un Titre' />
         </div>
         <p>Choisissez un ou plusieurs critères :</p>
         {/* <div className='regime-type-select'>
@@ -56,7 +56,7 @@ const SendFormRecipe = () => {
   </div> */}
         <div className='recipe-post-description'>
           <label>Description de ma recette : </label>
-          <textarea name='recette' ref={register} placeholder='Détaillez votre recette' />
+          <textarea name='description' ref={register} placeholder='Détaillez votre recette' />
         </div>
         {/* <div className='download'>
           <label>Télécharger une image : </label>
