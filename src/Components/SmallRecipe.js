@@ -20,10 +20,6 @@ const SmallRecipe = ({ r }) => {
     return string.charAt(0).toUpperCase() + string.slice(1);
   };
 
-  /* const createIntro = () => {
-  return { __html: r.content };
-} */
-
   return (
     <>
       <div key={r.slug} className='small-recipe-global-container'>

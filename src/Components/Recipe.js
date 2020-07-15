@@ -88,16 +88,16 @@ class RecipeToPrint extends React.Component {
         <div className='instructions-container'>
           <h2 className='recipe-ingredients-title'>Ingrédients</h2>
           <ul>
-            {/*             {recipeInfo.ingredients.map(ingredient => {
+            {recipeInfo.ingredients.map(ingredient => {
 
               return (
                 <li key={ingredient.id}>
                   <span className={ingredient.is_allergen && 'is-allergen'}>
-                    {ingredient.name} ({ingredient.calories} Kcal)
+                    {ingredient.name}
                   </span>
                 </li>
               );
-            })} */}
+            })}
           </ul>
 
           <h2 className='recipe-instructions-title'>Instructions</h2>
