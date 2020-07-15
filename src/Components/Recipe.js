@@ -89,7 +89,6 @@ class RecipeToPrint extends React.Component {
           <h2 className='recipe-ingredients-title'>Ingrédients</h2>
           <ul>
             {recipeInfo.ingredients.map(ingredient => {
-
               return (
                 <li key={ingredient.id}>
                   <span className={ingredient.is_allergen && 'is-allergen'}>
