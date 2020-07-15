@@ -4,6 +4,7 @@ import SmallArticle from '../Components/SmallArticle';
 import API from '../Services/API';
 import { useHistory } from 'react-router-dom';
 import '../Styles/SearchArticles.css';
+import AdvicesAndTricks from './AdvicesAndTricks';
 
 export default function SearchArticles (props) {
   const history = useHistory();
@@ -50,7 +51,7 @@ export default function SearchArticles (props) {
       GetArticles();
     } else {
       history.push({
-        pathname: '/rechercher'
+        pathname: '/conseils-astuces'
       });
       setArticles([]);
     }
@@ -99,20 +100,22 @@ export default function SearchArticles (props) {
           </div>
           <div className='result'>
             <div className='filter-articles-container'>
-              {articles.length === 0 ? (
-                currentSearch && <h4 className='no-result'>Aucun résultat pour {currentSearch}</h4>
-              ) : (
-                <>
-                  <h4 className='results-title'>Résultats pour {currentSearch}</h4>
-                  {articles.map((article) => {
-                    return (
-                      <div className='filtered-articles' key={article.id}>
-                        <SmallArticle a={article} />
-                      </div>
-                    );
-                  })}
-                </>
-              )}
+              {props.location.search
+                ? articles.length === 0 ? (
+                  currentSearch && <h4 className='no-result'>Aucun résultat pour {currentSearch}</h4>
+                ) : (
+                  <>
+                    <h4 className='results-title'>Résultats pour {currentSearch}</h4>
+                    {articles.map((article) => {
+                      return (
+                        <div className='filtered-articles' key={article.id}>
+                          <SmallArticle a={article} />
+                        </div>
+                      );
+                    })}
+                  </>
+                )
+                : <AdvicesAndTricks />}
             </div>
           </div>
         </div>

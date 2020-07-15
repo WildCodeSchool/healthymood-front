@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
-import axios from 'axios';
 import '../Styles/AdvicesAndTricks.css';
 import ReactPaginate from 'react-paginate';
 import SmallArticle from '../Components/SmallArticle';
+import '../Styles/SmallArticle.css';
+import API from '../Services/API';
+import '../Styles/Paginate.css';
 
 export default class AdvicesAndTricks extends Component {
   constructor (props) {
@@ -20,8 +22,8 @@ export default class AdvicesAndTricks extends Component {
   }
 
   receivedData () {
-    axios
-      .get('http://localhost:4000/articles')
+    API
+      .get('/articles')
       .then(res => {
         const data = res.data.data;
         const slice = data.slice(this.state.offset, this.state.offset + this.state.perPage);

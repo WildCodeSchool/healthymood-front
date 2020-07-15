@@ -133,8 +133,8 @@ function App () {
               <Switch>
                 <Route exact path='/' component={Home} />
                 <Route exact path='/recettes' component={RecipesPage} />
-                <Route path='/conseils-astuces' component={ConseilsAstuces} />
-                <Route exact path='/conseils-astuces/:slug' component={Article} />
+                <Route exact path='/conseils-astuces' component={ConseilsAstuces} />
+                <Route path='/conseils-astuces/:id' component={Article} />
                 <Route path='/rechercher' component={Search} />
                 <Route exact path='/recettes/:slug' component={Recipe} />
                 <Route

@@ -4,7 +4,7 @@
 }
 
 .recherche-container {
-  padding-top: 10vh;
+  padding-top: 5vh;
 }
 
 .my-search {
@@ -119,8 +119,8 @@ input {
 }
 .Loupe h2 {
   margin: 0 auto;
-  margin-bottom:10vh;
   margin-right: 10px;
+  margin-bottom:5vh;
 }
 
 .Loupe h2::before {

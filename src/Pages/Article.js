@@ -7,29 +7,35 @@ export default class Article extends Component {
   constructor (props) {
     super(props);
     this.state = {
-      data: []
+      data: [],
+      articleIsLoading: true
     };
   }
 
   componentDidMount () {
-    const page = document.location.href;
-    const idPage = page.substring(page.lastIndexOf('/') + 1);
-    API
-      .get(`/articles/${idPage}`)
-      .then(res => {
-        this.setState({
-          data: res.data.data
-        });
-      });
+    const idPage = this.props.match.params.id;
+    console.log(idPage);
+
+    API.get(`/articles/${idPage}`)
+      .then((res) => res.data)
+      .then((data) => {
+        return data.data;
+      })
+      .then((data) => this.setState({ data, articleIsLoading: false }));
   }
 
   render () {
     return (
       <div className='page-article'>
-        <h1>{this.state.data.title}</h1>
-        <div className='article-content-container'>
-          <ArticleContent a={this.state.data} />
-        </div>
+        {this.state.articleIsLoading ? (<p>Chargement</p>
+        ) : (
+          <>
+            <h1>{this.state.data.title}</h1>
+            <div className='article-content-container'>
+              <ArticleContent a={this.state.data} />
+            </div>
+          </>
+        )}
       </div>
     );
   }

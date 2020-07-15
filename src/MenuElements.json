@@ -41,22 +41,6 @@
       "slug": "conseils-astuces"
     },
     {
-      "text": "Dictionnaire",
-      "link": "/dictionnaire",
-      "submenu": false,
-      "withSubmenu": false,
-      "icon": "dictionary.png",
-      "slug": "dictionnaire"
-    },
-    {
-      "text": "Ebook",
-      "link": "/e-book",
-      "submenu": false,
-      "withSubmenu": false,
-      "icon": "ebook.png",
-      "slug": "ebook"
-    },
-    {
       "text": "Envoyer ma recette",
       "link": "envoyer-recette",
       "submenu": false,
