@@ -38,7 +38,8 @@ class RecipeToPrint extends React.Component {
     const connected = this.props.connected;
     const favorite = this.props.favorite;
     const handleSubmit = this.props.handleSubmit;
-
+    console.log(recipeInfo);
+    console.log(favorite);
     return (
 
       <div className='recipe-container'>
@@ -103,7 +104,7 @@ class RecipeToPrint extends React.Component {
               onClick={connected ? (event) => handleSubmit(event, recipeInfo.id) : () => history.push('/login')}
               style={connected && favorite
 
-                ? favorite.map(fav => fav.recipe_id).filter(favId => favId === recipeInfo.id)
+                ? favorite.map(fav => fav.recipe_id).find(favId => favId === recipeInfo.id)
 
                   ? {
                     backgroundImage: `url(${fullFav})`

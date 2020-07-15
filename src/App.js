@@ -24,7 +24,7 @@ import FavoriteContext from './Context/favoriteContext';
 import FavoriteUser from './Pages/FavoriteUser';
 import API from './Services/API';
 
-function PrivateRoute ({ children, ...rest }) {
+function PrivateRoute({ children, ...rest }) {
   const { token } = useContext(AuthContext);
   return (
     <Route
@@ -34,19 +34,19 @@ function PrivateRoute ({ children, ...rest }) {
           token ? (
             children
           ) : (
-            <Redirect
-              to={{
-                pathname: '/login',
-                state: { from: location }
-              }}
-            />
+              <Redirect
+                to={{
+                  pathname: '/login',
+                  state: { from: location }
+                }}
+              />
             ) // eslint-disable-line
       } // eslint-disable-line
     />
   );
 }
 
-function App () {
+function App() {
   useEffect(() => {
     {
       isConnected
@@ -91,6 +91,14 @@ function App () {
       recipe_id
     }).then((res) => res.data)
       .then((data) => {
+        const favExist = favorite.find((fav) => fav.recipe_id === recipe_id); //eslint-disable-line 
+        console.log(favExist);
+        if (!favExist) {
+          setFavorite((favorite) => [...favorite, { recipe_id }]);
+        } else {
+          setFavorite((favorite) => favorite.filter((fav) => fav.recipe_id !== recipe_id)); //eslint-disable-line 
+        }
+
         console.log(data);
       })
       .catch((err) => {
