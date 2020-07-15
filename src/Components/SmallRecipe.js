@@ -44,7 +44,7 @@ const SmallRecipe = ({ r }) => {
               <div
                 className='small-reciper-banner-image'
                 style={{
-                  backgroundImage: `linear-gradient(to bottom, rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.1)), url('${r.image}')`
+                  backgroundImage: `url('${r.image}')`
                 }}
               />
               <div className='small-recipe-content-container'>

@@ -28,7 +28,7 @@ const FavoriteUser = () => {
     <>
       <h3 className='small-recipe-title-user-page'>Votre liste de favoris :</h3>
       {favorite.length === 0
-        ? <h6>Vous n'avez pas encore de favoris</h6>
+        ? <h4 className='no-result'>Vous n'avez pas encore de favoris</h4>
         : <div className='small-recipe-user-page'>
           {recipe &&
             recipe.map(r => {
@@ -37,7 +37,7 @@ const FavoriteUser = () => {
               );
             }
             )}
-        </div>} //eslint-disable-line
+        </div>}
     </>
   );
 };
