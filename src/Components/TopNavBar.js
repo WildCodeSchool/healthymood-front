@@ -1,32 +1,82 @@
-import React, { useState } from 'react';
+import React, { useContext } from 'react';
 import { NavLink } from 'react-router-dom';
-import MenuElements from '../MenuElements.json';
 import '../Styles/TopNavBar.css';
+import AuthContext from '../Context/authContext';
 
-const TopNavBar = (props) => {
-  const [isConnected] = useState(true);
+const TopNavBar = () => {
+  const { connected, setLogOut } = useContext(AuthContext);
 
   return (
     <div className='desktop-top-nav-bar'>
-      {isConnected
-        ? MenuElements.navigationElements.filter(element => element.needLogIn || element.text === 'Envoyer ma recette').map(e => {
-          return (
-            <NavLink key={e.text} exact to={e.link} className={`topnav-bar-link-${e.slug}`}>
-              <div className='topnav-bar-element-container'>
-                <p>{e.text}</p>
-              </div>
-            </NavLink>
-          );
-        })
-        : MenuElements.navigationElements.filter(element => element.needLogOut || element.text === 'Envoyer ma recette').map(e => {
-          return (
-            <NavLink key={e.text} exact to={e.link} className={`topnav-bar-link-${e.slug}`}>
-              <div>
-                <p>{e.text}</p>
-              </div>
-            </NavLink>
-          );
-        })}
+      {connected ? (
+        <>
+          <NavLink
+            exact
+            to='/envoyer-recette'
+            className='topnav-bar-link-envoyer-recette'
+          >
+            <div className='topnav-bar-element-container'>
+              <p>Envoyer ma recette</p>
+            </div>
+          </NavLink>
+
+          <NavLink exact to='/compte' className='topnav-bar-link-compte'>
+            <div className='topnav-bar-element-container'>
+              <p>Mon compte</p>
+            </div>
+          </NavLink>
+
+          <NavLink
+            exact
+            to='/compte/favoris'
+            className='topnav-bar-link-favoris'
+          >
+            <div className='topnav-bar-element-container'>
+              <p>Mes favoris</p>
+            </div>
+          </NavLink>
+
+          <NavLink
+            exact
+            to='/compte/liste-courses'
+            className='topnav-bar-link-liste-courses'
+          >
+            <div className='topnav-bar-element-container'>
+              <p>Ma liste de courses</p>
+            </div>
+          </NavLink>
+
+          <NavLink exact to='/' className='topnav-bar-link-deconnexion'>
+            <div className='topnav-bar-element-container' onClick={setLogOut}>
+              <p>Déconnexion</p>
+            </div>
+          </NavLink>
+        </>
+      ) : (
+        <>
+          <NavLink
+            exact
+            to='/envoyer-recette'
+            className='topnav-bar-link-envoyer-recette'
+          >
+            <div className='topnav-bar-element-container'>
+              <p>Envoyer ma recette</p>
+            </div>
+          </NavLink>
+
+          <NavLink exact to='/register' className='topnav-bar-link-register'>
+            <div className='topnav-bar-element-container'>
+              <p>Créer mon compte</p>
+            </div>
+          </NavLink>
+
+          <NavLink exact to='/login' className='topnav-bar-link-connexion'>
+            <div className='topnav-bar-element-container'>
+              <p>Connexion</p>
+            </div>
+          </NavLink>
+        </>
+      )}
     </div>
   );
 };

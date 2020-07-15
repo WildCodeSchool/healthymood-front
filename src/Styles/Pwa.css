@@ -1,3 +1,4 @@
-.add-install {
-  border-radius: 15px;
+.install-banner {
+  cursor: pointer;
+  background-color: #4fce1f;
 }
