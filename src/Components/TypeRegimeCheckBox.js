@@ -1,25 +1,18 @@
-import React, { useState, useEffect } from 'react';
-import API from '../Services/Api';
+import React from 'react';
 
-function TypeRegimeCheckBox () {
-  const url = '/recipe_categories';
-  const [regimeTypes, setRegimeTypes] = useState([]);
-  useEffect(() => {
-    API.get(url)
-      .then((res) => res.data)
-      .then((data) => {
-        setRegimeTypes(data.data);
-      });
-  });
-
+function TypeRegimeCheckBox ({ regimeTypes, register }) {
   return (
     <div className='regime-type-select'>
       <p>Régime : </p>
       <div className=''>
         {regimeTypes.map((type) => {
+          type.select = false;
+          const handleClick = (e) => {
+            type.select = e.target.checked;
+          };
           return (
             <div className='regime-checkbox' key={type.id}>
-              <input type='checkbox' id={type.name} name={type.name} value={type.name} />
+              <input key={type.id} type='checkbox' id={type.name} name='regime' value={type.name} onClick={handleClick} />
               <label for={type.name}>{type.name}</label>
             </div>
           );

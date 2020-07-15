@@ -1,26 +1,19 @@
-import React, { useState, useEffect } from 'react';
-import API from '../Services/Api';
+import React from 'react';
 
-function TypeMealCheckBox () {
-  const url = '/meal_types';
-  const [mealTypes, setMealTypes] = useState([]);
-  useEffect(() => {
-    API.get(url)
-      .then((res) => res.data)
-      .then((data) => {
-        setMealTypes(data.data);
-      });
-  });
-
+function TypeMealCheckBox ({ mealTypes, register }) {
   return (
     <div className='meal-type-select'>
       <p>Type de plat : </p>
       <div className=''>
-        {mealTypes.map((type) => {
+        {mealTypes.map((d) => {
+          d.select = false;
+          const handleClick = (e) => {
+            d.select = e.target.checked;
+          };
           return (
-            <div className='meal-checkbox' key={type.id}>
-              <input type='checkbox' id={type.name} name={type.name} value={type.name} />
-              <label for={type.name}>{type.name}</label>
+            <div className='meal-checkbox' key={d.id}>
+              <input type='checkbox' id={d.id} name='meal' value={d.name} onClick={handleClick} />
+              <label for={d.name}>{d.name}</label>
             </div>
           );
         })}
