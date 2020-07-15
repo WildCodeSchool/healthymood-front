@@ -12,7 +12,7 @@ export default class AdvicesAndTricks extends Component {
     this.state = {
       offset: 0,
       data: [],
-      perPage: 10,
+      perPage: 2,
       currentPage: 0,
       pageCount: 1
     };

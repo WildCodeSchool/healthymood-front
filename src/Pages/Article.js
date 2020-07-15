@@ -13,10 +13,8 @@ export default class Article extends Component {
   }
 
   componentDidMount () {
-    const idPage = this.props.match.params.id;
-    console.log(idPage);
-
-    API.get(`/articles/${idPage}`)
+    const searchOrId = this.props.match.params.id;
+    API.get(`/articles/${searchOrId}`)
       .then((res) => res.data)
       .then((data) => {
         return data.data;

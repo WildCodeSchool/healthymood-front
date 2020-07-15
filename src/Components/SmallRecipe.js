@@ -51,7 +51,7 @@ const SmallRecipe = ({ r }) => {
                 <h1 className='small-recipe-title'>{capitalizeFirstLetter(r.name)}</h1>
                 {r.intro ? <p className='small-recipe-intro'>{r.intro}</p>
                   : <p className='small-recipe-intro'>{r.content.replace(/<\/?[^>]+(>|$)/g, '').replace(/&#8217;/gi, "'").slice(1, 157)}...</p>}
-                <button className='read-more'>
+                <button className='read-more read-more-recipe'>
                   <p>Lire la suite</p>
                 </button>
               </div>

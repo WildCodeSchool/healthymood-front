@@ -62,6 +62,7 @@
 .small-article-intro {
   margin-top: 1rem;
   text-align:left;
+  color:black;
 }
 .small-article-favorite-icon {
   width: 25px;
@@ -97,6 +98,16 @@
   width:240px;
   left:20px;
   opacity:0.9;
+}
+.read-more.read-more-article {
+  background-color:transparent;
+  color:var(--accentColor);
+  font-weight:500;
+  border:1px solid var(--accentColor);
+}
+.read-more.read-more-article:hover {
+  background-color:var(--accentColor);
+  color:white;
 }
 .read-more:hover {
   opacity:1;

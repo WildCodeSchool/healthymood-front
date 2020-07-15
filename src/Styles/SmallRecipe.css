@@ -13,15 +13,18 @@
   box-shadow: 0 0 3px rgba(0, 0, 0, 0.3);
   position: relative;
   margin: 10px;
-  min-height:400px; 
+  min-height: 400px;
 }
 .small-recipe-global-container {
   position: relative;
   width:300px;
+}.small-recipe-global-container {
+  position: relative;
+  width:3 0px;
 }
 .small-recipe-container:hover {
   cursor: pointer;
-  box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 0 5pxergba(0, 0, 0, 0.3);
 }
 
 .small-recipe-container .small-reciper-banner-image {
@@ -94,6 +97,16 @@
   background-color:var(--accentColor);
   position:absolute;
   bottom:30px;
+}
+.read-more.read-more-recipe {
+  background-color:transparent;
+  color:var(--accentColor);
+  font-weight:500;
+  border:1px solid var(--accentColor);
+}
+.read-more.read-more-recipe:hover {
+  background-color:var(--accentColor);
+  color:white;
   width:240px;
   left:20px;
   opacity:0.9;

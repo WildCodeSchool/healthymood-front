@@ -7,7 +7,10 @@
     margin: 0 auto;
     flex-wrap: wrap;
   }
-  
+  a:not([href]):hover {
+    color:white;
+    background-color:var(--accentColor);
+  }
   .pagination {
     margin-bottom: 50px;
     margin-top: 50px;
@@ -33,9 +36,9 @@
     outline: none ;
   }
   .pagination > li > a, .pagination > li > span{
-    color: rgba(0, 141, 54, 0.8)
+    color: rgba(0, 141, 54, 0.8);
   }
-  .pagination > li:first-child > a, .pagination > li:first-child > span, .pagination > li:last-child > a, .pagination > li:last-child > span{
-    border-radius: unset
+  .pagination > li:first-child > a, .pagination > li:first-child > span, .pagination > li:last-child > a, .pagination > li:last-child > span {
+    border-radius: unset;
   }
   

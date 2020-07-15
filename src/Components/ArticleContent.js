@@ -43,7 +43,7 @@ class ArticleContent extends React.Component {
                   className='picto-container'
                   style={{ backgroundImage: `url(${authorImage})` }}
                 />
-                <p>{this.state.user.username}</p>
+                <p>{this.state.a.author.username}</p>
               </div>
               <div className='published-container'>
                 <span
