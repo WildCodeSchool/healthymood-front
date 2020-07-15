@@ -1,30 +1,43 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import SmallRecipe from '../Components/SmallRecipe';
 import '../Styles/RecipesPage.css';
 import API from '../Services/API';
 
-const RecipesPage = () => {
-  const [recipe, setRecipe] = useState([]);
+function RecipesPage (props) {
+  const [allRecipes, setAllRecipes] = useState([]);
 
   useEffect(() => {
-    API.get('/recipes')
-      .then((res) => res.data)
-      .then((data) => {
-        setRecipe(data.data);
-      });
-  }, []);
+    const categoryId = props.match.params.id;
+    if (categoryId) {
+      API.get(`/recipe_categories/${categoryId}/recipes`)
+        .then(data => data.data)
+        .then(results => {
+          setAllRecipes(results.data);
+        })
+        .catch(err => {
+          console.log(err);
+        });
+    } else {
+      API.get('/recipes')
+        .then(data => data.data)
+        .then(results => {
+          setAllRecipes(results.data);
+        })
+        .catch(err => {
+          console.log(err);
+        });
+    }
+  }, [props.match.params]);
 
   return (
-    <>
-      {recipe.map((r) => {
+    <div className='recipes-page-container'>
+      {allRecipes.length > 0 && allRecipes.map((r) => {
         return (
-          <div key={r.id} className='recipes-page-container'>
-            <SmallRecipe r={r} />
-          </div>
+          <SmallRecipe key={r.id} r={r} />
         );
       })}
-    </>
+    </div>
   );
-};
+}
 
 export default RecipesPage;
