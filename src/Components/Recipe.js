@@ -1,4 +1,6 @@
-import React from 'react';
+import React, { useState, useEffect, useRef, useContext } from 'react';
+import { useParams, useHistory } from 'react-router-dom';
+
 import '../Styles/Recipe.css';
 import publishedImage from '../Images/published.png';
 import authorImage from '../Images/author.png';
@@ -12,6 +14,10 @@ import ReactToPrint from 'react-to-print';
 import PrintImage from '../Images/print.png';
 import Rating from './Rating';
 import API from '../Services/API';
+import emptyFav from '../Images/fav.png';
+import fullFav from '../Images/fav-full.png';
+import AuthContext from '../Context/authContext';
+import FavoriteContext from '../Context/favoriteContext';
 
 class RecipeToPrint extends React.Component {
   capitalizeFirstLetter = (string) => {
@@ -32,8 +38,14 @@ class RecipeToPrint extends React.Component {
 
   render () {
     const recipeInfo = this.props.recipeInfo;
+    const history = this.props.history;
+    const connected = this.props.connected;
+    const favorite = this.props.favorite;
+    const handleSubmit = this.props.handleSubmit;
     console.log(recipeInfo);
+    console.log(favorite);
     return (
+
       <div className='recipe-container'>
         <header>
           <h1 className='recipe-title'>{this.capitalizeFirstLetter(recipeInfo.name)}</h1>
@@ -84,7 +96,23 @@ class RecipeToPrint extends React.Component {
             />
             {recipeInfo.budget ? <p>{recipeInfo.budget} €</p> : <p>Non renseigné</p>}
           </div>
+          <div>
+            <span
+              className='picto-container'
+              onClick={connected ? (event) => handleSubmit(event, recipeInfo.id) : () => history.push('/login')}
+              style={connected && favorite
+
+                ? favorite.map(fav => fav.recipe_id).find(favId => favId === recipeInfo.id)
+
+                  ? {
+                    backgroundImage: `url(${fullFav})`
+                  }
+                  : { backgroundImage: `url(${emptyFav})` }
+                : { backgroundImage: `url(${emptyFav})` }}
+            />
+          </div>
         </div>
+
         <div className='instructions-container'>
           <h2 className='recipe-ingredients-title'>Ingrédients</h2>
           <ul>
@@ -107,44 +135,44 @@ class RecipeToPrint extends React.Component {
   }
 }
 
-class Recipe extends React.Component {
-  constructor (props) {
-    super(props);
-    this.state = {
-      currentRecipe: [],
-      recipeIsLoading: true
-    };
+function Recipe () {
+  const { connected } = useContext(AuthContext);
+  const { favorite, handleSubmitFavorite } = useContext(FavoriteContext);
+  const history = useHistory();
+  const componentRef = useRef();
+  const [recipe, setRecipe] = useState();
+  const { slug } = useParams();
+  useEffect(() => {
+    API.get(`/recipes/${slug}`).then((res) => {
+      setRecipe(res.data.data);
+      console.log(res.data.data);
+    });
+  }, []); //eslint-disable-line
+  if (!recipe) {
+    return <p>chargement ....</p>;
   }
 
-  componentDidMount () {
-    API.get(`/recipes/${this.props.match.params.slug}`)
-      .then(results => {
-        console.log(results);
-        this.setState({ currentRecipe: results.data.data, recipeIsLoading: false });
-      })
-      .catch(err => {
-        console.log(err);
-      });
-  }
+  const handleSubmit = (event, recipe_id) => { // eslint-disable-line
+    event.preventDefault();
+    handleSubmitFavorite(recipe_id);
+  };
 
-  render () {
-    const params = this.props.match.params;
-    console.log(this.state.currentRecipe);
-    return (
-      !this.state.recipeIsLoading ? (
-        <div className='print-recipe-container'>
-          <RecipeToPrint params={params} recipeInfo={this.state.currentRecipe} ref={el => (this.componentRef = el)} />
-          <h5 className='social-title'>Merci de partager : </h5>
-          <div className='social-print-container'>
-            <SocialMedia slug={params.slug} />
-            <ReactToPrint
-              trigger={() => <button className='print-button' style={{ backgroundImage: `url(${PrintImage})` }} />}
-              content={() => this.componentRef}
-            />
-          </div>
-        </div>
-      ) : <p>Rien à afficher</p>);
-  }
+  return (
+    <div className='print-recipe-container'>
+      <RecipeToPrint recipeInfo={recipe} history={history} favorite={favorite} handleSubmit={handleSubmit} connected={connected} ref={componentRef} />
+      <h5 className='social-title'>Merci de partager : </h5>
+      <div className='social-print-container'>
+        <SocialMedia slug={slug} />
+        <ReactToPrint
+          trigger={() => (
+            <button
+              className='print-button'
+              style={{ backgroundImage: `url(${PrintImage})` }}
+            />)}
+        />
+      </div>
+    </div>
+  );
 }
 
 export default Recipe;

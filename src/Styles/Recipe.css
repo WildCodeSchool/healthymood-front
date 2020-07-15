@@ -4,6 +4,8 @@
     margin:0 auto;
     text-align:left;   
 }
+
+
 .recipe-container .recipe-title {
     color:var(--accentColor);
     text-align:center;

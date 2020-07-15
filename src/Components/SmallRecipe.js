@@ -9,11 +9,12 @@ import FavoriteContext from '../Context/favoriteContext';
 const SmallRecipe = ({ r }) => {
   console.log(r);
   const { connected } = useContext(AuthContext);
-  const { favorite, setFavorite } = useContext(FavoriteContext);
+  const { favorite, handleSubmitFavorite } = useContext(FavoriteContext);
   const history = useHistory();
 
-  const handleLogin = () => {
-    history.push('/');
+  const handleSubmit = (event, recipe_id) => { // eslint-disable-line
+    event.preventDefault();
+    handleSubmitFavorite(recipe_id);
   };
 
   const capitalizeFirstLetter = (string) => {
@@ -23,27 +24,20 @@ const SmallRecipe = ({ r }) => {
   return (
     <>
       <div key={r.slug} className='small-recipe-global-container'>
-        {connected ? (
-          <span
-            className='small-recipe-favorite-icon'
-            onClick={() => setFavorite(!favorite)}
-            style={{
-              backgroundImage: favorite
-                ? `url(${fullFav})`
-                : `url(${emptyFav})`
-            }}
-          />
-        ) : (
-          <span
-            className='small-recipe-favorite-icon'
-            onClick={() => handleLogin}
-            style={{
-              backgroundImage: favorite
-                ? `url(${fullFav})`
-                : `url(${emptyFav})`
-            }}
-          />
-        )}
+        <span
+          className='small-recipe-favorite-icon'
+          onClick={connected ? (event) => handleSubmit(event, r.id) : () => history.push('/login')}
+          style={connected && favorite
+
+            ? favorite.map(fav => fav.recipe_id).find(favId => favId === r.id)
+
+              ? {
+
+                backgroundImage: `url(${fullFav})`
+              }
+              : { backgroundImage: `url(${emptyFav})` }
+            : { backgroundImage: `url(${emptyFav})` }}
+        />
         <Link to={`/recettes/${r.slug}`} key={r.slug} className='link-recette'>
           <div className='small-recipe-container'>
             <>

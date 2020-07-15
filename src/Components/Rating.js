@@ -6,7 +6,6 @@ import API from '../Services/API';
 
 const Rating = (props) => {
   const { connected } = useContext(AuthContext);
-  console.log(props);
   const [rating, setRating] = useState(
     props.recipeInfo.user_rating && props.recipeInfo.user_rating.score
   );
@@ -20,7 +19,6 @@ const Rating = (props) => {
     })
       .then((res) => res.data)
       .then((data) => {
-        console.log({ data });
         setRating(ratingValue);
       })
       .catch((err) => {
