@@ -30,13 +30,11 @@
   position: relative;
 } 
 .carousel-button {
-  border-radius: 15px;
-  background-color: rgba(0, 141, 54, 0.8);
+  background-color: var(--accentColor);
   width: 200px;
   font-size: 1.1em;
   font-family:var(--secondaryFont);
   color:white;
-  box-shadow: 0 0 3px black;
   border:1px solid transparent;
   transition: all 0.2s ease-in-out;
 }
@@ -45,7 +43,8 @@
 }
 .carousel-button:hover {
   background-color:white;
-  color:var(--accentColor);  
+  color:var(--accentColor); 
+  border:1px solid var(--accentColor); 
 }
 .carousel-caption {
   position: absolute;
