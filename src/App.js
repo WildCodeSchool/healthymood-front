@@ -23,6 +23,7 @@ import ScrollToTop from './Scripts/ScrollToTop';
 import FavoriteContext from './Context/favoriteContext';
 import FavoriteUser from './Pages/FavoriteUser';
 import API from './Services/API';
+import Pages from './Pages/Pages';
 
 function PrivateRoute ({ children, ...rest }) {
   const { token } = useContext(AuthContext);
@@ -47,6 +48,13 @@ function PrivateRoute ({ children, ...rest }) {
 }
 
 function App () {
+  const [favorite, setFavorite] = useState([]);
+
+  const [isConnected, setIsConnected] = useState(
+    JSON.parse(window.localStorage.getItem('isConnected'))
+  );
+
+  const [token, setToken] = useState(window.localStorage.getItem('authToken'));
   useEffect(() => {
     {
       isConnected
@@ -61,15 +69,7 @@ function App () {
           })
         : setFavorite(null);
     }
-  }, []);
-
-  const [favorite, setFavorite] = useState([]);
-
-  const [isConnected, setIsConnected] = useState(
-    JSON.parse(window.localStorage.getItem('isConnected'))
-  );
-
-  const [token, setToken] = useState(window.localStorage.getItem('authToken'));
+  }, [isConnected]);
 
   const setTokenInLocalStorage = (token) => {
     window.localStorage.setItem('authToken', token);
@@ -89,21 +89,24 @@ function App () {
   const handleSubmitFavorite = (recipe_id) => { // eslint-disable-line
     API.post('/favorites', {
       recipe_id
-    }).then((res) => res.data)
+    })
+      .then((res) => res.data)
       .then((data) => {
-        const favExist = favorite.find((fav) => fav.recipe_id === recipe_id); //eslint-disable-line 
+        const favExist = favorite.find((fav) => fav.recipe_id === recipe_id); //eslint-disable-line
         console.log(favExist);
         if (!favExist) {
-          setFavorite((favorite) => [...favorite, { recipe_id }]);
+          setFavorite((favorite) => [...favorite, { recipe_id }]); //eslint-disable-line
         } else {
-          setFavorite((favorite) => favorite.filter((fav) => fav.recipe_id !== recipe_id)); //eslint-disable-line 
+          setFavorite(
+            (favorite) => favorite.filter((fav) => fav.recipe_id !== recipe_id) //eslint-disable-line
+          );
         }
 
         console.log(data);
       })
       .catch((err) => {
         console.error(err);
-        window.alert('Erreur lors de l\'ajout d\'un favoris');
+        window.alert("Erreur lors de l'ajout d'un favoris");
       });
   };
 
@@ -142,6 +145,7 @@ function App () {
                 />
                 <Route exact path='/login' component={LoginPage} />
                 <Route exact path='/register' component={RegisterPage} />
+                <Route exact path='/info/:slug' component={Pages} />
                 <PrivateRoute exact path='/compte'>
                   <MonCompte />
                 </PrivateRoute>
