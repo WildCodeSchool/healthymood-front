@@ -73,7 +73,7 @@ const FavoriteUser = () => {
               );
             }
             )}
-          </div>}
+        </div>}
     </>
   );
 };
