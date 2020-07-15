@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Loupe from '../Images/glass.png';
 import SmallArticle from '../Components/SmallArticle';
 import '../Styles/ConseilsAstuces.css';
-import API from '../Services/Api';
+import API from '../Services/API';
 import { useHistory } from 'react-router-dom';
 
 export default function SearchArticles (props) {
