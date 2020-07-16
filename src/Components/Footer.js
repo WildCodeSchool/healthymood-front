@@ -52,25 +52,29 @@ function Footer () {
   }, []);
 
   const pagesLinks = () => {
-    return pages.map(p => {
+    return pages.map((p, index) => {
       if (p.published && p.display_in_footer) {
-        return <Link to={`/info/${p.slug}`}>{p.title}</Link>;
+        return <Link key={index} className='footer-link' to={`/info/${p.slug}`}>{p.title}</Link>;
       }
     });
   };
   return (
-    <div className='footer-container'>
-      {footerElements.map(e => {
-        return (
-          <a href={e.link} target='_blank' rel='noopener noreferrer' key={e.alt}>
-            <div className={`footer-element ${e.alt}`} style={{ backgroundImage: `url(${e.imageUrl})` }} />
-          </a>
-        );
-      })}
-      {loading ? (<div>...</div>) : (
-        error ? (<div>erreur lors de la récupération des pages d'info</div>) : (pagesLinks())
-      )}
-    </div>
+    <>
+      <div className='footer-container'>
+        <div className='footer-socials'>
+          {footerElements.map(e => {
+            return (
+              <a href={e.link} target='_blank' rel='noopener noreferrer' key={e.alt}>
+                <div className={`footer-element ${e.alt}`} style={{ backgroundImage: `url(${e.imageUrl})` }} />
+              </a>
+            );
+          })}
+        </div>
+        {loading ? (<div className='footer-links'>...</div>) : (
+          error ? (<div className='footer-links'>erreur lors de la récupération des pages d'info</div>) : (<div className='footer-links'>{pagesLinks()}</div>)
+        )}
+      </div>
+    </>
   );
 }
 

@@ -1,6 +1,6 @@
 .recipes-page-container {
   display: flex;
-  justify-content: space-around;
+  justify-content: center;
   flex-wrap: wrap;
   max-width:960px;
   margin: 0 auto;

@@ -44,13 +44,13 @@ const SmallRecipe = ({ r }) => {
               <div
                 className='small-reciper-banner-image'
                 style={{
-                  backgroundImage: `linear-gradient(to bottom, rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.1)), url('${r.image}')`
+                  backgroundImage: `url('${r.image}')`
                 }}
               />
               <div className='small-recipe-content-container'>
                 <h1 className='small-recipe-title'>{capitalizeFirstLetter(r.name)}</h1>
                 {r.intro ? <p className='small-recipe-intro'>{r.intro}</p>
-                  : <p className='small-recipe-intro'>{r.content.replace(/<\/?[^>]+(>|$)/g, '').replace('&#8217;', "'").slice(1, 157)}...</p>}
+                  : <p className='small-recipe-intro'>{r.content.replace(/<\/?[^>]+(>|$)/g, '').replace(/&#8217;/gi, "'").slice(1, 157)}...</p>}
                 <button className='read-more'>
                   <p>Lire la suite</p>
                 </button>
