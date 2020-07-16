@@ -108,3 +108,5 @@ dist
 
 # Vscode
 .vscode/
+.idea/
+.env

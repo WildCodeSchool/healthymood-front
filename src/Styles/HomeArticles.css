@@ -1,0 +1,36 @@
+.homepage-articles-container{
+    width: 100%;
+    max-width: 960px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    margin: 0 auto;
+    flex-wrap: wrap;   
+}
+.last-articles {
+    margin-bottom:10vh;
+}
+.last-articles::before {
+    position: relative;
+    content: "";
+    width: 50px;
+    margin-right: 15px;
+    margin-top: 3px;
+    height: 1px;
+    background-color: var(--accentColor);
+    display: inline-block;
+    top: -7px;
+}
+.last-articles::after {
+    position: relative;
+    content: "";
+    width: 50px;
+    margin-left: 15px;
+    height: 1px;
+    background-color: var(--accentColor);
+    display: inline-block;
+    top: -7px;
+}
+.home-read-more {
+    margin-top:50px!important;
+}

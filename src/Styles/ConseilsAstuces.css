@@ -1,21 +1,28 @@
+.articles-page-container {
+    display: flex;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    max-width:1020px;
+    margin: 0 auto;
+    padding: 80px 0;
+  }
+
 /*vue portable */
-.hidden {
-  display:none;
-}
 
 .recherche-container {
-  padding-top: 5vh;
+  padding-top: 100px;
 }
-
+input:focus, button:focus {
+    outline:none;
+}
 .my-search {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items:center;
 }
-.search-block label {
-  font-weight:bold;
-  margin-bottom:20px;
+.my-search label {
+  margin-bottom:0px;
 }
 .my-search label p {
   margin:0px;
@@ -23,21 +30,16 @@
 
 .my-search input {
   height: 30px;
-  width: 100%;
+  width: 250px;
   margin-top: 5px;
   margin-bottom:30px;
-  border:0px;
-  border-bottom:1px solid var(--inputColor);
-  text-align:left;
-  background-color:transparent;
+  border:1px solid #424242;
+  text-align:center;
 }
 
 .Loupe .filter-list img {
   margin-left: 3px;
   height: 10px;
-}
-input {
-  background-color:transparent;
 }
 
 .filter-list {
@@ -49,19 +51,7 @@ input {
   margin-right: 10px;
   cursor: pointer;
 }
-.showAdvancedSearch-search-container p {
-  color:var(--accentColor);
-  text-decoration:underline;
-  cursor:pointer;
-  font-size:13px;
-}
-.css-1rhbuit-multiValue {
-  background-color:var(--accentColor)!important;
-  color:white;
-}
-.css-12jo7m5 {
-  color:white!important;
-}
+
 .label p {
   margin-top: 7px;
   margin-right: 5px;
@@ -89,14 +79,14 @@ input {
   display: flex;
   flex-direction: column;
   width: 100%;
+  max-width: 770px;
   margin: 0 auto;
-  padding:50px;
-  box-shadow:0 0 7px rgba(0,0,0,0.1);
 }
 
 .btn-search {
   padding: 5px;
-  background-color: var(--accentColor);
+  background-color: #f18c06;
+  border-radius: 15px;
   color: #fff;
   font-weight: 500;
   width: 200px;
@@ -105,10 +95,6 @@ input {
   margin: 0 auto;
   transition: all 0.2s ease-in-out;
   opacity:0.8;
-}
-.css-xb97g8:hover {
-  background-color:transparent!important;
-  color:black!important;
 }
 .btn-search:hover {
   opacity:1;
@@ -119,8 +105,8 @@ input {
 }
 .Loupe h2 {
   margin: 0 auto;
+  padding-bottom: 25px;
   margin-right: 10px;
-  margin-bottom:5vh;
 }
 
 .Loupe h2::before {
@@ -153,7 +139,7 @@ input {
   padding: 0 0 3px 9px;
 }
 
-.result .filter-recipes-container {
+.result .filter-articles-container {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
@@ -164,48 +150,18 @@ input {
   width:100%;
   margin-top:50px;
 }
-.showAdvancedSearch-search-container .input-label-container:nth-last-child(1) {
-  margin-bottom:40px;
-}
-.input-label-container {
-  display:flex;
-  flex-direction:column;
-  flex-wrap:wrap;
-  justify-content:center;
-  align-items:flex-start;
-}
-input#calories {
-  width:100%;
-  border:0px;
-  border-bottom:1px solid var(--inputColor);
-  border-radius:0px;
-}
-.advanced-search-label {
-  margin-bottom:0px;
-  margin-top:20px;
-}
 
 
 @media screen and (max-width: 360px) {
+  .my-search input {
+    width: 200px;
+  }
   .btn-search {
     width: 160px;
     margin: 0 auto;
     translate: 70px;
   }
 }
-
-.tag-select {
-  margin-bottom: 15px;
-  width:100%;
-  background-color:transparent;
-}
-.tag-select .css-yk16xz-control {
-  border:0px;
-  border-bottom:1px solid var(--inputColor);
-  border-radius:0px;
-}
-@media all and (max-width:900px) {
-  .Loupe h2::after, .Loupe h2::before {
-    display:none;
-  }
-}
+  
+  
+  

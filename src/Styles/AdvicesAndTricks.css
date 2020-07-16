@@ -1,0 +1,26 @@
+.article-content-container{
+  width: 100%;
+  max-width: calc(100% - 40px);
+  margin:auto;
+}
+
+.page-article h1 {
+  display: block;
+  width: 100%;
+  border-top: 0.5px solid lightgrey;
+  border-bottom: 0.5px solid lightgrey;
+  padding: 30px 0;
+}
+.page-article h2, .page-article h3, .page-article h4, .page-article h5 {
+  margin:20px 0;
+} 
+
+@media only screen and (min-width: 992px) {
+  .article-content-container {
+    width: 60%;
+  }
+}
+
+ul{
+  padding-left: 0;
+}

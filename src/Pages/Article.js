@@ -1,17 +1,40 @@
-import React from 'react';
+import React, { Component } from 'react';
 import ArticleContent from '../Components/ArticleContent';
-import article1 from '../article1.json';
 import '../Styles/Article.css';
+import API from '../Services/API';
 
-function Article () {
-  return (
-    <div className='page-article'>
-      <h1>{article1.title}</h1>
-      <div className='article-content-container'>
-        <ArticleContent />
+export default class Article extends Component {
+  constructor (props) {
+    super(props);
+    this.state = {
+      data: [],
+      articleIsLoading: true
+    };
+  }
+
+  componentDidMount () {
+    const searchOrId = this.props.match.params.id;
+    API.get(`/articles/${searchOrId}`)
+      .then((res) => res.data)
+      .then((data) => {
+        return data.data;
+      })
+      .then((data) => this.setState({ data, articleIsLoading: false }));
+  }
+
+  render () {
+    return (
+      <div className='page-article'>
+        {this.state.articleIsLoading ? (<p>Chargement</p>
+        ) : (
+          <>
+            <h1>{this.state.data.title}</h1>
+            <div className='article-content-container'>
+              <ArticleContent a={this.state.data} />
+            </div>
+          </>
+        )}
       </div>
-    </div>
-  );
+    );
+  }
 }
-
-export default Article;
