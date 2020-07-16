@@ -19,19 +19,16 @@ export default class AdvicesAndTricks extends Component {
       .bind(this);
   }
 
-  /*   receivedData () {
-        const data = this.props.data;
-        const slice = data.slice(this.state.offset, this.state.offset + this.state.perPage);
-        const postData = slice.map(post =>
-          <SmallArticle key={post.id} a={post} />
-        );
-        console.log(data);
-        this.setState({
-          pageCount: Math.ceil(data.length / this.state.perPage),
-          postData
-        });
-      });
-  } */
+  receivedData () {
+    const articles = this.props.data;
+    console.log(articles);
+    const sliceArticles = articles.slice(this.state.offset, this.state.offset + this.state.perPage);
+    console.log(sliceArticles.length);
+    this.setState({
+      pageCount: Math.ceil(articles.length / this.state.perPage),
+      sliceArticles
+    });
+  }
 
   handlePageClick = (e) => {
     const selectedPage = e.selected;
@@ -39,21 +36,29 @@ export default class AdvicesAndTricks extends Component {
 
     this.setState({
       currentPage: selectedPage,
-      offset: offset
+      offset
     }, () => {
       this.receivedData();
     });
   };
 
-  /*   componentDidMount () {
+  componentDidMount () {
+    console.log(this.props);
     this.receivedData();
-  } */
+  }
+
+  componentDidUpdate (prevProps) {
+    if (this.props.data !== prevProps.data) {
+      console.log('update component');
+      this.receivedData();
+    }
+  }
 
   render () {
     return (
       <>
         <ul className='pagination-display'>
-          {this.props.data.map(article => {
+          {this.state.sliceArticles && this.state.sliceArticles.map(article => {
             return (
               <div key={article.id}>
                 <SmallArticle a={article} />

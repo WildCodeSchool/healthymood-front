@@ -80,7 +80,18 @@ export default function SearchArticles (props) {
 
   useEffect(() => {
     GetArticles();
-  }, [props.location.search]); // eslint-disable-line
+    if (props.location.pathname === '/conseils-astuces') {
+      setCurrentInput('');
+      setCurrentSearch('');
+      API.get('/articles')
+        .then((res) => res.data)
+        .then((data) => {
+          console.log(data.data);
+          return data.data;
+        })
+        .then((data) => setArticles(data));
+    }
+  }, [props.location.search, props.location.pathname]); // eslint-disable-line
 
   return (
     <div className='recherche-article-container'>
