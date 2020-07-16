@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import API from '../Services/Api';
 
 const SendFormRecipe = () => {
- /* const url = '/recipe_categories';
+  /* const url = '/recipe_categories';
   const url2 = '/meal_types';
   const [regimeTypes, setRegimeTypes] = useState([]);
   const [mealTypes, setMealTypes] = useState([]);
@@ -17,7 +17,7 @@ const SendFormRecipe = () => {
       .then((data) => {
         setMealTypes(data.data);
       });
-  }, []);*/
+  }, []); */
 
   const [inputs, setInputs] = useState({ username: '', email: '', title: '', description: '' });
 
