@@ -233,11 +233,11 @@ export default function Search (props) {
                   </div>
                 </>}
             </div>
+            <button className='btn-search' onClick={syncInputValuesWithUrl} style={{ marginTop: 20 }}>
+              <img src={Loupe} alt='search' />
+              Rechercher
+            </button>
           </div>
-          <button className='btn-search' onClick={syncInputValuesWithUrl} style={{ marginTop: 50 }}>
-            <img src={Loupe} alt='search' />
-            Rechercher
-          </button>
           <div className='result'>
             <div className='filter-recipes-container'>
               {recipes.length === 0 ? (

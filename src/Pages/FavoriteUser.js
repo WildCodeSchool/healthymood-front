@@ -37,7 +37,7 @@ const FavoriteUser = () => {
               );
             }
             )}
-        </div>}
+        </div>} {/* eslint-disable-line */}
     </>
   );
 };
