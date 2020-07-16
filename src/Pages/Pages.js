@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import API from '../Services/API';
+import PageContent from '../Components/PageContent';
 
 const Pages = (props) => {
   const slug = props.match.params.slug;
@@ -10,16 +11,14 @@ const Pages = (props) => {
   useEffect(() => {
     setLoading(true);
     if (slug) {
-      setTimeout(() => {
-        API.get(`/generic_pages/${slug}`)
-          .then((res) => setPage(res.data.data))
-          .catch((err) => {
-            setError(err);
-          })
-          .finally(setLoading(false));
-      }, 2000);
+      API.get(`/generic_pages/${slug}`)
+        .then((res) => setPage(res.data.data))
+        .catch((err) => {
+          setError(err);
+        })
+        .finally(setLoading(false));
     }
-  }, []);
+  }, [slug]);
   return (
     <div>
       {loading ? (
@@ -30,7 +29,12 @@ const Pages = (props) => {
           n'éxiste probablement pas !{' '}
         </div>
       ) : (
-        JSON.stringify(page)
+        <div className='page-article'>
+          <h1>{page.title}</h1>
+          <div className='article-content-container'>
+            <PageContent page={page} />
+          </div>
+        </div>
       )}
     </div>
   );
