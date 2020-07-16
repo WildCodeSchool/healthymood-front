@@ -16,14 +16,18 @@ import Article from './Pages/Article';
 import './Styles/Variables.css';
 import Search from './Components/Search';
 import Recipe from './Components/Recipe';
+import SendRecipe from './Pages/SendRecipe';
 import AuthContext from './Context/authContext';
 import LoginPage from './Pages/Login';
+import AdvicesAndTricks from './Pages/AdvicesAndTricks';
 import RegisterPage from './Pages/Register';
 import MonCompte from './Pages/MonCompte';
 import ScrollToTop from './Scripts/ScrollToTop';
 import FavoriteContext from './Context/favoriteContext';
 import FavoriteUser from './Pages/FavoriteUser';
 import API from './Services/API';
+
+//messaging.onMessage((payload) => console.log('Message received. ', payload));
 
 function PrivateRoute ({ children, ...rest }) {
   const { token } = useContext(AuthContext);
@@ -110,6 +114,27 @@ function App () {
 
   return (
     <>
+      <Router>
+        <div className='App'>
+          <Header />
+          <Switch>
+            <Route exact path='/' component={Home} />
+            <Route exact path='/recettes' component={RecipesPage} />
+            <Route exact path='/conseils-astuces' component={AdvicesAndTricks} />
+            <Route path='/rechercher' component={Search} />
+            <Route exact path='/articles/:id' component={Article} />
+            <Route exact path='/' /* component={...} */ />
+            <Route exact path='/recettes/:slug' component={Recipe} />
+            <Route exact path='/envoyer-recette' component={SendRecipe} />
+            <Route
+              exact
+              path='/recettes/categorie/:id'
+              component={RecipesPage}
+            />
+          </Switch>
+          <Footer />
+        </div>
+      </Router>
       <AuthContext.Provider
         value={{
           token,
