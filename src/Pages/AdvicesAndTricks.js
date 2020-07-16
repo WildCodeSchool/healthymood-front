@@ -51,6 +51,7 @@ export default class AdvicesAndTricks extends Component {
     if (this.props.data !== prevProps.data) {
       console.log('update component');
       this.receivedData();
+      this.setState({ currentPage: 0, offset: 0 });
     }
   }
 
