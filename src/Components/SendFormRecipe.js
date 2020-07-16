@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import API from '../Services/Api';
+import API from '../Services/API';
 
 const SendFormRecipe = () => {
   /* const url = '/recipe_categories';

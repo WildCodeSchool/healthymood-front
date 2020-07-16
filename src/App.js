@@ -19,7 +19,6 @@ import Recipe from './Components/Recipe';
 import SendRecipe from './Pages/SendRecipe';
 import AuthContext from './Context/authContext';
 import LoginPage from './Pages/Login';
-import AdvicesAndTricks from './Pages/AdvicesAndTricks';
 import RegisterPage from './Pages/Register';
 import MonCompte from './Pages/MonCompte';
 import ScrollToTop from './Scripts/ScrollToTop';
@@ -28,7 +27,7 @@ import FavoriteUser from './Pages/FavoriteUser';
 import API from './Services/API';
 import Pages from './Pages/Pages';
 
-//messaging.onMessage((payload) => console.log('Message received. ', payload));
+// messaging.onMessage((payload) => console.log('Message received. ', payload));
 
 function PrivateRoute ({ children, ...rest }) {
   const { token } = useContext(AuthContext);
@@ -116,76 +115,54 @@ function App () {
   };
 
   return (
-    <>
-      <Router>
-        <div className='App'>
-          <Header />
-          <Switch>
-            <Route exact path='/' component={Home} />
-            <Route exact path='/recettes' component={RecipesPage} />
-            <Route exact path='/conseils-astuces' component={AdvicesAndTricks} />
-            <Route path='/rechercher' component={Search} />
-            <Route exact path='/articles/:id' component={Article} />
-            <Route exact path='/' /* component={...} */ />
-            <Route exact path='/recettes/:slug' component={Recipe} />
-            <Route exact path='/envoyer-recette' component={SendRecipe} />
-            <Route
-              exact
-              path='/recettes/categorie/:id'
-              component={RecipesPage}
-            />
-          </Switch>
-          <Footer />
-        </div>
-      </Router>
-      <AuthContext.Provider
+    <AuthContext.Provider
+      value={{
+        token,
+        setToken: setTokenInLocalStorage,
+        setIsConnected: setIsConnectedInLocalStorage,
+        connected: isConnected,
+        setLogOut: handleLogOut
+      }}
+    >
+      <FavoriteContext.Provider
         value={{
-          token,
-          setToken: setTokenInLocalStorage,
-          setIsConnected: setIsConnectedInLocalStorage,
-          connected: isConnected,
-          setLogOut: handleLogOut
+          favorite,
+          setFavorite,
+          handleSubmitFavorite
         }}
       >
-        <FavoriteContext.Provider
-          value={{
-            favorite,
-            setFavorite,
-            handleSubmitFavorite
-          }}
-        >
-          <Router>
-            <ScrollToTop />
-            <div className='App'>
-              <Header />
-              <Switch>
-                <Route exact path='/' component={Home} />
-                <Route exact path='/recettes' component={RecipesPage} />
-                <Route path='/conseils-astuces' component={ConseilsAstuces} />
-                <Route exact path='/article/:id' component={Article} />
-                <Route path='/rechercher' component={Search} />
-                <Route exact path='/recettes/:slug' component={Recipe} />
-                <Route
-                  exact
-                  path='/recettes/categorie/:id'
-                  component={RecipesPage}
-                />
-                <Route exact path='/login' component={LoginPage} />
-                <Route exact path='/register' component={RegisterPage} />
-                <Route exact path='/info/:slug' component={Pages} />
-                <PrivateRoute exact path='/compte'>
-                  <MonCompte />
-                </PrivateRoute>
-                <PrivateRoute exact path='/compte/favoris'>
-                  <FavoriteUser />
-                </PrivateRoute>
-              </Switch>
-              <Footer />
-            </div>
-          </Router>
-        </FavoriteContext.Provider>
-      </AuthContext.Provider>
-    </>
+        <Router>
+          <ScrollToTop />
+          <div className='App'>
+            <Header />
+            <Switch>
+              <Route exact path='/' component={Home} />
+              <Route exact path='/recettes' component={RecipesPage} />
+              <Route path='/conseils-astuces' component={ConseilsAstuces} />
+              <Route exact path='/article/:id' component={Article} />
+              <Route path='/rechercher' component={Search} />
+              <Route exact path='/recettes/:slug' component={Recipe} />
+              <Route
+                exact
+                path='/recettes/categorie/:id'
+                component={RecipesPage}
+              />
+              <Route exact path='/login' component={LoginPage} />
+              <Route exact path='/register' component={RegisterPage} />
+              <Route exact path='/info/:slug' component={Pages} />
+              <Route exact path='/envoyer-recette' component={SendRecipe} />
+              <PrivateRoute exact path='/compte'>
+                <MonCompte />
+              </PrivateRoute>
+              <PrivateRoute exact path='/compte/favoris'>
+                <FavoriteUser />
+              </PrivateRoute>
+            </Switch>
+            <Footer />
+          </div>
+        </Router>
+      </FavoriteContext.Provider>
+    </AuthContext.Provider>
   );
 }
 
