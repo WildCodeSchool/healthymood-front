@@ -3,30 +3,18 @@ import '../Styles/ArticleContent.css';
 import authorImage from '../Images/author.png';
 import publishedImage from '../Images/published.png';
 import SocialMedia from './SocialMediaArticle';
-import API from '../Services/API';
 
 class ArticleContent extends React.Component {
   constructor (props) {
     super(props);
     this.state = {
-      a: this.props.a,
-      user: {}
+      a: this.props.a
     };
   }
 
   createArticle (props) {
     return { __html: this.props.a.content };
   }
-
-  componentDidMount () {
-    const idUser = this.props.a.user_id;
-    API.get(`/users/${idUser}`)
-      .then((res) => res.data)
-      .then((data) => {
-        return data.data;
-      })
-      .then((data) => this.setState({ user: data, articleIsLoading: false }));
-  } //
 
   render () {
     return (

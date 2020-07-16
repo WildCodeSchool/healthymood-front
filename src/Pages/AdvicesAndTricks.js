@@ -3,7 +3,6 @@ import '../Styles/AdvicesAndTricks.css';
 import ReactPaginate from 'react-paginate';
 import SmallArticle from '../Components/SmallArticle';
 import '../Styles/SmallArticle.css';
-import API from '../Services/API';
 import '../Styles/Paginate.css';
 
 export default class AdvicesAndTricks extends Component {
@@ -11,7 +10,6 @@ export default class AdvicesAndTricks extends Component {
     super(props);
     this.state = {
       offset: 0,
-      data: [],
       perPage: 2,
       currentPage: 0,
       pageCount: 1
@@ -21,11 +19,8 @@ export default class AdvicesAndTricks extends Component {
       .bind(this);
   }
 
-  receivedData () {
-    API
-      .get('/articles')
-      .then(res => {
-        const data = res.data.data;
+  /*   receivedData () {
+        const data = this.props.data;
         const slice = data.slice(this.state.offset, this.state.offset + this.state.perPage);
         const postData = slice.map(post =>
           <SmallArticle key={post.id} a={post} />
@@ -36,7 +31,7 @@ export default class AdvicesAndTricks extends Component {
           postData
         });
       });
-  }
+  } */
 
   handlePageClick = (e) => {
     const selectedPage = e.selected;
@@ -50,15 +45,23 @@ export default class AdvicesAndTricks extends Component {
     });
   };
 
-  componentDidMount () {
+  /*   componentDidMount () {
     this.receivedData();
-  }
+  } */
 
   render () {
     return (
       <>
         <ul className='pagination-display'>
-          {this.state.postData}
+          {this.props.data.map(article => {
+            return (
+              <div key={article.id}>
+                <SmallArticle a={article} />
+              </div>
+
+            );
+          })}
+
         </ul>
         <ReactPaginate
           previousLabel='prev'

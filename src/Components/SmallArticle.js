@@ -6,7 +6,7 @@ const SmallArticle = ({ a }) => {
   return (
     <>
       <div key={a.slug} className='small-article-global-container'>
-        <Link to={`/conseils-astuces/single/${a.id}`} key={a.id} className='link-article'>
+        <Link to={`/article/${a.id}`} key={a.id} className='link-article'>
           <div className='small-article-container'>
             <>
               <div className='small-article-banner-image' style={{ backgroundImage: `url('${a.image}')` }} />

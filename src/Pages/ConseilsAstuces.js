@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import Loupe from '../Images/glass.png';
-import SmallArticle from '../Components/SmallArticle';
 import API from '../Services/API';
 import { useHistory } from 'react-router-dom';
 import '../Styles/SearchArticles.css';
@@ -14,6 +13,15 @@ export default function SearchArticles (props) {
   const [currentSearch, setCurrentSearch] = useState('');
 
   const GetArticles = () => {
+    if (!props.location.search && !currentInput) { // cas où pas de recherche ni dans url ni input
+      API.get('/articles')
+        .then((res) => res.data)
+        .then((data) => {
+          console.log(data.data);
+          return data.data;
+        })
+        .then((data) => setArticles(data));
+    }
     if (
       (!props.location.search && currentInput) ||
       // cas où rien dans l'url mais mot dans l'input
@@ -24,6 +32,7 @@ export default function SearchArticles (props) {
       API.get(url)
         .then((res) => res.data)
         .then((data) => {
+          console.log(data.data);
           return data.data;
         })
         .then((data) => setArticles(data));
@@ -53,7 +62,8 @@ export default function SearchArticles (props) {
       history.push({
         pathname: '/conseils-astuces'
       });
-      setArticles([]);
+      GetArticles();
+      setCurrentSearch('');
     }
   };
 
@@ -70,7 +80,7 @@ export default function SearchArticles (props) {
 
   useEffect(() => {
     GetArticles();
-  }, []); // eslint-disable-line
+  }, [props.location.search]); // eslint-disable-line
 
   return (
     <div className='recherche-article-container'>
@@ -100,22 +110,8 @@ export default function SearchArticles (props) {
           </div>
           <div className='result'>
             <div className='filter-articles-container'>
-              {props.location.search
-                ? articles.length === 0 ? (
-                  currentSearch && <h4 className='no-result'>Aucun résultat pour {currentSearch}</h4>
-                ) : (
-                  <>
-                    <h4 className='results-title'>Résultats pour {currentSearch}</h4>
-                    {articles.map((article) => {
-                      return (
-                        <div className='filtered-articles' key={article.id}>
-                          <SmallArticle a={article} />
-                        </div>
-                      );
-                    })}
-                  </>
-                )
-                : <AdvicesAndTricks />}
+              {currentSearch && <h4 className='results-title'>Résultats pour {currentSearch}</h4>}
+              {articles && <AdvicesAndTricks data={articles} />}
             </div>
           </div>
         </div>
@@ -123,3 +119,22 @@ export default function SearchArticles (props) {
     </div>
   );
 }
+
+/*
+                    {articles.map((article) => {
+                      return (
+                        <div className='filtered-articles' key={article.id}>
+                          <SmallArticle a={article} />
+                        </div>
+                      );
+                    })}
+              {props.location.search
+                ? articles.length === 0 ? (
+                  currentSearch && <h4 className='no-result'>Aucun résultat pour {currentSearch}</h4>
+                ) : (
+                  <>
+
+                  </>
+                )
+                : <p>chargement</p>}
+*/
