@@ -1,17 +1,18 @@
 import React, { Component } from 'react';
-import axios from 'axios';
 import '../Styles/AdvicesAndTricks.css';
 import ReactPaginate from 'react-paginate';
 import SmallArticle from '../Components/SmallArticle';
+import '../Styles/SmallArticle.css';
+import '../Styles/Paginate.css';
 
 export default class AdvicesAndTricks extends Component {
   constructor (props) {
     super(props);
     this.state = {
       offset: 0,
-      data: [],
-      perPage: 4,
-      currentPage: 0
+      perPage: 2,
+      currentPage: 0,
+      pageCount: 1
     };
     this.handlePageClick = this
       .handlePageClick
@@ -19,20 +20,14 @@ export default class AdvicesAndTricks extends Component {
   }
 
   receivedData () {
-    axios
-      .get('http://localhost:4000/articles')
-      .then(res => {
-        const data = res.data.data;
-        const slice = data.slice(this.state.offset, this.state.offset + this.state.perPage);
-        const postData = slice.map(post =>
-          <SmallArticle key={post.id} a={post} />
-        );
-
-        this.setState({
-          pageCount: Math.ceil(data.length / this.state.perPage),
-          postData
-        });
-      });
+    const articles = this.props.data;
+    console.log(articles);
+    const sliceArticles = articles.slice(this.state.offset, this.state.offset + this.state.perPage);
+    console.log(sliceArticles.length);
+    this.setState({
+      pageCount: Math.ceil(articles.length / this.state.perPage),
+      sliceArticles
+    });
   }
 
   handlePageClick = (e) => {
@@ -41,21 +36,38 @@ export default class AdvicesAndTricks extends Component {
 
     this.setState({
       currentPage: selectedPage,
-      offset: offset
+      offset
     }, () => {
       this.receivedData();
     });
   };
 
   componentDidMount () {
+    console.log(this.props);
     this.receivedData();
+  }
+
+  componentDidUpdate (prevProps) {
+    if (this.props.data !== prevProps.data) {
+      console.log('update component');
+      this.receivedData();
+      this.setState({ currentPage: 0, offset: 0 });
+    }
   }
 
   render () {
     return (
       <>
         <ul className='pagination-display'>
-          {this.state.postData}
+          {this.state.sliceArticles && this.state.sliceArticles.map(article => {
+            return (
+              <div key={article.id}>
+                <SmallArticle a={article} />
+              </div>
+
+            );
+          })}
+
         </ul>
         <ReactPaginate
           previousLabel='prev'

@@ -1,0 +1,168 @@
+.articles-page-container {
+  display: flex;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  max-width:1020px;
+  margin: 0 auto;
+  padding: 80px 0;
+}
+
+/*vue portable */
+
+.recherche-article-container {
+padding-top: 30px;
+}
+input:focus, button:focus {
+  outline:none;
+}
+.my-search-articles {
+display: flex;
+justify-content: center;
+align-items:center;
+width:calc(100% - 200px);
+}
+.my-search-articles label {
+margin-bottom:0px;
+}
+.my-search-articles label p {
+margin:0px;
+}
+
+.my-search-articles input {
+height: 30px;
+margin-top: 5px;
+margin-bottom:30px;
+border:none;
+border-bottom:1px solid #424242;
+text-align:left;
+width:100%;
+}
+
+.Loupe .filter-list img {
+margin-left: 3px;
+height: 10px;
+}
+
+.filter-list {
+display: flex;
+flex-direction: row;
+justify-content: center;
+flex-wrap: wrap;
+margin-left: 10px;
+margin-right: 10px;
+cursor: pointer;
+}
+
+.label p {
+margin-top: 7px;
+margin-right: 5px;
+}
+
+.Loupe img {
+height: 15px;
+margin-right: 10px;
+}
+
+.Loupe {
+width: 100%;
+margin: 0 auto;
+}
+
+.search-field {
+width: 100%;
+max-width: 770px;
+margin: 0 auto;
+display: flex;
+flex-direction: column;
+}
+
+.search-block-articles {
+display: flex;
+flex-direction: row;
+width: 100%;
+max-width: 770px;
+margin: 0 auto;
+}
+
+.btn-search-article {
+padding: 5px;
+background-color: var(--accentColor);
+color: #fff;
+font-weight: 500;
+width: 200px;
+outline-style: none;
+border: 0;
+justify-self:flex-end;
+transition: all 0.2s ease-in-out;
+opacity:0.8;
+height:40px;
+margin-left:40px;
+}
+.btn-search-article:hover {
+opacity:1;
+}
+.no-result {
+color:#424242;
+margin-top:50px;
+}
+.Loupe h2 {
+margin: 0 auto;
+padding-bottom: 25px;
+margin-right: 10px;
+}
+
+.Loupe h2::before {
+position: relative;
+content: "";
+width: 50px;
+margin-right: 15px;
+margin-top: 3px;
+height: 1px;
+background-color: var(--accentColor);
+display: inline-block;
+top: -7px;
+}
+.Loupe h2::after {
+position: relative;
+content: "";
+width: 50px;
+margin-left: 15px;
+height: 1px;
+background-color: var(--accentColor);
+display: inline-block;
+top: -7px;
+}
+
+.filter-name {
+background-color: rgba(206, 200, 200, 0.863);
+border: 1px solid transparent;
+border-radius: 5px;
+margin: 3px 6px 8px 3px;
+padding: 0 0 3px 9px;
+}
+
+.result .filter-articles-container {
+display: flex;
+flex-direction: row;
+flex-wrap: wrap;
+justify-content: center;
+}
+
+.results-title {
+width:100%;
+margin-top:50px;
+}
+
+
+@media screen and (max-width: 360px) {
+.my-search-articles input {
+  width: 200px;
+}
+.btn-search-article {
+  width: 160px;
+  margin: 0 auto;
+  translate: 70px;
+}
+}
+
+

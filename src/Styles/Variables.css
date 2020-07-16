@@ -5,6 +5,7 @@
 
 :root {
     --accentColor:#008d36;
+    --lightAccentColor: #33a45e;
     --secondColor:#f18c06;
     --darkColor:#1d1d1b;
     --font-family : -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
@@ -14,6 +15,7 @@
     --secondaryFont:'Barlow Semi Condensed';
     --thirdFont: 'Roboto', sans-serif;
     --fourthFont : 'Lato', sans-serif;
+    --inputColor: hsl(0,0%,50%);
 }
 
 

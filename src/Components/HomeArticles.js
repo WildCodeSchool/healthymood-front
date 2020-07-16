@@ -8,7 +8,7 @@ export default function HomeArticles () {
   const [lastArticles, setLastArticles] = useState([]);
 
   useEffect(() => {
-    axios.get('http://localhost:4000/articles?per_page=4&sort_by=created_at&sort_order=desc')
+    axios.get('http://localhost:4000/articles?per_page=3&sort_by=created_at&sort_order=desc')
       .then(res => {
         const articles = res.data.data;
         console.log(articles);
@@ -18,6 +18,7 @@ export default function HomeArticles () {
 
   return (
     <>
+      <h2 className='last-articles'>Nos derniers articles</h2>
       <div className='homepage-articles-container'>
         {lastArticles.map(article => {
           return (
@@ -26,7 +27,7 @@ export default function HomeArticles () {
         })}
       </div>
       <Link to='/conseils-astuces' className='link-article'>
-        <button className='more'><p>Plus d'articles</p></button>
+        <button className='btn-search home-read-more'>Plus d'articles</button>
       </Link>
     </>
   );

@@ -5,28 +5,32 @@
     flex-direction: row;
     justify-content: space-around;
     margin: 0 auto;
-    flex-wrap: wrap;
-    
+    flex-wrap: wrap;   
 }
-
-.more{
-    margin: 10px;
-    border: solid 1px #008d36;
-    border-radius: 15px;
-    background-color: #008d36;
-    margin-bottom: 50px;
+.last-articles {
+    margin-bottom:10vh;
 }
-
-.more p{
-    color: #fff;
-    margin: 5px;
+.last-articles::before {
+    position: relative;
+    content: "";
+    width: 50px;
+    margin-right: 15px;
+    margin-top: 3px;
+    height: 1px;
+    background-color: var(--accentColor);
+    display: inline-block;
+    top: -7px;
 }
-
-.more:hover{
-    background-color: #fff;
-    color: #008d36;
+.last-articles::after {
+    position: relative;
+    content: "";
+    width: 50px;
+    margin-left: 15px;
+    height: 1px;
+    background-color: var(--accentColor);
+    display: inline-block;
+    top: -7px;
 }
-
-.more p:hover{
-    color: #008d36;
+.home-read-more {
+    margin-top:50px!important;
 }

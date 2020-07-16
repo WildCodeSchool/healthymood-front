@@ -6,14 +6,14 @@ const SmallArticle = ({ a }) => {
   return (
     <>
       <div key={a.slug} className='small-article-global-container'>
-        <Link to={`/articles/${a.id}`} key={a.id} className='link-article'>
+        <Link to={`/article/${a.id}`} key={a.id} className='link-article'>
           <div className='small-article-container'>
             <>
-              <div className='small-article-banner-image' style={{ backgroundImage: `linear-gradient(to bottom, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.1)), url(${a.image})` }} />
+              <div className='small-article-banner-image' style={{ backgroundImage: `url('${a.image}')` }} />
               <div className='small-article-content-container'>
                 <h1 className='small-article-title'>{a.title}</h1>
-                <p className='small-article-intro'>{a.content}</p>
-                <button className='read-more'>
+                <p className='small-article-intro'>{a.intro}</p>
+                <button className='read-more read-more-article'>
                   <p>Lire la suite</p>
                 </button>
               </div>

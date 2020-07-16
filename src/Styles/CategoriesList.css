@@ -42,6 +42,8 @@
     align-items:center;
     box-shadow:0 0 5px grey;
     transition: all 0.2s ease-in-out;
+    background-position:center;
+    background-size:cover;
 }
 .categories-list-container .recipe-category:hover {
     box-shadow:0 0 10px lightgrey;
@@ -71,11 +73,17 @@
     color:black;
     z-index:1;
 }
-@media all and (max-width:375px) and (orientation:portrait) {
+@media all and (max-width:440px) and (orientation:portrait) {
     .categories-list-section h2::after, .categories-list-section h2::before {
-        width:50px;
+        display:none;
     }
     .categories-list-container {
         justify-content: center;
+    }
+}
+@media all and (min-width:441px) and (max-width:768px) and (orientation:portrait) {
+    .categories-list-container {
+        max-width:640px;
+        margin:auto;
     }
 }
