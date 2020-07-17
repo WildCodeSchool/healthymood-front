@@ -1,4 +1,45 @@
 .install-banner {
+  position: relative;
   cursor: pointer;
-  background-color: #4fce1f;
+  background-color: var(--accentColor);
+  color: white;
+  font-weight: 500;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 60px;
+}
+
+.install-icon {
+  background-image:url('../Images/install.png');
+  background-size:cover;
+  background-position:center;
+  width:15px;
+  height:15px;
+  margin-right:5px;
+  display:block;
+}
+
+.install-banner.hidden {
+  display: none;
+}
+
+.close-install {
+  font-size:12px;
+  text-decoration:underline;
+  margin-bottom:0px;
+  opacity:0.8;
+  transition: all 0.2s ease-in-out;
+}
+.close-install:hover {
+  opacity:1;
+}
+
+.install-validate {
+  display: flex;
+  align-items:center;
+}
+.install-validate p {
+  margin:0px;
 }

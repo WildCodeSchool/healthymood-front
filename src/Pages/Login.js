@@ -28,8 +28,8 @@ export default function LoginPage (props) {
 
   return (
     <div className='login-page'>
-      <h1 className='title-login'>Se connecter</h1>
       <form className='form-login' onSubmit={handleSubmit}>
+        <h1 className='title-login'>Se connecter</h1>
         <div className='form-group'>
           <label htmlFor='email' name='email'>
             Email :
@@ -38,7 +38,7 @@ export default function LoginPage (props) {
             id='email'
             type='email'
             value={email}
-            placeholder='exemple@gmail.com'
+            placeholder='Votre adresse e-mail'
             onChange={(e) => setEmail(e.target.value)}
           />
         </div>
