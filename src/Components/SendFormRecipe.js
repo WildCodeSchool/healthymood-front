@@ -55,7 +55,7 @@ const SendFormRecipe = () => {
           <label>Titre : </label>
           <input type='text' name='title' value={inputs.title} onChange={handleChange} placeholder='Entrez un Titre' />
         </div>
-        {/*<p>Choisissez un ou plusieurs critères :</p>
+        {/* <p>Choisissez un ou plusieurs critères :</p>
          <div className='regime-type-select'>
         <TypeMealCheckBox mealTypes={mealTypes} register={register} />
           <TypeRegimeCheckBox regimeTypes={regimeTypes} register={register} />
