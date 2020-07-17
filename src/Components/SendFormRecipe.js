@@ -44,19 +44,19 @@ const SendFormRecipe = () => {
         <div className='author-id'>
           <div className='author-username'>
             <label>Pseudo : </label>
-            <input type='text' name='username' value={inputs.username} onChange={handleChange} placeholder='Entrez votre pseudo' />
+            <input className='two-columns' type='text' name='username' value={inputs.username} onChange={handleChange} placeholder='Entrez votre pseudo' />
           </div>
           <div className='author-mail'>
             <label>Email : </label>
-            <input type='email' name='email' value={inputs.email} onChange={handleChange} placeholder='Entrez votre adresse email' />
+            <input className='two-columns' type='email' name='email' value={inputs.email} onChange={handleChange} placeholder='Entrez votre adresse email' />
           </div>
         </div>
         <div className='form-title'>
           <label>Titre : </label>
           <input type='text' name='title' value={inputs.title} onChange={handleChange} placeholder='Entrez un Titre' />
         </div>
-        <p>Choisissez un ou plusieurs critères :</p>
-        {/* <div className='regime-type-select'>
+        {/* <p>Choisissez un ou plusieurs critères :</p>
+         <div className='regime-type-select'>
         <TypeMealCheckBox mealTypes={mealTypes} register={register} />
           <TypeRegimeCheckBox regimeTypes={regimeTypes} register={register} />
   </div>
@@ -72,7 +72,7 @@ const SendFormRecipe = () => {
           <label>Télécharger une image : </label>
           <input type='file' name='pieceJointe' ref={register} multiple='oui' accept='image/png, image/jpeg, image/jpg' />
 </div> */}
-        <button type='submit' className='send'>Envoyer</button>
+        <button type='submit' className='btn-search'>Envoyer</button>
       </form>
     </div>
   );

@@ -1,7 +1,7 @@
 .login-page {
   font-family: var(--font-family);
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
   flex-direction: column;
   height: 100vh;
@@ -29,6 +29,7 @@
 .form-login h1 {
   justify-self: flex-start;
   margin-bottom: 50px;
+  font-size:30px;
 }
 
 .form-group {
@@ -39,38 +40,39 @@
 }
 
 .form-login input {
+  height: 30px;
   width: 100%;
-  margin: 10px 0px;
-  padding: 10px;
-  background-color: #fff;
-  border: 1px solid #ddd;
-  border-radius: 5px;
+  margin-top: 5px;
+  margin-bottom: 30px;
+  border: 0px;
+  border-bottom: 1px solid var(--inputColor);
+  text-align: left;
+  background-color: transparent;
 }
 
 .btn-connexion {
-  width: 100%;
-  margin-top: 10px;
-  margin-bottom: 10px;
-  background-color: #4caf50;
-  border-radius: 10px;
-}
-
-.btn-connexion {
-  background-color: #44c767;
-  border-radius: 28px;
-  border: 1px solid #18ab29;
-  display: inline-block;
-  cursor: pointer;
-  color: #ffffff;
-  font-family: Arial;
-  font-size: 17px;
-  text-decoration: none;
-  text-shadow: 0px 1px 0px #2f6627;
+  padding: 5px;
+  background-color: var(--accentColor);
+  color: #fff;
+  font-weight: 500;
+  width: 200px;
+  outline-style: none;
+  border: 0;
+  margin: 0 auto;
+  transition: all 0.2s ease-in-out;
+  opacity: 0.8;
+  margin-bottom:20px;
 }
 .btn-connexion:hover {
-  background-color: #5cbf2a;
+  opacity:1;
 }
 .btn-connexion:active {
   position: relative;
   top: 1px;
+}
+form h6 {
+  font-family:var(--secondaryFont);
+}
+form h6 a {
+  color:var(--accentColor);
 }
