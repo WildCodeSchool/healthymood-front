@@ -13,7 +13,7 @@ const SmallArticle = ({ a }) => {
               <div className='small-article-banner-image' style={a.image ? { backgroundImage: `url('${a.image}')` } : { backgroundImage: `url('${defaultBanner}')` }} />
               <div className='small-article-content-container'>
                 <h1 className='small-article-title'>{a.title}</h1>
-                <p className='small-article-intro'>{a.intro}</p>
+                {a.intro ? <p className='small-article-intro'>{a.intro}</p> : ''}
                 <button className='read-more read-more-article'>
                   <p>Lire la suite</p>
                 </button>

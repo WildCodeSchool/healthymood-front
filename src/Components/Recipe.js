@@ -126,7 +126,7 @@ function Recipe () {
   const { connected } = useContext(AuthContext);
   const { favorite, handleSubmitFavorite } = useContext(FavoriteContext);
   const history = useHistory();
-  const componentRef = useRef();
+  let componentRef = useRef();
   const [recipe, setRecipe] = useState();
   const { slug } = useParams();
   useEffect(() => {
@@ -146,7 +146,7 @@ function Recipe () {
 
   return (
     <div className='print-recipe-container'>
-      <RecipeToPrint recipeInfo={recipe} history={history} favorite={favorite} handleSubmit={handleSubmit} connected={connected} ref={componentRef} />
+      <RecipeToPrint recipeInfo={recipe} history={history} favorite={favorite} handleSubmit={handleSubmit} connected={connected} ref={el => (componentRef = el)} />
       <h5 className='social-title'>Merci de partager : </h5>
       <div className='social-print-container'>
         <SocialMedia slug={slug} />
@@ -156,6 +156,7 @@ function Recipe () {
               className='print-button'
               style={{ backgroundImage: `url(${PrintImage})` }}
             />)}
+          content={() => componentRef}
         />
       </div>
     </div>

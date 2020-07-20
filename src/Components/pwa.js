@@ -5,6 +5,7 @@ let deferredPrompt;
 
 const Pwa = () => {
   const [shouldShowInstallBanner, setShouldShowInstallBanner] = useState(false);
+  const [hidden, setHidden] = useState(false);
 
   useEffect(() => {
     const listener = window.addEventListener('beforeinstallprompt', (e) => {
@@ -46,12 +47,19 @@ const Pwa = () => {
     }
   };
 
+  const hiddenInstallBanner = () => {
+    setHidden(true);
+  };
+
   return (
     <>
       {shouldShowInstallBanner && (
-        <div className='install-banner' onClick={showInstallPrompt}>
-          <span className='install-icon' />
-          Installer
+        <div className={hidden ? 'install-banner hidden' : 'install-banner'} onClick={showInstallPrompt}>
+          <div className='install-validate'>
+            <span className='install-icon' />
+            <p>Installer</p>
+          </div>
+          <p className='close-install' onClick={hiddenInstallBanner}>Non merci</p>
         </div>
       )}
     </>

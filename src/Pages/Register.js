@@ -27,8 +27,8 @@ export default function RegisterPage () {
 
   return (
     <div className='register-page'>
-      <h1>Inscription</h1>
       <form className='form-login' onSubmit={handleSubmit}>
+        <h1>Inscription</h1>
         <div className='form-group'>
           <label htmlFor='username' required name='username'>
             Pseudo :
@@ -39,6 +39,7 @@ export default function RegisterPage () {
             value={username}
             onChange={(e) => setName(e.target.value)}
             required
+            placeholder='Votre pseudo'
           />
         </div>
         <div className='form-group'>
@@ -49,7 +50,7 @@ export default function RegisterPage () {
             id='email'
             type='email'
             value={email}
-            placeholder='exemple@gmail.com'
+            placeholder='Votre adresse e-mail'
             onChange={(e) => setEmail(e.target.value)}
             required
           />
