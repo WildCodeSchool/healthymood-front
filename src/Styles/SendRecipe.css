@@ -5,7 +5,7 @@
 .form-recipe {
     padding:50px 0;
 }
-input, textarea {
+.form-recipe input, .form-recipe textarea {
     height: 30px;
     width: 100%;
     margin-top: 5px;
@@ -15,10 +15,10 @@ input, textarea {
     text-align: left;
     background-color: transparent;
 }
-textarea {
+.form-recipe textarea {
     height:100px;
 }
-label {
+.form-recipe label {
     display:none;
 }
 .author-id {
