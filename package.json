@@ -26,6 +26,7 @@
     "react-select": "^3.1.0",
     "react-share": "^4.2.0",
     "react-to-print": "^2.9.0",
+    "react-toastify": "^6.0.8",
     "semistandard": "^14.2.0"
   },
   "scripts": {

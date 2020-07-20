@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import API from '../Services/API';
 
 const SendFormRecipe = () => {
@@ -20,6 +22,15 @@ const SendFormRecipe = () => {
   }, []); */
 
   const [inputs, setInputs] = useState({ username: '', email: '', title: '', description: '' });
+  const notify = () => toast.success('un e-mail vient d’être envoyé à l’équipe healthymood, merci d’avoir partagé votre recette !', {
+    position: 'top-center',
+    autoClose: 5000,
+    hideProgressBar: false,
+    closeOnClick: true,
+    pauseOnHover: false,
+    draggable: false,
+    progress: undefined
+  });
 
   const handleChange = e => {
     const { name, value } = e.target;
@@ -34,7 +45,7 @@ const SendFormRecipe = () => {
       title,
       text: description
     });
-    console.log(inputs);
+    setInputs({ username: '', email: '', title: '', description: '' });
   };
 
   return (
@@ -72,7 +83,8 @@ const SendFormRecipe = () => {
           <label>Télécharger une image : </label>
           <input type='file' name='pieceJointe' ref={register} multiple='oui' accept='image/png, image/jpeg, image/jpg' />
 </div> */}
-        <button type='submit' className='btn-search'>Envoyer</button>
+        <ToastContainer />
+        <button type='submit' className='btn-search' onClick={notify}>Envoyer</button>
       </form>
     </div>
   );
