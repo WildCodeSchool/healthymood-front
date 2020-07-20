@@ -1,26 +1,13 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Carousel from 'react-bootstrap/Carousel';
 import { Link } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '../Styles/Carousel.css';
+import API from '../Services/API';
 
 function ControlledCarousel () {
   const [index, setIndex] = useState(0);
-
-  const handleSelect = (selectedIndex, e) => {
-    setIndex(selectedIndex);
-  };
-
-  const ItemsCarousel = [
-    {
-      className: 'background-container d-block w-100',
-      src: 'https://www.healthymood.fr/wp-content/uploads/legumes-ete-2.jpg',
-      alt: 'First slide',
-      title: 'Les fruits et légumes d\'été sont arrivés!',
-      caption: 'Découvrez plus de 150 recettes adaptées à la saison.',
-      button: 'Lire l\'article ',
-      link: 'article/1'
-    },
+  const [carouselItems, setCarouselItems] = useState([
     {
       className: 'background-container d-block w-100',
       src: 'https://www.healthymood.fr/wp-content/uploads/smoothies-healthy-comfort-food.jpg',
@@ -39,17 +26,41 @@ function ControlledCarousel () {
       button: 'Envoyer ma recette ',
       link: 'envoyer-recette'
     }
-  ];
+  ]);
+
+  const handleSelect = (selectedIndex, e) => {
+    setIndex(selectedIndex);
+  };
+
+  useEffect(() => {
+    API.get('/articles?per_page=1&sort_by=created_at&sort_order=desc')
+      .then(res => {
+        const lastArticle = res.data.data[0];
+        setCarouselItems((carouselItems) => [{
+          className: 'background-container d-block w-100',
+          src: lastArticle.image,
+          alt: 'First slide',
+          title: lastArticle.title,
+          caption: lastArticle.intro,
+          button: 'Lire l\'article ',
+          link: `article/${lastArticle.id}`
+        }, ...carouselItems]);
+      })
+      .catch(err => {
+        console.error(err);
+      });
+  }, []) //eslint-disable-line
+
   return (
     <Carousel activeIndex={index} onSelect={handleSelect}>
-      {ItemsCarousel.map(e => {
+      {carouselItems.map(e => {
         return (
           <Carousel.Item className='carousel-element' key={e.alt}>
-            <div className={e.className} style={{ backgroundImage: `url(${e.src})` }} />
+            <div className={e.className} style={{ backgroundImage: `url('${e.src}')` }} />
             <div className='carousel-content'>
               <Carousel.Caption className='carousel-title'>
                 <h3>{e.title}</h3>
-                <p>{e.caption}</p>
+                {e.caption ? <p>{e.caption}</p> : ''}
                 <Link to={`/${e.link}`}><button className='carousel-button'>{e.button}</button></Link>
               </Carousel.Caption>
             </div>
