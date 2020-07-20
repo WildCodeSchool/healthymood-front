@@ -7,19 +7,19 @@ import { Link } from 'react-router-dom';
 
 function ControlledCarousel () {
   const [index, setIndex] = useState(0);
-  const [lastArticle, setLastArticle] = useState([])
+  const [lastArticle, setLastArticle] = useState([]);
 
   const handleSelect = (selectedIndex, e) => {
     setIndex(selectedIndex);
   };
 
   useEffect(() => {
-  API.get('/articles?per_page=1&sort_by=created_at&sort_order=desc')
+    API.get('/articles?per_page=1&sort_by=created_at&sort_order=desc')
       .then(res => {
         const article = res.data.data;
         setLastArticle(article);
       });
-  console.log(lastArticle)
+    console.log(lastArticle);
   }, []) //eslint-disable-line
 
   const ItemsCarousel = [
@@ -43,8 +43,7 @@ function ControlledCarousel () {
         link: 'article/1',
         type: 'article'
       }
-    )
-    ,
+    ),
     {
       className: 'background-container d-block w-100',
       src: 'https://www.healthymood.fr/wp-content/uploads/smoothies-healthy-comfort-food.jpg',
@@ -66,16 +65,16 @@ function ControlledCarousel () {
     <Carousel activeIndex={index} onSelect={handleSelect}>
       {ItemsCarousel.map(e => {
         return (
-            <Carousel.Item className='carousel-element' key={e.alt}>
-              <div className={e.className} style={{ backgroundImage: `url(${e.src})` }} />
-              <div className='carousel-content'>
-                <Carousel.Caption className='carousel-title'>
-                  <h3>{e.title}</h3>
-                  <p>{e.caption}</p>
-                  <Link to={`/${e.link}`}><button className='carousel-button'>{e.button}</button></Link>
-                </Carousel.Caption>
-              </div>
-            </Carousel.Item>
+          <Carousel.Item className='carousel-element' key={e.alt}>
+            <div className={e.className} style={{ backgroundImage: `url(${e.src})` }} />
+            <div className='carousel-content'>
+              <Carousel.Caption className='carousel-title'>
+                <h3>{e.title}</h3>
+                <p>{e.caption}</p>
+                <Link to={`/${e.link}`}><button className='carousel-button'>{e.button}</button></Link>
+              </Carousel.Caption>
+            </div>
+          </Carousel.Item>
         );
       }
       )}
