@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useRef, useContext } from 'react';
 import { useParams, useHistory } from 'react-router-dom';
-
 import '../Styles/Recipe.css';
 import publishedImage from '../Images/published.png';
 import authorImage from '../Images/author.png';
