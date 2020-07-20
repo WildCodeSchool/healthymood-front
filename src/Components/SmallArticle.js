@@ -1,15 +1,16 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import '../Styles/SmallArticle.css';
+import defaultBanner from '../Images/default-banner.jpg';
 
 const SmallArticle = ({ a }) => {
   return (
     <>
       <div key={a.slug} className='small-article-global-container'>
-        <Link to={`/article/${a.id}`} key={a.id} className='link-article'>
+        <Link to={`/article/${a.slug}`} key={a.slug} className='link-article'>
           <div className='small-article-container'>
             <>
-              <div className='small-article-banner-image' style={{ backgroundImage: `url('${a.image}')` }} />
+              <div className='small-article-banner-image' style={a.image ? { backgroundImage: `url('${a.image}')` } : { backgroundImage: `url('${defaultBanner}')` }} />
               <div className='small-article-content-container'>
                 <h1 className='small-article-title'>{a.title}</h1>
                 {a.intro ? <p className='small-article-intro'>{a.intro}</p> : ''}
