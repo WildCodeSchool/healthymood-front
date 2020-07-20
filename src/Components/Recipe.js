@@ -18,14 +18,13 @@ import emptyFav from '../Images/fav.png';
 import fullFav from '../Images/fav-full.png';
 import AuthContext from '../Context/authContext';
 import FavoriteContext from '../Context/favoriteContext';
-import defaultBanner from '../Images/default-banner.jpg';
 
 class RecipeToPrint extends React.Component {
   capitalizeFirstLetter = (string) => {
     return string.charAt(0).toUpperCase() + string.slice(1);
   }
 
-  createRecipe () {
+  createRecipe() {
     return { __html: this.props.recipeInfo.content };
   }
 
@@ -37,7 +36,7 @@ class RecipeToPrint extends React.Component {
     return totalCalories;
   }
 
-  render () {
+  render() {
     const recipeInfo = this.props.recipeInfo;
     const history = this.props.history;
     const connected = this.props.connected;
@@ -50,7 +49,8 @@ class RecipeToPrint extends React.Component {
       <div className='recipe-container'>
         <header>
           <h1 className='recipe-title'>{this.capitalizeFirstLetter(recipeInfo.name)}</h1>
-          <div className='reciper-banner-image' style={recipeInfo.image ? { backgroundImage: `url('${recipeInfo.image}')` } : { backgroundImage: `url('${defaultBanner}')` }} />
+          {recipeInfo.image &&
+            <div className='reciper-banner-image' style={{ backgroundImage: `url('${recipeInfo.image}')` }} />}
           <div className='publication-info'>
             <span
               className='picto-container'
@@ -122,7 +122,7 @@ class RecipeToPrint extends React.Component {
   }
 }
 
-function Recipe () {
+function Recipe() {
   const { connected } = useContext(AuthContext);
   const { favorite, handleSubmitFavorite } = useContext(FavoriteContext);
   const history = useHistory();
