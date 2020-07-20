@@ -20,12 +20,6 @@ const TopNavBar = () => {
             </div>
           </NavLink>
 
-          <NavLink exact to='/compte' className='topnav-bar-link-compte'>
-            <div className='topnav-bar-element-container'>
-              <p>Mon compte</p>
-            </div>
-          </NavLink>
-
           <NavLink
             exact
             to='/compte/favoris'
@@ -33,16 +27,6 @@ const TopNavBar = () => {
           >
             <div className='topnav-bar-element-container'>
               <p>Mes favoris</p>
-            </div>
-          </NavLink>
-
-          <NavLink
-            exact
-            to='/compte/liste-courses'
-            className='topnav-bar-link-liste-courses'
-          >
-            <div className='topnav-bar-element-container'>
-              <p>Ma liste de courses</p>
             </div>
           </NavLink>
 
