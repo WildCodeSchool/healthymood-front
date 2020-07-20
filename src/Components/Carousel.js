@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
 import Carousel from 'react-bootstrap/Carousel';
+import { Link } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '../Styles/Carousel.css';
+
 function ControlledCarousel () {
   const [index, setIndex] = useState(0);
 
@@ -16,7 +18,8 @@ function ControlledCarousel () {
       alt: 'First slide',
       title: 'Les fruits et légumes d\'été sont arrivés!',
       caption: 'Découvrez plus de 150 recettes adaptées à la saison.',
-      button: 'Lire l\'article '
+      button: 'Lire l\'article ',
+      link: 'article/1'
     },
     {
       className: 'background-container d-block w-100',
@@ -24,7 +27,8 @@ function ControlledCarousel () {
       alt: 'Second slide',
       title: 'Découvrez nos astuces pour une cuisine plus saine',
       caption: 'Nous vous donnons toutes les clés pour cuisiner sainement en toute simplicité !',
-      button: 'Lire nos conseils'
+      button: 'Lire nos conseils',
+      link: 'conseils-astuces'
     },
     {
       className: 'background-container d-block w-100',
@@ -32,7 +36,8 @@ function ControlledCarousel () {
       alt: 'Third slide',
       title: 'L\'annuaire de la cuisine saine et sans allergène !',
       caption: 'Healthymood, c\'est plus de 500 recettes classées par catégorie. N\'attendez plus et découvrez votre prochain repas !',
-      button: 'Envoyer ma recette '
+      button: 'Envoyer ma recette ',
+      link: 'envoyer-recette'
     }
   ];
   return (
@@ -45,7 +50,7 @@ function ControlledCarousel () {
               <Carousel.Caption className='carousel-title'>
                 <h3>{e.title}</h3>
                 <p>{e.caption}</p>
-                <button className='carousel-button'>{e.button}</button>
+                <Link to={`/${e.link}`}><button className='carousel-button'>{e.button}</button></Link>
               </Carousel.Caption>
             </div>
           </Carousel.Item>
