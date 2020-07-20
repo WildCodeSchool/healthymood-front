@@ -161,7 +161,7 @@ function Recipe () {
     <div className='print-recipe-container'>
       <RecipeToPrint recipeInfo={recipe} history={history} favorite={favorite} handleSubmit={handleSubmit} connected={connected} ref={el => (componentRef = el)} />
       <h5 className='social-title'>Merci de partager : </h5>
-      <div className='social-print-container'>  
+      <div className='social-print-container'>
         <SocialMedia slug={slug} />
         <ReactToPrint
           trigger={() => (
