@@ -14,7 +14,7 @@ import {
 import '../Styles/SocialMedia.css';
 
 const SocialMedia = (props) => {
-  const shareUrl = `https://healthymood-frond-dev.netlify.app/article/${props.slug}`;
+  const shareUrl = `${window.location.origin}/article/${props.id}`;
   const title = `${props.slug}`;
   return (
     <div className='social-media-container'>
