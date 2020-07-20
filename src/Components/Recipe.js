@@ -24,7 +24,7 @@ class RecipeToPrint extends React.Component {
     return string.charAt(0).toUpperCase() + string.slice(1);
   }
 
-  createRecipe() {
+  createRecipe () {
     return { __html: this.props.recipeInfo.content };
   }
 
@@ -36,7 +36,7 @@ class RecipeToPrint extends React.Component {
     return totalCalories;
   }
 
-  render() {
+  render () {
     const recipeInfo = this.props.recipeInfo;
     const history = this.props.history;
     const connected = this.props.connected;
@@ -122,7 +122,7 @@ class RecipeToPrint extends React.Component {
   }
 }
 
-function Recipe() {
+function Recipe () {
   const { connected } = useContext(AuthContext);
   const { favorite, handleSubmitFavorite } = useContext(FavoriteContext);
   const history = useHistory();
