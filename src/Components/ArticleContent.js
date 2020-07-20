@@ -3,27 +3,28 @@ import '../Styles/ArticleContent.css';
 import authorImage from '../Images/author.png';
 import publishedImage from '../Images/published.png';
 import SocialMedia from './SocialMediaArticle';
+import defaultBanner from '../Images/default-banner.jpg';
 
 class ArticleContent extends React.Component {
-  constructor (props) {
+  constructor(props) {
     super(props);
     this.state = {
       a: this.props.a
     };
   }
 
-  createArticle (props) {
+  createArticle(props) {
     return { __html: this.props.a.content };
   }
 
-  render () {
+  render() {
     return (
       <>
         <div className='article-container'>
           <div className='article-presentation'>
             <div
               className='banniere'
-              style={{ backgroundImage: `url(${this.state.a.image})` }}
+              style={this.state.a.image ? { backgroundImage: `url('${this.state.a.image}')` } : { backgroundImage: `url('${defaultBanner}')` }}
             />
             <div className='article-details'>
               <div className='author-container'>
@@ -41,8 +42,8 @@ class ArticleContent extends React.Component {
                 {this.state.a.updated_at !== '' && null ? (
                   <p>{this.props.a.updated_at.substr(0, 10)}</p>
                 ) : (
-                  <p>{this.props.a.created_at.substr(0, 10)}</p>
-                )}
+                    <p>{this.props.a.created_at.substr(0, 10)}</p>
+                  )}
               </div>
             </div>
           </div>

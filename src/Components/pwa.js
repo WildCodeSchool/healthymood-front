@@ -50,6 +50,7 @@ const Pwa = () => {
     <>
       {shouldShowInstallBanner && (
         <div className='install-banner' onClick={showInstallPrompt}>
+          <span className='install-icon' />
           Installer
         </div>
       )}

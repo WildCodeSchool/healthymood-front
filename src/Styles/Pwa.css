@@ -1,4 +1,18 @@
 .install-banner {
   cursor: pointer;
-  background-color: #4fce1f;
+  background-color: var(--accentColor);
+  color: white;
+  font-weight: 500;
+  display:flex;
+  align-items:center;
+  
+}
+.install-icon {
+  background-image:url('../Images/install.png');
+  background-size:cover;
+  background-position:center;
+  width:20px;
+  height:20px;
+  margin-right:10px;
+  display:block;
 }
