@@ -5,6 +5,7 @@ import emptyFav from '../Images/fav.png';
 import fullFav from '../Images/fav-full.png';
 import AuthContext from '../Context/authContext';
 import FavoriteContext from '../Context/favoriteContext';
+import defaultBanner from '../Images/default-banner.jpg';
 
 const SmallRecipe = ({ r }) => {
   console.log(r);
@@ -43,9 +44,7 @@ const SmallRecipe = ({ r }) => {
             <>
               <div
                 className='small-reciper-banner-image'
-                style={{
-                  backgroundImage: `url('${r.image}')`
-                }}
+                style={r.image ? { backgroundImage: `url('${r.image}')` } : { backgroundImage: `url('${defaultBanner}')` }}
               />
               <div className='small-recipe-content-container'>
                 <h1 className='small-recipe-title'>{capitalizeFirstLetter(r.name)}</h1>
