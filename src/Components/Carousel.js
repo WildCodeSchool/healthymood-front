@@ -26,7 +26,7 @@ function ControlledCarousel () {
       button: 'Envoyer ma recette ',
       link: 'envoyer-recette'
     }
-  ])
+  ]);
 
   const handleSelect = (selectedIndex, e) => {
     setIndex(selectedIndex);
@@ -36,7 +36,7 @@ function ControlledCarousel () {
     API.get('/articles?per_page=1&sort_by=created_at&sort_order=desc')
       .then(res => {
         const lastArticle = res.data.data[0];
-        setCarouselItems((carouselItems)=>[{
+        setCarouselItems((carouselItems) => [{
           className: 'background-container d-block w-100',
           src: lastArticle.image,
           alt: 'First slide',
@@ -44,13 +44,12 @@ function ControlledCarousel () {
           caption: lastArticle.intro,
           button: 'Lire l\'article ',
           link: `article/${lastArticle.id}`
-        }, ...carouselItems])
+        }, ...carouselItems]);
       })
       .catch(err => {
-        console.error(err)
+        console.error(err);
       });
   }, []) //eslint-disable-line
-
 
   return (
     <Carousel activeIndex={index} onSelect={handleSelect}>
