@@ -50,7 +50,7 @@ const SmallRecipe = ({ r }) => {
               <div className='small-recipe-content-container'>
                 <h1 className='small-recipe-title'>{capitalizeFirstLetter(r.name)}</h1>
                 {r.intro ? <p className='small-recipe-intro'>{r.intro}</p>
-                  : <p className='small-recipe-intro'>{r.content.replace(/<\/?[^>]+(>|$)/g, '').replace(/&#8217;/gi, "'").slice(0, 157)}...</p>}
+                  : <p className='small-recipe-intro'>{r.content.replace(/<\/?[^>]+(>|$)/g, '').replace(/&eacute;/gi, 'é').replace(/&rsquo;/gi, "'").replace(/&agrave;/gi, 'à').replace(/&egrave;/gi, 'è').slice(0, 157)}...</p>}
                 <button className='read-more read-more-recipe'>
                   <p>Lire la suite</p>
                 </button>
