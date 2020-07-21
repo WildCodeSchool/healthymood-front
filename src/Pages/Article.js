@@ -13,7 +13,7 @@ export default class Article extends Component {
   }
 
   componentDidMount () {
-    const searchOrId = this.props.match.params.id;
+    const searchOrId = this.props.match.params.slug;
     API.get(`/articles/${searchOrId}`)
       .then((res) => res.data)
       .then((data) => {
