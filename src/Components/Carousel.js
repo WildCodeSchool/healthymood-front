@@ -56,7 +56,7 @@ function ControlledCarousel () {
       {carouselItems.map(e => {
         return (
           <Carousel.Item className='carousel-element' key={e.alt}>
-            <div className={e.className} style={{ backgroundImage: `url('${e.src}')` }} />
+            <div className={e.className} style={{ backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), url('${e.src}')` }} />
             <div className='carousel-content'>
               <Carousel.Caption className='carousel-title'>
                 <h3>{e.title}</h3>
