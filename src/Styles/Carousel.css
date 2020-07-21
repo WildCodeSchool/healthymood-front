@@ -60,6 +60,7 @@
   text-shadow:0 0 3px black;
   font-size:15px;
   text-align:center;
+  font-weight:500;
 }
 
 @media only screen and (max-width: 767px) {
