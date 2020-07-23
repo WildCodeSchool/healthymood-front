@@ -44,8 +44,8 @@ const SendFormRecipe = () => {
       email,
       title,
       text: description
-    });
-    setInputs({ username: '', email: '', title: '', description: '' });
+    })
+    .then(() => setInputs({ username: '', email: '', title: '', description: '' }));
   };
 
   return (
