@@ -20,7 +20,6 @@ import SendRecipe from './Pages/SendRecipe';
 import AuthContext from './Context/authContext';
 import LoginPage from './Pages/Login';
 import RegisterPage from './Pages/Register';
-import MonCompte from './Pages/MonCompte';
 import ScrollToTop from './Scripts/ScrollToTop';
 import FavoriteContext from './Context/favoriteContext';
 import FavoriteUser from './Pages/FavoriteUser';
@@ -148,9 +147,6 @@ function App () {
               <Route exact path='/register' component={RegisterPage} />
               <Route exact path='/info/:slug' component={Pages} />
               <Route exact path='/envoyer-recette' component={SendRecipe} />
-              <PrivateRoute exact path='/compte'>
-                <MonCompte />
-              </PrivateRoute>
               <PrivateRoute exact path='/compte/favoris'>
                 <FavoriteUser />
               </PrivateRoute>
