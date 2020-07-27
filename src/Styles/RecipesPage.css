@@ -6,5 +6,8 @@
   margin: 0 auto;
   padding: 80px 0;
 }
+.recipes-page-container a {
+  text-decoration:none;
+}
 
 

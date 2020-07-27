@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import SmallRecipe from '../Components/SmallRecipe';
 import '../Styles/RecipesPage.css';
 import API from '../Services/API';
@@ -31,6 +32,9 @@ function RecipesPage (props) {
 
   return (
     <div className='recipes-page-container'>
+      <Link to='/rechercher'>
+        <div className='btn-search'>Rechercher un article</div>
+      </Link>
       {allRecipes.length > 0 && allRecipes.map((r) => {
         return (
           <SmallRecipe key={r.id} r={r} />
