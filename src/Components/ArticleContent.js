@@ -14,7 +14,7 @@ class ArticleContent extends React.Component {
   }
 
   createArticle (props) {
-    return { __html: this.props.a[0].content };
+    return { __html: this.props.a.content };
   }
 
   render () {
@@ -22,16 +22,14 @@ class ArticleContent extends React.Component {
       <>
         <div className='article-container'>
           <div className='article-presentation'>
-            {this.state.a.image && (
               <div
                 className='banniere'
                 style={
-                  !this.state.a.image.includes('undefined')
+                  this.state.a.image
                     ? { backgroundImage: `url('${this.state.a.image}')` }
                     : { backgroundImage: `url('${defaultBanner}')` }
                 }
               />
-            )}
             <div className='article-details'>
               <div className='author-container'>
                 <span
@@ -49,10 +47,10 @@ class ArticleContent extends React.Component {
                   className='picto-container'
                   style={{ backgroundImage: `url(${publishedImage})` }}
                 />
-                {this.state.a[0].updated_at !== '' && null ? (
-                  <p>{this.state.a[0].updated_at.substr(0, 10)}</p>
+                {this.state.a.updated_at !== '' && null ? (
+                  <p>{this.state.a.updated_at.substr(0, 10)}</p>
                 ) : (
-                  <p>{this.state.a[0].created_at.substr(0, 10)}</p>
+                  <p>{this.state.a.created_at.substr(0, 10)}</p>
                 )}
               </div>
             </div>

@@ -28,7 +28,7 @@ export default class Article extends Component {
         {this.state.articleIsLoading ? (<p>Chargement</p>
         ) : (
           <>
-            <h1>{this.state.data[0].title}</h1>
+            <h1>{this.state.data.title}</h1>
             <div className='article-content-container'>
               <ArticleContent a={this.state.data} />
             </div>
