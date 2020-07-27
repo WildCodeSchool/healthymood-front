@@ -50,11 +50,9 @@ input {
   cursor: pointer;
 }
 .showAdvancedSearch-search-container p {
-  color:var(--accentColor);
-  text-decoration:underline;
-  cursor:pointer;
-  font-size:13px;
-}
+  color: #212529;
+  font-weight: bold;
+} 
 .css-1rhbuit-multiValue {
   background-color:var(--accentColor)!important;
   color:white;

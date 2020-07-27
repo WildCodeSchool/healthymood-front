@@ -31,16 +31,18 @@ function RecipesPage (props) {
   }, [props.match.params]);
 
   return (
+    <>
+    <Link to='/rechercher' className='btn-link'>
+    <div className='btn-search'>Rechercher une recette</div>
+  </Link>
     <div className='recipes-page-container'>
-      <Link to='/rechercher'>
-        <div className='btn-search'>Rechercher un article</div>
-      </Link>
       {allRecipes.length > 0 && allRecipes.map((r) => {
         return (
           <SmallRecipe key={r.id} r={r} />
         );
       })}
     </div>
+    </>
   );
 }
 
