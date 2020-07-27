@@ -135,7 +135,7 @@ class RecipeToPrint extends React.Component {
               return (
                 <li key={ingredient.id}>
                   <span className={ingredient.is_allergen && 'is-allergen'}>
-                    {ingredient.name} ({ingredient.calories} Kcal)
+                    {ingredient.name}
                   </span>
                 </li>
               );
