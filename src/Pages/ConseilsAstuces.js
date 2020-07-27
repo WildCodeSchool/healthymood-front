@@ -5,7 +5,7 @@ import { useHistory } from 'react-router-dom';
 import '../Styles/SearchArticles.css';
 import AdvicesAndTricks from './AdvicesAndTricks';
 
-export default function SearchArticles (props) {
+export default function SearchArticles(props) {
   const history = useHistory();
 
   const [articles, setArticles] = useState([]);
@@ -17,7 +17,6 @@ export default function SearchArticles (props) {
       API.get('/articles')
         .then((res) => res.data)
         .then((data) => {
-          console.log(data.data);
           return data.data;
         })
         .then((data) => setArticles(data));
@@ -32,7 +31,6 @@ export default function SearchArticles (props) {
       API.get(url)
         .then((res) => res.data)
         .then((data) => {
-          console.log(data.data);
           return data.data;
         })
         .then((data) => setArticles(data));
@@ -86,7 +84,6 @@ export default function SearchArticles (props) {
       API.get('/articles')
         .then((res) => res.data)
         .then((data) => {
-          console.log(data.data);
           return data.data;
         })
         .then((data) => setArticles(data));

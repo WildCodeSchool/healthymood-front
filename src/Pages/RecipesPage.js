@@ -15,7 +15,7 @@ function RecipesPage (props) {
           setAllRecipes(results.data);
         })
         .catch(err => {
-          console.log(err);
+          console.error(err);
         });
     } else {
       API.get('/recipes')
@@ -24,7 +24,7 @@ function RecipesPage (props) {
           setAllRecipes(results.data);
         })
         .catch(err => {
-          console.log(err);
+          console.error(err);
         });
     }
   }, [props.match.params]);

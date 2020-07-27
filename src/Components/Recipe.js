@@ -42,8 +42,6 @@ class RecipeToPrint extends React.Component {
     const connected = this.props.connected;
     const favorite = this.props.favorite;
     const handleSubmit = this.props.handleSubmit;
-    console.log(recipeInfo);
-    console.log(favorite);
     return (
 
       <div className='recipe-container'>
@@ -132,7 +130,6 @@ function Recipe () {
   useEffect(() => {
     API.get(`/recipes/${slug}`).then((res) => {
       setRecipe(res.data.data);
-      console.log(res.data.data);
     });
   }, []); //eslint-disable-line
   if (!recipe) {

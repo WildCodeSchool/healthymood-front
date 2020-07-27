@@ -21,9 +21,7 @@ export default class AdvicesAndTricks extends Component {
 
   receivedData () {
     const articles = this.props.data;
-    console.log(articles);
     const sliceArticles = articles.slice(this.state.offset, this.state.offset + this.state.perPage);
-    console.log(sliceArticles.length);
     this.setState({
       pageCount: Math.ceil(articles.length / this.state.perPage),
       sliceArticles
@@ -43,13 +41,11 @@ export default class AdvicesAndTricks extends Component {
   };
 
   componentDidMount () {
-    console.log(this.props);
     this.receivedData();
   }
 
   componentDidUpdate (prevProps) {
     if (this.props.data !== prevProps.data) {
-      console.log('update component');
       this.receivedData();
       this.setState({ currentPage: 0, offset: 0 });
     }

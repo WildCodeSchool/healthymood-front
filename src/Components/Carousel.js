@@ -36,6 +36,7 @@ function ControlledCarousel () {
     API.get('/articles?per_page=1&sort_by=created_at&sort_order=desc')
       .then(res => {
         const lastArticle = res.data.data[0];
+        if (lastArticle) {
         setCarouselItems((carouselItems) => [{
           className: 'background-container d-block w-100',
           src: lastArticle.image,
@@ -45,6 +46,7 @@ function ControlledCarousel () {
           button: 'Lire l\'article ',
           link: `article/${lastArticle.id}`
         }, ...carouselItems]);
+      }
       })
       .catch(err => {
         console.error(err);

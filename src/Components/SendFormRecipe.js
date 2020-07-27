@@ -34,7 +34,6 @@ const SendFormRecipe = () => {
       title,
       text: description
     });
-    console.log(inputs);
   };
 
   return (

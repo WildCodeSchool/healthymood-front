@@ -8,7 +8,6 @@ import FavoriteContext from '../Context/favoriteContext';
 import defaultBanner from '../Images/default-banner.jpg';
 
 const SmallRecipe = ({ r }) => {
-  console.log(r);
   const { connected } = useContext(AuthContext);
   const { favorite, handleSubmitFavorite } = useContext(FavoriteContext);
   const history = useHistory();
