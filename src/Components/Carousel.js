@@ -37,16 +37,16 @@ function ControlledCarousel () {
       .then(res => {
         const lastArticle = res.data.data[0];
         if (lastArticle) {
-        setCarouselItems((carouselItems) => [{
-          className: 'background-container d-block w-100',
-          src: lastArticle.image,
-          alt: 'First slide',
-          title: lastArticle.title,
-          caption: lastArticle.intro,
-          button: 'Lire l\'article ',
-          link: `article/${lastArticle.id}`
-        }, ...carouselItems]);
-      }
+          setCarouselItems((carouselItems) => [{
+            className: 'background-container d-block w-100',
+            src: lastArticle.image,
+            alt: 'First slide',
+            title: lastArticle.title,
+            caption: lastArticle.intro,
+            button: 'Lire l\'article ',
+            link: `article/${lastArticle.id}`
+          }, ...carouselItems]);
+        }
       })
       .catch(err => {
         console.error(err);

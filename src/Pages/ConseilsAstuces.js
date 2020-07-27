@@ -5,7 +5,7 @@ import { useHistory } from 'react-router-dom';
 import '../Styles/SearchArticles.css';
 import AdvicesAndTricks from './AdvicesAndTricks';
 
-export default function SearchArticles(props) {
+export default function SearchArticles (props) {
   const history = useHistory();
 
   const [articles, setArticles] = useState([]);
