@@ -1,30 +1,30 @@
-import React from "react";
-import "../Styles/ArticleContent.css";
-import authorImage from "../Images/author.png";
-import publishedImage from "../Images/published.png";
-import SocialMedia from "./SocialMediaArticle";
-import defaultBanner from "../Images/default-banner.jpg";
+import React from 'react';
+import '../Styles/ArticleContent.css';
+import authorImage from '../Images/author.png';
+import publishedImage from '../Images/published.png';
+import SocialMedia from './SocialMediaArticle';
+import defaultBanner from '../Images/default-banner.jpg';
 
 class ArticleContent extends React.Component {
-  constructor(props) {
+  constructor (props) {
     super(props);
     this.state = {
-      a: this.props.a,
+      a: this.props.a
     };
   }
 
-  createArticle(props) {
+  createArticle (props) {
     return { __html: this.props.a[0].content };
   }
 
-  render() {
+  render () {
     return (
       <>
-        <div className="article-container">
-          <div className="article-presentation">
+        <div className='article-container'>
+          <div className='article-presentation'>
             {this.state.a.image && (
               <div
-                className="banniere"
+                className='banniere'
                 style={
                   !this.state.a.image.includes('undefined')
                     ? { backgroundImage: `url('${this.state.a.image}')` }
@@ -32,24 +32,24 @@ class ArticleContent extends React.Component {
                 }
               />
             )}
-            <div className="article-details">
-              <div className="author-container">
+            <div className='article-details'>
+              <div className='author-container'>
                 <span
-                  className="picto-container"
+                  className='picto-container'
                   style={{ backgroundImage: `url(${authorImage})` }}
                 />
                 <p>
                   {this.state.a.author
                     ? this.state.a.author.username
-                    : "non-renseigné"}
+                    : 'non-renseigné'}
                 </p>
               </div>
-              <div className="published-container">
+              <div className='published-container'>
                 <span
-                  className="picto-container"
+                  className='picto-container'
                   style={{ backgroundImage: `url(${publishedImage})` }}
                 />
-                {this.state.a[0].updated_at !== "" && null ? (
+                {this.state.a[0].updated_at !== '' && null ? (
                   <p>{this.state.a[0].updated_at.substr(0, 10)}</p>
                 ) : (
                   <p>{this.state.a[0].created_at.substr(0, 10)}</p>
@@ -60,10 +60,10 @@ class ArticleContent extends React.Component {
         </div>
         <div
           dangerouslySetInnerHTML={this.createArticle()}
-          className="article-content"
+          className='article-content'
         />
-        <div className="social-media-container">
-          <h5 className="">Merci de partager : </h5>
+        <div className='social-media-container'>
+          <h5 className=''>Merci de partager : </h5>
           <SocialMedia />
         </div>
       </>
