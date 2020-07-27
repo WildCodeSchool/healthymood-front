@@ -36,15 +36,17 @@ function ControlledCarousel () {
     API.get('/articles?per_page=1&sort_by=created_at&sort_order=desc')
       .then(res => {
         const lastArticle = res.data.data[0];
-        setCarouselItems((carouselItems) => [{
-          className: 'background-container d-block w-100',
-          src: lastArticle.image,
-          alt: 'First slide',
-          title: lastArticle.title,
-          caption: lastArticle.intro,
-          button: 'Lire l\'article ',
-          link: `article/${lastArticle.id}`
-        }, ...carouselItems]);
+        if (lastArticle) {
+          setCarouselItems((carouselItems) => [{
+            className: 'background-container d-block w-100',
+            src: lastArticle.image,
+            alt: 'First slide',
+            title: lastArticle.title,
+            caption: lastArticle.intro,
+            button: 'Lire l\'article ',
+            link: `article/${lastArticle.id}`
+          }, ...carouselItems]);
+        }
       })
       .catch(err => {
         console.error(err);
