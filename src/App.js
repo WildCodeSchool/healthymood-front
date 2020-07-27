@@ -134,6 +134,7 @@ function App () {
           <ScrollToTop />
           <div className='App'>
             <Header />
+            Test
             <Switch>
               <Route exact path='/' component={Home} />
               <Route exact path='/recettes' component={RecipesPage} />
