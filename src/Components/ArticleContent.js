@@ -22,14 +22,14 @@ class ArticleContent extends React.Component {
       <>
         <div className='article-container'>
           <div className='article-presentation'>
-              <div
-                className='banniere'
-                style={
-                  this.state.a.image
-                    ? { backgroundImage: `url('${this.state.a.image}')` }
-                    : { backgroundImage: `url('${defaultBanner}')` }
-                }
-              />
+            <div
+              className='banniere'
+              style={
+                this.state.a.image
+                  ? { backgroundImage: `url('${this.state.a.image}')` }
+                  : { backgroundImage: `url('${defaultBanner}')` }
+              }
+            />
             <div className='article-details'>
               <div className='author-container'>
                 <span
