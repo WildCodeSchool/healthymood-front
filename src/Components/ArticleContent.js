@@ -22,18 +22,25 @@ class ArticleContent extends React.Component {
       <>
         <div className='article-container'>
           <div className='article-presentation'>
-            {this.state.a.image &&
-              <div
-                className='banniere'
-                style={this.state.a.image ? { backgroundImage: `url('${this.state.a.image}')` } : { backgroundImage: `url('${defaultBanner}')` }}
-              />}
+            <div
+              className='banniere'
+              style={
+                this.state.a.image
+                  ? { backgroundImage: `url('${this.state.a.image}')` }
+                  : { backgroundImage: `url('${defaultBanner}')` }
+              }
+            />
             <div className='article-details'>
               <div className='author-container'>
                 <span
                   className='picto-container'
                   style={{ backgroundImage: `url(${authorImage})` }}
                 />
-                <p>{this.state.a.author.username}</p>
+                <p>
+                  {this.state.a.author
+                    ? this.state.a.author.username
+                    : 'non-renseigné'}
+                </p>
               </div>
               <div className='published-container'>
                 <span
@@ -41,9 +48,9 @@ class ArticleContent extends React.Component {
                   style={{ backgroundImage: `url(${publishedImage})` }}
                 />
                 {this.state.a.updated_at !== '' && null ? (
-                  <p>{this.props.a.updated_at.substr(0, 10)}</p>
+                  <p>{this.state.a.updated_at.substr(0, 10)}</p>
                 ) : (
-                  <p>{this.props.a.created_at.substr(0, 10)}</p>
+                  <p>{this.state.a.created_at.substr(0, 10)}</p>
                 )}
               </div>
             </div>
