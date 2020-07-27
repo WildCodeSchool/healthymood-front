@@ -129,6 +129,19 @@ class RecipeToPrint extends React.Component {
         </div>
 
         <div className='instructions-container'>
+          <h2>Ingrédients</h2>
+          <ul>
+            {recipeInfo.ingredients.map((ingredient) => {
+              return (
+                <li key={ingredient.id}>
+                  <span className={ingredient.is_allergen && 'is-allergen'}>
+                    {ingredient.name} ({ingredient.calories} Kcal)
+                  </span>
+                </li>
+              );
+            })}
+          </ul>
+          <h2>Instructions</h2>
           <div dangerouslySetInnerHTML={this.createRecipe()} />
         </div>
       </div>
