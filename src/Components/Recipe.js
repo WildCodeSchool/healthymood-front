@@ -25,14 +25,11 @@ class RecipeToPrint extends React.Component {
 
   frenchDateFormat = () => {
     const recipeInfo = this.props.recipeInfo;
-    console.log(recipeInfo.created_at);
     const date = recipeInfo.created_at.substr(0, 10);
 
     const month = date.substr(5, 2);
-    console.log(month);
     const day = date.substr(8, 10);
     const year = date.substr(0, 4);
-    console.log(day);
 
     return (`${day}-${month}-${year}`);
   }
@@ -49,6 +46,14 @@ class RecipeToPrint extends React.Component {
     return totalCalories;
   }
 
+  mealTypesNames = () => {
+    if (this.props.recipeInfo.mealType) {
+      return this.props.recipeInfo.mealType.map(m => ` ${m.name.charAt(0).toUpperCase() + m.name.slice(1)}`);
+    } else {
+      return 'Non-renseigné';
+    }
+  }
+
   render () {
     const recipeInfo = this.props.recipeInfo;
     const date = recipeInfo.created_at.substr(0, 10);
@@ -56,8 +61,6 @@ class RecipeToPrint extends React.Component {
     const connected = this.props.connected;
     const favorite = this.props.favorite;
     const handleSubmit = this.props.handleSubmit;
-    console.log(recipeInfo);
-    console.log(favorite);
     return (
 
       <div className='recipe-container'>
@@ -91,7 +94,7 @@ class RecipeToPrint extends React.Component {
               className='picto-container'
               style={{ backgroundImage: `url(${mealTypeImage})` }}
             />
-            <p>{recipeInfo.mealType.name ? this.capitalizeFirstLetter(recipeInfo.mealType.name) : 'Type de plat non renseigné'}</p>
+            <p>{this.mealTypesNames()}</p>
           </div>
           <div className='picto-info-container'>
             <span className='picto-container' style={{ backgroundImage: `url(${caloriesImage})` }} />
