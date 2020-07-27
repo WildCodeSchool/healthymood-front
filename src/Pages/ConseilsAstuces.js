@@ -121,8 +121,13 @@ export default function SearchArticles (props) {
           </div>
           <div className='result'>
             <div className='filter-articles-container'>
-              {currentSearch && <h4 className='results-title'>Résultats pour {currentSearch}</h4>}
-              {articles && <AdvicesAndTricks data={articles} />}
+              {
+                articles.length === 0 ? (
+                  <h4>aucun résultat  pour {currentSearch}</h4>
+                ) : (
+                  currentSearch && <h4 className='results-title'>Résultats pour {currentSearch}</h4>,
+                  articles && <AdvicesAndTricks data={articles} />)
+              }
             </div>
           </div>
         </div>

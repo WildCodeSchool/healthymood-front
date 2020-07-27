@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useRef, useContext } from 'react';
 import { useParams, useHistory } from 'react-router-dom';
-
 import '../Styles/Recipe.css';
 import publishedImage from '../Images/published.png';
 import authorImage from '../Images/author.png';
@@ -24,6 +23,20 @@ class RecipeToPrint extends React.Component {
     return string.charAt(0).toUpperCase() + string.slice(1);
   }
 
+  frenchDateFormat = () => {
+    const recipeInfo = this.props.recipeInfo;
+    console.log(recipeInfo.created_at);
+    const date = recipeInfo.created_at.substr(0, 10);
+
+    const month = date.substr(5, 2);
+    console.log(month);
+    const day = date.substr(8, 10);
+    const year = date.substr(0, 4);
+    console.log(day);
+
+    return (`${day}-${month}-${year}`);
+  }
+
   createRecipe () {
     return { __html: this.props.recipeInfo.content };
   }
@@ -38,6 +51,7 @@ class RecipeToPrint extends React.Component {
 
   render () {
     const recipeInfo = this.props.recipeInfo;
+    const date = recipeInfo.created_at.substr(0, 10);
     const history = this.props.history;
     const connected = this.props.connected;
     const favorite = this.props.favorite;
@@ -61,7 +75,7 @@ class RecipeToPrint extends React.Component {
               className='picto-container'
               style={{ backgroundImage: `url(${publishedImage})` }}
             />
-            <p>{recipeInfo.created_at.substr(0, 10)}</p>
+            <p>{this.frenchDateFormat(date)}</p>
             <span
               className='picto-container'
               style={{ backgroundImage: `url(${categoryImage})` }}
