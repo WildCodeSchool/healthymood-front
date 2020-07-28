@@ -44,7 +44,7 @@ function ControlledCarousel () {
             title: lastArticle.title,
             caption: lastArticle.intro,
             button: 'Lire l\'article ',
-            link: `article/${lastArticle.id}`
+            link: `article/${lastArticle.slug}`
           }, ...carouselItems]);
         }
       })
