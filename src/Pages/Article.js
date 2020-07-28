@@ -15,11 +15,7 @@ export default class Article extends Component {
   componentDidMount () {
     const searchOrId = this.props.match.params.slug;
     API.get(`/articles/${searchOrId}`)
-      .then((res) => res.data)
-      .then((data) => {
-        return data.data;
-      })
-      .then((data) => this.setState({ data, articleIsLoading: false }));
+      .then((res) => this.setState({ data: res.data.data, articleIsLoading: false }));
   }
 
   render () {

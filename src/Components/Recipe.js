@@ -83,7 +83,7 @@ class RecipeToPrint extends React.Component {
               className='picto-container'
               style={{ backgroundImage: `url(${categoryImage})` }}
             />
-            <p>{recipeInfo.category.name ? this.capitalizeFirstLetter(recipeInfo.category.name) : 'Catégorie non renseignée'}</p>
+            <p>{(recipeInfo.category && recipeInfo.category.name) ? this.capitalizeFirstLetter(recipeInfo.category.name) : 'Catégorie non renseignée'}</p>
           </div>
           <Rating recipeInfo={recipeInfo} />
         </header>
