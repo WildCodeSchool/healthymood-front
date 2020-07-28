@@ -44,6 +44,14 @@ class RecipeToPrint extends React.Component {
     return totalCalories;
   }
 
+  mealTypesNames = () => {
+    if (this.props.recipeInfo.mealType) {
+      return this.props.recipeInfo.mealType.map(m => ` ${m.name.charAt(0).toUpperCase() + m.name.slice(1)}`);
+    } else {
+      return 'Non-renseigné';
+    }
+  }
+
   render () {
     const recipeInfo = this.props.recipeInfo;
     const date = recipeInfo.created_at.substr(0, 10);
@@ -84,7 +92,7 @@ class RecipeToPrint extends React.Component {
               className='picto-container'
               style={{ backgroundImage: `url(${mealTypeImage})` }}
             />
-            <p>{(recipeInfo.mealType && recipeInfo.mealType.name) ? this.capitalizeFirstLetter(recipeInfo.mealType.name) : 'Type de plat non renseigné'}</p>
+            <p>{this.mealTypesNames()}</p>
           </div>
           <div className='picto-info-container'>
             <span className='picto-container' style={{ backgroundImage: `url(${caloriesImage})` }} />

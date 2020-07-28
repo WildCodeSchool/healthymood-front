@@ -5,6 +5,7 @@
     height:10vh;
     background-color:white;
     z-index: 999999;
+    padding-top: 100px;
 }
 .footer-container .footer-element {
     width:25px;

@@ -6,6 +6,9 @@
     margin:0 auto;
     text-align:left;   
 }
+img {
+  max-width:100%;
+}
 
 
 .recipe-container .recipe-title {
