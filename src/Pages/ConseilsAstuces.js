@@ -17,7 +17,6 @@ export default function SearchArticles (props) {
       API.get('/articles')
         .then((res) => res.data)
         .then((data) => {
-          console.log(data.data);
           return data.data;
         })
         .then((data) => setArticles(data));
@@ -32,7 +31,6 @@ export default function SearchArticles (props) {
       API.get(url)
         .then((res) => res.data)
         .then((data) => {
-          console.log(data.data);
           return data.data;
         })
         .then((data) => setArticles(data));
@@ -86,7 +84,6 @@ export default function SearchArticles (props) {
       API.get('/articles')
         .then((res) => res.data)
         .then((data) => {
-          console.log(data.data);
           return data.data;
         })
         .then((data) => setArticles(data));

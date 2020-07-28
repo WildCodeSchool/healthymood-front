@@ -22,10 +22,9 @@ const FavoriteUser = () => {
       })
       .catch((err) => {
         console.error(err);
-        console.log("Vous n'avez pas encore de favoris");
+        console.error("Vous n'avez pas encore de favoris");
       });
   }, []); //eslint-disable-line
-  console.log(favorite);
   return (
     <>
       <h3 className='small-recipe-title-user-page'>Votre liste de favoris :</h3>

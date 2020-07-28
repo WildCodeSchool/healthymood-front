@@ -96,7 +96,6 @@ function App () {
       .then((res) => res.data)
       .then((data) => {
         const favExist = favorite.find((fav) => fav.recipe_id === recipe_id); //eslint-disable-line
-        console.log(favExist);
         if (!favExist) {
           setFavorite((favorite) => [...favorite, { recipe_id }]); //eslint-disable-line
         } else {
@@ -104,8 +103,6 @@ function App () {
             (favorite) => favorite.filter((fav) => fav.recipe_id !== recipe_id) //eslint-disable-line
           );
         }
-
-        console.log(data);
       })
       .catch((err) => {
         console.error(err);

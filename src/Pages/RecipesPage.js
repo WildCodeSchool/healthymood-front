@@ -16,7 +16,7 @@ function RecipesPage (props) {
           setAllRecipes(results.data);
         })
         .catch(err => {
-          console.log(err);
+          console.error(err);
         });
     } else {
       API.get('/recipes')
@@ -25,23 +25,23 @@ function RecipesPage (props) {
           setAllRecipes(results.data);
         })
         .catch(err => {
-          console.log(err);
+          console.error(err);
         });
     }
   }, [props.match.params]);
 
   return (
     <>
-    <Link to='/rechercher' className='btn-link'>
-    <div className='btn-search'>Rechercher une recette</div>
-  </Link>
-    <div className='recipes-page-container'>
-      {allRecipes.length > 0 && allRecipes.map((r) => {
-        return (
-          <SmallRecipe key={r.id} r={r} />
-        );
-      })}
-    </div>
+      <Link to='/rechercher' className='btn-link'>
+        <div className='btn-search'>Rechercher une recette</div>
+      </Link>
+      <div className='recipes-page-container'>
+        {allRecipes.length > 0 && allRecipes.map((r) => {
+          return (
+            <SmallRecipe key={r.id} r={r} />
+          );
+        })}
+      </div>
     </>
   );
 }

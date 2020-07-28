@@ -52,10 +52,11 @@ function Footer () {
   }, []);
 
   const pagesLinks = () => {
-    return pages.map((p, index) => {
+    return pages.map((p, index) => {  // eslint-disable-line
       if (p.published && p.display_in_footer) {
-        return <Link key={index} className='footer-link' to={`/info/${p.slug}`}>{p.title}</Link>;
+        return (<Link key={index} className='footer-link' to={`/info/${p.slug}`}>{p.title}</Link>);
       }
+      return '';
     });
   };
   return (

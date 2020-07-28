@@ -5,6 +5,9 @@
     margin:auto;
     text-align:left;
   }
+  img {
+    max-width:100%;
+  }
   
   .page-article h1 {
     display: block;
