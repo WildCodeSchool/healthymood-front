@@ -13,12 +13,30 @@ class ArticleContent extends React.Component {
     };
   }
 
+  frenchDateFormat = () => {
+    const a = this.props.a;
+    console.log(a.created_at);
+    const date = a.created_at.substr(0, 10);
+
+    const month = date.substr(5, 2);
+    console.log(month);
+    const day = date.substr(8, 10);
+    const year = date.substr(0, 4);
+    console.log(day);
+
+    return (`${day}-${month}-${year}`);
+  }
+
   createArticle (props) {
     return { __html: this.props.a.content };
   }
 
   render () {
+    const a = this.props.a;
+    const date = a.created_at.substr(0, 10);
+    const updateDate = a.updated_at.substr(0, 10);
     return (
+
       <>
         <div className='article-container'>
           <div className='article-presentation'>
@@ -48,9 +66,9 @@ class ArticleContent extends React.Component {
                   style={{ backgroundImage: `url(${publishedImage})` }}
                 />
                 {this.state.a.updated_at !== '' && null ? (
-                  <p>{this.state.a.updated_at.substr(0, 10)}</p>
+                  <p>{this.frenchDateFormat(updateDate)}</p>
                 ) : (
-                  <p>{this.state.a.created_at.substr(0, 10)}</p>
+                  <p>{this.frenchDateFormat(date)}</p>
                 )}
               </div>
             </div>
