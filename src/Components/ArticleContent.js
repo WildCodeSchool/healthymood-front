@@ -48,9 +48,9 @@ class ArticleContent extends React.Component {
                   style={{ backgroundImage: `url(${publishedImage})` }}
                 />
                 {this.state.a.updated_at !== '' && null ? (
-                  <p>{this.state.a.updated_at.substr(0, 10)}</p>
+                  <p>{this.state.a.updated_at}</p>
                 ) : (
-                  <p>{this.state.a.created_at.substr(0, 10)}</p>
+                  <p>{this.state.a.created_at}</p>
                 )}
               </div>
             </div>
