@@ -1,0 +1,10 @@
+.suggestion-container h4 {
+  margin-top: 50px;
+  display: flex;
+  flex-direction: column;
+}
+
+.suggested-recipes {
+  display: flex;
+  flex-direction: row;
+}
