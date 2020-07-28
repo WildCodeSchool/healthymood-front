@@ -56,7 +56,7 @@ function Footer () {
       if (p.published && p.display_in_footer) {
         return <Link key={index} className='footer-link' to={`/info/${p.slug}`}>{p.title}</Link>;
       }
-      return '...';
+      return '';
     });
   };
   return (
