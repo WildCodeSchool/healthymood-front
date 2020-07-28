@@ -10,7 +10,7 @@ export default class AdvicesAndTricks extends Component {
     super(props);
     this.state = {
       offset: 0,
-      perPage: 2,
+      perPage: 9,
       currentPage: 0,
       pageCount: 1
     };

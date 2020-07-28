@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import '../Styles/Search.css';
 import Loupe from '../Images/glass.png';
 import SmallRecipe from './SmallRecipe';
+import RecipesSuggestion from './RecipesSuggestion';
 import API from '../Services/API';
 import { useHistory } from 'react-router-dom';
 import queryString from 'query-string';
@@ -33,13 +34,15 @@ export default function Search (props) {
   };
 
   const getRecipes = async () => {
-    getResourceCollection(`recipes/${props.location.search}`).then(recipes => setRecipes(recipes));
+    getResourceCollection(`recipes/${props.location.search}`).then((recipes) =>
+      setRecipes(recipes)
+    );
   };
 
-  const tagToOption = tag => ({ value: tag.id, label: tag.name });
+  const tagToOption = (tag) => ({ value: tag.id, label: tag.name });
 
   const getAllMealTypes = () => {
-    return getResourceCollection('meal_types').then(tags => {
+    return getResourceCollection('meal_types').then((tags) => {
       const options = tags.map(tagToOption);
       setAllMealTypes(options);
       return options;
@@ -47,7 +50,7 @@ export default function Search (props) {
   };
 
   const getAllIngredients = () => {
-    return getResourceCollection('ingredients').then(tags => {
+    return getResourceCollection('ingredients').then((tags) => {
       const options = tags.map(tagToOption);
       setAllIngredients(options);
       return options;
@@ -55,7 +58,7 @@ export default function Search (props) {
   };
 
   const getAllDiets = () => {
-    return getResourceCollection('diet').then(tags => {
+    return getResourceCollection('diet').then((tags) => {
       const options = tags.map(tagToOption);
       setAllDiets(options);
       return options;
@@ -66,9 +69,9 @@ export default function Search (props) {
     const query = queryString.stringify(
       {
         search: searchInputText === '' ? undefined : searchInputText, // for some unknown reason, skipEmptyString option does not work
-        ingredients: chosenIngredients && chosenIngredients.map(i => i.value),
-        meal_types: chosenMealTypes && chosenMealTypes.map(i => i.value),
-        diets: chosenDiets && chosenDiets.map(d => d.value),
+        ingredients: chosenIngredients && chosenIngredients.map((i) => i.value),
+        meal_types: chosenMealTypes && chosenMealTypes.map((i) => i.value),
+        diets: chosenDiets && chosenDiets.map((d) => d.value),
         /*         excluded: excludedIngredients && excludedIngredients.map(ei => ei.value), */
         calories: chosenCalories === 0 ? undefined : chosenCalories
       },
@@ -93,7 +96,9 @@ export default function Search (props) {
   };
 
   const populateInputs = (allMealTypes, allIngredients, allDiets) => {
-    const query = queryString.parse(props.location.search, { arrayFormat: 'bracket' });
+    const query = queryString.parse(props.location.search, {
+      arrayFormat: 'bracket'
+    });
     const { search, meal_types, ingredients, diets, calories } = query; // eslint-disable-line
     if (search) {
       setSearchInputText(search);
@@ -101,14 +106,24 @@ export default function Search (props) {
     if (calories) {
       setChosenCalories(calories);
     }
-    if (meal_types) { // eslint-disable-line
-      setChosenMealTypes(allMealTypes.filter(mealType => meal_types.includes(mealType.value.toString())));
+    if (meal_types) {// eslint-disable-line
+      setChosenMealTypes(
+        allMealTypes.filter((mealType) =>
+          meal_types.includes(mealType.value.toString())
+        )
+      );
     }
     if (ingredients) {
-      setChosenIngredients(allIngredients.filter(ingredient => ingredients.includes(ingredient.value.toString())));
+      setChosenIngredients(
+        allIngredients.filter((ingredient) =>
+          ingredients.includes(ingredient.value.toString())
+        )
+      );
     }
     if (diets) {
-      setChosenDiets(allDiets.filter(diet => diets.includes(diet.value.toString())));
+      setChosenDiets(
+        allDiets.filter((diet) => diets.includes(diet.value.toString()))
+      );
     }
     /*     if (excluded) {
       setExcludedIngredients(allIngredients.filter(ingredient => excluded.includes(ingredient.toString())));
@@ -116,11 +131,12 @@ export default function Search (props) {
   };
 
   useEffect(() => {
-    Promise.all([getAllMealTypes(), getAllIngredients(), getAllDiets()])
-      .then(([allMealTypes, allIngredients, allDiets]) => {
+    Promise.all([getAllMealTypes(), getAllIngredients(), getAllDiets()]).then(
+      ([allMealTypes, allIngredients, allDiets]) => {
         populateInputs(allMealTypes, allIngredients, allDiets);
-      });
-  }, []) // eslint-disable-line
+      }
+    );
+  }, []); // eslint-disable-line
 
   useEffect(() => {
     if (props.location.search) {
@@ -137,7 +153,7 @@ export default function Search (props) {
       /*       setExcludedIngredients([]); */
       setChosenCalories(0);
     }
-  }, [props.location.search]) // eslint-disable-line
+  }, [props.location.search]); // eslint-disable-line
 
   return (
     <div className='recherche-container' style={{ marginBottom: 200 }}>
@@ -176,6 +192,7 @@ export default function Search (props) {
                 {allIngredients.length !== 0 &&
                   <div className='input-label-container'>
                     <label className='advanced-search-label'>Quels ingrédients ?</label>
+
                     <TagSelect
                       options={allIngredients}
                       value={chosenIngredients}
@@ -189,6 +206,7 @@ export default function Search (props) {
                 {allDiets.length !== 0 &&
                   <div className='input-label-container'>
                     <label className='advanced-search-label'>Quel régime spécial ?</label>
+
                     <TagSelect
                       options={allDiets}
                       value={chosenDiets}
@@ -199,6 +217,7 @@ export default function Search (props) {
                       className='tag-select'
                     />
                   </div>}
+
                 {/*                   {allIngredients.length !== 0 &&
                     <div className='input-label-container'>
                       <label className='advanced-search-label'>Quels ingrédients enlever ?</label>
@@ -214,6 +233,7 @@ export default function Search (props) {
                     </div>} */}
                 <div className='input-label-container'>
                   <label className='advanced-search-label'>Combien de calories maximum ?</label>
+
                   <input
                     type='number'
                     name='calories'
@@ -226,7 +246,11 @@ export default function Search (props) {
                 </div>
               </>
             </div>
-            <button className='btn-search' onClick={syncInputValuesWithUrl} style={{ marginTop: 20 }}>
+            <button
+              className='btn-search'
+              onClick={syncInputValuesWithUrl}
+              style={{ marginTop: 20 }}
+            >
               <img src={Loupe} alt='search' />
               Rechercher
             </button>
@@ -234,7 +258,12 @@ export default function Search (props) {
           <div className='result'>
             <div className='filter-recipes-container'>
               {recipes.length === 0 ? (
-                props.location.search && <h4 className='no-result'>Aucun résultat</h4>
+                props.location.search && (
+                  <div className='no-results-container'>
+                    <h4 className='no-result'>Aucun résultat</h4>
+                    <RecipesSuggestion />
+                  </div>
+                )
               ) : (
                 <>
                   <h4 className='results-title'>Résultats : </h4>
