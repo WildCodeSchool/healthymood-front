@@ -176,11 +176,9 @@ export default function Search (props) {
             <div className='showAdvancedSearch-search-container'>
               <p>Recherche avancée</p>
               <>
-                {allMealTypes.length !== 0 && (
+                {allMealTypes.length !== 0 &&
                   <div className='input-label-container'>
-                    <label className='advanced-search-label'>
-                      Quel type de repas ?
-                    </label>
+                    <label className='advanced-search-label'>Quel type de repas ?</label>
                     <TagSelect
                       className='tag-select'
                       options={allMealTypes}
@@ -190,13 +188,11 @@ export default function Search (props) {
                       }}
                       placeholder='Types de repas'
                     />
-                  </div>
-                )}
-                {allIngredients.length !== 0 && (
+                  </div>}
+                {allIngredients.length !== 0 &&
                   <div className='input-label-container'>
-                    <label className='advanced-search-label'>
-                      Quels ingrédients ?
-                    </label>
+                    <label className='advanced-search-label'>Quels ingrédients ?</label>
+
                     <TagSelect
                       options={allIngredients}
                       value={chosenIngredients}
@@ -206,13 +202,11 @@ export default function Search (props) {
                       placeholder='Ingrédients'
                       className='tag-select'
                     />
-                  </div>
-                )}
-                {allDiets.length !== 0 && (
+                  </div>}
+                {allDiets.length !== 0 &&
                   <div className='input-label-container'>
-                    <label className='advanced-search-label'>
-                      Quel régime spécial ?
-                    </label>
+                    <label className='advanced-search-label'>Quel régime spécial ?</label>
+
                     <TagSelect
                       options={allDiets}
                       value={chosenDiets}
@@ -222,8 +216,8 @@ export default function Search (props) {
                       placeholder='Régime spéciaux'
                       className='tag-select'
                     />
-                  </div>
-                )}
+                  </div>}
+
                 {/*                   {allIngredients.length !== 0 &&
                     <div className='input-label-container'>
                       <label className='advanced-search-label'>Quels ingrédients enlever ?</label>
@@ -238,9 +232,8 @@ export default function Search (props) {
                       />
                     </div>} */}
                 <div className='input-label-container'>
-                  <label className='advanced-search-label'>
-                    Combien de calories maximum ?
-                  </label>
+                  <label className='advanced-search-label'>Combien de calories maximum ?</label>
+
                   <input
                     type='number'
                     name='calories'
