@@ -32,16 +32,16 @@ function RecipesPage (props) {
 
   return (
     <>
-    <Link to='/rechercher' className='btn-link'>
-    <div className='btn-search'>Rechercher une recette</div>
-  </Link>
-    <div className='recipes-page-container'>
-      {allRecipes.length > 0 && allRecipes.map((r) => {
-        return (
-          <SmallRecipe key={r.id} r={r} />
-        );
-      })}
-    </div>
+      <Link to='/rechercher' className='btn-link'>
+        <div className='btn-search'>Rechercher une recette</div>
+      </Link>
+      <div className='recipes-page-container'>
+        {allRecipes.length > 0 && allRecipes.map((r) => {
+          return (
+            <SmallRecipe key={r.id} r={r} />
+          );
+        })}
+      </div>
     </>
   );
 }

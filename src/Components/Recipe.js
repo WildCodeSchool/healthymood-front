@@ -25,15 +25,10 @@ class RecipeToPrint extends React.Component {
 
   frenchDateFormat = () => {
     const recipeInfo = this.props.recipeInfo;
-    console.log(recipeInfo.created_at);
     const date = recipeInfo.created_at.substr(0, 10);
-
     const month = date.substr(5, 2);
-    console.log(month);
     const day = date.substr(8, 10);
     const year = date.substr(0, 4);
-    console.log(day);
-
     return (`${day}-${month}-${year}`);
   }
 

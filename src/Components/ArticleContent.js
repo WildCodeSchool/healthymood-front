@@ -15,15 +15,10 @@ class ArticleContent extends React.Component {
 
   frenchDateFormat = () => {
     const a = this.props.a;
-    console.log(a.created_at);
     const date = a.created_at.substr(0, 10);
-
     const month = date.substr(5, 2);
-    console.log(month);
     const day = date.substr(8, 10);
     const year = date.substr(0, 4);
-    console.log(day);
-
     return (`${day}-${month}-${year}`);
   }
 
