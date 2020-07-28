@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import API from '../Services/API';
 import PageContent from '../Components/PageContent';
+import '../Styles/Pages.css';
 
 const Pages = (props) => {
   const slug = props.match.params.slug;
