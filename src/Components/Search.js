@@ -159,47 +159,47 @@ export default function Search (props) {
             </div>
             <div className='showAdvancedSearch-search-container'>
               <p>Recherche avancée</p>
-                <>
-                  {allMealTypes.length !== 0 &&
-                    <div className='input-label-container'>
-                      <label className='advanced-search-label'>Quel type de repas ?</label>
-                      <TagSelect
-                        className='tag-select'
-                        options={allMealTypes}
-                        value={chosenMealTypes}
-                        onChange={(newValues) => {
-                          setChosenMealTypes(newValues);
-                        }}
-                        placeholder='Types de repas'
-                      />
-                    </div>}
-                  {allIngredients.length !== 0 &&
-                    <div className='input-label-container'>
-                      <label className='advanced-search-label'>Quels ingrédients ?</label>
-                      <TagSelect
-                        options={allIngredients}
-                        value={chosenIngredients}
-                        onChange={(newValues) => {
-                          setChosenIngredients(newValues);
-                        }}
-                        placeholder='Ingrédients'
-                        className='tag-select'
-                      />
-                    </div>}
-                  {allDiets.length !== 0 &&
-                    <div className='input-label-container'>
-                      <label className='advanced-search-label'>Quel régime spécial ?</label>
-                      <TagSelect
-                        options={allDiets}
-                        value={chosenDiets}
-                        onChange={(newValues) => {
-                          setChosenDiets(newValues);
-                        }}
-                        placeholder='Régime spéciaux'
-                        className='tag-select'
-                      />
-                    </div>}
-                  {/*                   {allIngredients.length !== 0 &&
+              <>
+                {allMealTypes.length !== 0 &&
+                  <div className='input-label-container'>
+                    <label className='advanced-search-label'>Quel type de repas ?</label>
+                    <TagSelect
+                      className='tag-select'
+                      options={allMealTypes}
+                      value={chosenMealTypes}
+                      onChange={(newValues) => {
+                        setChosenMealTypes(newValues);
+                      }}
+                      placeholder='Types de repas'
+                    />
+                  </div>}
+                {allIngredients.length !== 0 &&
+                  <div className='input-label-container'>
+                    <label className='advanced-search-label'>Quels ingrédients ?</label>
+                    <TagSelect
+                      options={allIngredients}
+                      value={chosenIngredients}
+                      onChange={(newValues) => {
+                        setChosenIngredients(newValues);
+                      }}
+                      placeholder='Ingrédients'
+                      className='tag-select'
+                    />
+                  </div>}
+                {allDiets.length !== 0 &&
+                  <div className='input-label-container'>
+                    <label className='advanced-search-label'>Quel régime spécial ?</label>
+                    <TagSelect
+                      options={allDiets}
+                      value={chosenDiets}
+                      onChange={(newValues) => {
+                        setChosenDiets(newValues);
+                      }}
+                      placeholder='Régime spéciaux'
+                      className='tag-select'
+                    />
+                  </div>}
+                {/*                   {allIngredients.length !== 0 &&
                     <div className='input-label-container'>
                       <label className='advanced-search-label'>Quels ingrédients enlever ?</label>
                       <TagSelect
@@ -212,19 +212,19 @@ export default function Search (props) {
                         className='tag-select'
                       />
                     </div>} */}
-                  <div className='input-label-container'>
-                    <label className='advanced-search-label'>Combien de calories maximum ?</label>
-                    <input
-                      type='number'
-                      name='calories'
-                      id='calories'
-                      placeholder='Calories maximum'
-                      value={chosenCalories}
-                      onChange={handleCaloriesInputNumberChanged}
-                      onKeyDown={handleSearchInputKeyDown}
-                    />
-                  </div>
-                </>
+                <div className='input-label-container'>
+                  <label className='advanced-search-label'>Combien de calories maximum ?</label>
+                  <input
+                    type='number'
+                    name='calories'
+                    id='calories'
+                    placeholder='Calories maximum'
+                    value={chosenCalories}
+                    onChange={handleCaloriesInputNumberChanged}
+                    onKeyDown={handleSearchInputKeyDown}
+                  />
+                </div>
+              </>
             </div>
             <button className='btn-search' onClick={syncInputValuesWithUrl} style={{ marginTop: 20 }}>
               <img src={Loupe} alt='search' />
