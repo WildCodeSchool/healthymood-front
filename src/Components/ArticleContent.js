@@ -29,7 +29,7 @@ class ArticleContent extends React.Component {
   render () {
     const a = this.props.a;
     const date = a.created_at.substr(0, 10);
-    const updateDate = a.updated_at.substr(0, 10);
+    const updateDate = a.updated_at && a.updated_at.substr(0, 10);
     return (
 
       <>
