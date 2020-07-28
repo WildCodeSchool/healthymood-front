@@ -13,7 +13,6 @@ export default function Search (props) {
   const [recipes, setRecipes] = useState([]);
   const [searchInputText, setSearchInputText] = useState('');
   const [chosenCalories, setChosenCalories] = useState(0);
-  const [showAdvancedSearch, setShowAdvancedSearch] = useState(true);
   const [allMealTypes, setAllMealTypes] = useState([]);
   const [allIngredients, setAllIngredients] = useState([]);
   const [allDiets, setAllDiets] = useState([]);
@@ -93,10 +92,6 @@ export default function Search (props) {
     }
   };
 
-  const handleShowAdvancedSearchSearchClick = () => {
-    setShowAdvancedSearch(!showAdvancedSearch);
-  };
-
   const populateInputs = (allMealTypes, allIngredients, allDiets) => {
     const query = queryString.parse(props.location.search, { arrayFormat: 'bracket' });
     const { search, meal_types, ingredients, diets, calories } = query; // eslint-disable-line
@@ -132,7 +127,6 @@ export default function Search (props) {
       getRecipes();
     } else {
       setSearchInputText('');
-      setShowAdvancedSearch(false);
       setAllMealTypes([]);
       setAllIngredients([]);
       setAllDiets([]);
@@ -164,8 +158,7 @@ export default function Search (props) {
               />
             </div>
             <div className='showAdvancedSearch-search-container'>
-              <p onClick={handleShowAdvancedSearchSearchClick}>Recherche avancée</p>
-              {showAdvancedSearch &&
+              <p>Recherche avancée</p>
                 <>
                   {allMealTypes.length !== 0 &&
                     <div className='input-label-container'>
@@ -231,7 +224,7 @@ export default function Search (props) {
                       onKeyDown={handleSearchInputKeyDown}
                     />
                   </div>
-                </>}
+                </>
             </div>
             <button className='btn-search' onClick={syncInputValuesWithUrl} style={{ marginTop: 20 }}>
               <img src={Loupe} alt='search' />
